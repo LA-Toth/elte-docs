@@ -1,0 +1,44 @@
+A honlapon levo feladatokat kotelezoen meg kell csinalni a gyakorlati 
+jegy megszerzesehez. 
+NE KULDJETEK EL egyesevel a megoldasokat, hanem egy allomanyban gyujtsetek oket 
+es majd a felev folyaman fogom kerni oket.
+
+2. feladat
+
+Az alabbi kerdesekre adjatok meg a valaszt es azt az SQL lekerdezest
+(lekerdezeseket), amivel megkaptatok az eredmenyt.
+
+
+Adjuk meg az adatbazishoz tartozo adatfile-ok nevet es meretet
+méret szerint csökkenõ sorrendben.
+
+Adjuk meg, hogy milyen tablaterek vannak letrehozva az adatbazisban,
+az egyes tablaterek hany adatfajlbol allnak, es mekkora az osszmeretuk.
+(tablater_nev, fajlok_szama, osszmeret)
+
+Mekkora a blokkok merete az adatbazisban?
+
+Melyik a legnagyobb meretu tabla az adatbazisban?
+(A particionalt tablakat most ne vegyuk figyelembe.)
+
+Melyik a legnagyobb meretu index az adatbazisban?
+(A particionalt indexeket most ne vegyuk figyelembe.)
+
+Ha az ORAUSER nevu oracle user letrehoz egy tablat 
+(mondjuk a kovetkezo egyszeru utasitassal: CREATE TABLE T_nev(oszl1 CHAR(5)) )
+akkor melyik tablateren fog letrejonni a tabla es mekkora helyet
+fog elfoglalni?
+
+Adjuk meg adatfajlonkent, hogy az egyes adatfajlokban mennyi a foglalt 
+hely osszesen.
+
+Melyik felhasznalo objektumai foglalnak osszesen a legtobb helyet az adatbazisban?
+
+Adjuk meg, hogy az adatbazisban melyik tabla all a legtobb darab extensbol.
+
+Adjuk meg, hogy az egyes tablatereken mekkora a legnagyobb meretu osszefuggo
+szabad hely, vagyis a legnagyobb meretu szabad extens.
+
+Adjuk meg tablaterenkent, hogy mennyi a foglalt es a szabad hely a tablateren
+a kovetkezo semaban: (tablater_nev, foglalt_hely, szabad_hely)
+

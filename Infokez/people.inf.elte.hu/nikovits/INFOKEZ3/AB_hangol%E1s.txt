@@ -1,0 +1,266 @@
+Adatbaziskezelõ rendszer hatekonysaganak vizsgalata
+
+
+Kinek feladata a hatekonysag javitasa?
+	Tervezõ, fejlesztõ, adatbazis adminisztrator ... stb.
+Mikor kell a hatekonysaggal foglalkozni?
+	Minel elõbb annal jobb
+Celok kitûzese a hangolas elõtt
+	Nem összevissza allitgatni a parametereket, hanem azonositani a problema okat
+Mûködes közben folyamatosan figyelni a rendszert
+	V$ dinamikus nezettablak segitenek ebben
+
+
+Egy Instance beallitasai (memoria struktúrak es processek)
+
+Az instance nehany Oracle process es egy SGA (System Global Area) nevû memoriaterulet 
+egyuttes neve. Az adatbazishoz a user processek csak az instance-on keresztul 
+ferhetnek hozza. Egy instance csak egy adatbazist tud kezelni, de több instance is 
+futhat egy gepen. Ha több instance kezel 1 adatbazist azt hivjuk parallel server-nek.
+
+Processek felosztasa:
+
+	User processek (pl. az SQL*PLUS vagy egy C-be agyazott program)
+	Oracle processek (server processek es hatter processek)
+
+Server processek
+
+	A server processek kezelik le a user processek kereseit
+	elemzik es vegrehajtjak az SQL utasitasokat
+	beolvassak a szukseges adatblokkokat a lemezrõl a blokk pufferekbe
+	az eredmenyt visszaadjak az alkalmazasok fele
+
+Hatter processek (nem feltetlenul kell mindegyiknek futnia)
+
+	DBWR
+	LGWR
+	CKPT
+	SMON
+	PMON
+	ARCH
+	RECO
+	LCKn
+	Dispatcher (Dnnn)
+        ...
+
+Memória területek
+
+Shared pool (az alabbi szerkezetet követi)
+	Library cache
+		Shared Sql aera
+			Elemzesi fak es vegrehajtasi tervek az egyes SQL utasitasokhoz
+		PL/SQL procedurak, package-ek
+	Dictionary cache
+	Control structures
+        ... tovabbi reszek
+Meretet a SHARED_POOL_SIZE parameter hatarozza meg.
+
+Az Oracle minden vegrehajtando SQL utasitast a memoriaban reprezental. 
+Az utasitashoz tartozo memorianak van olyan resze, ami közös es van olyan resze, 
+ami privat. A közös reszen van az utasitas elemzõ faja es vegrehajtasi terve. 
+A privat reszen (private SQL area) van a binding informacio es a run-time bufferek. 
+A privat resz a kurzor lezarasaig el csak, a közös resz tovabb. 
+A privat resz dedikalt szerverhez valo kapcsolodas eseten a user process 
+PGA-jaban van, shared serverhez valo kapcsolodas eseten az SGA-ban. 
+(ilyenkor a server process nem is tudja, hogy valojaban melyik user processt 
+szolgalja ki.) Hogy egy user process mennyi privat SQL teruletet foglalhat le 
+az az OPEN_CURSORS parametertõl fugg.
+
+
+Egy SQL utasitas vegrehajtasanak lepesei:
+(pl. egy UPDATE utasitas feltetelezve, hogy kulön gepen fut a kliens es a szerver process)
+
+Kliens gepen fut egy felhasznaloi alkalmazas. Ez kapcsolatot kezdemenyez a szerverrel 
+a megfelelõ SQL*NET driveren keresztul.
+
+A szerver gepen futo SQL*NET listener process eszreveszi a kapcsolodasi kerelmet es 
+letrehoz egy szerver process-t, amelyik kiszolgalja a user process-t. 
+(multi threaded server eseten a listener egy elerhetõ dispatcher cimet adja meg a 
+user processnek)
+
+A user process kiad egy SQL utasitast es vegrehajt egy COMMIT-ot.
+
+A szerver process megkapja az utasitast, megnezi, hogy a SHARED POOL-ban valamelyik 
+közös SQL teruleten (shared SQL area) talalhato-e a mostanival azonos utasitas. 
+Ha igen akkor ellenõrzi a felhasznalo jogosultsagait es ha az is rendben van akkor 
+az adott SQL teruletet hasznalja a vegrehajtashoz. 
+Egyebkent egy új SQL teruletet allokal az utasitas elemzesehez es vegrehajtasahoz.
+
+A szerver process elõhozza a szukseges adatokat az adatfile-okbol vagy az SGA-ban levõ 
+adatbazis blokk pufferekbõl.
+
+A szerver process modositja az adatokat az SGA-ban. A DBWR process nem irja ki 
+azonnal a modositott blokkot lemezre, de a COMMIT utan a LGWR process azonnal 
+feljegyzi a tranzakciot az online REDO LOG file-ba.
+
+Ha a tranzakcio sikeres volt a szerver process uzenetet kuld a halozaton keresztul 
+a kliensnek, sikertelenseg eseten pedig egy hibauzenetet.
+
+
+A memoriastruktúrak optimalizalasa
+
+Lenyegeben azt kell eldönteni, hogy az egyes memoria struktúraknak mennyi helyet 
+engedelyezzunk. Itt bizonyos fontossagi sorrend szerint kell meghatarozni a mereteket.
+
+Operacios rendszer beallitasok
+Minel kevesebb lapozas
+Lehetõleg a teljes SGA ferjen bele a memoriaba
+PRE_PAGE_SGA -> YES (instance indulaskor a teljes SGA keruljön a memoriaba)
+
+Az SGA reszei 
+SVRMGR> show sga (megmutatja, hogy eppen mekkorak az egyes reszek)
+Private SQL teruletek szamanak beallitasa (OPEN_CURSORS)
+
+Az újraelemzesek szamanak csökkentese
+Library cache (V$LIBRARYCACHE tabla)
+Megmutatja, hogy elemzes es vegrehajtas közben hanyszor nem talalta a megfelelõ 
+informaciot a memoriaban. (GETS, GETHITS, PINS, PINHITS,RELOADS)
+   PINS   hanyszor kereste a megfelelõ objektum definiciot a memoriaban vegrehajtas közben
+   RELOADS  hanyszor kellett újraolvasni
+
+Az újraelemzesek szama csökkenthetõ a shared pool meretenek növelesevel 
+vagy azonos SQL utasitasok megirasaval.
+
+Objektumokra azonos modon hivatkozzunk (kulönben újraelemez))
+A bind valtozok neve azonos legyen (kulönben újraelemez)
+Hasznaljunk bind valtozot konstansok helyett
+	Select ... Where oszam = 10;
+	Select ... Where oszam = 20;
+ezeket ketszer elemzi. Helyette:
+	Select ... Where oszam = :osztaly_szam;
+Hasznaljunk tarolt eljarasokat (ezeket biztosan csak egyszer elemzi)
+Az optimalizalo optimalizacios modja ne valtozzon. (kulönben újraelemez)
+
+Ha nincsenek library cache "baklövesek" (library cache misses) akkor 
+meg tovabb javithatunk azzal, hogy a nyitott kurzorokhoz tartozo SQL teruleteket 
+nem engedjuk újrahasznalni amig a kurzor nincs lezarva. 
+(CURSOR_SPACE_FOR_TIME  -> TRUE) Ha vannak akkor ezzel le is fagyaszthatjuk a 
+rendszert, mert az újabb session nem tud memoriat allokalni.
+
+Ha egy utasitast mar haromszor újraelemzett akkor azt automatikusan beteszi egy 
+cache-be. Hogy egy session hany ilyen utasitast tehet be azt a SESSION_CURSOR_CACHE 
+beallitasaval adhatjuk meg. 
+A V$SESSTAT tablaban megnezhetõ, hogy hanyszor talalta meg az utasitast a 
+cache-ben. (Kell hozza a V$STATNAME tabla is)
+
+Az adatszotar cache (V$ROWCACHE tabla)
+	GETS   hanyszor kertek a megfelelõ informaciot
+	GETMISSES  hanyszor nem volt a cache-ben
+A kettõ aranya 10% alatt maradjon.
+
+Az adatblokk buffer cache (V$SYSTAT tabla újabb verzioban a V$STATNAME is kell)
+   Megvan benne, hogy hany blokk keres volt es hanyszor kellett a lemezhez nyúlni.
+
+
+A Trace lehetõseg
+
+Az egyes SQL utasitasok vegrehajtasaval kapcsolatos informaciokat ment ki allomanyba. 
+Ez a nyomkövetes is erõforrasokat emeszt fel ezert csak akkor mûködik ha kulön kerjuk. 
+(TIMED_STATISTICS = TRUE) Hova teszi az informaciot? -> USER_DUMP_DEST
+Csak egy session erejeig: ALTER SESSION SET SQL_TRACE = TRUE.
+Minden session-ra vonatkozo informacio kulön file-ba kerul. 
+(A filenevben a UNIX process azonosito lesz a kulönbseg.)
+
+Hasznalata:
+
+1.  ALTER SESSSION SET SQL_TRACE = TRUE
+2.  SQL utasitas kiadasa
+3.  kilepes
+4.  tkprof input_file output_file
+
+Az output file magyarazata
+
+count    = number of times OCI procedure was executed
+cpu      = cpu time in seconds executing
+elapsed  = elapsed time in seconds executing
+disk     = number of physical reads of buffers from disk
+query    = number of buffers gotten for consistent read
+current  = number of buffers gotten in current mode (usually for update)
+rows     = number of rows processed by the fetch or execute call
+select * from ... where ...
+
+call     count       cpu    elapsed       disk      query    current        rows
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+Parse        1      0.00       0.00          0          0          0           0
+Execute      1      0.00       0.00          0          0          0           0
+Fetch        1      0.00       0.00         33         11          4          15
+------- ------  -------- ---------- ---------- ---------- ----------  ----------
+total        3      0.00       0.00         33         11          4          15
+
+Misses in library cache during parse: 1
+Optimizer goal: CHOOSE
+Parsing user id: 11
+
+
+Néhány hasznos lekérdezés, amelyekkel információt lehet szerezni, hogy 
+mit hangoljunk, javítsunk. Lásd még UTLBSTAT.SQL és UTLESTAT.SQL
+
+
+-- Az adatblokkok talalati aranya
+
+SELECT 100*(1-(SUM(DECODE(name, 'physical reads', value, 0)) /
+       (SUM(DECODE(name, 'db_block gets', value, 0)) +
+        SUM(DECODE(name, 'consistent gets', value, 0))))) "DB block hit 
+ratio"
+FROM   v$sysstat;
+
+
+-- Az adatszotar talalati aranya
+
+SELECT (1-(SUM(getmisses)/SUM(gets)))*100 "RowCache hit ratio"
+FROM   v$rowcache;
+
+
+-- A LibraryCache talalati aranya
+
+SELECT SUM(pins)/(SUM(pins) + SUM(reloads)) * 100 "LibraryCache hit ratio"
+FROM   v$librarycache;
+
+LibraryCache hit ratio
+----------------------
+            99.7606905
+
+
+-- A Shared Poolnak mekkora resze szabad
+-- Az ujabb verzioban lehet, hogy nincs kulon megadva a Shared Pool merete.
+
+SELECT to_number(p.value) "Shared Pool Size", s.bytes "Free Memory",
+       (s.bytes/p.value)*100 "Percent Free"
+FROM   v$sgastat s, v$parameter p
+WHERE  s.name = 'free memory'
+AND    p.name = 'shared_pool_size';
+
+
+-- A SORT_AREA_SIZE userenkent ertendo es ez nem resze az SGA-nak.
+
+SELECT d.value "Disk Sorts", m.value "Memory Sorts",
+       100*m.value/decode(d.value+m.value,0,1,d.value+m.value) "Pct Memory 
+Sorts"
+FROM   v$sysstat d, v$sysstat m
+WHERE  d.name = 'sorts (disk)'
+AND    m.name = 'sorts (memory)';
+
+Disk Sorts Memory Sorts Pct Memory Sorts
+---------- ------------ ----------------
+        98        33137       99.7051301
+
+
+-- Hogyan hasznaljak az eroforrasokat az egyes SQL utasitasok? (!!!!!!!!!)
+
+SELECT disk_reads, sql_text
+FROM   v$sqlarea
+ORDER BY disk_reads desc;
+
+SELECT buffer_gets, sql_text
+FROM   v$sqlarea
+ORDER BY buffer_gets desc;
+
+
+-- A lemezek terhelese egyenletes-e?
+
+SELECT name, phyrds, phywrts, readtim, writetim
+FROM   v$filestat f, v$dbfile d
+WHERE  f.file# = d.file#;
+
+
+

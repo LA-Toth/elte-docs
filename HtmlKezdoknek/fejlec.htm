@@ -1,0 +1,69 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Fejléc</title>
+</head>
+
+<body background="images/bg2.gif" topmargin="0" leftmargin="0" bgcolor="#003366">
+<script language='JavaScript'>
+
+ var helpWindow;
+  function show(page) {
+   
+   helpWindow=window.open(page,'a','toolbar=no,scrollbars=yes,resizable=yes,width=500,height=400');
+ }
+  
+
+</script> 
+
+<script language="JavaScript" type="text/javascript">
+<!--
+// original code by Bill Trefzger 12/12/96
+function go(){
+if (document.selecter.select1.options[document.selecter.select1.selectedIndex].value != "none") {
+top.main.location = document.selecter.select1.options[document.selecter.select1.selectedIndex].value
+    }
+ }
+// -->
+</script>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td width="18" valign="middle"><a href="javascript:show('help.htm')"><img border="0" src="images/info.gif" width="12" height="15" hspace="2" vspace="2" alt="Segitseg"></a></td>
+    <td width="25" valign="middle"><a href="main.htm" target="main"><img border="0" src="images/home.gif" width="20" height="20" alt="Kezdôoldal"></a></td>
+    <td width="25" valign="middle"><a href="javascript:history.back()" target="main" ><img border="0" src="images/nyil_b.gif" width="22" height="21" alt="Vissza"></a></td>
+    <td width="25" valign="middle"><a href="javascript:history.forward()" target="main"><img border="0" src="images/nyil_j.gif" width="22" height="21" alt="Elôre"></a></td>
+    <td width="50" valign="middle"><a href="gyakorlas/index.html" target="_blank"><img border="0" src="images/gyak.gif" width="46" height="15" vspace="3" alt="HTML szerkesztô ablak"></a></td>
+    <td valign="bottom" align="center" width="160">
+    <FORM name="selecter">
+    <p>
+    <font face="Arial" size="1"><SELECT name="select1" size=1 onchange="go()">
+    <OPTION value=none>Menü
+    <OPTION value=none>--------------------
+    <OPTION value="main.htm">Kezdôlap
+    <OPTION value="ajanlottirod/ajanlottir.htm">Ajánlott irodalom
+    <OPTION value="feladatgyak/gyfeladat.htm">Gyakorló feladatok
+    <OPTION value="speci/speci.htm">HTML Speci
+    <OPTION value="htmltananyag/tananyag.html">HTML tananyag
+    <OPTION value="felhkepek/kepek.htm">Képek
+    <option value="linkek/index.html">Linkek</option>
+    <OPTION value="segedanyagok/segedanyag.htm">Segédanyagok
+    <OPTION value="segedprogramok/segedprogramok.htm">Segédprogramok
+    <OPTION value="selfcheck/index.html">Önellenôrzés
+    </SELECT>
+    </font>
+    </p>
+    </FORM></td>
+    <td valign="middle" align="center" width="50"></td>
+    
+    <td align="right"  width="250" valign="middle"></td>
+    <td align="right" valign="middle" width="210"><img border="0" src="images/title.gif" width="208" height="24"></td> 
+    </tr>
+</table>
+
+</body>
+
+</html>

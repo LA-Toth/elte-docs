@@ -1,0 +1,611 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1250">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>1. ora 1. slide</title>
+</head>
+
+<body link="#0000FF" bgcolor="#F4FEFF" background="../../images/bg1.gif">
+
+  <table border="0" cellpadding="5" cellspacing="0" width="100%" background="../../images/bg2.gif" bgcolor="#003366">
+    <tr>
+      <td align="center"><b><font color="#FFFFFF" face="Arial" size="3">Javascript
+        használata</font></b></td>
+    </tr>
+  </table>
+
+  <table border="0" width="100%" bgcolor="#F4FEFF" cellspacing="0" cellpadding="5">
+    <tr>
+      <td width="100%" colspan="2">
+
+<script language="JavaScript">
+<!--
+/** TELEPORT mouseover event generátor.http://www.extra.hu/teleport **/
+Browser = false ;
+if( (navigator.appName.indexOf("Netscape") != -1) || (navigator.appName.indexOf("Microsoft") != -1) )
+
+{ if( (navigator.appVersion.indexOf("3.") != -1) || (navigator.appVersion.indexOf("4.") != -1) )
+{ Browser = true;
+elsogomb= new Image();
+elsogomb.src = "gomb1.gif";
+elsogomb_piros = new Image();
+elsogomb_piros.src = "gomb1_b.gif";
+masodikgomb = new Image();
+masodikgomb.src = "gomb2.gif"
+masodikgomb_piros = new Image();
+masodikgomb_piros.src = "gomb2_b.gif"
+
+} }
+
+function blunt(place, imgName) {
+if (Browser == true) {
+document[place].src =eval(imgName + ".src");
+} }
+//-->
+</script>
+
+<p align="left"><font face="Arial" size="2">A JavaScript nem más, mint egy olyan bõvítés,
+amely a HTML kódok korlátozott alkalmazási lehetõségein
+kívánt javítani. (A Netscape cég fejlesztette ki, azóta más
+böngészõk is támogatják) A JavaScript lehetõségei a
+fejlesztések hatására egyre bõvültek, az újabb és újabb
+verziókat más-más verziószámmal jelölik. pl. JavaScript1.0,
+JavaScript1.1, JavaScript1.2</font> </p>
+
+<p align="left"><font face="Arial" size="2">JavaScriptet az alábbi formátumban
+helyezhetünk el az oldalainkban:</font></p>
+
+<p align="left"><font face="Arial" size="2" color="#800000">&lt;SCRIPT language=&quot;JavaScript&quot;&gt;</font></p>
+
+<blockquote>
+    <p align="left"><font face="Arial" size="2" color="#800000">script forrásszöveg</font></p>
+</blockquote>
+
+<p align="left"><font face="Arial" size="2" color="#800000">&lt;/SCRIPT&gt;</font></p>
+
+<p align="left"><font face="Arial" size="2">Természetesen a<em> language </em>részben a
+JavaScript után a verziószámot is ajánlott odaírni, mert
+így elkerülhetõ az, hogy pl. egy JavaScript1.2 nyelven írt
+részletet, egy olyan böngészõ próbálja végrehajtani, ami
+csak a JavaScript1.0 szabványt ismeri. Ekkor ugyanis nagy
+valószínûséggel hiba lépne fel a végrehajtáskor.</font></p>
+
+<p align="left"><font face="Arial" size="2">Most nem célunk, hogy a JavaScriptek írásában
+elmélyedjünk, inkább nézzük, hogy egy már megírt
+részletet hogy tudunk a saját felhasználásunkra módosítani.</font>
+</p>
+
+<hr>
+
+<h3><strong><font face="Arial" size="2">Lépegetés a látogatott oldalak között (
+history.back() és history.forward() használata)</font></strong></h3>
+
+<p><font face="Arial" size="2">Gyakori probléma az, hogy pl. honlapunk egyes részeire több
+helyrõl el lehet jutni, és el szeretnénk érni azt, hogy
+errõl az oldalról pl. egy vissza gomb megnyomásával mindig az
+elõtte lévõ oldalra jussunk vissza. Ezt a fajta lépkedést az
+oldalak között a böngészõk Back (Vissza), Forward (Elõre)
+gombjainak használatával is elérhetjük, de ugyanezt
+megoldhatjuk a history.back() függvény használatával. Ehhez a
+következõt kell tennünk. A vissza szövegre, vagy gombra a
+következõ linket kell rádefiniálnunk: <strong>javascript:history.back()</strong></font></p>
+
+<p><strong><font face="Arial" size="2">pl.</font></strong></p>
+
+<p><strong><font face="Arial" size="2" color="#800000">&lt;a href=&quot;javascript:history.back()&quot;&gt;
+Vissza &lt;/a&gt;</font> </strong></p>
+
+<p><font face="Arial" size="2">Ha az oldalunk több frame-et tartalmaz, akkor az is
+megoldható, hogy az egyik Frame-ben a másik Frame tartalmában
+tudunk lépkedni. (Ahogy ez a speci kezdõlapján történik a <img
+src="../../images/nyil_b.gif" align="absmiddle" width="22"
+height="21"> gomb megnyomásával)</font></p>
+
+<p><font face="Arial" size="2">Ehhez meg kell adnunk annak a frame-nek a nevét, amelynek
+tartalmában lépkedünk. (jelen esetben a Main nevû frame lesz
+ez)</font></p>
+
+<p><strong><font face="Arial" size="2" color="#800000">&lt;a href=&quot;javascript:history.back()&quot;
+target=&quot;main&quot;&gt; Vissza &lt;/a&gt;</font></strong></p>
+
+<p><font face="Arial" size="2">Ugyanezzel a módszerrel elõre is lépegethetünk a
+látogatott linkek között a <strong>javascript:history.forward()
+</strong>használatával.</font></p>
+
+<p><a href="jscript.html#top"><font face="Arial" size="2">Vissza az elejére</font></a></p>
+
+<hr>
+
+<h3><font face="Arial" size="2">Az oldal utolsó módosításának dátuma és ideje</font></h3>
+
+<p><font face="Arial" size="2">Az oldalban elhelyezett kód azt eredményezi, hogy megjelenik
+az oldal utolsó módosításának dátuma és ideje.</font></p>
+
+<p><font face="Arial" size="2" color="#800000">&lt;script language=&quot;JavaScript&quot; &gt;<br>
+&lt;!--<br>
+document.write(&quot;Utolsó módosítás &quot; +
+document.lastModified)<br>
+// --&gt;<br>
+&lt;/script&gt;</font></p>
+
+<p><strong><font face="Arial" size="2">Eredménye.</font></strong></p>
+
+<p><font face="Arial" size="2"><script language="JavaScript">
+<!--
+	document.write("Utolsó módosítás " + document.lastModified)
+// -->
+</script> </font> </p>
+
+<p><a href="jscript.html#top"><font face="Arial" size="2">Vissza az elejére</font></a></p>
+
+<hr>
+
+<h3><font face="Arial" size="2">A dokumentum URL-jének megjelenítése</font></h3>
+
+<p><font face="Arial" size="2">A következõ kód megjeleníti az adott oldal URL-jét.</font></p>
+
+<p><font face="Arial" size="2" color="#800000">&lt;script language=&quot;JavaScript&quot;&gt;<br>
+&lt;!--<br>
+document.write(document.location);<br>
+// --&gt;<br>
+&lt;/script&gt;</font></p>
+
+<p><strong><font face="Arial" size="2">Eredménye:</font></strong></p>
+
+<p><font face="Arial" size="2"><script language="JavaScript"><!--
+document.write(document.location);
+// --></script></font></p>
+
+<p><a href="jscript.html#top"><font face="Arial" size="2">Vissza az elejére</font></a></p>
+
+<hr>
+
+<h3><font face="Arial" size="2">Figyelmeztetõ ablak megjelenítése</font></h3>
+
+<p><font face="Arial" size="2">A következõ kód segítségével megjeleníthetsz egy
+üzenetet egy ablakban.</font></p>
+
+<p><font face="Arial" size="2" color="#800000">&lt;script language=&quot;JavaScript&quot;&gt;<br>
+&lt;!--<br>
+alert(&quot;Amit ide írsz, az jelenik meg az
+ablakban....&quot;);<br>
+// --&gt;<br>
+<br>
+&lt;/script&gt;</font></p>
+
+<p><font face="Arial" size="2"><strong>Kipróbálni </strong><a href="alert.html" target="_blank"><strong>itt</strong></a><strong> tudod.</strong></font></p>
+
+<p><a href="jscript.html#top"><font face="Arial" size="2">Vissza az elejére</font></a></p>
+
+<hr>
+
+<h3><font face="Arial" size="2">Az egyik frameben lévõ oldal betöltésével egyidõben egy
+másik frame tartalmának megváltoztaása</font></h3>
+
+<p><font face="Arial" size="2" color="#800000">&lt;script language=&quot;JavaScript&quot;&gt;<br>
+&lt;!--<br>
+top.frame_neve.location=&quot;URLl&quot;<br>
+// --&gt;<br>
+&lt;/script&gt;<br>
+</font>
+</p>
+
+<p><font face="Arial" size="2">Nézzük a következõ <a href="pelda/jsdemo.html" target="_blank">példát</a>. A következõ frameszerkezetet
+hoztuk létre:</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="150">
+    <tr>
+        <td rowspan="3" width="50" bgcolor="#6CC8F9"><pre><font face="Arial" size="2">
+
+</font></pre>
+        <p><strong><font face="Arial" size="2">menu</font></strong> </p>
+        <pre><font face="Arial" size="2">
+
+</font></pre>
+        </td>
+        <td width="50%" bgcolor="#A8DEFB"><strong><font face="Arial" size="2">logo</font></strong></td>
+    </tr>
+    <tr>
+        <td rowspan="2" width="50%" bgcolor="#0A99E7"><pre><font face="Arial" size="2">
+
+<strong>tartalom</strong>  </font></pre>
+        <pre><font face="Arial" size="2">
+
+</font></pre>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><font face="Arial" size="2">Alapértelmezésben minden frameben az azonos nevû html oldal
+van betöltve. pl. a menu framben a menu.html.</font></p>
+
+<p><font face="Arial" size="2">Azt szeretnénk elérni, hogy amikor a <em>logo</em> frameben
+kiválasztjuk az angol nyelvet, akkor a <em>menu</em> és a <em>tartalom</em>
+frame tartalma is megváltozzon. Ezt megoldhatjuk úgy, hogy a
+nyelv kiválasztásával a <em>menu</em> frameben az adott
+nyelvnek megfelelõ menüt töltjük be, és ez az oldal
+tartalmaz egy scriptet amely megváltoztatja a <em>tartalom</em>
+frame tartalmát.</font></p>
+
+<p><font face="Arial" size="2">Tehát, az angol zászlóra (ukflag.gif) a következõ linket
+definiáljuk:</font></p>
+
+<p><font face="Arial" size="2" color="#800000">&lt;a href=&quot;menuen.html&quot;
+target=&quot;menu&quot;&gt;&lt;img
+src=&quot;ukflag.gif&quot;&gt;&lt;/a&gt;</font></p>
+
+<p><font face="Arial" size="2">Ezzel a menu frameben az angol menü (menuen.html) töltõdik
+be. A menuen.html oldal viszont tartalmazza a következõ
+scriptet:</font></p>
+
+<p><font face="Arial" size="2" color="#800000">&lt;script language=&quot;JavaScript&quot;&gt;<br>
+&lt;!--<br>
+top.tartalom.location=&quot;tartalomen.html&quot;<br>
+// --&gt;<br>
+&lt;/script&gt;</font></p>
+
+<p><font face="Arial" size="2">A script azt eredményezi, hogy a tartalom frameben megjelenik
+az angol nyelvû lap (tartalomen.html).</font></p>
+
+<p><font face="Arial" size="2">A magyar nyelv kiválasztásánál is a fenti módon kell
+eljárnunk...</font></p>
+
+<hr>
+
+<h3 align="left"><font face="Arial" size="2">Animált gombok létrehozása</font></h3>
+
+<p><font face="Arial" size="2">Sokszor találkozhatunk a WEB-en olyan megoldásokkal, hogy
+egy adott gomb, grafika megváltozik akkor, amikor fölé
+visszük az egeret. Ez a funkció nekünk is hasznos lehet a
+honlapkészítés során.</font></p>
+
+<p><font face="Arial" size="2">Nézzünk egy egyszerû példát.</font></p>
+
+<p><font face="Arial" size="2"><a href="http://www.index.hu/"
+onmouseover="blunt('elso','elsogomb_piros')"
+onmouseout="blunt('elso','elsogomb')"><img src="gomb1.gif"
+border="0" name="elso"></a> <a
+href="http://www.netlap.hu/"
+onmouseover="blunt('masodik','masodikgomb_piros')"
+onmouseout="blunt('masodik','masodikgomb')"><img src="gomb2.gif"
+border="0" name="masodik"></a> </font> </p>
+
+<p><font face="Arial" size="2">Ha a gombok fölé visszük az egeret, akkor a gomb felirata
+piros színû lesz. A gombok lenyomásakor a <a
+href="http://www.index.hu">www.index.hu</a> illetve a <a
+href="http://www.netlap.hu">www.netlap.hu</a> oldalak jönnek be.</font></p>
+
+<p><font face="Arial" size="2">Hogyan készíthetünk ilyen animált gombokat?</font></p>
+
+<p><font face="Arial" size="2">Elõször is valamilyen grafikai program segítségével
+létre kell hoznunk a gombokat.</font> </p>
+
+<p><font face="Arial" size="2">A fenti példában a következõ képek szerepeltek:</font></p>
+<div align="left">
+
+<table border="0" cellpadding="5" cellspacing="0">
+    <tr>
+        <td width="25%"><font face="Arial" size="2">gomb1.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="gomb1.gif"></font></td>
+        <td width="25%"><font face="Arial" size="2">gomb1_b.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="gomb1_b.gif"></font></td>
+    </tr>
+    <tr>
+        <td width="25%"><font face="Arial" size="2">gomb2.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="gomb2.gif"></font></td>
+        <td width="25%"><font face="Arial" size="2">gomb2_b.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="gomb2_b.gif"></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font face="Arial" size="2">Ha a képek megvannak, akkor már &quot;csak&quot; az õket
+mûködtetõ JavaScriptet kell megírni. (pontosabban egy
+meglévõt módosítani)</font></p>
+
+<p><font face="Arial" size="2">Nézzük, hogy a fenti példában milyen kód mûködtette a
+gombokat, és világos lesz hogy hogyan tudjuk a kódot magunk
+számára módosítani.</font></p>
+
+<p><font face="Arial" size="2"><strong>Az elsõ kódrészlet a következõ. (ennek a
+dokumentum &lt;HEAD&gt; részében kell elhelyezkednie) (</strong><a
+href="jscript.html#magyarázat"><strong>magyarázat itt</strong></a><strong>)</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;<br>
+&lt;!--<br>
+/** TELEPORT mouseover event
+generátor.http://www.extra.hu/teleport **/<br>
+Browser = false ;<br>
+if( (navigator.appName.indexOf(&quot;Netscape&quot;) != -1) ||
+(navigator.appName.indexOf(&quot;Microsoft&quot;) != -1) )<br>
+{ if( (navigator.appVersion.indexOf(&quot;3.&quot;) != -1) ||
+(navigator.appVersion.indexOf(&quot;4.&quot;) != -1) )<br>
+{ Browser = true;<br>
+elsogomb= new Image();<br>
+elsogomb.src = &quot;gomb1.gif&quot;;<br>
+elsogomb_piros = new Image();<br>
+elsogomb_piros.src = &quot;gomb1_b.gif&quot;;<br>
+masodikgomb = new Image();<br>
+masodikgomb.src = &quot;gomb2.gif&quot;<br>
+masodikgomb_piros = new Image();<br>
+masodikgomb_piros.src = &quot;gomb2_b.gif&quot;<br>
+<br>
+} }<br>
+<br>
+function blunt(place, imgName) {<br>
+if (Browser == true) {<br>
+document[place].src =eval(imgName + &quot;.src&quot;);<br>
+} }<br>
+//--&gt;<br>
+&lt;/SCRIPT&gt;<br>
+</font>
+</p>
+
+<p><font face="Arial" size="2">Most nézzük ugyanennek a kódrészletnek a <a
+name="magyarázat">magyarázat</a>át: (<font color="#005B00">a
+kód azon része amelyen<strong> nem kell módosítanunk</strong>
+zöld színû</font>, <font color="#0000FF">azon része amelyet <strong>módosítanunk
+kell</strong> kék színû</font>, <font color="#800000">a <strong>magyarázat</strong>
+barna</font>)</font></p>
+
+<p><font face="Arial" size="2"><font color="#005B00">&lt;SCRIPT
+LANGUAGE=&quot;JavaScript&quot;&gt; </font><font color="#800000">megadjuk
+hogy milyen nyelvû scriptet illesztünk be</font><font
+color="#005B00"><br>
+&lt;!--<br>
+/** TELEPORT mouseover event
+generátor.http://www.extra.hu/teleport **/ </font><font
+color="#800000">ez a sor tartalmazza a script eredetét.</font><font
+color="#005B00"> <br>
+Browser = false ; </font><font color="#800000">kezdetben tegyük
+fel, hogy olyan böngészõnk van, amely nem támogatja a
+JavaScriptet<br>
+A következõ 3 programsor ellenõrzi, hogy olyan böngészõnk
+van-e, ami képes értelmezni a JavaScriptet<br>
+Ha igen, akkor a Browser változó felveszi az igaz értéket.</font><font
+color="#005B00"><br>
+if( (navigator.appName.indexOf(&quot;Netscape&quot;) != -1) ||
+(navigator.appName.indexOf(&quot;Microsoft&quot;) != -1) )<br>
+{ if( (navigator.appVersion.indexOf(&quot;3.&quot;) != -1) ||
+(navigator.appVersion.indexOf(&quot;4.&quot;) != -1) )<br>
+{ Browser = true;</font></font></p>
+
+<p><font face="Arial" size="2"><font color="#800000">Az alábbi kód csak akkor hajtódik
+végre, ha a JavaScriptet értelmezõ bongészõnk van</font><font
+color="#005B00"><br>
+</font><font color="#0000FF">elsogomb= new Image(); </font><font
+color="#800000"><br>
+Az elsogomb lesz az elsõ gombunk neve. Természetesen ez a név
+bármi lehet.</font><font color="#0000FF"><br>
+elsogomb.src = &quot;gomb1.gif&quot;; <br>
+</font><font color="#800000">Megadjuk, hogy ehhez a névhez
+melyik kép tartozik. (jelen esetben a gomb1.gif)</font><font
+color="#0000FF"><br>
+elsogomb_piros = new Image(); </font><font color="#800000"><br>
+Az elsogomb_piros lesz annak a gombnak a neve, amelyet az elsõ
+gomb helyén fogunk megjeleníteni. </font><font color="#0000FF"><br>
+elsogomb_piros.src = &quot;gomb1_b.gif&quot;; <br>
+</font><font color="#800000">Ehhez a névhez is megadjuk, hogy
+melyik kép tartozik hozzá.</font></font></p>
+
+<p><font face="Arial" size="2"><font color="#800000">Ugyanezt az eljárást folytatjuk
+annyiszor, ahány képpárunk van.<br>
+</font><font color="#0000FF">masodikgomb = new Image();<br>
+masodikgomb.src = &quot;gomb2.gif&quot;<br>
+masodikgomb_piros = new Image();<br>
+masodikgomb_piros.src = &quot;gomb2_b.gif&quot;</font><font
+color="#005B00"><br>
+<br>
+} }<br>
+</font><font color="#800000">A következõ függvény az adott
+nevû objektum (place) helyén megjeleníti a paraméterül
+átadott képet (imgName)</font><font color="#005B00"><br>
+function blunt(place, imgName) {<br>
+if (Browser == true) {<br>
+document[place].src =eval(imgName + &quot;.src&quot;);<br>
+} }<br>
+//--&gt;<br>
+&lt;/SCRIPT&gt;</font><font color="#008000"><br>
+</font></font></p>
+
+<p><font face="Arial" size="2">Ahhoz hogy használjuk a scriptet a &lt;BODY&gt; &lt;/BODY&gt;
+részen belül a kívánt helyen el kell helyeznünk a
+következõ programkódot.(<a href="jscript.html#magyar2">magyarázat itt</a>)</font></p>
+
+<p><font face="Arial" size="2">&lt;A HREF=&quot;http://www.index.hu/&quot;
+onMouseOver=&quot;blunt('elso','elsogomb_piros')&quot;<br>
+onMouseOut=&quot;blunt('elso','elsogomb')&quot;&gt; <br>
+&lt;IMG SRC=&quot;gomb1.gif&quot; NAME=&quot;elso&quot;
+HEIGHT=&quot;24&quot; WIDTH=&quot;90&quot;<br>
+BORDER=&quot;0&quot;&gt;&lt;/A&gt; <br>
+<br>
+&lt;A HREF=&quot;http://www.netlap.hu/&quot;
+onMouseOver=&quot;blunt('masodik','masodikgomb_piros')&quot;<br>
+onMouseOut=&quot;blunt('masodik','masodikgomb')&quot;&gt; <br>
+&lt;IMG SRC=&quot;gomb2.gif&quot; NAME=&quot;masodik&quot;
+HEIGHT=&quot;24&quot; WIDTH=&quot;90&quot;<br>
+BORDER=&quot;0&quot;&gt;&lt;/A&gt;</font> </p>
+
+<p><font face="Arial" size="2"><a name="magyar2"><strong>Magyarázat</strong></a><strong> </strong>(<font
+color="#005B00">a kód azon része amelyen<strong> nem kell
+módosítanunk</strong> zöld színû</font>, <font
+color="#0000FF">azon része amelyet <strong>módosítanunk kell</strong>
+kék színû</font>, <font color="#800000">a <strong>magyarázat</strong>
+barna</font>)</font></p>
+
+<p><font face="Arial" size="2"><font color="#008000">&lt;A HREF=&quot;</font><font
+color="#0000FF">http://www.index.hu/</font><font color="#008000">&quot;
+onMouseOver=&quot;blunt('</font><font color="#0000FF">elso</font><font
+color="#008000">','</font><font color="#0000FF">elsogomb_piros</font><font
+color="#008000">')&quot;<br>
+onMouseOut=&quot;blunt('</font><font color="#0000FF">elso</font><font
+color="#008000">','</font><font color="#0000FF">elsogomb</font><font
+color="#008000">')&quot;&gt; </font><font color="#800000"><br>
+A HREF paraméterben adjuk meg annak az oldalnak az URL-jét,
+amelyet a gombnyomáskor szeretnénk betölteni, <br>
+az onMouseOver paraméter tartalmazza azt, hogy mi történjen
+akkor ha az egér a kép fölé kerül<br>
+az onMouseOut paraméter tartalmazza azt, hogy mi történjen
+akkor ha az egér a képrõl elmozdul.</font></font></p>
+
+<p><font color="#800000" face="Arial" size="2">A fenti esetekben a <strong>blunt</strong>
+függvény hívjuk meg, amelynek az a szerepe, hogy az átadott
+objektumnév helyére a megadott nevû képet tölti be. Jelen
+esetben ha az egér a kép fölé kerül, akkor az elso nevu
+objektum helyére, az elsogomb_piros nev\ kép kerül. Az
+objektumnevet majd a kép elhelyezésénél adjuk meg.</font></p>
+
+<p><font face="Arial" size="2"><font color="#008000">&lt;IMG SRC=&quot;</font><font
+color="#0000FF">gomb1.gif</font><font color="#008000">&quot;
+NAME=&quot;</font><font color="#0000FF">elso</font><font
+color="#008000">&quot; HEIGHT=&quot;</font><font color="#0000FF">24</font><font
+color="#008000">&quot; WIDTH=&quot;</font><font color="#0000FF">90</font><font
+color="#008000">&quot;<br>
+BORDER=&quot;0&quot;&gt;&lt;/A&gt; </font></font></p>
+
+<p><font color="#800000" face="Arial" size="2">Itt helyezzük el a képet az oldalon,
+egy különbség van, hogy a NAME paraméterrel meg kell adnunk,
+hogy ennek az objektumnak mi a neve. Ezt az objektumnevet
+használtuk a fenti kódban.. </font></p>
+
+<p><font color="#800000" face="Arial" size="2">Nyilván ugyanezt a másik kép esetén
+is meg kell csinálnunk. </font></p>
+
+<p><font face="Arial" size="2"><font color="#008000">&lt;A HREF=&quot;</font><font
+color="#0000FF">http://www.netlap.hu/</font><font color="#008000">&quot;
+onMouseOver=&quot;blunt('</font><font color="#0000FF">masodik</font><font
+color="#008000">','</font><font color="#0000FF">masodikgomb_piros</font><font
+color="#008000">')&quot;<br>
+onMouseOut=&quot;blunt('</font><font color="#0000FF">masodik</font><font
+color="#008000">','</font><font color="#0000FF">masodikgomb</font><font
+color="#008000">')&quot;&gt; <br>
+&lt;IMG SRC=&quot;</font><font color="#0000FF">gomb2.gif</font><font
+color="#008000">&quot; NAME=&quot;</font><font color="#0000FF">masodik</font><font
+color="#008000">&quot; HEIGHT=&quot;</font><font color="#0000FF">24</font><font
+color="#008000">&quot; WIDTH=&quot;</font><font color="#0000FF">90</font><font
+color="#008000">&quot;<br>
+BORDER=&quot;0&quot;&gt;&lt;/A&gt; </font></font></p>
+
+<p><font face="Arial" size="2">Most már felírhatjuk az általános kódot:</font></p>
+
+<p><strong><font face="Arial" size="2">Az elsõ általánoskódrészlet a következõ. (ennek
+a dokumentum &lt;HEAD&gt; részében kell elhelyezkednie)</font> </strong></p>
+
+<p><font face="Arial" size="2">&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;<br>
+&lt;!--<br>
+/** TELEPORT mouseover event
+generátor.http://www.extra.hu/teleport **/<br>
+Browser = false ;<br>
+if( (navigator.appName.indexOf(&quot;Netscape&quot;) != -1) ||
+(navigator.appName.indexOf(&quot;Microsoft&quot;) != -1) )<br>
+{ if( (navigator.appVersion.indexOf(&quot;3.&quot;) != -1) ||
+(navigator.appVersion.indexOf(&quot;4.&quot;) != -1) )<br>
+{ Browser = true;<br>
+</font>
+</p>
+
+<p><font face="Arial" size="2"><font color="#FF0000">gombneve1</font>= new Image();<br>
+<font color="#FF0000">gombneve1</font>.src = &quot;<font
+color="#FF0000">a gombneve1 -hez tartozó kép (gif vagy jpg)</font>&quot;;<br>
+<font color="#FF0000">gombneve1_párja</font> = new Image();<br>
+<font color="#FF0000">gombneve1_párja</font>.src = &quot;<font
+color="#FF0000">a gombneve1 néven definiált kép párja (gif
+vagy jpg)</font>&quot;;<br>
+</font>
+</p>
+
+<p><font face="Arial" size="2"><font color="#FF0000">gombneve2</font>= new Image();<br>
+<font color="#FF0000">gombneve2</font>.src = &quot;<font
+color="#FF0000">a gombneve2 -höz tartozó kép (gif vagy jpg)</font>&quot;;<br>
+<font color="#FF0000">gombneve2_párja</font> = new Image();<br>
+<font color="#FF0000">gombneve2_párja</font>.src = &quot;<font
+color="#FF0000">a gombneve2 néven definiált kép párja (gif
+vagy jpg)</font>&quot;;</font></p>
+
+<p><font color="#0000FF" face="Arial" size="2">És ezt a sorozatot annyiszor
+folytatjuk, ahány képünk van</font></p>
+
+<p><font face="Arial" size="2">} }<br>
+<br>
+function blunt(place, imgName) {<br>
+if (Browser == true) {<br>
+document[place].src =eval(imgName + &quot;.src&quot;);<br>
+} }<br>
+//--&gt;<br>
+&lt;/SCRIPT&gt;<br>
+</font>
+</p>
+
+<p><strong><font face="Arial" size="2">Ahhoz hogy használjuk a scriptet a &lt;BODY&gt;
+&lt;/BODY&gt; részen belül a kívánt helyen el kell
+helyeznünk a következõ programkódot.</font></strong></p>
+
+<p><font face="Arial" size="2">&lt;A HREF=&quot;<font color="#FF0000">URL</font>&quot;
+onMouseOver=&quot;blunt('<font color="#FF0000">a kép objektum
+neve</font>','<font color="#FF0000">gombneve1_párja</font>')&quot;<br>
+onMouseOut=&quot;blunt('<font color="#FF0000">a kép objektum
+neve</font>','<font color="#FF0000">gombneve1</font>')&quot;&gt; <br>
+&lt;IMG SRC=&quot;<font color="#FF0000">a gombneve1 -hez tartozó
+kép (gif vagy jpg)</font>&quot; NAME=&quot;<font color="#FF0000">a
+kép objektum neve</font>&quot; HEIGHT=&quot;<font
+color="#FF0000">24</font>&quot; WIDTH=&quot;<font color="#FF0000">90</font>&quot;<br>
+BORDER=&quot;<font color="#FF0000">0</font>&quot;&gt;&lt;/A&gt; <br>
+<br>
+<font color="#0000FF">És ezt a sorozatot annyiszor folytatjuk,
+ahány képünk van</font></font></p>
+
+<p><font face="Arial" size="2">A fentiekhez segítséget nyújthat a <a href="../../online/mouseover/kepcsere.html">Mouseover
+esemény kód generáló </a>(Forrás: <a
+href="http://free.netlap.hu/teleport3000/webgarazs.html"
+target="_blank">Web-Garázs</a>) Ez csak 1 képpár kezelésére
+alkalmas, de a fentiek figyelembevételével tovább tudjátok a
+kódot fejleszteni.</font></p>
+
+<p><strong><font face="Arial" size="2">Gyakorlás:</font></strong></p>
+
+<p><font face="Arial" size="2">Készítsetek el egy olyan oldalt, amelyen felhasználjátok
+az alábbi képeket.</font></p>
+<div align="left">
+
+<table border="0" cellpadding="6" cellspacing="0" width="90%">
+    <tr>
+        <td width="25%"><font face="Arial" size="2">teleport.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="teleport.gif"></font></td>
+        <td width="25%"><font face="Arial" size="2">teleport_b.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="teleport_b.gif"></font></td>
+        <td><font face="Arial" size="2">http://free.netlap.hu/teleport3000/</font></td>
+    </tr>
+    <tr>
+        <td width="25%"><font face="Arial" size="2">index.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="index.gif"></font></td>
+        <td width="25%"><font face="Arial" size="2">index_b.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="index_b.gif"></font></td>
+        <td><font face="Arial" size="2">http://www.index.hu/</font></td>
+    </tr>
+    <tr>
+        <td width="25%"><font face="Arial" size="2">netlap.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="netlap.gif"></font></td>
+        <td width="25%"><font face="Arial" size="2">netlap_b.gif</font></td>
+        <td width="25%"><font face="Arial" size="2"><img src="netlap_b.gif"></font></td>
+        <td><font face="Arial" size="2">http://www.netlap.hu/</font></td>
+    </tr>
+</table>
+</div>
+
+<hr>
+&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="50%">&nbsp;</td>
+      <td width="50%" align="right">&nbsp;</td>
+    </tr>
+  </table>
+
+<p>&nbsp;</p>
+</body>
+</html>

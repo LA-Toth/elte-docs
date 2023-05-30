@@ -1,0 +1,16 @@
+This program computes and prints the
+greatest common divisor of two positive inteters.
+
+begin
+   int x, y;
+   read x;
+   read y;
+   while x\=y do
+      if x>y then
+	 x:=x-y
+      else
+	 y:=y-x;
+   write x;
+end.
+
+This is comment.

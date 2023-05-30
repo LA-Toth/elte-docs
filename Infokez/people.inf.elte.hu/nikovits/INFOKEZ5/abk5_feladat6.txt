@@ -1,0 +1,24 @@
+A honlapon szereplõ feladatokat kötelezõen meg kell csinálni a 
+gyakorlati jegy megszerzéséhez. NE KULDJÉTEK EL egyesével a megoldásokat, 
+hanem majd a félév végén egyetlen levélben fogom kérni az összeset.
+A megoldásokban a lekérdezéseket és a végeredményt is el kell küldeni.
+
+
+6. feladat
+
+A feladatot az ablinux gépen kell megoldani.
+
+(C-be ágyazott SQL)
+Az ORAUSER nevu felhasznalo tulajdonában van egy DOLGOZO nevu tabla. 
+Irjunk egy olyan C-be agyazott SQL programot, amelyik beker egy dolgozo nevet, 
+majd kiirja a dolgozo nevet, fizeteset es jutalekat, valamint az osszes ala 
+tartozo beosztott (a beosztottak beosztottait is beleertve) osszes fizeteset 
+es osszes jutalekat (kulon az osszfizetest es kulon az osszjutalekot). 
+A NULL erteket tekintsuk ugy, mintha 0 lenne az illeto jutaleka. 
+Ha nincs adott nevu dolgozo, vagy nincsenek beosztottai, akkor a program a 
+megfelelo uzenetet irja ki. Probaljuk ki a programot a ’BLAKE’, ’MARTIN’, 
+es ’BUBU’ bemenetekkel. (Elkuldendo a forraskod es az eredmenyek.)
+
+
+
+

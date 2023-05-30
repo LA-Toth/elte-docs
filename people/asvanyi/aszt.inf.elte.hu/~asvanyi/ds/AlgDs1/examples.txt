@@ -1,0 +1,1034 @@
+WARNING: You should study this material when you have selected some
+fixed-width font in your text editor/viewer (for example Courier New).
+(Homework assignment at the end of the file.)
+
+Exercise:
+
+unionIntersection(Hu,Hi:E2*):
+Hu and Hi are strictly increasing C2Ls.
+
+Let Hu be the strictly increasing union,
+Hi be the strictly increasing intersection
+of the two.
+
+Use neither new nor delete nor explicite assignment to data members.
+Rearrange the lists only with out(q), precede(q,r), follow(p,q).
+Running time: O(lenght(Hu)+length(Hi))
+
+Illustration:
+
+Sorted Union+Intersection
+
+          q
+Hu->[/]--[2]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[1]--[4]--[8]--[9]--[/]<-Hi
+	  r
+
+               q
+Hu->[/]--[1]--[2]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[4]--[8]--[9]--[/]<-Hi
+	  r
+
+                    q
+Hu->[/]--[1]--[2]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[4]--[8]--[9]--[/]<-Hi
+	  r
+
+                         q
+Hu->[/]--[1]--[2]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[4]--[8]--[9]--[/]<-Hi
+	       r
+
+                              q
+Hu->[/]--[1]--[2]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[4]--[8]--[9]--[/]<-Hi
+	       r
+
+                                   q
+Hu->[/]--[1]--[2]--[4]--[6]--[8]--[/]<-Hu
+
+Hi->[/]--[4]--[9]--[/]<-Hi
+	       r
+
+                                        q
+Hu->[/]--[1]--[2]--[4]--[6]--[8]--[9]--[/]<-Hu
+
+Hi->[/]--[4]--[/]<-Hi
+               r
+
+Code:
+
+unionIntersection(Hu,Hi:E2*){
+    q:=Hu->next
+    r:=Hi->next
+    while( q!=Hu && r!=Hi ){
+        if( q->key < r->key )
+	    q:=q->next
+	else if( q->key > r->key ){
+	    p:=r ; r:=r->next ; out(p)
+	    precede(p,q)
+	}
+	else{
+	    q:=q->next
+	    r:=r->next
+	}//if
+    }//while
+    while( r!=Hi ){
+         p:=r ; r:=r->next ; out(p)
+	 precede(p,Hu)        
+    }
+}//unionIntersection
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Unsorted Union+Intersection
+          p
+Hu->[/]--[7]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[1]--[4]--[2]--[5]--[/]<-Hi
+          q
+	  
+	       p
+Hu->[/]--[1]--[7]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[4]--[2]--[5]--[/]<-Hi
+          q
+
+	       p
+Hu->[/]--[1]--[7]--[4]--[6]--[/]<-Hu
+                    s
+
+Hi->[/]--[4]--[2]--[5]--[/]<-Hi
+          q
+
+	       p
+Hu->[/]--[1]--[7]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[4]--[2]--[5]--[/]<-Hi
+               q
+
+	            p
+Hu->[/]--[1]--[2]--[7]--[4]--[6]--[/]<-Hu
+                                   s
+
+Hi->[/]--[4]--[5]--[/]<-Hi
+               q
+
+	                 p
+Hu->[/]--[1]--[2]--[5]--[7]--[4]--[6]--[/]<-Hu
+                         
+Hi->[/]--[4]--[/]<-Hi
+               q
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+                              t
+Hu->[/]--[1]--[2]--[5]--[7]--[4]--[6]--[/]<-Hu
+                        s->[3]
+precede(s,t):
+                                   t
+Hu->[/]--[1]--[2]--[5]--[7]--[3]--[4]--[6]--[/]<-Hu
+                              s
+
+
+	       p
+Hu->[/]--[1]--[7]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[4]--[2]--[5]--[/]<-Hi
+               q
+
+               p
+Hu->[/]--[1]--[7]--[4]--[6]--[/]<-Hu
+
+Hi->[/]--[4]--[2]--[5]--[/]<-Hi
+               r    q
+
+out(r)
+               p
+Hu->[/]--[1]--[7]--[4]--[6]--[/]<-Hu
+         r->[2]
+	   
+Hi->[/]--[4]--[5]--[/]<-Hi
+               q
+
+precede(r,p)
+                    p
+Hu->[/]--[1]--[2]--[7]--[4]--[6]--[/]<-Hu
+               r
+
+Hi->[/]--[4]--[5]--[/]<-Hi
+               q
+
+                    p
+Hu->[/]--[1]--[2]--[7]--[4]--[6]--[/]<-Hu
+               
+
+Hi->[/]--[4]--[5]--[/]<-Hi
+               r    q
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+H1: 2 4 1 5 7 3 9 6
+H2: 3 8 5 10 2 4
+
+Unsorted symmetrical difference:
+    p
+H1: 2 4 1 5 7 3 9 6
+H2: 3 8 5 10 2 4
+    q
+
+
+    p
+H1: 2 4 1 5 7 9 6
+H2: 8 5 10 2 4
+    q
+
+      p
+H1: 8 2 4 1 5 7 9 6
+H2: 5 10 2 4
+    q
+
+      p
+H1: 8 2 4 1 7 9 6
+H2: 10 2 4
+    q
+
+         p
+H1: 8 10 2 4 1 7 9 6
+H2: 2 4
+    q
+
+         p
+H1: 8 10 4 1 7 9 6
+H2: 4
+    q
+
+         p
+H1: 8 10 1 7 9 6
+H2: empty
+    q=NULL
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+H1: 2 4 1 5 7 3 9 6
+H2: 3 8 5 10 2 4
+
+Unsorted union:
+    p
+H1: 2 4 1 5 7 3 9 6
+H2: 3 8 5 10 2 4
+    q
+
+
+    p
+H1: 2 4 1 5 7 3 9 6
+H2: 8 5 10 2 4
+    q
+
+      p
+H1: 8 2 4 1 5 7 3 9 6
+H2: 5 10 2 4
+    q
+
+      p
+H1: 8 2 4 1 5 7 3 9 6
+H2: 10 2 4
+    q
+
+         p
+H1: 8 10 2 4 1 5 7 3 9 6
+H2: 2 4
+    q
+
+         p
+H1: 8 10 2 4 1 5 7 3 9 6
+H2: 4
+    q
+
+         p
+H1: 8 10 2 4 1 5 7 3 9 6
+H2: empty
+    q=NULL
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Illustration of function partition of Quicksort on a C2L:
+(Partition of the sublist strictly between p and r,
+i.e. partition of sublist (p,r).
+The pivot is t, s goes on sublist (t,r),
+elements smaller then the pivot are moved before the pivot.)
+
+H->[/]--[5]--[2]--[4]--[6]--[8]--[3]--[/]<-H
+    p    t    s                        r
+
+H->[/]--[2]--[5]--[4]--[6]--[8]--[3]--[/]<-H
+    p         t    s                   r
+
+H->[/]--[2]--[4]--[5]--[6]--[8]--[3]--[/]<-H
+    p              t    s              r
+
+H->[/]--[2]--[4]--[5]--[6]--[8]--[3]--[/]<-H
+    p              t         s         r
+
+H->[/]--[2]--[4]--[5]--[6]--[8]--[3]--[/]<-H
+    p              t              s    r
+
+H->[/]--[2]--[4]--[3]--[5]--[6]--[8]--[/]<-H
+    p                   t            s=r
+
+quicksort(H:E2*){ // sorting C2L H with Quicksort (stable version)
+    QS(H,H)
+}
+
+QS(p,r:E2*){ // sorting sublist (p,r)
+  Homework
+}
+
+Draw the structograms of quicksort(H:E2*) and put them into Canvas
+in a single JPG/JPEG file.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Illustration of sorting
+-----------------------
+
+Insertion sort:
+<4,2,5,1,7,2> -> <4|2,5,1,7,2> -> <2,4|5,1,7,2> -> <2,4,5|1,7,2> ->
+ -> <1,2,4,5|7,2> -> <1,2,4,5,7|2> -> <1,2,2,4,5,7|> -> <1,2,2,4,5,7>
+ 
+Last insertion in detail:
+<1,2,4,5,7|2> -> <1,2,4,5,7|_> x=2 -> <1,2,4,5,_,7|> x=2 ->
+ -> <1,2,4,_,5,7|> x=2  -> <1,2,_,4,5,7|> x=2 -> <1,2,2,4,5,7|>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Merge sort:
+
+< 4,  2,  5,  1,  7,  2,  4,  3,  9 > divide
+< 4,  2,  5,  1 | 7,  2,  4,  3,  9 > divide left
+< 4,  2 | 5,  1 | 7,  2,  4,  3,  9 > divide left left
+< 4 | 2 | 5,  1 | 7,  2,  4,  3,  9 > merge left left
+< 2,  4 | 5,  1 | 7,  2,  4,  3,  9 > divide left right
+< 2,  4 | 5 | 1 | 7,  2,  4,  3,  9 > merge left right
+< 2,  4 | 1,  5 | 7,  2,  4,  3,  9 > merge left
+< 1,  2,  4,  5 | 7,  2,  4,  3,  9 > divide right
+< 1,  2,  4,  5 | 7,  2 | 4,  3,  9 > divide right left
+< 1,  2,  4,  5 | 7 | 2 | 4,  3,  9 > merge right left
+< 1,  2,  4,  5 | 2,  7 | 4,  3,  9 > divide right right
+< 1,  2,  4,  5 | 2,  7 | 4 | 3,  9 > divide right right right
+< 1,  2,  4,  5 | 2,  7 | 4 | 3 | 9 > merge right right left
+< 1,  2,  4,  5 | 2,  7 | 4 | 3,  9 > merge right right
+< 1,  2,  4,  5 | 2,  7 | 3,  4,  9 > merge right
+< 1,  2,  4,  5 | 2,  3,  4,  7,  9 > merge
+< 1,  2,  2,  3,  4,  4,  5,  7,  9 > stop
+
+Details of the last merge:
+
+< 1,  2,  4,  5 | 2,  3,  4,  7,  9 >
+  ^   ^   ^   ^ ^ ^   ^   ^   ^
+  1   2   5   7   3   4   6   end
+ 
+< 1,  2,  2,  3,  4,  4,  5,  7,  9 >
+
+More details of the last merge:
+
+input : < 1,  2,  4,  5 | 2,  3,  4,  7,  9 >
+          ^               ^
+output: < 1,   ,   ,    |  ,   ,   ,   ,    >
+---------------------------------------------
+input : < 1,  2,  4,  5 | 2,  3,  4,  7,  9 >
+              ^           ^
+output: < 1,  2,   ,    |  ,   ,   ,   ,    >
+---------------------------------------------
+input : < 1,  2,  4,  5 | 2,  3,  4,  7,  9 >
+                  ^       ^
+output: < 1,  2,  2,   ,   ,   ,   ,   ,    >
+---------------------------------------------
+input : < 1,  2,  4,  5 | 2,  3,  4,  7,  9 >
+                  ^           ^
+output: < 1,  2,  2,  3,   ,   ,   ,   ,    >
+---------------------------------------------
+input : < 1,  2,  4,  5 | 2,  3,  4,  7,  9 >
+                  ^               ^
+output: < 1,  2,  2,  3,  4,   ,   ,   ,    >
+---------------------------------------------
+input : < 1,  2,  4,  5 | 2,  3,  4,  7,  9 >
+                      ^           ^
+output: < 1,  2,  2,  3,  4,  4,   ,   ,    >
+---------------------------------------------
+input : < 1,  2,  4,  5 | 2,  3,  4,  7,  9 >
+                      ^               ^
+output: < 1,  2,  2,  3,  4,  4,  5,   ,    >
+---------------------------------------------
+input : < 1,  2,  4,  5 | 2,  3,  4,  7,  9 >
+         this part over ^             ^end of this part to output
+output: < 1,  2,  2,  3,  4,  4,  5,  7,  9 > stop
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Quicksort (stable) on linked lists:
+
+<  4,  2,  5,  1,  7,  2, *4,  3,  9  >  pivot: *
+<  4,  2,  1,  2,  3, +4,  5,  7,  9  >  key at final place: +key
+<  4, *2,  1,  2,  3, +4,  5,  7,  9  >  (pivot selected randomly)
+<  1, +2,  4,  2,  3, +4,  5,  7,  9  >  
+< +1, +2,  4,  2,  3, +4,  5,  7,  9  >  
+< +1, +2,  4,  2, *3, +4,  5,  7,  9  >  
+< +1, +2,  2, +3,  4  +4,  5,  7,  9  > 
+< +1, +2, +2, +3,  4  +4,  5,  7,  9  >
+< +1, +2, +2, +3, +4  +4,  5,  7,  9  > 
+< +1, +2, +2, +3, +4  +4,  5,  7, *9  > 
+< +1, +2, +2, +3, +4  +4,  5,  7, +9  > 
+< +1, +2, +2, +3, +4  +4, *5,  7, +9  > 
+< +1, +2, +2, +3, +4  +4, +5,  7, +9  > 
+< +1, +2, +2, +3, +4  +4, +5, +7, +9  >
+
+
+Quicksort: partition on arrays (not stable): 
+
+<  4,  2,  5,  1,  7,  2, *4,  3,  9  > place of pivot: *
+<  4,  2,  5,  1,  7,  2,  9,  3,  *  > pivot=4  before # those <= pivot
+< #4,  2,  5,  1,  7,  2,  9,  3,  *  > pivot=4  from # but 
+<  4, #2,  5,  1,  7,  2,  9,  3,  *  > pivot=4  before @ those >= pivot
+<  4,  2, #5,  1,  7,  2,  9,  3,  *  > pivot=4  from @ those to be checked
+<  4,  2, #5, @1,  7,  2,  9,  3,  *  > pivot=4 exchange(#,@)
+<  4,  2,  1, #5, @7,  2,  9,  3,  *  > pivot=4 #:i, @:j
+<  4,  2,  1, #5,  7, @2,  9,  3,  *  > pivot=4 exchange(#,@)
+<  4,  2,  1,  2, #7,  5, @9,  3,  *  > pivot=4
+<  4,  2,  1,  2, #7,  5,  9, @3,  *  > pivot=4 exchange(#,@)
+<  4,  2,  1,  2,  3, #5,  9,  7, @*  > pivot=4 move # to @*
+<  4,  2,  1,  2,  3,  *,  9,  7,  5  > pivot=4 move pivot to *
+<  4,  2,  1,  2,  3, +4,  9,  7,  5  > pivot at final place
+
+Partition on the left part (by chance, pivot is the maximum of the actual part):
+
+< *4,  2,  1,  2,  3, +4,  9,  7,  5  > 
+<   ,  2,  1,  2,  3, +4,  9,  7,  5  > pivot=4
+<  3,  2,  1,  2,  *, +4,  9,  7,  5  > pivot=4
+< #3,  2,  1,  2,  *, +4,  9,  7,  5  > pivot=4
+<  3, #2,  1,  2,  *, +4,  9,  7,  5  > pivot=4
+<  3,  2, #1,  2,  *, +4,  9,  7,  5  > pivot=4
+<  3,  2,  1, #2,  *, +4,  9,  7,  5  > pivot=4
+<  3,  2,  1,  2, #*, +4,  9,  7,  5  > pivot=4
+<  3,  2,  1,  2, +4, +4,  9,  7,  5  > pivot at final place
+
+Partition on the left part (by chance, pivot is the minimum of the actual part):
+
+<  3,  2, *1,  2, +4, +4,  9,  7,  5  >
+<  3,  2,  2,  *, +4, +4,  9,  7,  5  > pivot=1
+< #3,  2,  2,  *, +4, +4,  9,  7,  5  > pivot=1
+< #3, @2,  2,  *, +4, +4,  9,  7,  5  > pivot=1
+< #3,  2, @2,  *, +4, +4,  9,  7,  5  > pivot=1
+< #3,  2,  2, @*, +4, +4,  9,  7,  5  > pivot=1
+<  *,  2,  2,  3, +4, +4,  9,  7,  5  > pivot=1
+< +1,  2,  2,  3, +4, +4,  9,  7,  5  > pivot at final place
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Priority Queues and Heap operations:
+
+left(i) = 2*i+1
+right(i) = 2*i+2
+
+parent(j) = floor((j-1)/2)
+
+   0.  1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11.
+<  8,  7,  6,  7,  5,  6,  4,  6,  5,  3,   ,     >
+                           end of heap ^  unused part of array
+add(8)
+
+   0.  1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11.  parent:*, child:#
+<  8,  7,  6,  7, *5,  6,  4,  6,  5,  3, #8,     > 5<8 => swap
+<  8, *7,  6,  7, #8,  6,  4,  6,  5,  3,  5,     > 7<8 => swap
+< *8, #8,  6,  7,  7,  6,  4,  6,  5,  3,  5,     > 8>=8  => no swap
+<  8,  8,  6,  7,  7,  6,  4,  6,  5,  3,  5,     > stop
+
+add(9)
+
+   0.  1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11.  parent:*, child:#
+<  8,  8,  6,  7,  7, *6,  4,  6,  5,  3,  5, #9  > 6<9 => swap
+<  8,  8, *6,  7,  7, #9,  4,  6,  5,  3,  5,  6  > 6<9 => swap
+< *8,  8, #9,  7,  7,  6,  4,  6,  5,  3,  5,  6  > 8<9 =>swap
+< #9,  8,  8,  7,  7,  6,  4,  6,  5,  3,  5,  6  > we are at root
+<  9,  8,  8,  7,  7,  6,  4,  6,  5,  3,  5,  6  > stop
+
+Remove the maximum of the original heap:
+
+   0.  1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11.  parent:*, greatest child:#
+<  8,  7,  6,  7,  5,  6,  4,  6,  5,  3,   ,     > max=8
+<   ,  7,  6,  7,  5,  6,  4,  6,  5,  3,   ,     > move last into root
+< *3,  7,  6,  7,  5,  6,  4,  6,  5,   ,   ,     > root may be out of order
+< *3, ?7, ?6,  7,  5,  6,  4,  6,  5,   ,   ,     > select greatest child
+< *3, #7,  6,  7,  5,  6,  4,  6,  5,   ,   ,     > 3<7 => swap
+<  7, *3,  6, ?7, ?5,  6,  4,  6,  5,   ,   ,     > select greatest child
+<  7, *3,  6, #7,  5,  6,  4,  6,  5,   ,   ,     > 3<7 => swap
+<  7,  7,  6, *3,  5,  6,  4, ?6, ?5,   ,   ,     > select greatest child
+<  7,  7,  6, *3,  5,  6,  4, #6,  5,   ,   ,     > 3<6 => swap
+<  7,  7,  6,  6,  5,  6,  4, *3,  5,   ,   ,     > we are at leaf level
+<  7,  7,  6,  6,  5,  6,  4,  3,  5,   ,   ,     > stop
+
+Remove the maximum of the actual heap:
+
+   0.  1.  2.  3.  4.  5.  6.  7.  8.  9. 10. 11.  parent:*, greatest child:#
+<  7,  7,  6,  6,  5,  6,  4,  3,  5,   ,   ,     > max=7
+<   ,  7,  6,  6,  5,  6,  4,  3,  5,   ,   ,     > move last into root
+< *5,  7,  6,  6,  5,  6,  4,  3,   ,   ,   ,     > root may be out of order
+< *5, ?7, ?6,  6,  5,  6,  4,  3,   ,   ,   ,     > select greatest child
+< *5, #7,  6,  6,  5,  6,  4,  3,   ,   ,   ,     > 5<7 => swap
+<  7, *5,  6, ?6, ?5,  6,  4,  3,   ,   ,   ,     > select greatest child
+<  7, *5,  6, #6,  5,  6,  4,  3,   ,   ,   ,     > 5<6 => swap
+<  7,  6,  6, *5,  5,  6,  4, ?3,   ,   ,   ,     > only left child
+<  7,  6,  6, *5,  5,  6,  4, #3,   ,   ,   ,     > 5>=3  => no swap
+<  7,  6,  6,  5,  5,  6,  4,  3,   ,   ,   ,     > stop
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Heap sort:
+
+< 4,  2,  5,  1,  7,  2,  4,  3,  9 >
+
+Build the heap:
+
+  0.  1.  2.  3.  4.  5.  6.  7.  8.  start from parent of last
+  
+< 4,  2,  5, *1,  7,  2,  4,  3,  9 > SINK that at index 3 (parent of last)
+< 4,  2,  5, *1,  7,  2,  4, ?3, ?9 > select greatest child
+< 4,  2,  5, *1,  7,  2,  4,  3, #9 > 1<9 => swap
+< 4,  2,  5,  9,  7,  2,  4,  3, *1 > we are at leaf level
+
+< 4,  2, *5,  9,  7,  2,  4,  3,  1 > SINK that at index 2
+< 4,  2, *5,  9,  7, ?2, ?4,  3,  1 > select greatest child
+< 4,  2, *5,  9,  7,  2, #4,  3,  1 > 5>=4  => no swap
+
+< 4, *2,  5,  9,  7,  2,  4,  3,  1 > SINK that at index 1
+< 4, *2,  5, ?9, ?7,  2,  4,  3,  1 > select greatest child
+< 4, *2,  5, #9,  7,  2,  4,  3,  1 > 2<9 => swap
+< 4,  9,  5, *2,  7,  2,  4, ?3, ?1 > select greatest child
+< 4,  9,  5, *2,  7,  2,  4, #3,  1 > 2<3 => swap
+< 4,  9,  5,  3,  7,  2,  4, *2,  1 > we are at leaf level
+
+<*4,  9,  5,  3,  7,  2,  4,  2,  1 > SINK that at index 0
+<*4, ?9, ?5,  3,  7,  2,  4,  2,  1 > select greatest child
+<*4, #9,  5,  3,  7,  2,  4,  2,  1 > 4<9 => swap
+< 9, *4,  5, ?3, ?7,  2,  4,  2,  1 > select greatest child
+< 9, *4,  5,  3, #7,  2,  4,  2,  1 > 4<7 => swap
+< 9,  7,  5,  3, *4,  2,  4,  2,  1 > we are at leaf level
+
+< 9,  7,  5,  3,  4,  2,  4,  2,  1 > heap built
+
+Swap-and-sink loop
+
+  0.  1.  2.  3.  4.  5.  6.  7.  8.  
+< 9,  7,  5,  3,  4,  2,  4,  2,  1 > swap max (root) and last of heap
+< 1,  7,  5,  3,  4,  2,  4,  2 | 9 > Division: < heap part | sorted part >
+<*1,  7,  5,  3,  4,  2,  4,  2 | 9 > SINK root of tree in heap part
+<*1, ?7, ?5,  3,  4,  2,  4,  2 | 9 > select greatest child
+<*1, #7,  5,  3,  4,  2,  4,  2 | 9 > 1<7 => swap
+< 7, *1,  5, ?3, ?4,  2,  4,  2 | 9 > select greatest child
+< 7, *1,  5,  3, #4,  2,  4,  2 | 9 > 1<4 => swap
+< 7,  4,  5,  3, *1,  2,  4,  2 | 9 > we are at leaf level
+< 7,  4,  5,  3,  1,  2,  4,  2 | 9 > heap restored
+
+  0.  1.  2.  3.  4.  5.  6.  7.  8.  
+< 7,  4,  5,  3,  1,  2,  4,  2 | 9 > swap max and last of heap + cut max off
+<*2,  4,  5,  3,  1,  2,  4 | 7,  9 > SINK root of tree in heap part
+<*2, ?4, ?5,  3,  1,  2,  4 | 7,  9 > select greatest child
+<*2,  4, #5,  3,  1,  2,  4 | 7,  9 > 2<5 => swap
+< 5,  4, *2,  3,  1, ?2, ?4 | 7,  9 > select greatest child
+< 5,  4, *2,  3,  1,  2, #4 | 7,  9 > 2<4 => swap
+< 5,  4,  4,  3,  1,  2, *2 | 7,  9 > we are at leaf level
+< 5,  4,  4,  3,  1,  2,  2 | 7,  9 > heap restored
+
+  0.  1.  2.  3.  4.  5.  6.  7.  8.  
+< 5,  4,  4,  3,  1,  2,  2 | 7,  9 > swap max and last of heap + cut max off
+<*2,  4,  4,  3,  1,  2 | 5,  7,  9 > SINK root of tree in heap part
+<*2, ?4, ?4,  3,  1,  2 | 5,  7,  9 > select greatest child
+<*2, #4,  4,  3,  1,  2 | 5,  7,  9 > 2<4 => swap
+< 4, *2,  4, ?3, ?1,  2 | 5,  7,  9 > select greatest child
+< 4, *2,  4, #3,  1,  2 | 5,  7,  9 > 2<3 => swap
+< 4,  3,  4, *2,  1,  2 | 5,  7,  9 > we are at leaf level
+< 4,  3,  4,  2,  1,  2 | 5,  7,  9 > heap restored
+
+  0.  1.  2.  3.  4.  5.  6.  7.  8.  
+< 4,  3,  4,  2,  1,  2 | 5,  7,  9 > swap max and last of heap + cut max off
+<*2,  3,  4,  2,  1 | 4,  5,  7,  9 > SINK root of tree in heap part
+<*2, ?3, ?4,  2,  1 | 4,  5,  7,  9 > select greatest child
+<*2,  3, #4,  2,  1 | 4,  5,  7,  9 > 2<4 => swap
+< 4,  3, *2,  2,  1 | 4,  5,  7,  9 > we are at leaf level
+< 4,  3,  2,  2,  1 | 4,  5,  7,  9 > heap restored
+
+  0.  1.  2.  3.  4.  5.  6.  7.  8.  
+< 4,  3,  2,  2,  1 | 4,  5,  7,  9 > swap max and last of heap + cut max off
+<*1,  3,  2,  2 | 4,  4,  5,  7,  9 > SINK root of tree in heap part
+<*1, ?3, ?2,  2 | 4,  4,  5,  7,  9 > select greatest child
+<*1, #3,  2,  2 | 4,  4,  5,  7,  9 > 1<3 => swap
+< 3, *1,  2, ?2 | 4,  4,  5,  7,  9 > only left child
+< 3, *1,  2, ?2 | 4,  4,  5,  7,  9 > 1<2 => swap
+< 3,  2,  2, *1 | 4,  4,  5,  7,  9 > we are at leaf level
+< 3,  2,  2,  1 | 4,  4,  5,  7,  9 > heap restored
+
+  0.  1.  2.  3.  4.  5.  6.  7.  8.  
+< 3,  2,  2,  1 | 4,  4,  5,  7,  9 > swap max and last of heap + cut max off
+<*1,  2,  2 | 3,  4,  4,  5,  7,  9 > SINK root of tree in heap part
+<*1, ?2, ?2 | 3,  4,  4,  5,  7,  9 > select greatest child
+<*1, #2,  2 | 3,  4,  4,  5,  7,  9 > 1<2 => swap
+< 2, *1,  2 | 3,  4,  4,  5,  7,  9 > we are at leaf level
+< 2,  1,  2 | 3,  4,  4,  5,  7,  9 > heap restored
+
+  0.  1.  2.  3.  4.  5.  6.  7.  8.  
+< 2,  1,  2 | 3,  4,  4,  5,  7,  9 > swap max and last of heap + cut max off
+<*2,  1 | 2,  3,  4,  4,  5,  7,  9 > SINK root of tree in heap part
+<*2, ?1 | 2,  3,  4,  4,  5,  7,  9 > only left child
+<*2, #1 | 2,  3,  4,  4,  5,  7,  9 > 2>=1  => no swap
+< 2,  1 | 2,  3,  4,  4,  5,  7,  9 > heap restored
+
+  0.  1.  2.  3.  4.  5.  6.  7.  8.  
+< 2,  1 | 2,  3,  4,  4,  5,  7,  9 > swap max and last of heap + cut max off
+<*1 | 2,  2,  3,  4,  4,  5,  7,  9 > SINK root of tree in heap part
+<*1 | 2,  2,  3,  4,  4,  5,  7,  9 > we are at leaf level
+< 1 | 2,  2,  3,  4,  4,  5,  7,  9 > heap restored
+
+< 1,  2,  2,  3,  4,  4,  5,  7,  9 > heap sort completed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Hash Tables:
+------------
+
+T[0..m-1]
+
+h : U -> 0..m-1
+|U|>>m
+h(k1)=h(k2), k1!=k2: key collision
+Slots: T[0], T[1],...  T[m-1]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Collision resolution by chaining:
+
+Let m=5, h(k) = k mod m
+
+T[0] = < >
+T[1] = < >
+T[2] = < >
+T[3] = < >
+T[4] = < >
+
+insert 5; 7; 8. 
+
+T[0] = < 5 >
+T[1] = < >
+T[2] = < 7 >
+T[3] = < 8 >
+T[4] = < >
+
+insert 12; 18; 14; 10; 22; 12(fails); 29.
+
+T[0] = < 10; 5 >
+T[1] = < >
+T[2] = < 22; 12; 7 >
+T[3] = < 18; 8 >
+T[4] = < 29; 14 >
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+At the lecture we have seen the basic operations of the hash tables
+provided that the lists referred to by the slots are S1Ls.
+
+Now let us suppose that the lists referred to by the slots are S2Ls:
+
+type uint = unsigned long;
+
+type E2 = struct{
+  +k:uint; // k is a key
+  //...
+  +prev,next:E2*;
+  +E2(k1:uint){
+     k:=K1;
+     prev:=next:=NULL;
+  }
+}
+
+init(T:E2*[m]){
+    for( i:=0 to m-1 ){ T[i]:=NULL; }
+}
+
+insert( T:E2*[m]; p:E2* ):E2* { // Q: p!=NULL
+    k := p->k; s := k mod m; q:=T[s];
+    if( searchS2L(q,k)=NULL ){
+        p->prev := NULL;  p->next := q;  T[s] := p;
+	if( q!=NULL ){ q->prev := p; }
+	return p;
+    }
+    else{ return NULL; }    
+}
+
+// auxiliary function
+searchS2L( q:E2*; k:uint ):E2* {
+    while( q!=NULL && q->k!=k ){ q := q->next; }
+    return q;
+}
+
+search( T:E2*[m]; k:uint ):E2* {
+    return searchS2L( T[k mod m], k );
+}
+
+remove( T:E2*[m]; q:E2* ){ // Q: *q in T
+    p := q->prev; r := q->next;
+    if( r!=NULL ){ r->prev := p; q->next:=NULL; }
+    if( p!=NULL ){ p->next := r; q->prev:=NULL; }
+    else T[ q->k mod m ] := r;
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Open addressing:
+
+T:R[m]
+
+U = { x in long : x>=0 }
+E:const long=-2;
+D:const long=-1;
+
+type R = struct{
+    k : long;
+    //...
+}
+
+T: only keys now (Empty hash table, space represents E = -2)
+   0.  1.  2.  3.  4.  5.  6.
+<   ;   ;   ;   ;   ;   ;     >
+
+<h(k,0),h(k,1),...,h(k,m-1)>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Linear probing:
+
+h1:U->0..m-1
+
+h(k,i) = (h1(k)+i) mod m
+
+For example: h1(k) = k mod m
+             m = 7
+
+   0.  1.  2.  3.  4.  5.  6.
+<   ;   ;   ;   ;   ;   ;     >
+
+insert(32) h1(32)=4 <4> +
+
+   0.  1.  2.  3.  4.  5.  6.
+<   ;   ;   ;   ; 32;   ;     >
+
+insert(42) h1(42)=0 <0> +
+
+   0.  1.  2.  3.  4.  5.  6.
+< 42;   ;   ;   ; 32;   ;     >
+
+insert(45) h1(45)=3 <3> +
+
+   0.  1.  2.  3.  4.  5.  6.
+< 42;   ;   ; 45; 32;   ;     >
+
+insert(24) h1(24)=3 <3;4;5> +
+
+   0.  1.  2.  3.  4.  5.  6.
+< 42;   ;   ; 45; 32; 24;     >
+
+delete(45) h1(45)=3 <3> +
+
+   0.  1.  2.  3.  4.  5.  6.
+< 42;   ;   ;  D; 32; 24;     >
+
+search(24) h1(24)=3 <3;4;5> +
+search(17) h1(17)=3 <3;4;5;6> -
+insert(24) h1(24)=3 <*3;4;5> -
+insert(16) h1(16)=2 <2> +
+
+   0.  1.  2.  3.  4.  5.  6.
+< 42;   ; 16;  D; 32; 24;     >
+
+insert(30) h1(30)=2 <2;*3;4;5;6> +
+
+   0.  1.  2.  3.  4.  5.  6.
+< 42;   ; 16; 30; 32; 24;     >
+
+Problem: primary clustering.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Quadratic probing:
+
+h1:U->0..m-1
+
+h(k,i) = ( h1(k)+(i+i^2)/2 ) mod m
+
+h(k,0) = h1(k)
+h(k,i+1) = ( h(k,i)+i+1 ) mod m
+
+
+m = 8  (m must be the power of 2)
+h1(k) = k mod m  (not the best)
+
+   0.  1.  2.  3.  4.  5.  6.  7.
+<   ;   ;   ;   ;   ;   ;   ;    >
+
+insert(30) h1(30)=6 <6> +
+
+   0.  1.  2.  3.  4.  5.  6.  7.
+<   ;   ;   ;   ;   ;   ; 30;    >
+
+insert(22) h1(22)=6 <6;7> +
+
+   0.  1.  2.  3.  4.  5.  6.  7.
+<   ;   ;   ;   ;   ;   ; 30; 22  >
+
+insert(46) h1(46)=6 <6;7;1>+
+
+   0.  1.  2.  3.  4.  5.  6.  7.
+<   ; 46;   ;   ;   ;   ; 30; 22  >
+
+insert(54) h1(54)=6 <6;7;1;4>+
+
+   0.  1.  2.  3.  4.  5.  6.  7.
+<   ; 46;   ;   ; 54;   ; 30; 22  >
+
+insert(38) h1(38)=6 <6;7;1;4;0>+
+
+   0.  1.  2.  3.  4.  5.  6.  7.
+< 38; 46;   ;   ; 54;   ; 30; 22  >
+
+delete(22) h1(22)=6 <6;7>+
+
+   0.  1.  2.  3.  4.  5.  6.  7.
+< 38; 46;   ;   ; 54;   ; 30;  D  >
+
+delete(54) h1(54)=6 <6;7;1;4>+
+
+   0.  1.  2.  3.  4.  5.  6.  7.
+< 38; 46;   ;   ;  D;   ; 30;  D  >
+
+search(24) h1(24)=0 <0;1;3> -
+search(46) h1(46)=6 <6;7;1>+
+insert(46) h1(46)=6 <6;*7;1> -
+insert(54) h1(54)=6 <6;*7;1;4;0;5>+
+
+   0.  1.  2.  3.  4.  5.  6.  7.
+< 38; 46;   ;   ;  D;   ; 30; 54  >
+
+
+Problem: secondary clustering.
+
+Potential probing sequence, if h1(k)=0
+<0;1;3;6;2;7;5;4>
+
+Quadratic probing 2:
+<h1(k); h1(k)+1^2; h1(k)-1^2; h1(k)+2^2; h1(k)-2^2; ... >
+with mod(m) operations
+If m=4k+3 prime => the potential probing sequence covers the hash table.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Double hashing:
+
+h1:U->0..m-1
+h2:U->1..m-1
+
+h(k,i) = ( h1(k)+i*h2(k) ) mod m
+
+h(k,0) = h1(k)
+h(k,i+1) = (h(k,i)+d) mod m  (where d=h2(k))
+
+For example:
+m = 7
+h1(k) = k mod m
+h2(k) = 1+(k mod (m-2))
+
+insert(22)  h1(22) = 1  <1> +
+
+   0.  1.  2.  3.  4.  5.  6.
+<   ; 22;   ;   ;   ;   ;     >
+
+insert(15)  h1(15) = 1  h2(15)=1  <1;2> +
+
+   0.  1.  2.  3.  4.  5.  6.
+<   ; 22; 15;   ;   ;   ;     >
+
+insert(32)  h1(32) = 4    <4> +
+
+   0.  1.  2.  3.  4.  5.  6.
+<   ; 22; 15;   ; 32;   ;     >
+
+insert(16)  h1(16) = 2  h2(16)=2   <2;4;6> +
+
+   0.  1.  2.  3.  4.  5.  6.
+<   ; 22; 15;   ; 32;   ; 16  >
+
+search(16)  h1(16) = 2  h2(16)=2   <2;4;6> +
+insert(16)  h1(16) = 2  h2(16)=2   <2;4;6> -
+insert(44)  h1(44) = 2  h2(44)=5   <2;0>  +
+
+   0.  1.  2.  3.  4.  5.  6.
+< 44; 22; 15;   ; 32;   ; 16  >
+
+delete(15)  h1(15)=1  h2(15)=1  <1;2> +
+
+   0.  1.  2.  3.  4.  5.  6.
+< 44; 22;  D;   ; 32;   ; 16  >
+
+search(44)  h1(44) = 2  h2(44)=5   <2;0>  +
+search(23)  h1(23) = 2  h2(23)=4   <2;6;3> -
+insert(23)  h1(23) = 2  h2(23)=4   <*2;6;3> +
+
+   0.  1.  2.  3.  4.  5.  6.
+< 44; 22; 23;   ; 32;   ; 16  >
+
+The performance of double hashing appears to be very close
+to that of the ideal scheme of uniform hashing.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+m = 8
+
+h1(k) = k mod 8
+
+h(k,i) = ( k mod 8 + i+4*i^2 ) mod 8 (i in 0..7)
+
+(i+1)+4*(i+1)^2 - (i+4*i^2) = 1+8*i+4 = 8*i+5
+
+h(k,0) = k mod 8
+h(k,i+1) = (h(k,i)+5) mod 8
+
+  0.  1.  2.  3.  4.  5.  6.  7.
+[   ;   ; D ; 11; D ; 5 ;   ; 47 ]
+
+insert(13) h1(13) = 5   <5;*2;7;4;1>
+
+  0.  1.  2.  3.  4.  5.  6.  7.
+[   ;   ; 13; 11; D ; 5 ;   ; 47 ]
+
+New table:
+
+  0.  1.  2.  3.  4.  5.  6.  7.
+[   ;   ; D ; 11; 13; 5 ;   ; 47 ]
+
+insert(13) h1(13) = 5   <5;*2;7;4> fail
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+h(k,i) = (h1(k)+i*d) mod m    where integer(d) and  gcd(d,m)=1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+m=8
+
+
+h(k,i) = ( k mod 8 + (i+i^2)/2 ) mod 8 (i in 0..7)
+
+((i+1)+(i+1)^2)/2 - (i+i^2)/2 = (i+1+i^2+2*i+1-i-i^2 )/2 =
+= (1+2*i+1)/2 = i+1
+
+h(k,0) = k mod 8
+h(k,i+1) = (h(k,i)+i+1) mod 8
+
+  0.  1.  2.  3.  4.  5.  6.  7.
+[   ;   ; D ; 11; D ; 5 ;   ; 47 ]
+
+insert(12)  h(12,0) = 4   <*4;5;7;2;6>
+
+  0.  1.  2.  3.  4.  5.  6.  7.
+[   ;   ; D ; 11; 12; 5 ;   ; 47 ]
+
+insert(20)  h(20,0) = 4   <4;5;7;*2;6>
+
+  0.  1.  2.  3.  4.  5.  6.  7.
+[   ;   ; 20; 11; 12; 5 ;   ; 47 ]
+
+insert(20)  h(20,0) = 4   <4;5;7;2> fail
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+T[0..m-1]
+
+h(k,i) = (h1(k) + i*h2(k) ) mod m (i in 0..m-1)
+
+h(k,0) = h1(k)
+h(k,i+1) = (h(k,i) + d) mod m    where d=h2(k) 
+
+m=7
+
+h1(k) = k mod 7
+h2(k) = 1+(k mod 5)
+
+h(k,0) = k mod 7
+h(k,i+1) = (h(k,i) + d) mod m    where d = 1+(k mod 5) 
+
+
+  0.  1.  2.  3.  4.  5.  6.
+[   ;   ;   ;   ;   ;   ;    ]
+
+insert(15) h(k,0) = 1
+
+  0.  1.  2.  3.  4.  5.  6.
+[   ; 15;   ;   ;   ;   ;    ]
+
+insert(25) h(k,0) = 4
+
+  0.  1.  2.  3.  4.  5.  6.
+[   ; 15;   ;   ; 25;   ;    ]
+
+insert(35) h(k,0) = 0
+
+  0.  1.  2.  3.  4.  5.  6.
+[ 35; 15;   ;   ; 25;   ;    ]
+
+insert(16) h(k,0) = 2
+
+  0.  1.  2.  3.  4.  5.  6.
+[ 35; 15; 16;   ; 25;   ;    ]
+
+insert(23) h(k,0) = 2  d=4  <2;6>
+
+  0.  1.  2.  3.  4.  5.  6.
+[ 35; 15; 16;   ; 25;   ; 23 ]
+
+insert(9) h(k,0) = 2  d=5   <2;0;5>
+
+  0.  1.  2.  3.  4.  5.  6.
+[ 35; 15; 16;   ; 25; 9 ; 23 ]
+
+delete(9) h(k,0) = 2  d=5   <2;0;5>
+
+  0.  1.  2.  3.  4.  5.  6.
+[ 35; 15; 16;   ; 25; D ; 23 ]
+
+delete(16) h(k,0) = 2    <2>
+
+  0.  1.  2.  3.  4.  5.  6.
+[ 35; 15; D ;   ; 25; D ; 23 ]
+
+insert(9) h(k,0) = 2  d=5   <*2;0;5;3>
+
+  0.  1.  2.  3.  4.  5.  6.
+[ 35; 15; 9 ;   ; 25; D ; 23 ]
+

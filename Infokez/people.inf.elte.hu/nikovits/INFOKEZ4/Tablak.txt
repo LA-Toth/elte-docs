@@ -1,0 +1,56 @@
+Táblák
+CREATE TABLE vagy ALTER TABLE utasítással lehet létrehozni vagy módosítani õket.
+A tábla létrehozásakor rengeteg paraméter megadható, de az oszlopok nevén és típusán kívül szinte minden más opcionális. Ezek a paraméterek valahonnan alapértelmezés szerinti értékeket vesznek fel.
+
+Adattárolással kapcsolatos paraméterek.
+TABLESPACE (ennek paraméterei a táblatér létrehozásakor adhatók meg)
+NOLOGGING (csak direct insert, direct load és DDL esetén nem naplóz)
+PCTFREE, PCTUSED, INITRANS, MAXTRANS
+STORAGE paraméterek: INITIAL, NEXT, MINEXTENTS, MAXEXTENTS, PCTINCREASE,
+   FREELISTS, FREELIST GROUPS (<>1 -> csak párhuzamos környezetben)
+   OPTIMAL (csak rollback szegmensekre vonatkozik)
+   BUFFER_POOL
+
+Példa.
+CREATE TABLE t1 (o1 NUMBER, o2 CHAR(20))
+NOLOGGING
+TABLESPACE users
+PCTFREE 0 PCTUSED 50
+STORAGE (INITIAL 100K NEXT 200K PCTINCREASE 50 MINEXTENTS 3 MAXEXTENTS 5
+         BUFFER_POOL KEEP);
+
+Táblatér jellemzõi (CREATE TABLESPACE, ALTER TABLESPACE)
+A tábla sok paraméterét a táblatér beállításaitól örökli ha külön nem adjuk meg.
+ONLINE | OFFLINE
+UNDO 
+Semmilyen objektumot nem lehet rajta létrehozni, akkor használja a rendszer, ha automatikus undo management módban fut az oracle. Ha nem hoztunk létre ilyen táblateret, akkor e módban a SYSTEM rollback szegmenst használja.
+DATAFILE … AUTOEXTEND ON | OFF 
+Adatfájlonként megadható, hogy azok automatikusan növekedhetnek-e és hogyan, meddig.
+MINIMUM EXTENT 
+A fragmentáció elkerülése céljából adható meg, hogy mekkora lehet a legkisebb extens a táblatéren.
+DEFAULT STORAGE (INITIAL …)
+A tábla innen örökli, ha külön nem adtuk meg.
+LOGGING | NOLOGGING
+TEMPORARY
+A rendszer használja a temporális szegmensek számára. Minden felhasználónak megadható a temporális táblatere.
+
+EXTENT MANAGEMENT {DICTIONARY | LOCAL [AUTOALLOCATE | UNIFORM]}
+Az extensek kezelését lehet itt megadni. A lokálisan menedzselt táblatér extenseinek méretét az Oracle vagy automatikus módon határozza meg, vagy egyforma méretû extenseket használ.
+
+SEGMENT SPACE MANAGEMENT {MANUAL | AUTO}
+Manuális esetben a szegmensen belüli szabad helyeket szabad listák segítségével kezeli az oracle (lásd FREELISTS), automatikus esetben pedig bitmap segítségével.
+
+Példák:
+CREATE UNDO TABLESPACE undots1 DATAFILE 'undotbs_1a.f'
+   SIZE 10M AUTOEXTEND ON;
+
+CREATE TABLESPACE tbs_1 DATAFILE 'tabspace_file2.dat' SIZE 20M 
+   DEFAULT STORAGE (INITIAL 10K NEXT 50K MINEXTENTS 1 MAXEXTENTS 999) 
+   ONLINE; 
+
+CREATE TABLESPACE tbs_4 DATAFILE 'file_1.f' SIZE 10M
+   EXTENT MANAGEMENT LOCAL UNIFORM SIZE 128K;
+
+CREATE TABLESPACE auto_seg_ts DATAFILE 'file_2.f' SIZE 1M
+   EXTENT MANAGEMENT LOCAL
+   SEGMENT SPACE MANAGEMENT AUTO;

@@ -1,0 +1,1208 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[latin2]{inputenc}
+\usepackage{anysize}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amscd}
+\marginsize{15mm}{15mm}{15mm}{15mm}
+
+\linespread{1.10}
+
+\begin{document}
+\large
+%
+% 1. eloadas
+%
+\begin{flushleft}
+\textbf{1. eloadas}
+\end{flushleft}
+\textbf{Merfoldko:} SIMULA 67 programnyelv
+\begin{itemize}
+\item elotte: gepi kod, programozas kicsiben, szerializacio
+\item utana: nagymeretu programok, komplex rendszerek, osztott rendszerek
+\end{itemize}
+\textbf{Objektumelvu programozas}% = adatabsztrakcio + absztrakt adattipus + tipusoroklodes\\\\
+\textbf{Objektumelvu programozast tamogato prog. nyelv tipusrendszere:}
+\begin{itemize}
+\item egyszeru: integer $\vert$ real $\vert$ boolean $\vert\cdots$
+\item osszetett: vector $\vert$ array $\vert$ record $\vert\cdots$
+\end{itemize}
+\textbf{Elvei:}
+\begin{itemize}
+\item strukturaltsag leirasank fo egysege: osztaly
+\item objektumokhoz valo hozzaferes
+\item objektum: az osztaly egy peldanya
+\item adatbeburkolas
+\item adatabsztrakcio, informacio elrejtese
+\item objektumok azonositokkal valo megnevezese, elerese
+\item oroklodes es polimorfizmus
+\end{itemize}
+\textbf{Absztrakcio:}
+\begin{itemize}
+\item reszletek, eroforrasok elrejtese
+\item adatabsztrakcio
+\item funkcionalis absztrakcio 
+\item elnevezesi absztrakcio
+\item viselkedesi absztrakcio
+\item modellabsztrakcio
+\end{itemize}
+\textbf{Adatszerkezet:} Adathalmaz, amely bizonyos strukturaban szervezetten letezik.\\
+\textbf{Adattipus:} adattartomanyok halmaza es a hozzajuk tartozo muveletek veges halmaza\\
+\textbf{Adattipus informalis definicioja:}
+\begin{itemize}
+\item adattartomanyok veges osszessege
+\item van egy kituntetett bazistartomany
+\item tartomanyokon ertelmezett muveletek, melyekkel a bazistartomany minden peldanya eloallithato
+\item az adattartomanyok megszamlalhatok 
+\end{itemize}
+$\Rightarrow$ kulonbozo matematikai modelleket hozhatunk letre. Pl.: matematikai modell\\
+\textbf{Absztrakt adattipus:}
+\begin{itemize}
+\item adattipusok olyan osztalya, amely zart az adattartomanyok, muveletek, a tartomayok peldanyainka es a muveletek elnevezese alapjan
+\item fuggetlen az adatok abrazolasatol es az adott abrazolasok mellett a muveletek megvalositasatol
+\end{itemize}
+\textbf{Az algebra spcifikacioja:}
+$\langle$algebra neve$\rangle$=\\
+\indent sorts: $\langle$szortok azonositoi$\rangle$\\
+\indent oprs:  $\langle$muveletek szimbolumai$\rangle$\\
+\indent eqns:  $\langle$valtozok deklaracioja$\rangle$\\
+\indent $\langle$muveletek jelenteset meghatarozo szimbolumok listaja$\rangle$
+end $\langle$algebra neve$\rangle$\\
+\\
+\textbf{Muveleti szimbolumok formai:}
+\begin{itemize}
+\item prefix forma: Pl.: add: nat nat $\to$ nat
+\item infix forma: Pl.: +: N N $\to$ N [infix]
+\item kifejezes forma: Pl.: $\_+\_$ : N N $\to$ N 
+\end{itemize}
+\textbf{Axiomak alatalanos formaja:}
+\begin{itemize}
+\item $\alpha(a) \Rightarrow f_1(f_2(a))=h(a)$
+\item egyenletek formajaban
+\end{itemize}
+\textbf{Egyszeru oroklodes:}
+algebra1=\\
+\indent sorts: szortok1\\
+\indent oprs: opszimbolumok1\\
+\indent eqns: deklaracio1; axiomak1\\
+end algebra1;\\
+\\
+algebra2 = algebra1 +\\
+\indent sorts: szortok\\
+\indent oprs: opszimbolumok\\
+\indent eqns: deklaracio; axiomak\\
+end algebra2;\\
+Vagyis:\\
+algebra2=\\
+\indent sorts: szortok1, szortok\\
+\indent oprs: opszimbolumok1, opszimbolumok\\
+\indent eqns: deklaracio1; deklaracio; axiomak1; axiomak\\
+end algebra2;\\\\
+\textbf{Parameterek szerepei az algebraban:}
+\begin{itemize}
+\item objektum kiertekelese
+\item objektum felepitese
+\item korlatozas
+\end{itemize}
+\newpage
+%
+% 2. eloadas
+%
+\begin{flushleft}
+\textbf{2. eloadas:}
+\end{flushleft}
+\textbf{Szignatura:} $\Sigma=(S,OP)$\\
+\indent S: szortok halmaza;\\
+\indent OP: konstans es operacios szimbolumok halmaza;\\
+\indent \indent $OP=K_s\cup OP_{w,s}; s\in S$;\\
+\indent $K_S$: konstans szimbolumok halmaza;\\
+\indent $OP_{w,s}$ operacios szimbolumok halmaza; \indent w argument szort, $w\in S^+$; s eredmeny szort, $s\in S$;\\
+\indent $K_s ; OP_{w,s}$ paronkent diszjunktak;\\
+\indent $\displaystyle K=\bigcup_{s\in S}K_s; OP =K\cup(\bigcup_{\substack{w \in S^+\\s\in S}} OP_{w,s}) \quad N \in K_s; \quad N:\to s$;\\
+$N \in OP_{w,s}, w=s_1 \cdots s_n ;$ akkor $N=s_1 \cdots s_n\to s;$\\ \\
+%
+Adott $\Sigma=(S,OP)$ szignaturahoz tartozo \textbf{$\mathbf{\Sigma}$-algebra:}\\
+$A=(S_A,OP_A),$ ahol $S_A=\lbrace A_S\vert s \in S\rbrace$ es $N=(N_A) (N \in OP)$;
+\begin{enumerate}
+\item $A_S$, A bazishalmaza $\forall s \in S$;
+\item $N_A \in A_s$;\\
+\indent $\forall N \in K_s: N\to s$ es $s \in S$ konstans szimbolumra;\\
+\indent $\forall N: OP (s_1 \cdots s_n \to s)$ es $s_1 \cdots s_n \in S^+; s \in S$ muveleti szimbolumra;
+\end{enumerate}
+Megjegyzes: Ha $\Sigma=(S_1\cdots S_n, N_1, \cdots N_m)$; akkor $A=(A_{s_1}, \cdots, A_{s_n}, N_{1_A}, \cdots, N_{m_A})$; (megfeleltetesi sorrendben!)\\ \\
+%
+\textbf{Valtozo:} Adott $SIG=(S,OP)$, es $X_s, s \in S$, az s szorthoz tartozo valtozok halmaza.\\
+$X=\bigcup_{s\in S}X_s$, a SIG szignaturahoz tartozo valtozok halmaza.\\
+Deklaracio: $x, y \in X_s; \quad$ Jelolesuk: \textbf{oprs}: $x, y \in S$;\\ \\
+%
+\textbf{Term szintaktikai definicioja:}\\
+Adott $\Sigma = (S, OP)$; X a szignaturahoz tartozo valtozo.\\
+$T_{\Sigma(X)} = (T_{\Sigma(X),s}), s \in S$ definicioja:\\
+Bazis termek: $X_s \in T_{\Sigma(X),s}$; $n:\to s \in OP$; akkor $n \in T_{\Sigma(X),s}$;\\
+Osszetett termek: $n:s_1 \cdot s_k \to s, k\ge1, n \in OP, t_i \in T_{\Sigma(X),s}, 1\le i\le k$;\\
+akkor $n(t_1, \cdots, t_k) \in T_{\Sigma(X),s}$;\\ \\
+%
+\textbf{Strukturalis indukcio:} Adott $\Sigma = (S,OP)$; a szignaturahoz tartozo X valtozokkal.\\
+Legyen p predikatum, amely a $t \in T_{op}(X)$ termekre van ertemezve, ha
+\begin{enumerate}
+\item $\forall t \in K$ es $\forall t \in X: p(t)=$"true";
+\item $\forall N(t_1, \cdots, t_n) \in T_{op}(X):p(N(t_1, \cdots, t_n)=$"true";
+\end{enumerate}
+akkor $\forall t \in T_{op}(X):p(t)=$"true".\\ \\
+%
+\textbf{ A term kiertekelese:}  Adott $\Sigma=(S, OP)$; es a $T_{op}$. Legyen A egy $\Sigma$-algebra.\\
+A kiertekeles $eval: T_{op} \to A$ definicioja:\\
+$eval(N) = N_A$; ha $N_A \in K;$\\
+$eval(N(t_1, \cdots, t_n)) = N_A(eval(t_1), \cdots, eval(t_n))$, ha $N(t_1, ..., t_n) \in T_{op}$.\\ \\
+%
+\textbf{Term (ertekadas) kiertekelese:}  Adott $\Sigma=(S,OP)$ a szignaturahoz tartozo X valtozokkal, es $T_{op}$. Legyen A egy $\Sigma$-algebra.\\
+\indent $ass: X \to A$, ahol $ass(x) \in A_s, x \in X_s, s \in S$;\\
+\indent $ass: T_{op}(x) \to A$ definicioja;\\
+\indent $ass(x) = ass(x), x \in X$ valtozo;\\
+\indent $ass(N) = N_A, N \in K$ konstans szimbolum;\\
+\indent $ass(N(t_1, \cdots, t_n)) = N_A(ass(t_1), \cdots, ass(t_n)); \quad N(t_1, \cdots, t_n) \in T_{op}(X)$;\\ \\
+\textbf{Egyenletek:} Adott $\Sigma=(S,OP)$ a szignaturahoz tartozo X valtozokkal.\\
+Az $e=(X,L,R)$ harmast, $L, R \in T_{OP, s}(X), s \in S$ mellett egyenletnek nevezzuk.\\
+Az $e=(X,L,R)$ egyenlet helyes az A $\Sigma$-algebraban, ha minden $ass: X\to A$ eseten $ass(L)=ass(R)$.\\ \\
+\textbf{Specifikacio:} $SPEC=(S,OP,E)$; $\Sigma = (S, OP)$; $E=\lbrace e(X, L, R)\rbrace$; $\forall x \in X, L=R$;\\
+X valtozok halmaza, L, R, termek X-bol vett valtozokkal.\\ \\
+\textbf{Tipus:}\\
+$\langle$tipus neve$\rangle$ ($\langle$parameterek listaja$\rangle$) is a type specification =\\
+\indent parameters = $\langle$atvett aktualis tipusnev\_1$\rangle$ + ... + $\langle$atvett aktualis tipusnev\_k$\rangle$ +\\
+\indent \indent sorts: $\langle$formalis parameterek nevei$\rangle$;\\
+\indent \indent oprs: $\langle$muveletek formai$\rangle$;\\
+\indent \indent eqns: $\langle$muveletek jelentesenek leirasa$\rangle$;\\
+\indent export = \\
+\indent \indent type sort: $\langle$tipushalmaz neve$\rangle$;\\
+\indent \indent oprs:	$\langle$muveletek formai$\rangle$;\\
+\indent \indent eqns:	$\langle$muveletek jelentesenek leirasa$\rangle$;\\
+end $\langle$tipus neve$\rangle$;\\ \\
+$\mathbf{\Sigma}$\textbf{-algebrak kozti homomorfizmus:}\\
+Legyenek $A=(S_A,OP_A)$ es $B = (S_B, OP_B)$ azonos $\Sigma=(S, OP)$ szignaturaju algebrak.\\
+A $h:A\to B$ homomorfizmus egy fuggvenycsalad, $h = (h_s)_{s \in S}$ ahol $h_s: S_A \to S_B$ ugy, hogy:
+\begin{itemize}
+\item $\forall N:\to s \in OP$ es $s \in S$ konstans szimbolumra teljesul: $h_s(N_A)= N_B$
+\item valamint $\forall N: s_1 \cdots s_k \to s_l \in OP$ es $\forall i=1, \cdots, k$-ra es $a_i \in A$  eseten teljesul a homomorfikus feltetel, azaz $h_s(N_A(a_i,\cdots,a_k))= N_B(h_{s_1}(a_1),\cdots,h_{s_k}(a_k))$.
+\end{itemize}
+A bijektiv homomorfizmust izomorfizmusnak nevezzuk.\\
+Az A es B $\Sigma$-algebrakat izomorfikusnak nevezzuk, ha letezik az izomorfizmus $A \to B$ eseten es jelolese ekkor: $A\cong B$.\\
+Homorfizmusok kompozicioja szinten homomorfizmus.\\
+Ha $h_s$ izomorfizmus, akkor $h_s^{-1}$ is az.\\
+Egy adott $\Sigma$ szignaturahoz tartozo absztrakt adattipus a $\Sigma$-algebrak egy olyan osztalya,  amely az izomorfizmusra zart: $C \subset Alg(\Sigma)$ es $A \in C$ es $A \cong B \Rightarrow B \in C$.
+\newpage
+%
+% 3.
+%
+\begin{flushleft}
+\textbf{3. eloadas:}
+\end{flushleft}
+\textbf{Specifikacio morfizmus spec. esetei:}\\
+1) Atnevezes\\
+2) Benne foglaltatas, tartalmazas, bovites\\
+3) Abrazolas, reprezentacio\\
+4) Parameter atadas\\
+Specialisan, formalis parameterek helyettesitese aktualis parameterekkel (parameter passing)
+\begin{enumerate}
+\item Standard parameteratadas: $spec(spec_1) \to spec(spec_2)$, ahol $spec_1$ formalis,\\
+$spec_2$ aktualis parameter ertekadassal torteno specifikacio
+\item Ismetelt parameteratadas: $spec(spec_1(spec_A)) \to spec(spec_2(spec_B))$;
+\end{enumerate}
+\textbf{Szignaturamorfizmus:} Adott: $\Sigma=(S,OP)$, $\Sigma'=(S',OP')$, mellett a  $h_\Sigma:\Sigma\to \Sigma'$ lekepezest szignaturamorfizmusnak nevezzuk, ha $h_\Sigma=(h_S:S\to S', h_{OP}: OP\to OP')$ ugy, hogy $(\forall N: s_1 \cdot s_n \to s \in OP)(h_{OP}(N):h_S(s_1)\cdots h_S(s_n)\to h_S(s) \in OP')$.\\
+Kituntetett sortu szignaturamorfizmus: $h_s(pt(\Sigma)) = pt(\Sigma')$.\\ \\
+\textbf{A $\mathbf{h: \Sigma \to \Sigma'}$ szignaturamorfizmus kiterjesztese valtozokra:}\\
+Legyenek X, X' rendre a $\Sigma, \Sigma'$ valtozoi.\\
+Tovabbiakban altalaban: $h=h_{\Sigma}$; $h(s)=h_s$; $h(N) = h_{OP}(N)$;\\
+$h_X:(\bigcup_{s \in S} X_S) \to (\bigcup_{s' \in S'} X'_{S'})$
+ha $x\in X_S, s \in S$, akkor $h_X(x) \in X'_{h(s)=s'}$;\\ \\
+\textbf{A $h: \Sigma \to \Sigma'$ szignaturamorfizmus kiterjesztese termekre:}\\
+Adottak: $T_{\Sigma(X)}, T_{\Sigma'(X')}$ rendre a $\Sigma, \Sigma'$ termeknek halmazai.\\
+$\forall t\in T_{\Sigma(X)}$-hez tartozo $h_T(t)\in T_{\Sigma'(X')}$ definicoja:
+\begin{itemize}
+\item $(\forall x\in X)(h_T(x)=h_X(x))$
+\item $(\forall(N:\to s)\in OP)(h_T(N:\to s)=h_X(h(N):\to s)$
+\item $(\forall N:s_1\cdots s_n\to s)\in OP)(h_T(N(t_1, \cdots, t_n)) = h(N)(h_T(t_1), \cdots, h_T(t_n))$
+\end{itemize}
+\textbf{A $\mathbf{h:\Sigma\to \Sigma'}$ szignaturamorfizmus kiterjesztese egyenletek formajaban adott axiomakra:}\\
+Legyen $e=(X, L, R) \in E$, akkor e helyettesitendo $h^*(e)=(X^*, h^*(L), h^*(R))$ egyenlettel $\in E'$, ahol $\forall x \in X_{s\in S}$ valtozo helyettesitendo $x^*\in X^*_{h(s)=s'\in S}$ valtozoval, L es R kepzesnel pedig $\forall N:s_1 \cdots s_n \to s \in OP$, eseten $N(t_1, \cdot, t_n) \in T_{OP}(X)$,
+helyettesitendo $h(N)(h^*(t_1), \cdots, h^*(t_n))$ operacioval.\\
+Roviden:\\
+- minden x valtozo helyere $h(s) = s'$-nek megfelelo valtozo;\\
+- L, R term a $h(N) = N'$-nek helyere megfelelo operaciokkal kepezett $L'=R'$ lekepezes.\\ \\
+\textbf{Specifikaciomorfizmus:} Adva: $SPEC=(\Sigma, S, OP, E)$, $SPEC'=(\Sigma', S', OP', E')$,\\
+$h_{SPEC}:SPEC\to SPEC'$;\\
+$h_{SPEC}=(h_{\Sigma}, h_E)$; $h_{\Sigma}:\Sigma \to \Sigma'$; $h_E:E \to E'$;\\
+$E'=h_E(E) = \lbrace h^*(e) \vert \forall e= (X, L, R)\in E\rbrace$.\\ \\
+\textbf{Definicio:} Adva parameteres tipusspecifikacio:\\
+$PSPEC=(SPEC, SPEC1)$; ahol $SPEC=(S, OP, E)$, $SPEC1=SPEC \cup (S1, OP1, E1)$.\\
+Adva tovabba $h:SPEC\to SPEC'$ specifikacio morfizmus, ahol $SPEC'=(S', OP', E')$.\\ \\
+\textbf{Patameteratado morfizmus diagramja:}\\
+$\begin{CD}
+SPEC @>p:tartalmazas>> SPEC1\\
+@VVh: SPEC\to SPEC'V @Vh_1VV\\
+SPEC' @>p':tartalmazas>> SPEC1'
+\end{CD}$\\
+A parameteratadas jelentese:\\
+- Ha p es p' tartalmazas az osszes reszspecifikacio eseten;\\
+- $h_1$: $(\forall s \in S \cup S1)(h1(s) =$ if $s\in S1$ then $s$ else $h(s)$ fi)\\
+$(\forall(N:s_1 \cdot s_n)\in OP\cup OP', n\ge0)(h1(N:s_1 \cdots s_n) =$\\
+if $(N:s_1 \cdots s_n)\in OP$ then $n:h1(s_1) \cdots h1(s_n)\to h1(s)$ else $h(N):h(s_1) \cdots h(s_n)\to h(s) fi$;\\
+- $SPEC1'=SPEC' \cup (S', OP', E1'),$ ahol $S1'=S1, OP1'=h1(OP1), E1'=h1^*(E1)$.\\ \\
+\textbf{Adattipusosztaly specifikacioja:}\\
+$PAR$: formalis parameterek specifikacioja;\\
+$EXP=PAR\cup(S1,OP1,E1)$: export felulet specifikacioja;\\
+$IMP=PAR\cup(S2,OP2,E2)$: import felulet specifikacioja;\\
+$BOD=IMP+eb(EXP)$: megvalositas specifikacioja;\\
+$
+\begin{CD}
+PAR @>e>> EXP\\
+@VViV @VVebV\\
+IMP @>ib>> BOD
+\end{CD}
+$\\ \\
+Specifikacio: PAR, IMP;\\
+Kituntetett sortu specifikacio:\\
+$EXP=(S_{EXP}, OP_{EXP}, E_{EXP}); pt(S_{EXP}) \in S_{EXP}$;\\
+$BOD=(S_{BOD}, OP_{BOD}, E_{BOD}); pt(S_{BOD}) \in S_{BOD}$;\\
+Tartalmazas: e, i, ib; (Ha az absztrakt es a konkret parameterek azonosak!)\\
+eb: $EXP \to BOD$; kituntetett sortu morfizmus;\\
+Jelolese a torzs reszben: oprs: rep: $pt(S_{BOD})\to pt(S_{EXP})$\\ \\
+\textbf{Absztrakt adattipus specifikacioja:}\\
+$
+\begin{CD}
+PAR @>e>> EXP
+\end{CD}
+$\\
+Absztrakt adattipus az adattipusoknak egy olyan osztalya, amely zart az adattartomanyok, a muveletek, a tartomanyok peldanyainak es a muveleteknek az elnevezese alapjan. Igy az absztrakt adattipus fuggetlen az adatok abrazolasatol es az adott abrazolasok mellett a muveletek megvalositasatol.\\
+$\langle$osztalynev$\rangle$ \textbf{is a class specification}=\\
+\textbf{parameters}=\\
+\indent sorts:\\
+\indent oprs:\\
+\indent eqns:\\
+\textbf{exports}=\\
+\indent class sort: $\langle$osztalynev$\rangle$\\
+\indent oprs:\\
+\indent eqns:\\
+\textbf{imports}=\\
+\indent sorts:\\
+\indent oprs:\\
+\indent eqns:\\
+\textbf{body}=
+\indent sorts:\\
+\indent oprs: rep: $pt(S_{BOD})\to pt(S_{EXP})$;\\
+\indent eqns:\\
+end $\langle$osztalynev$\rangle$;\\ \\
+\textbf{Osztalyspecifikacio, specialis esetek:}\\ \\
+$
+\begin{CD}
+SPEC @>>> SPECEXP @>>> SPEC\emptyset\\
+@VVV @VVV @VVV\\
+PSPEC @>>> PSPECEXP @>>> CLASS
+\end{CD}
+$ Kozepen nincs nyil (csak maskepp nem tudtam)!\\ \\
+$SPEC=(\emptyset, BOD, \emptyset, BOD)$;\\
+$SPECEXP=(\emptyset, EXP, \emptyset, BOD)$;\\
+$SPEC0=(\emptyset, EXP, IMP, BOD)$;\\
+$PSPEC=(PAR, BOD, \emptyset, BOD)$;\\
+$PSPECEXP=(PAR, EXP, \emptyset, BOD)$;\\
+$CLASS=(PAR, EXP, IMP, BOD)$;\\ \\
+Itt van meg 2 tablazat.
+\newpage
+%
+% 4.
+%
+\begin{flushleft}
+\textbf{4. eloadas:}
+\end{flushleft}
+\textbf{Definicio:} termek szarmaztatasa\\
+Adva $\Sigma = (S, OP)$ szignatura es a hozzatartozo E szemantikai egyenletek halmaza, rogzitett $X=X_e$ mellett, minden $e =(L,R) \in E$ eseten. Az egyenlet ket helyettesitesi szabalyt definial:\\
+$L \to R$; $R \to L$;\\
+Ha a $t1 \to t2$ szabaly alkalmazhato egy $t \in T_{OP}(X)$ termre, es t1 a t-nek egy resztermje, akkor t1 helyettesitese t2-vel a t termben egy ujabb t' termet eredmenyez.\\
+Jeloles: $t'=t(t1/t2)$.\\
+Ekkor azt mondjuk, hogy t' term kozvetlen szarmaztatasa t termnek E axiomai altal a $t1\to t2$ szabaly felhasznalasaval.\\ \\
+A kozvetlen szarmaztatasok egy $t0 \to t1 \to \cdots \to tn$ sorozata eseten $t=t0$ es $t'=tn$ jeloles mellett az $e'=(t,t')$ egyenlet E-bol szarmaztatott egyenletnek nevezzuk az adott $\Sigma$ szignaturahoz tartozo rogzitett X mellett.\\
+A szarmaztatott egyenlet helyes, ha t kiertekelese megegyezik t' kiertekelesevel.\\ \\
+$\Sigma=(S,OP)$; $\Sigma$-algebra=$(S_A, OP_A)$;\\
+$SPEC_A = (S_A, OP_A, E_A)$; $d_a=(A,F,E_a)$; $d_a=(\lbrace A_0, A_1, \cdots, A_n\rbrace$,\\
+$\lbrace f_0 \to A_0, \cdots, f_m:A_i \cdots A_j \to A_k\rbrace, \lbrace\cdots, \alpha(a) \Rightarrow f_s(f_c(a))=h(a), \cdots\rbrace$,\\
+ahol $a \in A:(a_i, \cdots, a_k) \in (A_i x \cdots x A_i)$;\\
+Jelolesek: $F = F_c \cup F_s$; $f_c \in F_c$; $f_s \in F_s$;\\ \\
+\textbf{Egyenloseg axioma:}\\
+$a_1=a_2 \equiv ([a_1 = f_0 \wedge a_2 = f_0] \vee [(\forall f_s \in F_s)(f_s(a_1)=f_s(a_2))])$;\\
+\textbf{A helyettesitesi szabaly:}\\
+$a_1 = a_2 \to ([a_1 = f_0 \wedge a_2 = f_0] \vee [(\forall f_s\in F_s)(f_s(a_1)=f_s(a_2))])$;\\ \\
+\textbf{Strukturalis indukcio:}\\ Adott $\Sigma=(S,OP)$ a szignaturahoz tartozo X valtozokkal.\\
+Legyen p predikatum, amely $t\in T_{OP}(x)$ termekre van ertelmezve.\\
+Ha
+\begin{enumerate}
+\item $(\forall t \in K \wedge \forall t \in X)(p(t)\equiv T)$;
+\item $(\forall N(t1, \cdots, tn) \in T_{OP}(X))(p(N(t_1, \cdots, t_n) \equiv T)$;
+\end{enumerate}
+akkor $(\forall t \in T_{OP}(X))(p(t)\equiv T)$.\\ \\
+\textbf{Strukturalis indukcio atfogalmazasa:}\\ Adott $\Sigma=(S, OP)$ a szignaturahoz tartozo X valtozokkal.\\
+Legyen $p(t): H_1(t) = H_2(t)$ predikatum, amely a $t \in T_{OP}(X)$ termekre van ertelmezve.\\
+Ha
+\begin{enumerate}
+\item Alapeset: $(\forall t \in K \wedge \forall t \in X)(H_1(t)=H_2(t) \equiv T)$;
+\item Indukcios lepes: $(\forall N(t_1, \cdots, t_n)\in T_{OP}(X))(H_1(N(t_1, ..., t_n)) = H_2(N(t_1, ..., t_n)) \equiv T)$;
+\end{enumerate} 
+akkor $(\forall t\in T_{OP}(X))(H_1(t)=H_2(t) \equiv T)$\\ \\
+Adott $\Sigma=(S, OP)$; $t \in T_{OP}(X)$; Legyen $t_1 = H_1(f_s(t))$; $t_2=H_2(t)$;\\
+Tekintsuk a $f_s(f_c(t))=H_{sc}(t)$ axiomat.\\
+\textbf{Tetel:} $H_1(f_s(t)) = H_2(t)$\\
+Bizonyitas:
+\begin{itemize}
+\item Alapeset:\\
+\indent Bizonyitsuk be $f_0$ konstans szimbolumra, hogy $t=f_0$ eseten: $H_1(f_s(f_0)) = H_2(f_0)$;
+\item Strukturalis indukcios lepes:\\
+\indent Mutassuk ki, hogy minden $t = f_c(t') \in T_{OP}(X)$ konstrukcios muveletre, hogy ha\\
+$H_1(f_s(t')) = H_2(t')=T$, akkor $H_1(f_s(f_c(t'))) = H_2(f_c(t')) \equiv T$;\\
+\indent azaz $H_1(H_{sc}(t')) = H_2(f_c(t')) \equiv T$;
+\end{itemize}
+\textbf{A strukturalis indukcio ket helyettesitesi szabalya:}
+\begin{enumerate}
+\item Alapeset: $H_1(f_s(t)) = H_2(t) \to H_1(f_s(f_0)) = H_2(f_0)$;
+\item Indukcios lepes: $H_1(f_s(f_c(t'))) = H_2(f_c(t')) \to H_1(H_{sc}(t)) = H_2(f_c(t'))$;
+\end{enumerate}
+\textbf{Reprezentacios fuggveny}:
+Adva egy adattipus absztrakt es konkret specifikacioja:\\
+$d_a=(A,F,E_a); \quad d_c=(C, G, E_c)$;\\
+$A={A_0, ..., A_n}; \quad C={C_0, ..., C_m}$;\\
+$F=\lbrace f_0:\to A_0, \cdots, f_i:A_i\cdots A_k\to A_l, \cdots\rbrace; G=\lbrace g_0 \to C_0, \cdots, g_i:C_i\cdots C_k\to C_l, \cdots\rbrace$;\\
+Az absztrakt es konkret objektumok egymashoz valo viszonya:\\
+$\varphi: C\to A \quad \varphi=(\varphi_0, \cdots, \varphi_n)$, ahol $\varphi_0:C_0\to A_0; \cdots; \varphi_n:C_n \to A_n$;\\ \\
+\textbf{Definicio:} Adva $d_a$ absztrakt es $d_c$ konkret tipusspecifikaciok, amelyeknek szignaturajuk azonos.\\
+Adva tovabba $\varphi: C\to A$ morfizmus.\\
+A C objektumhalmazt az A egy reprezentaciojanak nevezzuk, ha $(\forall a \in A)((\exists c \in C)(a=\varphi(c))$;\\ \\
+\textbf{Tetel:} Adva $d_a$ absztrakt es $d_c$ konkret tipusspecifikaciok azonos szignaturaval.\\
+$\varphi: C\to A$ morfizmus.\\
+$F_c \subset F$ a konstrukcios muveletek halmaza.\\
+Felteves: $\forall f_c \in F_c$ konstrukcios muveletre fennall:\\
+\indent $a\in A \wedge f_c(a)\in A \wedge c\in C \wedge g_c(c)\in C \wedge a=\varphi(c)$.\\
+Ha $(\forall c \in C \wedge \forall f_c\in F_c)(f_c(\varphi(c))=\varphi(g_c(c)))$, akkor C objektumhalmaz az A egy reprezentacioja.\\
+\textbf{Bizonyitas:} Strukturalis indukcioval:\\
+a) alapeset: $a=f_0. f_0\in A_0, g_0\in C_0$, feltevesunk szerint $f_0=\varphi(g_0)$.\\
+Tehat $a=f_0$ eseten letezik olyan $c\in C_0$, hogy $a=\varphi(c)$.\\
+b) indukcio: $a'=f_c(a)$, ahol feltesszuk, hogy $a=\varphi(c)$ es $c\in C_0$.\\
+Tehat $a'=f_c(\varphi(c))$ es muvelettartasra vonatkozo feltevesunk alapjan:\\
+$a'=\varphi(g_c(c))$, es $c'=g_c(c)$ valasztas mellett $a'=\varphi(c')$ es $c'\in C_0$.\\ \\
+\textbf{A reprezentacios fuggveny implicit definicioja:}\\
+$f_0=\varphi(g_0)$;\\
+$(\forall f_c\in F_c)(f_c(\varphi(c))=\varphi(g_c(C))$;\\
+\textbf{A reprezentacios fuggveny rekurziv (explicit) definicioja:}\\
+Tegyuk fel, hogy $c=g_c(g_s(c))$.\\
+Ennek alapjan a reprezentacios fuggveny rekurziv definicioja:\\
+$\varphi(c)=$if $c = g_0$ then $f_0$ else $f_c(\varphi(g_s(c)))$.\\ \\
+A reprezentacios fuggveny definicioja nem egyertelmu!
+\newpage
+%
+% 5. eloadas
+%
+\begin{flushleft}
+\textbf{5. eloadas}
+\end{flushleft}
+Interfesz lekepezesek:\\
+\indent Megvalositas: interfesz $\to BOD_M$\\
+\indent Kiterjesztes: interfesz $\to BOD_M$\\
+\indent Finomitas:    interfesz $\to$ interfesz'\\\\
+$
+\begin{CD}
+formpar @>p>> SPEC(formpar)\\
+@VVbV @VVh_1V\\
+aktpar @>p'>> SPEC(aktpar)
+\end{CD}
+$\\ \\
+\textbf{Egzakt megvalositas:}\\
+Adott a modulspecifkacio: MOD=(PAR, EXP, IMP, BOD, e, eb, i, ib),\\
+ahol a MOD modul interfesz specifikacioja: I(MOD)=(PAR, EXP, IMP, e, i).\\
+Az INT interfesz specifikaciot a MOD modulspecifikacio egzakt megvalositasanak nevezzuk, ha I(MOD)=INT.\\ \\
+
+\textbf{Megvalositas:} Adott egy INT=(PAR, EXP, IMP, e, i); interfesz specifikacio.\\
+A MOD'=(PAR', EXP', IMP', BOD', e', eb', i', ib') modulspecifikaciot az INT interfesz specifikacio
+megvalositasanak nevezzuk, ha letezik olyan $r= (r_P, r_E, r_I)$ specifikacio morfizmus harmas, amelyikre $i' \circ r_P = r_I \circ i$; es $e' \circ r_P = r_P \circ e$;\\
+A megvalositas az alabbi diagram kommutaciojat fejezi ki: $\cdots$\\ \\
+Ha $r_P = r_E = r_I =$ identitas, akkor egzakt megvalositas.\\ \\
+Legyen SPEC'=(S', OP', E') a SPEC=(S, OP, E) specifikaciobol morfizmussal szarmaztatott specifikacio:\\
+- Tartalmazas\\
+- Atnevezes. a Specifikaciot atnevezzuk ugy, hogy a sortok, az 	operaciok uj nevet kapnak, de ugy, hogy a szemantika valtozatlan marad\\
+- Abrazolas, amely az atnevezes egy formaja\\ \\
+A sort atnevezesenek jelolese: sorts: $\langle$uj sort neve$\rangle$ = $\langle$<regi sort neve$\rangle$\\
+Az operacios szimbolum atnevezesenek jelolese: oprs: $\langle$uj op neve$\rangle$ = $\langle$regi op neve$\rangle$\\
+Deklaracios resz atnevezese: (a sortok atnevezesei alapjan automatikus)\\
+eqns: $a1, a2, ..., ak \in \langle$regi sort neve$\rangle$;\\
+Atnevezes: eqns: $c1, c2, ..., ck \in \langle$ uj sort neve $\rangle$;\\ \\
+Szemantikai egyenletek atnevezese:\\
+(A sortok es operacios szimbolumok atnevezesei alapjan automatikus.)\\
+regi axioma: $e: L = R$;\indent regi op neve: $f_0, ..., f_n$;\\
+$L: f_s(f_c(a)); \quad R: f_i(...(f_j(a))...)$;\\
+uj op nevek rendre: $g_0, ..., g_n$; akkor\\
+uj axioma: $e'=L'=R'$; ahol $L': g_s(g_c(a));\quad R':g_i(...(g_j(a))...)$;\\ \\
+\textbf{Tetel:} Adva $d_a$ absztrakt es $d_c$ konkret tipusspecifikaciok azonos szignaturaval.\\
+$\varphi: C\to A$ morfizmus.\\
+$F_c \subset F$ a konstrukcios muveletek halmaza.\\
+Felteves: $\forall f_c \in F_c$ konstrukcios muveletre fennall:\\
+\indent $a\in A \wedge f_c(a)\in A \wedge c\in C \wedge g_c(c)\in C \wedge a=\varphi(c)$.\\
+Ha $(\forall c \in C \wedge \forall f_c\in F_c)(f_c(\varphi(c))=\varphi(g_c(c)))$, akkor C objektumhalmaz az A egy reprezentacioja.\\
+\textbf{Bizonyitas:} Strukturalis indukcioval:\\
+a) alapeset: $a=f_0. f_0\in A_0, g_0\in C_0$, feltevesunk szerint $f_0=\varphi(g_0)$.\\
+Tehat $a=f_0$ eseten letezik olyan $c\in C_0$, hogy $a=\varphi(c)$.\\
+b) indukcio: $a'=f_c(a)$, ahol feltesszuk, hogy $a=\varphi(c)$ es $c\in C_0$.\\
+Tehat $a'=f_c(\varphi(c))$ es muvelettartasra vonatkozo feltevesunk alapjan:\\
+$a'=\varphi(g_c(c))$, es $c'=g_c(c)$ valasztas mellett $a'=\varphi(c')$ es $c'\in C_0$.\\ \\
+\textbf{A reprezentacios fuggveny implicit definicioja:}\\
+$f_0=\varphi(g_0)$;\\
+$(\forall f_c\in F_c)(f_c(\varphi(c))=\varphi(g_c(C))$;\\
+\textbf{A reprezentacios fuggveny rekurziv (explicit) definicioja:}\\
+Tegyuk fel, hogy $c=g_c(g_s(c))$.\\
+Ennek alapjan a reprezentacios fuggveny rekurziv definicioja:\\
+$\varphi(c)=$if $c = g_0$ then $f_0$ else $f_c(\varphi(g_s(c)))$.\\ \\
+A reprezentacios fuggveny definicioja nem egyertelmu!\\ \\
+\textbf{Reprezentacio jelolese:}\\
+body = \\
+\indent oprs: rep: vector nat data $\to$ stack\\
+\indent eqns: $v\in$ vector, $n\in$ nat, $d\in$ data\\
+\indent \indent create = (nil, zerus)\\
+\indent \indent push(v, n, d) = (put(v, n+1, d), n+1)\\
+body = \\
+\indent oprs: rep: $C_0 C_1 \cdots C_i \to A_0$\\
+\indent eqns: $c_0 \in C_0$; $c_1 \in C_1$; $\cdots; c_i \in C_i$\\
+\indent \indent $f_0=g_0(c)$\\
+\indent \indent $f_c(c_0, c_1, \cdots, c_i) = g_c(c)$\\ \\
+\textbf{A BOD spedcifikacio reprezentacios formaja:}\\
+(az ib, eb morfizmusok alapjan automatikus kiegeszitessel egyutt)\\
+body = imports +\\
+\textit{class sort: $\mathit{C_0}$}\\
+oprs: rep: $C_0 C_1 \cdots C_i \to A_0$ $\mathit{(\forall f_i: A^+ \to A \in F)(g: C^+ \to C)}$\\
+\indent eqns: $c_0\in C_0; c_1\in C_1 \cdots c_2\in C_2$\\
+\indent \indent $f_0 = g_0(c)$\\
+\indent \indent $f_c(c_0, c_1, \cdots, c_i) = g_c(c)$\\
+\indent \indent $\mathit{\forall(f_s(f_c(a)) = f_i(...(f_j(a))...) \in exports \wedge a=rep(c))}$\\
+\indent \indent $\mathit{g_s(g_c(c)) = g_i(\cdots(g_j(c))\cdots)}$;\\ \\
+\textbf{Reprezentacio elemzes:}\\
+- $\varphi_1(c) = \varphi_2(c)$?\\
+- $attr_c(c) = attr_s(\varphi(c))$?\\
+- $c_1 = c_2 \Rightarrow \varphi(c_1) = \varphi(c_2)$?\\
+- $I_c(c) \Rightarrow I_a(\varphi(c))$?\\
+(Ha $attr_c(c) = attr_a(\varphi(c))$ es $I_c(c): 0 \le attr_c(c)\le n$ es $I_a(\varphi(c)):0\le attr_a(\varphi(c))\le n$, akkor az $I_c(c) \Rightarrow I_a(\varphi(c))$ allitas trivialis.)\\ \\
+$\varphi_1(c) = \varphi_2(c) \equiv (\varphi_1(c) = f_0 \wedge \varphi_2(c) = f_0) \vee (\forall f_s\in F_s)(f_s(\varphi_1(c)) = f_s(\varphi_2(c)))$;\\
+Bizonyitas:\\
+a.) alapeset: $c = g_0$; $(\varphi_1(g_0) = f_0 \wedge \varphi_2(g_0)=f_0)$\\
+b.) indukcios lepes: $c=g_{c1}(c')$, ahol c'-re $\varphi_1(c')=\varphi_2(c')$.\\
+\indent $\varphi_1(g_{c1}(c')) = \varphi_2(g_{c1}(c')) = (\forall f_s\in F_s) (f_s(\varphi_1(g_{c1}(c')))=f_s(\varphi(g_{c1}(c')))) = (\forall f_s\in F_s)(f_s(f_{c1}(\varphi_1(c')))=f_s(f_{c2}(\varphi_2(c'))))$\\ \\
+\textbf{Allitas:} $attr_c(c) = attr_s(\varphi(c))$
+Bizonyitas indukcioval:\\
+a.) alapeset: $c=g_0 \Rightarrow \varphi(g_0)=f_0$; $attr_c(g_0) = attr_a(\varphi(g_0))$?\\
+b.) indukcios lepes: Felteves $c=g_c(c')$ mellett $attr_c(c') = attr_a(\varphi(c'))$\\
+$attr_c(c)=attr_c(g_c(c'))$\\
+$attr_a(\varphi(c))=attr_a(\varphi(g_c(c')) = attr_a(f_c(\varphi(c'))$\\
+$attr_c(g_c(c')) = attr_a(f_c(\varphi(c'))$\\ \\
+$c_1=c_2 \Rightarrow \varphi(c_1) = \varphi(c_2)$?\\
+$c_1=c_2 \equiv (c_1 = g_0 \wedge c_2=g_0) \vee (\forall g_0\in G_s)(g_s(c_1) = g_s(c_2)) \Rightarrow \varphi_1(c)=\varphi_2(c)$\\
+$\equiv (\varphi_1(c)=f_0 \wedge \varphi_2(c)=f_0) \vee (\forall f_s\in F_s\cdots$
+\newpage
+%
+% 6. eloadas
+%
+\begin{flushleft}
+\textbf{6. eloadas}
+\end{flushleft}
+\textbf{Kettos specifikacio:} Adott $d_a=(A, F, E_a)$; $d_c = (C, G, E_c)$; $a_0=\lbrace c\vert I_a(c)\rbrace$; $C_0 = \lbrace c\vert I_c(c)\rbrace$;\\
+abrazolas: $\varphi:C_0\to A_0$;\\
+$E_a=\lbrace\cdots, \alpha(a) \Rightarrow f_s(f_c(a))=h(a); \cdots)$, $(\neg I_a(f_c(a)) \wedge I_a(a)) \Rightarrow f_c(a)=\text{"undefined"}\rbrace$;\\ $h(a)=f_i(\cdots(f_j(a)))$,\\
+$E_c=\lbrace\cdots, \alpha_c(c) \Rightarrow g_s(g_c(c))=h_c(c)$; $(\neg I_c(g_c(c)) \wedge I_c(c)) \Rightarrow g_c(c)=\text{"undefined"}\rbrace$; (algebrai leiras)\\
+$h_c(c)=(g_i(\cdots(g_j(c))),\cdots)$,\\
+$E_c=\lbrace\cdots, \lbrace pre_i(c)\rbrace c'=g_i(c,c') \lbrace post_i(c,c')\rbrace, \cdots,\rbrace$ (elo-utofelteteles leiras)\\
+$\lbrace I_c(g_c(c))\wedge I_c(c)\rbrace c'=g_c(c,c') \lbrace I_c(c') \wedge c'=f_c(c)\rbrace$;\\
+$E_c=\lbrace\cdots, Q_i(c,c'),\cdots\rbrace$;\\ \\
+Minden algebrai axioma elo- utofelteteles formara hozhato.\\
+$\alpha(a)\Rightarrow f_s(f_c(a))=h(a)$;\\
+$\lbrace\alpha(a)\wedge b=f_c(a)\rbrace b'=f_s(b) \lbrace b'=h(a)\rbrace$\\
+$(\neg I_a(f_c(a))\wedge I_a(a)) \Rightarrow f_c(a) = \text{"undefined"}$;\\
+$\lbrace I_a(a)\wedge I_a(f_c(a))\rbrace$ $a'=f_c(a)$ $\lbrace I_a(a') \wedge a'=f_c(a)\rbrace$\\ \\
+\textbf{Definicio:} (Az implementacio helyessege)\\
+Adva $d_a=(A, F, E_a)$ absztrakt specifikacio, $d_c=(C, G, E_c)$ konkret specifikacio, amelynek szignaturaja azonos.\\
+$\varphi:C\to A$ morfizmus.\\
+Ha
+\begin{enumerate}
+\item C az A egy reprezentacioja az adott $\varphi$ mellett;
+\item $(\forall f_i\in F)(c\in C \wedge \varphi(c)\in A \wedge f_i(\varphi(c))$ ertelmezve van, akkor $g_i(c)$ is ertelmezve van;
+\item $(\forall f_i\in F)(c\in C \wedge c'=g_i(c) \wedge c'\in C \wedge \varphi(c)\in A\wedge \varphi(c')\in A$, akkor $f_i(\varphi(c)) = \varphi(g_i(c))$;
+\end{enumerate}
+akkor $d_c$ a $d_a$ szerint helyes.\\
+Ld. 92. o. abra.\\ \\
+\textbf{Allitas:} Adva $d_a=(A, F, E_a)$, $d_c=(C, G, E_c)$, $\varphi:C\to A$; es $d_c$ a $d_a$ szerint helyes.\\
+$P_a$ (absztrakt program), $p_a(a)$: $P_a$ programfuggvenye.\\
+Allitsuk elo a $P_c$ konkret programot a $P_a$ absztrakt programbol ugy, hogy\\
+\indent $\forall a\in A$ helyere a megfelelo $c\in C$-t\\
+\indent $\forall f_i\in F$ helyere a megfelelo $g_i\in G$-t tesszuk.\\
+Ha a konkret program programfuggvenye a $p_c(c)$ es a programok indulasakor $a_0=\varphi(c_0)$,\\
+akkor $p_a(\varphi(c_0)) = \varphi(p_c(c_0))$.\\
+\textbf{Bizonyitas:} Az adattipus programban szereplo muveleteinek szama szerinti teljes indukcioval.\\
+a.) Alapeset: Felteves: indulaskor $a_0=\varphi(c_0)$.\\
+b.) Indukcios lepes:\\
+\indent k a muveletek szama, $k>0$. A k-ik muvelet eredmenye:\\
+\indent \indent $a_k=f(a_{k-1})$, $c_k=g(c_{k-1})$;\\
+\indent Indukcios felteves: $a_{k-1}=\varphi(c_{k-1})$\\
+\indent A k-ik muvelet eredmenye: $(f(a_{k-1}),g(c_{k-1}))$,\\
+\indent \indent $a_k=f(a_{k-1})=f(\varphi(c_{k-1}))=\varphi(g(c_{k-1}))=\varphi(c_k)$.\\
+Az utolso lepes eredmenye:\\
+\indent $(a', c')$, $a'=\varphi(c')$, $a'=p_a(a_0)$ es $c'=p_c(c_0)$,\\
+\indent ezert $a'=\varphi(c')$, azaz $p_a(a_0)=\varphi(p_c(c_0))$, $p_a(\varphi(c_0))=\varphi(p_c(c_0))$\\ \\
+\textbf{Allitas:} (A kulso felulet specifikaciojaval adott konkret specifikacio absztrakt specifikacio szerinti helyessegenek egy elegseges feltetele.)\\
+Adva $d_a=(A, F, E_a)$, $d_c=(C, G, E_c)$,\\
+$E_a=\lbrace\lbrace"true"\rbrace$ $a=f_0$ $\lbrace post_{f_0}(a)\rbrace, \cdots, \lbrace pre_{f_i}(a)\rbrace$ $a'=f_i(a)$ $\lbrace post_{f_i}(a, a')\rbrace,\cdots \rbrace$,\\
+$E_c=\lbrace\lbrace"true"\rbrace$ $c=g_0$ $\lbrace post_{g_0}(c)\rbrace, \cdots, \lbrace pre_{g_i}(c)\rbrace$ $c'=g_i(c)$ $\lbrace post_{g_i}(c, c')\rbrace, \cdots \rbrace$.\\
+$A_0 = \lbrace a\vert I_a(a)\rbrace$, $C_0 = \lbrace c\vert I_c(c)\rbrace$, $\varphi:C\to A$.\\
+Ha bebizonyitjuk, hogy
+\begin{enumerate}
+\item $I_c(c) \Rightarrow I_a(\varphi(c)$;
+\item $post_{g_0}(c) \Rightarrow I_c(c)$;
+\item $post_{g_0}(c) \Rightarrow post_{f_0}(\varphi(c))$;
+\item $I_c(c) \wedge pre_{f_i}(\varphi(c)) \Rightarrow pre_{g_i}(c)$;
+\item $I_c(c) \wedge pre_{f_i}(\varphi(c)) \wedge post_{g_i}(c,c') \wedge I_c(c') \Rightarrow post_{f_i}(\varphi(c), \varphi(c'));$
+\end{enumerate}
+akkor a $d_c$ konkret specifikacio a $d_a$ absztrakt specifikacio szerint helyes.\\
+\textbf{Bizonyitas:}\\
+a) C az A egy reprezentacioja\\
+- $a = f_0$. 2. es 1. szerint: $g_0\in C \wedge \varphi(g_0) \in A$. 3. szerint: $\varphi(g_0)=f_0$.\\
+- 4. szerint: ha $f_c\in F_c$, $f_c(\varphi(c))$ ertelmezve van, akkor $g_c(c)$ is ertelmezve van.\\
+- 5. szerint: $\varphi(c')=f_c(\varphi(c)) \wedge c'=g_c(c)$, azaz $f_c(\varphi(c))=\varphi(g_c(c))$\\
+b) Morfizmusdiagram szerinti kapcsolat\\
+- 3. szerint: ha $\forall f_i\in F, f_i(\varphi(c))$ ertelmezve van, akkor $g_i(c)$ is ertelmezve van.\\
+- 5. es 1. szerint $c'=g_i(c) \wedge I_c(c') \wedge I_a(\varphi(c')) \wedge \varphi(c')=f_i(\varphi(c)), (\forall f\in F)(\varphi(g(c)) = f(\varphi(g(c)))$.\\
+Megj.: Ha $p=f_i(a)$ es $q=g_i(c)$, ahol p, q parameterek, akkor $f_i(\varphi(c)) = \varphi(g_i(c))$ helyebe p=q lep.\\ \\
+\textbf{Reprezentacio elemzes:}\\
+$\varphi_1(c) = \varphi_2(c)$?\\
+$length_c()=length_a(\varphi(c))$?\\
+$c_1=c_2 \Rightarrow \varphi(c_1) = \varphi(c_2)$?\\
+$I_c(c) \Rightarrow I_a(\varphi(c))$?\\ \\
+\textbf{Implementacio elemzes:}\\
+$post_{g_0}(c) \Rightarrow post_{f_0}(\varphi(c))$?\\
+$I_c(c) \wedge pre_{f_i}(\varphi(c)) \Rightarrow pre_{g_i}(c)$?\\
+$I_c(c) \wedge pre_{f_i}(\varphi(c)) \wedge post_{g_i}(c,c') \wedge I_c(c') \Rightarrow post_{f_i}(\varphi(c), \varphi(c'))$?\\ \\
+\textbf{Formalis parameterek aktualizalasaval torteno abrazolas:}\\
+\textbf{Definicio:} Adott egy INT = (PAR, EXP, IMP, e, i) interfesz specifikacio.\\
+Adott annak MOD'=(PAR', EXP', IMP', BOD', e', eb', i', ib'); megvalositasa.\\
+Ekkor a $r=(r_P, r_E, r_I)$ specifikacio morfizmus harmasra: $i' \circ r_P = r_I \circ i$; es $e' \circ r_P = r_E \circ e$;
+\newpage
+%
+% 7. eloadas
+%
+\begin{flushleft}
+\textbf{7. eloadas}
+\end{flushleft}
+\textbf{Interfesz realizaciok:}\\
+INT = (PAR, EXP, IMP, e, i); interfesz specifikacio.\\
+$r: INT \to MOD$;\\
+1.) incialis realizacio; Jeloles: IR(INT);\\
+2.) Vegleges realizacio; Jeloles: FR(INT);\\
+Legyen I(IR(INT)) = INT, I(FR(INT)) = INT, akkor mindket modulspecifikacio egzakt realizacio.\\
+Inicialis realizacio: $IR(INT) = (PAR, EXP, IMP, BOD, e, i, eb_1, ib_1)$;\\
+Vegleges realizacio: $FR(INT) = (PAR, EXP, IMP, FINAL, e, i, eb_2, ib_2)$;\\\\
+\textbf{Szarmaztatas:} (Derivation):\\ 
+$t_0\to t_1 \to \cdots\to t_n$, $e=(t_0,t_n)$, $t_1\in T_{OP, X}$;\\
+$e_i\in E:e_i=e(X, L_i, R_i)$; $e_0\to e_1\to \cdots\to e_n$; $e_i\equiv T$; $\quad i=1,\cdots,n$;\\
+Jeloles:\\
+$d_a=(A, F, E_a)$: a $PAR \cup EXP$ export felulet specifikacioja.\\
+$d_c=(C, G, E_c)$: a BOD torzsresz specifikacioja, realizacio.\\
+Adva $\varphi(c)$ reprenzentacios fuggveny.\\ \\
+\textbf{Definicio:} Legyen $E_a=\lbrace L_{ai}(a)=R_{ai}(a)\vert 1\le i\le k\rbrace, E_c=\lbrace L_{ci}(c)=R_{ci}(c)\vert 1\le i\le k\rbrace$;\\
+Ha $(\forall i, 1\le i\le n)(e_{ai}(a)\to \cdots \to e_{ai}(a)$; $e_{ci}(c)\to \cdots \to e_{ck}(c))$\\
+es $(\forall i, 1\le i\le n)(e_{ai}(\varphi(c))=e_{ck}(c)\equiv T)$, akkor $d_c$ specifikaciot a $d_a$ specifikacio szerinti korrekt realizacionak nevezzuk az adott $\varphi(c)$ reprezentacio mellett.\\ \\
+\textbf{Tetel:}\\
+$d_a=(A, F, E_a)$: az export felulet specifikacioja, $d_c=(C, G, E_c)$: a torzsresz specifikacioja.\\
+Adva $\varphi(c)$ reprezentacios fuggveny. Ha\\
+\indent - $(\varphi(t_{c1} = \varphi(t_{c2})) \equiv (t_{c1} = t_{c2})$,\\
+\indent - barmely $(t_a, t_c)$ par, ahol $t_a \in T_{\Sigma_a}, t_c\in T_{\Sigma_c}$, $t_a=\varphi(t_c)$;\\
+akkor $d_c$ a $d_a$ szerinti korrekt realizacio a $\varphi(c)$ reprezentacio mellett.\\
+\textbf{Bizonyitas:}\\
+$L_{ai}(a) = R_{ai}(a)$;\\
+$l_{ai}(a) \to L_{ai}(\varphi(c)) \to \varphi(L_{ci}(c))$;\\
+$R_{ai}(a) \to R_{ai}(\varphi(c)) \to \varphi(R_{ci}(c))$;\\
+Tehat $\varphi(L_{ci}(c)) = \varphi(R_{ci}(c)) \equiv L_{ci}(c) = R_{ci}(c)$;\\ \\
+Adott $L_{ai}(\varphi(c)) = R_{ai}(\varphi(c))$;\\
+Peldaul: $f_s(f_c(\varphi(c))) = f_c(f_s(\varphi(c)))$\\
+Vegleges realizacio:\\
+- $\lbrace pre_g(c)\rbrace$ $c'=g(c)$ $\lbrace post_g(c,c')\rbrace$;\\
+- $Q_g(c)$;\\ \\
+\textbf{Proceduralisan adott konkret specifikacio elo- es utofeltetelekkel adott absztrakt specifikacio szerinti helyessege:}\\
+\textbf{Tetel:}\\
+Adottak a $d_a$ es a $d_c$ specifikaciok kozos szignaturaval:\\
+$d_a=(A,F,E_a)$; $A=\lbrace A_0, A_1, \cdots, A_n\rbrace$; $F=\lbrace f_0:\to A_0, f_1:A^+ \to A, \cdots, f_m : A^+ \to A\rbrace$;\\
+$\lbrace"true"\rbrace$ $a = f_0$ $\lbrace post_{f_0}(a)\rbrace \in E_a$,\\
+$\lbrace pre_{f_i}(a)\rbrace$ $a' = f_i(a)$ $\lbrace post_{f_i}(a,a')\rbrace \in E_a$, $f_i \in F$;\\
+$d_c=(C,G,E_c)$; $C=\lbrace C_0, C_1, \cdots, C_n\rbrace$; $G=\lbrace g_0:\to C_0, g_1: C^+\to C, \cdots, g_m: C^+ \to C\rbrace$;\\
+$(\forall i, i\in \lbrace 0,1,\cdots,m\rbrace)$ $(Q_{g_i}\in E_c, g_i\in G)$, ahol $Q_{g_i}$ az $f_i$ kiszamitasara szolgalo eljaras, azaz:\\
+procedure $g_0$ begin $Q_0$ end;\\
+precedure $g_i$ begin $Q_i$ end; $i=1,\cdots, n$;\\\\
+absztrakt invarians: $A_0=\lbrace a\vert I_a(a)\rbrace$,\\
+konkret invarians: $C_0=\lbrace c\vert I_c(c)\rbrace$,\\
+A reprezentacios fuggveny: $\varphi:C\to A$\\\\
+Ha a kovetkezo tetelek teljesulnek:\\
+1. $(\forall c \in C)(I_c(c) \Rightarrow I_a(\varphi(c))$;\\
+2. $\lbrace"true"\rbrace$ $Q_0$ $\lbrace post_{f_0}(\varphi(c) \wedge I_c(c)\rbrace$;\\
+3. $(\forall f_i \in F)$: $\lbrace pre_{f_i}(\varphi(c))\wedge I_c(c)\rbrace$ $Q_i$ $\lbrace post_{f_i}(\varphi(c), \varphi(c')) \wedge I_c(c')\rbrace$;\\
+ahol 2. es 3. teljes  helyessegi tetelek, akkor a $d_c$ konkret specifikacio a $d_a$ absztrakt specifikacio szerint helyes.\\
+Bizonyitas:\\
+- C az A egy reprezentacioja.\\
+Minden $g_i(c)$ konstrukctios muvelet szimulalja $f_i(\varphi(c))$-t.\\
+$(\lbrace"true"\rbrace$ $Q_0$ $\lbrace post_{f_0}(\varphi(c)) \wedge I_c(c)\rbrace \equiv "true") \Rightarrow f_0 = \varphi(g_0) \wedge g_0 \in C)$.\\
+$((\forall f_i\in F_c)$: $\lbrace pre_{f_i}(\varphi(c)) \wedge I_c(c)\rbrace$ $Q_i$ $\lbrace post_{f_i}(\varphi(c), \varphi(c')) \wedge I_c(c')\rbrace) \Rightarrow$\\
+1.) ha $f_i(\varphi(c))$ ertelmezve van, akkor $g_i(c)$ is.\\
+2.) $(c\in C \wedge c'=g_i(c) \wedge c'\in C \wedge a=\varphi(c) \wedge a\in A \wedge a'=f_i(a) \wedge  a'\in A) \Rightarrow a'=\varphi(c')$.\\
+- minden $g_i(c)$ nem konstrukcios muvelet is szimulalja $f_i(\varphi(c))$-t.\\
+$((\forall f_i\in F)$: $\lbrace pre_{f_i} (\varphi(c))\wedge I_c(c)\rbrace$ $Q_i$ $\lbrace post_{f_i}(\varphi(c),\varphi(c')) \wedge I_c(c)\rbrace) \Rightarrow$\\
+3.) ha $f_i(\varphi(c))$ ertelmezve van akkor $g_i(c)$ is.\\
+4.) $(c\in C \wedge c'=g_i(c) \wedge c'\in C\wedge a=\varphi(c)\wedge a\in A\wedge a'=f_i(a)\wedge a'\in A) \Rightarrow a'=\varphi(c')$\\ \\
+\textbf{Determinisztikus program:}\\
+$S::=skip \vert u\gets t \vert S1;S2\vert$ if B then $S_1$ else $S_2$ fi $\vert$ while B do $S_1$ od\\
+$u\gets t$ ertekadas; u valtozo, t kifejezes; u es t azonos tipusuak.\\
+B kvantorfuggetlen logikai kifejezes;
+\newpage
+%
+% 8. eloadas
+%
+\begin{flushleft}
+\textbf{8. eloadas}
+\end{flushleft}
+\textbf{Tipus:}\\
+Alaptipusok: integer; bool; $\cdots$\\
+Osszetett tipusok: $T_1 T_2 \cdots T_n \to T$; $n\ge1$, ahol $T_1, T_2, \cdots T_n, T$ alap tipusok.\\\\
+\textbf{Valtozo es konstans:}\\
+- valtozo:\\
+\indent - egyszeru valtozo: (integer, bool, $\cdots$);\\
+\indent - tomb valtozo: egy dimenzios, tobb dimenzios;\\
+- konstans:\\
+\indent - alap tipusu: integer, bool, $\cdots$;\\
+\indent - osszetett tipusu: $T_1 T_2 \cdots T_n \to T$;\\
+\indent \indent T bool: akkor relacio szimbolum,\\
+\indent \indent T nem bool: fuggveny szimbolum.\\ \\
+\textbf{Tipusos kifejezesek:}
+\begin{enumerate}
+\item T alaptipusu konstans.
+\item Egyszeru T tipusu valtozo.
+\item Ha $s_1, \cdots, s_n$ rendre $T_1, \cdots, T_n$ tipusu kifejzesek es op: $T_1 \cdots T_n\to T$, akkor $op(s_1, \cdots s_n)$ T tipusu kifejezes.
+\item Ha $s_1, \cdots, s_n$ rendre $T_1, \cdots, T_n$ tipusu kifejezesek, A egy $T_1\cdots T_n \to T$ tomb, akkor $A[s_1, ..., s_n]$ T tipusu kifejezes.
+\item Ha $\alpha$ Boolean kifejezes es $s_1, s_2$ T tipusu kifejzesek, akkor if $\alpha$ then $s_1$ else $s_2$ fi T tipusu kifejzes.
+\end{enumerate}
+Az alap tipus-halazokon ertelmezett szokasos kifejezesek rekurziv definicioja:\\
+kifejezes $e::= c$ $\vert$ $x$ $\vert$ $(e_1 + e_2)$ $\vert$ $(e_1 - e_2)$ $\vert$ $(e_1 \cdot e_2)$;\\
+bool kifejezes $b::= (e_1 = e_2)$ $\vert$ $(e_1 < e_2)$ $\vert$ $\neg b$ $\vert$ $(e_1 \wedge e_2)$.\\
+Szemantika: $\langle$szintaktikai tartomany$\rangle$ $\to$ $\langle$szemantikai tartomany$\rangle$;\\\\
+\textbf{Allapot:} Egy T tipusu konstans allapota annak konkret erteke.\\
+Egy T tipusu v valtozo allapota $\sigma(v)$.\\
+A T tipusu lehetseges allapotainak halmazat jelolje: $D_T$.\\
+A T tipusu v valtozo megfelelo allapota egy lekepezes $D_T$-re: $\sigma(v) \in D_T$.\\ \\
+\textbf{Kifejezes jelentese:}\\
+Jeloles. Adott $D_T$ mellett a megfelelo allapotok halmazat jelolje $\Sigma$.\\
+\textbf{Definicio:}  Egy T tipusu s kifejezes jelenetese: $\sigma(s)$: $\Sigma \to D_T$;\\
+\textbf{Definicio:}
+\begin{enumerate}
+\item Ha az e kifejezes egy T tipusu d konstans: $\sigma(e)=d$;
+\item Ha az e kifejezes egy T tipusu v egyszeru valtozo: $\sigma(e)=\sigma(v)$;
+\item Ha az e kifejezes egy T tipusu muvelet: $e=op(s_1, \cdots, s_n)$, amelyhez az $f(s_1, \cdots, s_n)$ lekepezes tartozik: $\sigma(e)=f(\sigma(s_1), \cdots, \sigma(s_n))$;
+\item Ha az e kifejezes egy T tipusu tomb: $e=A[s_1, \cdots, s_n]$, $\sigma(e)=\sigma(A)(\sigma(s_1), \cdots, \sigma(s_n))$;
+\item Ha e if $\alpha$ then $s_1$ else $s_2$ fi formaju bool kifejezes:\\
+$\sigma(\alpha)="true" \to \sigma(e)=\sigma(s_1)$;\\
+$\sigma(\alpha)="false" \to \sigma(e)=\sigma(s_2)$.
+\end{enumerate}
+Egy p allitas jelentese: $S(p)$: $\Sigma \to\lbrace"true", "false"\rbrace$;\\
+A program jelentese: $M[S]$; Denotacios szemantika; Operacios szemantika.\\ \\
+\textbf{Az allapot-atmenet:} $\langle S, \sigma\rangle \to \langle S',\sigma'\rangle$.\\
+S program, $\sigma$ kiindulasi allapottal\\.
+S' maradek program, $\sigma'$ eredmeny allapottal.\\
+$S'=E$: programon beluli ures program.\\\\
+\textbf{Determinisztikus program jelentese:}\\
+$\langle$skip,$\sigma \rangle \to \langle E, \sigma \rangle$;\\
+$\langle u \gets t, \sigma \rangle \to \langle E, \sigma[u \gets t] \rangle$;\\
+$\sigma(\alpha) \Rightarrow \langle$ if $\alpha$ then $S_1$ else $S_2$ fi, $\sigma \rangle \to \langle S_1, \sigma\rangle$;\\
+$\sigma(\neg\alpha) \Rightarrow \langle$ if $\alpha$ then $S_1$ else $S_2$ fi, $\sigma \rangle \to \langle S_2, \sigma\rangle$;\\
+$\sigma(\alpha) \Rightarrow \langle$ while $\alpha$ do $S$ od, $\sigma\rangle \to \langle S;$ while $\alpha$ do $S$ od,$\sigma\rangle$;\\
+$\sigma(\neg\alpha) \Rightarrow \langle$ while $\alpha$ do $S$ od, $\sigma\rangle \to \langle E, \sigma\rangle$;\\
+Az S program allapotainak halmaza: $\Sigma$. Egy allapot: $\sigma \in \Sigma$.\\\\
+\textbf{Az $\mathbf{S_0}$ program vegrehajtasa:}\\
+$\tau: \langle S_0, \sigma_0\rangle \to \langle S_1, \sigma_1\rangle \to \cdots \to \langle S_{n-1}, \sigma_{n-1}\rangle \to \langle S_n, \sigma_n\rangle$;\\
+$\langle S_i, \sigma_i\rangle \to \langle S_{i+1}, \sigma_{i+1}\rangle$ atmenethez tartozik egy tranzakcio:\\
+$(S_i, \alpha_i \to r_i, S_{i+1})$ ugy, hogy $\alpha(\sigma_1)="true"$ es $\sigma_{i+1}=r_i(\sigma_i)$;\\
+Az $S_0$ program vegrehajtasa befejezodik $\sigma_n$ allapotban, ha $\tau$ veges,\\
+es az utolso konfiguracio: $\langle E, \sigma_n\rangle$; $\langle S_0, \sigma_0\rangle \to^* \langle E, \sigma_n\rangle$;\\
+Jeloles: $val(\tau) = \sigma_n$.\\
+A $\tau$ vegrehajtas lehet vegtelen (divergens). Virtualis vegrehajtas:\\
+$\langle S, \sigma\rangle \to^* \langle E, \bot\rangle$;\\
+$val(\tau)=\bot$. $\bot \not\in \Sigma$.\\ \\
+$comp(S)(\sigma)$: az S program osszes kiszamitasanak eredmenye, amely $\sigma$ kezdesi allapotahoz tartozik.\\
+Determinisztikus program eseten $comp(S)(\sigma)$ egyelemu.\\\\
+Az S program input output szemantikaja: $M[S]$: $\Sigma \to \Sigma$.\\
+Az S program jelentese adott $\sigma$ eseten:\\
+- $M[S](\sigma) = \lbrace\sigma' \vert \sigma' \in comp(S)(\sigma)\rbrace$,\\
+- Ha az S vegrehajtasa sikertelen: $fail \in M[S](\sigma)$.\\
+- Ha az S vegrehajtasa divergens: $\bot \in M[S](\sigma)$.\\\\
+\textbf{Az S program parcialis helyessegi szemantikaja:}\\
+$M[S]: \Sigma \to P(\Sigma), M[S](\sigma): \lbrace\sigma' \vert \langle S, \sigma\rangle \to^* \langle E, \sigma'\rangle\rbrace$\\\\
+\textbf{Az S program teljes helyessegi szemantikaja:}\\
+$M_{tot}[S]:\Sigma \to (P(\Sigma \cup \lbrace \bot\rbrace)$,\\
+$M_{tot}[S](\sigma) = M[S](\sigma) \cup \lbrace \bot\rbrace$.\\
+Az S program specifikacioja egy $(\varphi, \psi)$ kettos, ahol $\varphi$ a program elofeltetele es $\psi$ az utofeltetele, azaz $\varphi(\sigma) = "true"$ es $\forall \sigma'\in M[s](\sigma)$ eseten  $\psi(\sigma')="true"$.\\\\
+\textbf{Programhelyessegi kerdesek}\\
+\textbf{Parcialis helyesseg:} Az S programot a $(\varphi, \psi)$ specifikacio szerint parcialisan helyesnek mondjuk, ha minden $\sigma \in \Sigma$ kezdo ertekhez tarotozo allapot mellett, amelyre $\varphi(\sigma) = "true"$, felteve, hogy a vegrehajtas befejezodik $\sigma' \in \Sigma$ es $\psi(\sigma')="true"$ allapot mellett,\\
+akkor: $[(\varphi(\sigma) = "true" ) \wedge (\sigma'\in M[S](\sigma)) \Rightarrow \psi(\sigma') = "true"$.\\
+Jeloles: $\lbrace\varphi\rbrace$ P $\lbrace\psi\rbrace$.\\
+\textbf{Eredmenyesseg:} $\varphi(\sigma) = (fail\not\in M[S](\sigma))$;\\
+\textbf{Befejezodes:} $\varphi(\sigma) = (\bot\not\in M[S](\sigma))$;\\
+\textbf{Teljes helyesseg:} Az S programot a $(\varphi, \psi)$ specifikacio szerint teljesen helyesnek mondjuk, ha\\
+$\forall \sigma \in \Sigma$ kezdo ertekre, ha $\varphi(\sigma) = "true"$, a tranzakcio befejezodik es $\sigma'\in \Sigma$ eseten, amelyre $\psi(\sigma')="true"$:\\
+- $\varphi(\sigma) \rightarrow (\lbrace\bot, fail\rbrace \cap M[S](\sigma)=\lbrace\rbrace)$;\\
+- $[(\varphi(\sigma)="true")\wedge(\sigma'\in M[S](\sigma))] \Rightarrow \psi(\sigma') = "true"$.\\
+Jeloles: $\lbrace\lbrace\varphi\rbrace\rbrace$ P $\lbrace\lbrace\psi\rbrace\rbrace$.\\\\
+\textbf{Induktiv allitasok (Floyd) modszere programok parcialis helyessegenek a bizonyitasara}\\
+\textbf{Tranzakcio:}\\
+Szintaxis:\\
+A tranzakcio egy $(l, \alpha\to r, l')$ harmas. l,l': cimke; $\alpha$: logikai kifejezes; f: lekepezes;\\
+Szemantika:\\
+l cimketol k' cimkeig az f lekepezes valosul meg, ha $\alpha="true"$.
+$$l\xrightarrow{\alpha\to f}l'$$
+\textbf{Tranzakcios diagram:} (L, T, s, t) negyes, ahol L az $l\in L$ cimek egy veges halmaza. T a tranzakciok veges halmaza. $s\in L$, egy kituntetett cim, az entry cim. $t\in L$, egy kituntetett cim, az exit cim.\\
+$\Sigma$ allapotok halmaza; $l, l' \in L$. $\alpha: \Sigma \to bool$. $f: \Sigma \to \Sigma$, ahol egy allapot $\sigma \in \Sigma$.\\
+t cim, amelyre $\neg\exists (l\in L, \alpha \to f\in T)(t, \alpha \to f, l)$.\\\\
+\textbf{Q-diagam:}\\ Adva: PT = (L, T, s, t) tranzakcios diagram.\\
+A Q-diagram a PT tranzakcios diagramnak egy olyan allitasokkal kiegeszitett formaja, amelyben egy Q fuggveny minden $l\in L$ cimkehez hozzarendel egy $Q_l$ allitast.\\ \\
+Adva Q diagram a PT tranzakcios diagramhoz. Egy $\pi = (l, \alpha \to r, l')$ tranzakcio verifikacios feltetele:\\
+$V_\pi = Q_l \wedge \alpha \Rightarrow Q_{l'} \circ r$.\\
+A PT tranzakcios diagramhoz tartozo Q diagram osszes verifikacios feltetelenek a halmazat jelolje $V(PT, Q)$.\\
+A PT tranzakcios diagramhoz tartozo Q-diagramrol azt mondjuk, hogy az induktiv, ha\\
+$(\forall V_\pi\in V(PT, Q))(V_\pi="true")$.\\
+A PT tranzakcios diagramhoz rendelt Q-diagramrol azt mondjuk, hogy az invarians, ha\\
+$(\forall l_i\in PT)(Q_S(\sigma_0) = "true" \Rightarrow Q_{l_i}(\sigma_i)="true")$.\\
+Az induktiv Q-diagramot az adott $(\varphi, \psi)$ specifikacio szerint konzisztens-nek mondjuk,\\
+ha $\varphi(\sigma_0) \Rightarrow Q_s(\sigma_0)$ es $Q_t(\sigma_n) \Rightarrow \psi(\sigma_s)$.\\ \\
+\textbf{Floyd-fele induktiv allitasok modszere programok parcialis helyessegenek bizonyitasara}
+\begin{enumerate}
+\item Az adott P programhoz keszitsuk el a PT tranzakcios diagramot.
+\item PT tranzakcios diagramhoz keszitsuk el a Q allitasokkal kiegeszitett Q-diagramot.
+\item Bizonyitsuk be, hogy a Q-diagram induktiv es invarians.
+\item Bizonyitsuk be, hogy a Q-diagram konzisztens a $(\varphi, \psi)$ speifikacio szerint.
+\end{enumerate}
+\newpage
+%
+% 9.eloadas
+%
+\begin{flushleft}
+\textbf{9. eloadas}
+\end{flushleft}
+\textbf{Kettos specifikacio:} Adott $d_a=(A,F,E_a)$;  $d_c=(C, G, E_)$; $A_0=\lbrace a\vert I_a(a)\rbrace$; $C_0=\lbrace c\vert I_c(c)\rbrace$; \\
+abrazolas: $\varphi : C_0 \to A_0$;\\
+$E_a=\lbrace\cdots, f_s(f_c(a))=h(a), \cdots,I_a(f_c(a))=$"false"$\Rightarrow f_c(a)=\text{"undefined"}\rbrace$;\\
+$E'_a= \lbrace\cdots, \lbrace y=f_c(a)\rbrace$ $z=f_s(y)$ $\lbrace z=h(a)\rbrace, \cdots, \lbrace I_a(f_c(a))\rbrace$ $z=f_c(a)$ $\lbrace I_a(z) \wedge z=f_c(a)\rbrace\rbrace$\\
+$E'_a=\lbrace\cdots, \lbrace y=f_c(a)\wedge I_a(a)\rbrace$ $z=f_s(y)$ $\lbrace z=h(a)\wedge I_a(a)\rbrace,\cdots, \lbrace I_a(f_c(a))\wedge I_a(a)\rbrace$ $z=f_c(a)$ $\lbrace I_a(z)\wedge z=f_c(a) \wedge I_a(a)\rbrace\rbrace$; azaz
+$E'_a=\lbrace\cdots, \lbrace pre_{f_i}(a)\rbrace a'=f_i(a) \lbrace post_{f_i}(a,a')\rbrace, \cdots\rbrace$;\\
+$a=\varphi(c)$;\\
+$E_c = \lbrace\cdots, g_s(g_c(c))=h_c(c),\cdots,I_c(g_c(c)) = $"false"$ \Rightarrow g_c(c)=$ "undefined"$\rbrace$;\\
+$E_c = \lbrace\cdots, pre_{g_i}(c)\rbrace$ $c'=g_i(c)$ $\lbrace post_{g_i}(c,c')\rbrace,\cdots\rbrace$;\\
+$E_c = \lbrace\cdots, Q_{g_i}, \cdots\rbrace$;\\\\
+Ha bebizonyitjuk, hogy\\
+1) $I_c(c) \Rightarrow I_a(\varphi(c))$;\\
+2) $post_{g_0}(c) \Rightarrow I_c(c)$;\\
+3) $post_{g_0}(c) \Rightarrow post_{f_0}(\varphi(c))$;\\
+4) $I_c(c) \wedge pre_{f_i}(\varphi(c)) \Rightarrow pre_{g_i}(c)$;\\
+5) $I_c(c) \wedge pre_{f_i}(\varphi(c)) \wedge post_{g_i}(c,c') \wedge I_c(c') \Rightarrow post_{f_i}(\varphi(c), \varphi(c'))$;\\
+akkor a $d_c$ konkret specifikacio a $d_a$ absztrakt specifikacio szerint helyes.\\\\
+Ha a kovetkezo tetelek teljesulnek:\\
+1. $(\forall c \in C) (I_c(c) \Rightarrow I_a(\varphi(c))$;\\
+2. $\lbrace$"true"$\rbrace$ $Q_0$ $\lbrace post_{f_0}(\varphi(c)) \wedge I_c(c)\rbrace$;\\
+3. $(\forall f_i\in F): \lbrace pre_{f_i}(\varphi(c)) \wedge I_c(c)\rbrace$ $Q_i$ $post_{f_i}(\varphi(c), \varphi(c')) \wedge I_c(c')\rbrace$;\\
+ahol 2. es 3. teljes helyessegi tetelek, akkor a $d_c$ konkret specifikacio a $d_a$ absztrakt specifikacio szerint helyes.\\\\
+Adott S determinisztikus program:\\
+Tranzakcios diagram: (L, R, s, t);\\
+$s: u\gets f$; $(\lbrace s,t\rbrace,P(s,$"true"$\to (u \gets f), t)\rbrace, s, t)$;\\ \\
+Adott $\lbrace\varphi\rbrace$ $S\lbrace\psi\rbrace$ parcialis helyessegi tetel.\\
+Adott az S program ST = (L, T, s, t) tranzakcios diagramja, es Q diagramja, amelyrol bebozonyitottuk, hogy induktiv.\\
+Ha bebizonyitjuk, hogy a Q-diagram a $(\varphi,\psi)$ specifikacio szerint konzisztens, azaz\\
+$\varphi \Rightarrow Q_s$; $Q_t \Rightarrow \psi$;\\
+akkor az S program a $(\varphi, \psi)$ specifikacio szerint parcialisan helyes.\\
+A program befejezodesenek (konvergens tulajdonsaganak) bizonyitasa. $\varphi$ - konvergencia bizonyitasa.\\ \\
+Alapfogalom: \textbf{Jol rendezett halmaz:}\\
+Legyen W egy halomaz es $<:W\times W$ binaris relacio. A $<$ relaciot rendezonek mondjuk, ha
+tetszoleges $a,b,c \in W$ -re:\\
+- irreflexiv: $a < a$ ="false".\\
+- asszimetrikus: $a<b$ ="true" $\Rightarrow b<a$="false".\\
+- tranzitiv: $(a<b =$ "true"$) \wedge (b<c$="true"$) \Rightarrow a<c$="true".\\
+A parcialisan rendezett $(W, <)$ halmazt jol rendezettnek nevezzuk, ha nem letezik vegtelen $\cdots$ $<$ $w_2$ $<$ $w_1$ $<$ $w_0$, sorozat, $w_i\in W$, eseten.\\ \\
+\textbf{$\mathbf{\varphi}$ - konvergencia bizonyitasanak Floyd-fele modszere:}\\
+\textbf{Allitas:}\\
+Adott a P program PT =(L, R, s, t) tranzakcios diagramja es $\varphi$.\\
+1) Keszitsuk el PT alapjan a kovergencia bizonyitasahoz szukseges Q-diagramot.\\
+2) Bizonyitsuk be, hogy Q-diagram induktiv es $\varphi \Rightarrow Q_s$.\\
+3) Valasszunk meg egy (W, $<$) jol rendezett halmazt es a $\rho=\lbrace\rho_l\vert l\in L\rbrace$, fuggvenyhalmazt, ahol $p_l:\Sigma \to W$, minden $l\in L$ eseten.\\
+4) Bizonyitsuk be, hogy $\rho_l$ definialva van: $Q_l(\sigma) \Rightarrow \rho_l\in W$.\\
+5) Mutassuk ki, hogy $(\forall(l, \alpha\to f, l')\in R)(Q_l(\sigma)\wedge\alpha(\sigma)\Rightarrow\rho_{l'}(f(\sigma))<\rho_l(\sigma)$.\\
+Ha ezeket bebizonyitottuk, akkor a P program $\varphi$-konvergens.\\
+\textbf{Bizonyitas:} \\
+$\nu: \langle s, \sigma_0\rangle \to \langle l_1, \sigma_1\rangle \to \cdots$;\\
+Q induktivitasabol kovetkezik, hogy Q invarians. Ha $\varphi \Rightarrow Q_s$, akkor\\
+$\rho_s(\sigma_0), \rho_{l_1}(\sigma_1), \cdots$ definialva van es minden $\langle l, \sigma\rangle \to \langle l', \sigma'\rangle$ tranzakciora $\rho_{l'}(f(\sigma))<\rho_l(\sigma)$.\\
+Igy W jol-rendezettsegebol kovetkezik, hogy a vegrehajtas veges.\\\\
+\textbf{Vegrehajtasi (runtime) hibamentesseg:}\\
+Tekintsuk az S programnak azokat a vegrehajtasait:\\
+$\nu: \langle s, \sigma_0\rangle \to \langle l_1, \sigma_1\rangle \to \cdots$, amelyekre $\varphi(\sigma_0)=$"true".\\
+Ha nincs olyan vegrehajtas, amelynek soran valamely cimkenel a szoba joheto tranzakciok kozott letezik olyan, amely nincsen definialva, akkor azt mondjuk, hogy az S program a $\varphi$ input specifikacio mellett mentes a vegrehajtasi hibatol.\\\\
+\textbf{Vegrehajtasi hibamentesseg bizonyitasa:}\\
+Adott a P program PT=(L, R, s, t) tranzakcios diagramja es $\varphi$.\\
+Keszitsuk el annak Q-diagramjat. Ha minden $l\in L$ eseten az osszes $(l, \alpha\to f, l')$ tranzakcional $Q_l(\sigma)\wedge(\alpha(\sigma) \Rightarrow pre_f(\sigma)$, akkor a P program mentes a vegrehajtasi hibatol.\\\\
+\textbf{P program tejes-helyessegenek bizonyitasa:}\\
+Adott a P program es annak $(\varphi, \psi)$ specifikacioja.\\
+- Konstrualjuk meg a P programhoz a vele szemantikailag ekvivalens PT diagramot.\\
+- Keszitsuk el a Q diagramot.\\
+- Bizonyitsuk be, hogy a P program parcialisan helyes az adott specifikacio szerint.\\
+- Bizonyitsuk be, hogy a P program kovergens.\\
+- Bizonyitsuk be, hogy a P program mentes a vegrehajtasi hibatol.\\
+Akkor a P program a $(\varphi, \psi)$ specifikacio szerint teljesen helyes.
+\newpage
+%
+% 10. eloadas
+%
+\begin{flushleft}
+\textbf{10. eloadas}
+\end{flushleft}
+\textbf{Realizacio:}\\
+$r:$ INT $\to$ MOD;\\
+$r=(r_P, r_E, r_I)$;\\
+\textbf{Kettos specifikacio:}\\
+$E_c=\lbrace\cdots, g_s(g_c(c))=h_c(c), \cdots, I_c(g_c(c))=$"false" $\Rightarrow g_c(c)=$"undefined"$\rbrace$;\\
+$E_c=\lbrace\cdots, Q_{g_i}, \cdots\rbrace$;\\
+\\
+\textbf{Program helyesseg:} $\lbrace\varphi\rbrace S\lbrace\psi\rbrace$\\\\
+\textbf{Program vegrehajtasa:}\\
+$\langle S, \sigma\rangle \to\langle S_1, \sigma_1\rangle \to \cdots \to \langle S_{n-1}, \sigma_{n-1}\rangle \to \langle S_n, \sigma_n\rangle$;\\
+$\langle s, \sigma\rangle \to\langle l_1, \sigma_1\rangle \to \cdots \to \langle l_{n-1}, \sigma_{n-1}\rangle \to \langle l_n, \sigma_n\rangle$;\\\\
+\textbf{Determinisztikus programok helyessegenek bizonyitasa Hoare modszerrel:}\\
+Hoare fele harmas: $\lbrace p\rbrace S\lbrace q\rbrace$.\\
+\textbf{Definicio:} A $\lbrace p \rbrace S\lbrace q\rbrace$ formulat parcialis helyessegi ertelemben, helyesnek mondjuk, ha\\
+$M[S]([\lbrace p\rbrace])\subset \lbrace q\rbrace$.\\
+Jeloles: $\lbrace p\rbrace S\lbrace q\rbrace$="true".\\
+\textbf{Definicio:} A $\lbrace\lbrace p\rbrace\rbrace S\lbrace\lbrace q\rbrace\rbrace$ formulat teljes helyessegi ertelemben, helyesnek mondjuk, ha\\
+$M_{tot}[S]([\lbrace p\rbrace])\subset \lbrace q\rbrace$.\\
+Jeloles: $\lbrace\lbrace p\rbrace\rbrace S\lbrace\lbrace q\rbrace\rbrace$="true".\\\\
+\textbf{Hoare fele bizonyitasi rendszer (BR):} axiomak + kovetkeztetesi szabalyok.\\
+\textbf{Dedukcio:} axioma + kovetkeztetesi szabalyok $\Rightarrow$ tetel.\\
+\textbf{BD:} Determinisztikus programok bizonyitasi rendszere.\\\\
+\textbf{Determinisztikus program:}\\
+$S::=$ skip $\vert$ $u\leftarrow t$ $\vert$ $S_1;S_2$ $\vert$ if $\alpha$ then $S_1$ else $S_2$ fi $\vert$ while $\alpha$ do $S$ od\\
+\textbf{Axiomak:}\\
+\indent $\lbrace P(x, y)\rbrace$ skip $\lbrace P(x, y)\rbrace$\\
+\indent $\lbrace P(x,g(x,y))\rbrace y \leftarrow g(x,y)$ $\lbrace P(x,y)\rbrace$\\
+\textbf{Kovetkeztetesi szabalyok:}\\
+- Szekvencia:
+$$\underline{\lbrace P\rbrace S_1 \lbrace Q_1\rbrace \text{ es } \lbrace Q_1\rbrace S_2\lbrace Q\rbrace}$$
+$$\lbrace P\rbrace S_1;S_2 \lbrace Q\rbrace$$
+- Felteteles elagazas:
+$$\underline{\lbrace P \wedge \alpha\rbrace S_1\lbrace Q\rbrace \text{ es } \lbrace P \wedge \neg\alpha \rbrace S_2 \lbrace Q\rbrace}$$
+$$\lbrace P\rbrace \text{ if } \alpha \text{ then } S_1 \text{ else } S_2 \text{ fi } \lbrace Q\rbrace$$
+- Iteracio:
+$$\underline{\lbrace P\wedge\alpha\rbrace S \lbrace P\rbrace \text{ es } P\wedge \neg\alpha \Rightarrow Q}$$
+$$\lbrace P\rbrace \text{ while } \alpha \text{ do } S \text{ od } \lbrace Q\rbrace$$
+\textbf{A kovetkezmeny szabalya:}
+$$\underline{P \Rightarrow P_1 \text{ es } \lbrace P_1\rbrace S \lbrace Q_1\rbrace \text{ es } Q_1 \Rightarrow Q}$$
+$$\lbrace P\rbrace S \lbrace Q\rbrace$$
+\textbf{Ertekadas kovetkeztetesi szabalya:}
+$$\underline{P(x,f(x,y)) \Rightarrow Q(x,y)}$$
+$$\lbrace P(x,y)\rbrace y\leftarrow f(x,y) \lbrace Q(x,y)\rbrace$$
+\textbf{Iteracio kovetkeztetesi szabalyanak altalanos formaja:}
+$$\underline{P\Rightarrow I \text{ es } \lbrace I\wedge \alpha\rbrace S \lbrace I\rbrace \text{ es } I\wedge\neg\alpha \Rightarrow Q}$$
+$$\lbrace P\rbrace \text{ while } \alpha \text{ do } S \text{ od } \lbrace Q\rbrace$$
+A felsorolt axiomak es kovetkeztetesi szabalyok alkotjak a determinisztikus programok parcialis helyessegenek bizonyitasara szolgalo bizonyitasi rendszert.\\
+Jeloles: PD.\\\\
+\textbf{A teljes helyesseg bizonyitasanak kovetkeztetesi szabalya:}
+$$P(x,y)\Rightarrow I(x,y) \text{ es } I(x,y) \Rightarrow E(x,y)\in W_< \text{ es }$$
+$$\lbrace\lbrace I(x,y)\wedge\alpha(x,y)\wedge E=E(x,y)\rbrace\rbrace S \lbrace\lbrace I(x,y)\wedge E<E(x,y)\rbrace\rbrace \text{ es }$$
+$$\underline{I(x,y)\wedge\neg\alpha(x,y)\Rightarrow Q(x,y)}$$
+$$\lbrace\lbrace P(x,y)\rbrace \text{ while } \alpha(x,y) \text{ do } S \text{ od } \lbrace\lbrace Q(x,y)\rbrace\rbrace$$
+\textbf{Az iteracio kovetkeztetesi szabalya a ciklusszamlaloval:}
+$$P(x,y) \Rightarrow I(x,y,0) \text{ es } I(x,y,i) \Rightarrow i<k(x) \text{ es } \lbrace\lbrace I(x,y,i) \wedge\alpha(x,y)\rbrace\rbrace S \lbrace\lbrace I(x,y,i+1)\rbrace\rbrace \text{ es }$$ $$\underline{I(x,y,i) \wedge\neg\alpha(x,y)\Rightarrow Q(x,y)}$$
+$$\lbrace\lbrace P(x,y)\rbrace \text{ while } \alpha(x,y) \text{ do } S \text{ od } \lbrace\lbrace Q(x,y)\rbrace\rbrace$$
+A felsorolt axiomak es kovetkeztetesi szabalyok alkotjak a determinisztikus programok teljes helyessegenek bizonyitasara szolgalo bizonyitasi rendszert.\\
+Jeloles: TD.\\\\
+Adott a bizonyitasi rendszer: BR.\\
+Jeloles: $\lbrace P\rbrace S \lbrace Q\rbrace/BR_{seq}$="true" amelynek jelentese, hogy a $\lbrace P\rbrace S\lbrace Q\rbrace$ formula parcialis helyessegi ertelemben, levezetheto, bizonyithato a BR rendszerben.\\\\
+Adott a bizonyitasi rendszer: BR.\\
+Jeloles: $\lbrace\lbrace P\rbrace\rbrace S \lbrace\lbrace Q\rbrace\rbrace/BR_{seq}$="true", amelynek jelentese, hogy a $\lbrace\lbrace P\rbrace\rbrace S \lbrace\lbrace Q\rbrace\rbrace$ formula teljes helyessegi ertelemben, levezetheto, bizonyithato a BR rendszerben.\\\\
+\textbf{Definicio:} Adott a BR bizonyitasi rendszer, es a programoknak egy C osztalya.\\
+A BR bizonyitasi rendszert megbizhatonak mondjuk a C osztaly programjainak parcialis helyessegere vonatkozoan, ha minden $S\in C$ programra vonatkozo $\lbrace P\rbrace S\lbrace Q\rbrace$ formulara\\
+$\lbrace P\rbrace S\lbrace Q\rbrace/BR_{seq}$="true" $\Rightarrow \lbrace P\rbrace S\lbrace Q\rbrace$="true".\\
+A BR bizonyitasi rendszert megbizhatonak mondjuk a C osztaly programjainak teljes helyessegere vonatkozoan, ha minden $S \in C$ programra vonatkozo $\lbrace\lbrace P\rbrace\rbrace S \lbrace\lbrace Q\rbrace\rbrace$ formulara\\
+$\lbrace\lbrace P\rbrace\rbrace S \lbrace\lbrace Q\rbrace\rbrace/BR_{seq}$="true" $\Rightarrow \lbrace\lbrace P\rbrace\rbrace S \lbrace\lbrace Q\rbrace\rbrace$="true".\\\\
+\textbf{Definicio:} Adott a kovetkezo formaju bizonyitasi szabaly:
+$$\underline{\varphi_1, \cdots, \varphi_k}$$
+$$\varphi_{k+1}$$
+A bizonyitasi szabalyt megbizhatonak nevezzuk parcialis (totalis) helyessegi ertelemben az adott C osztalyban, ha\\
+$\varphi_1$="true" $\wedge\cdots\wedge\varphi_k$="true" $\Rightarrow\varphi_{k+1}$="true" parcialis ill. totalis helyessegi ertelemben.\\\\
+\textbf{Tetel:} A PD bizonyitasi rendszer determinisztikus programok parcialis helyessegenek a bizonyitasara megbizhato.\\
+\textbf{Tetel:} A TD bizonyitasi rendszer determinisztikus programok teljes helyessegenek a bizonyitasara megbizhato.\\
+\\
+\textbf{Definicio:} Adott a BR bizonyitasi rendszer, es a programoknak egy C osztalya.\\
+A BR bizonyitasi rendszert teljesnek mondjuk a C osztaly programjainak parcialis helyessegere vonatkozoan, ha minden $S\in C$ programra vonatkozo helyessegi $\lbrace P\rbrace S\lbrace Q\rbrace$ formulara\\
+$\lbrace P\rbrace S\lbrace Q\rbrace$="true" $\Rightarrow \lbrace P\rbrace S\lbrace Q\rbrace/BR_{seq}$= "true".\\
+A BR bizonyitasi rendszert teljesnek mondjuk a C osztaly programjainak teljes helyessegere vonatkozoan, ha minden $S\in C$ programra vonatkozo helyessegi $\lbrace\lbrace P\rbrace\rbrace S \lbrace\lbrace Q\rbrace\rbrace$ formulara\\
+$\lbrace\lbrace P\rbrace\rbrace S \lbrace\lbrace Q\rbrace\rbrace$="true" $\Rightarrow \lbrace\lbrace P\rbrace\rbrace S \lbrace\lbrace Q\rbrace\rbrace/BR_{seq}$="true".\\\\
+\textbf{Tetel:} A PD bizonyitasi rendszer determinisztikus programok parcialis helyessegenek bizonyitasara teljes.\\
+\textbf{Tetel:} A TD bizonyitasi rendszer determinisztikus programok teljes helyessegenek bizonyitasara teljes. (Az iteraciok szamara tett bizonyos megszoritasok eseten.)\\
+\\
+A nem teljesseg okai lehetnek:
+\begin{enumerate}
+\item A bizonyitasi rendszer nem teljes az allitasok kovetkezmenyeinek meghatarozasanal. (Godel Incompleteness Theorem)
+\item Az allitasok leirasara hasznalt nyelv nem eleg teljes a helyessegi bizonyitas soran az allapotok es korlatozo fuggvenyek leirasara. (Megjavitom, de mindig lehet talalni olyan allitast, amit nem tudok bizonyitani.)
+\item A bizonyitasi szabalyok az adott C osztalyra nezve nem teljesek.
+\end{enumerate}
+\textbf{Definicio:} Egy P determinsiztikus program es p,q predikatum eseten $\lbrace p\rbrace P\lbrace q\rbrace$ helyessegi formulat igaznak mondjuk, ha $\lbrace p\rbrace PT\lbrace q\rbrace$ igaz.\\
+\textbf{Definicio:} Adott egy S determinisztikus program, amelynek programfuggvenye $f_s(x,y),p(x,y),q(x,y)$ predikatum eseten a $\lbrace p(x,y)\rbrace S\lbrace q(x,y)\rbrace$ helyessegi formulat igaznak mondjuk,\\
+ha $P(x, f_s(x,y)) \Rightarrow q(x,y)$.\\
+\\
+\textbf{Annotalt program:}\\
+div*:\\
+quo $\leftarrow 0$; rem $\leftarrow x$;\\
+$\lbrace I\rbrace$ while rem$\ge y$ do rem $\leftarrow $rem$-y$; quo$\leftarrow$ quo+1 od;\\\\
+\textbf{Teljes helyesseg bizonyitasas:}\\
+$E$: rem;\\
+$I'$: $I \wedge y >0$;\\
+$\lbrace x\ge 0 \wedge y\ge 0\rbrace$ quo=0; rem=x $\lbrace I'\rbrace$;\\
+$\lbrace I'\wedge$ rem$\ge y\rbrace$ rem$\leftarrow$ rem$-y$; quo $\leftarrow $quo$+1\lbrace I'\rbrace$;\\\\
+$\lbrace I'\wedge$ rem$\ge y\wedge$ rem$=z\rbrace$\\
+rem $\leftarrow$ rem$-y$; quo$\leftarrow$ quo$+1$\\
+$\lbrace$rem$<z\rbrace$;\\\\
+$I' \Rightarrow$ rem$\ge0$;\newpage
+%
+% 11. eloadas
+%
+\begin{flushleft}
+\textbf{11. eloadas}
+\end{flushleft}
+\textbf{Az iteraciorol:} while $\alpha$ do $S$ od;\\
+Ures iteracio: while "true" do skip od;\\
+$k=0 \Rightarrow$ (while $\alpha$ do S od)$^k$ = while "true" do skip od;\\
+$k\ge0 \Rightarrow$ (while $\alpha$ do S od)$^{k+1}$= if $\alpha$ the S; (while $\alpha$ do S od)$^k$ else skip fi;\\
+\\
+\textbf{A szemantikarol:} $M[S](H)$; H = allapotok halmaza.\\
+- Monoton: $H_1 \subset H_2 \Rightarrow M[S](H_1) \subset M[S](H_2)$;\\
+- $M[S_1;S_2](H) = M[S_1](M[S_1](H))$;\\
+- $M[$begin $S_1; S_2$ end; $S_3](H) = M[S_1;$ begin $S_2; S_3$ end$](H)$;\\
+- $M[$if $\alpha$ then $S_1$ else $S_2$ fi$](H) = M[S_1](H\cap \lbrace\alpha\rbrace)\cup M[S_2](H\cap \lbrace\neg\alpha\rbrace)$;\\
+- $M[$while $\alpha$ do $S$ od$] = \bigcup_{k=0}^{\infty}($while $\alpha$ do S od)$^k$;\\
+\textbf{Bizonyitas:}\\
+- Mutassuk meg, hogy minden axioma a PD ill. TD rendszerben igaz, azaz megbizhatoak.\\
+- Mutassuk meg, hogy minden kovetkeztetesi szabaly a PD ill. TD	rendszerben igaz, azaz megbizhatoak.\\
+- A fentiakbol ezekutan teljes indukcioval kovetkeznek az allitasaink.\\
+\\
+Mit jelent az, hogy egy axioma igaz?\\
+\textbf{Definicio:}\\
+Axioma: $\lbrace\sigma\vert p(\sigma)\rbrace \langle S,\sigma\rangle \to \langle E, \tau\rangle \lbrace\tau\vert q(\tau)\rbrace$;\\
+$\lbrace p(\sigma)\rbrace \langle S, \sigma\rangle \to \langle E, \tau\rangle \lbrace q(\tau)]; \lbrace p\rbrace \langle s, \sigma\rangle \to \langle E, \tau\rangle \lbrace q\rbrace$;\\
+Ha $M[S](\lbrace p\rbrace)\subset \lbrace q\rbrace$, akkor az axioma igaz.\\\\
+$S=$skip; $\langle$skip,$ \sigma\rangle \to \langle E, \sigma\rangle$;\\
+Axioma: $\lbrace p\rbrace$ skip $\lbrace p\rbrace$;\\
+$M[$skip$](\lbrace p\rbrace) = \lbrace p\rbrace\Rightarrow\lbrace p\rbrace S\lbrace p\rbrace =$"true";\\
+\\
+$S=y\leftarrow f(x,y);\langle y\leftarrow f(x,y),\sigma\rangle\to\langle E,\tau\rangle; \tau=\sigma[y\leftarrow f(x,y)]$;\\
+$M[y\leftarrow f(x,y)](\sigma) = \lbrace\tau\rbrace$;\\
+$M[y\leftarrow f(x,y)](\sigma) = \lbrace\sigma[y\leftarrow f(x,y)]\rbrace$;\\
+Axioma: $\lbrace p(x,f(x,y))\rbrace y\leftarrow f(x,y)\lbrace p(x,y)\rbrace$;\\
+\indent $(\forall\sigma\in \lbrace p\rbrace)(\sigma[y\leftarrow f(x,y)]\in\lbrace p\rbrace)$\\
+$M[y\leftarrow f(x,y)](\lbrace p\rbrace)\subset \lbrace p\rbrace \Rightarrow \lbrace p\rbrace S \lbrace p\rbrace=$ "true";\\\\
+Mit jelent az, hogy a $\varphi_1, \cdots, \varphi_k \Longrightarrow \varphi_{k+1}$ kovetkeztetesi szabaly igaz?\\
+\textbf{Definicio:} Ha $((\varphi_l$ = "true"$) \wedge \cdots \wedge (\varphi_k=$"true"$)) \Rightarrow (\varphi_{k+1} = $"true"$)$, akkor a kovetkeztetesi szabaly igaz, azaz megbizhato.\\
+\\
+$S:S_1;S_2$;\\
+Felteves:\\
+\indent - $M[S_1](\lbrace p\rbrace) \subset \lbrace r\rbrace$;\\
+\indent - $M[S_2](\lbrace r\rbrace) \subset \lbrace q\rbrace$;\\
+$M[S_2](M[S_1](\lbrace p\rbrace) \subset M[S_2](\lbrace r\rbrace) \subset \lbrace q\rbrace \Rightarrow M[S_1;S_2](\lbrace p\rbrace) \subset \lbrace q\rbrace \Rightarrow$\\
+$\Rightarrow \lbrace p\rbrace S_1, S_2 \lbrace q\rbrace =$"true"$ \equiv \lbrace p\rbrace S\lbrace q\rbrace$="true";\\
+A
+$$\underline{\lbrace p\rbrace S_1 \lbrace r\rbrace, \lbrace r\rbrace S_2\lbrace q\rbrace}$$
+$$\lbrace p\rbrace S_1;S_2 \lbrace q\rbrace$$
+kompozicio szabalya tehat parcialis helyessegi ertelemben megbizhato.\\
+\\
+$S:$ if $\alpha$ then $S_1$ else $S_2$ fi;\\
+Felteves:\\
+\indent - $M[S_1](\lbrace p\wedge \alpha\rbrace) \subset\lbrace q\rbrace$;\\
+\indent - $M[S_2](\lbrace p\wedge \neg\alpha\rbrace)\subset\lbrace q\rbrace$;\\
+$M[$if $\alpha$ $S_1$ else $S_2$ fi$](\lbrace p\rbrace)$=\\
+$((M[S_1](\lbrace p\wedge\alpha\rbrace)\cup(M[S_2](\lbrace p\wedge\not\alpha\rbrace)\subset\lbrace q\rbrace) \Rightarrow \lbrace p\rbrace$ if $\alpha$ then $S_1$ else $S_s$ fi $\lbrace q\rbrace$="true" $\equiv \lbrace p\rbrace S \lbrace q\rbrace$="true";\\
+A felteteles elagazas:
+$$\underline{\lbrace p\wedge\alpha\rbrace S_1 \lbrace q\rbrace, \lbrace p\wedge\neg\alpha\rbrace S_2 \lbrace q\rbrace}$$
+$$\lbrace p\rbrace \text{ if } \alpha \text{ then } S_1 \text{ else } S_2 \text{ fi } \lbrace q\rbrace$$
+kovetkeztetesi szabalya parcialis helyessegi ertelemben megbizhato.\\
+\\
+$S=$ while $\alpha$ do $S_1$ od;\\
+Felteves: $M[S_1](\lbrace p\wedge\alpha\rbrace)\subset\lbrace p\rbrace$;\\
+$(\forall k, k\ge0)(M[($while $\alpha$ do $S_1$ od$)^k](\lbrace p\rbrace) \subset \lbrace p\wedge~\alpha\rbrace)$;\\
+$k=0$;\\
+Felteves $k\ge0$ eseten igaz, bizonyitsuk\\
+$M[($while $\alpha$ do $S_1$ od$)^{k+1}](\lbrace p\rbrace) \subset \lbrace p\wedge\neg\alpha\rbrace$;\\
+$M[($while $\alpha$ do $S_1$ od$)^{k+1}](\lbrace p\rbrace)=M[$if $\alpha$ then $S_1$; (while $\alpha$ do $S_1$ od$)^k$ else skip fi$](\lbrace p\rbrace)$=\\
+$M[S_1$; (while $\alpha$ do $S_2$ od$)^k](\lbrace p\wedge \alpha\rbrace)\cup M[skip](\lbrace p\wedge\neg\alpha\rbrace)$=\\
+$M[($while $\alpha$ do $S_1$ od$)^k](M[S_1](\lbrace p\wedge\alpha\rbrace)\cup \lbrace p\wedge\neg\alpha\lbrace\subset
+M[($while $\alpha$ do $S_1$ od$)^k](\lbrace p\rbrace) \cup \lbrace p\wedge\neg\alpha\rbrace)\subset\lbrace p\wedge\neg\alpha\rbrace$.\\
+$\bigcup_{k=0}^\infty M[($while $\alpha$ do $S_1$ od$)^k](\lbrace p\rbrace) \subset \lbrace p\wedge \neg\alpha\rbrace$.\\
+$M[$while $\alpha$ do $S_1$ od$](\lbrace p\rbrace) = \bigcup_{k=0}^\infty M[($while $\alpha$ do $S_1$ od$)^k](\lbrace p\rbrace) \subset \lbrace p\wedge\neg\alpha\rbrace$.\\
+$M[$while $\alpha$ do $S_1$ od$](\lbrace p\rbrace) \subset \lbrace p\wedge\neg\alpha\rbrace \Rightarrow \lbrace p\rbrace$ while $\alpha$ do $S_1$ od $\lbrace p\wedge\neg\alpha\rbrace \equiv \lbrace p\rbrace S\lbrace p\wedge\neg\alpha\rbrace$="true".\\
+Az iteracio
+$$\underline{\lbrace p\wedge\alpha\rbrace S_1 \lbrace p\rbrace}$$
+$$\lbrace p\rbrace \text{ while } \alpha \text{ do } S_1\text{ od } \lbrace p\wedge\neg\alpha\rbrace$$
+kovetkeztetesi szabalya parcialis helyessegi ertelemben helyes.\\
+\\
+\textbf{Kovetkezmeny szabalya:}\\
+Felteves:\\
+$p\Rightarrow p_1, M[S](\lbrace p_1\rbrace)\subset\lbrace q_1\rbrace; q_1\Rightarrow q$;\\
+\indent $\lbrace\sigma \vert p(\sigma)\rbrace\subset\lbrace\sigma\vert p_1(\sigma)\rbrace$; azaz $\lbrace p\rbrace\subset\lbrace p_1\rbrace$;\\
+\indent $\lbrace\sigma\vert q_1(\sigma)\rbrace\subset\lbrace\sigma\vert q(\sigma)\rbrace$; azaz $\lbrace q_1\rbrace\subset\lbrace q\rbrace$;\\
+$M[S](\lbrace p\rbrace)\subset M[S](\lbrace p_1\rbrace)\subset \lbrace q_1\rbrace\subset\lbrace q\rbrace$;\\
+\\
+\textbf{Teljes helyesseg:}\\
+$S=$while $\alpha$ do $S_1$ od;\\
+Felteves:\\
+\indent - $M_{tot}[S](\lbrace p\wedge \alpha\rbrace)\subset\lbrace p\rbrace$;\\
+\indent - $M_{tot}[S](\lbrace p\wedge \alpha \wedge t=z\rbrace)\subset \lbrace t<z\rbrace$;\\
+\indent - $p \Rightarrow t\ge0$;\\
+\indent - z integer valtozo es nem fordul elo $p, \alpha, t, S$ formulakban;\\
+Allitas: $\bot \not\in M_{tot}[S](\lbrace p\rbrace)$.\\
+\\
+Adott:\\
+\indent - $S(x,y)$: while $\alpha(x,y)$ do $A(x,y)$ od, iteracio, a $f_s(x,y)=$if $\neg\alpha(x,y)$ then $y$ else $f_s(x,f_s(x,y))$ fi programfuggvenyel, $\alpha(x,y)$ kvantorfuggetlen logikai kifejezes\\
+\indent - $\lbrace P(x,y)\rbrace S(x,y)\lbrace R(x,y)\rbrace$;\\
+\indent - $I(x,y,i)$: ciklus invarians,\\
+\indent - $k(x)$: a ciklusszamlalo felso korlatja,\\
+\indent - $f_A(x,y)$: a ciklusmag programfuggvenye.\\
+Ha bebizonyitjuk, hogy:\\
+\indent - $P(x,y) \Rightarrow I(x,y,0)$,\\
+\indent - $I(x,y,i) \Rightarrow i\le k(x)$,\\
+\indent - $I(x,y,i)\wedge\alpha(x,y) \Rightarrow I(x, f(x,y), i+1)$,\\
+\indent - $I(x,y,i) \wedge \neg\alpha(x,y) \Rightarrow R(x,y)$,\\
+akkor minden olyan $y_0$-ra, amelyre $P(x,y_0)$="true", $\exists f_s(x,x_0)$ es $R(x, f_s(x,y_0))$= "true".\\
+Bizonyitas: A bizonyitas $k(x)$ szerinti teljes indukcioval:\\
+Alapeset: $k(x)=0$\\
+$k(x)= 0 \Rightarrow \alpha(x,y_0)$="false"\\
+Tegyuk fel ugyanis: $\alpha(x,y_0)$="true", akkor $I(x, f_A(x, y_0), 1)$="true", es $1\le k(x)$, ami ellentmondas.\\
+Igy $I(x,y_0, 0) \wedge\neg\alpha(x,y_0) \Rightarrow R(x,y_0)$, amde most $f_s(x,y_0)=y_0$.\\
+Indukcio: $k(x)>0$ es felteves $k'(x)\le k(x)-1$-re az allitas igaz.\\
+\indent - $\alpha(x,y_0)$="false". Ekkor ugyanugy, mint fent belathato, hogy igaz az allitas.\\
+\indent - $\alpha(x,y_0)$="true". Ekkor $I(x, f_A(x, y_0), 1)$="true".\\
+Legyen tehat
+\indent $y_1 = f_A(x,y_0)$,\\
+\indent $I_1(x,y_1,i)=I(x,f_A(x,y_0), i+1)$.\\
+Ekkor az uj ciklusszamlalo korlatja: $I_1(x,y_1,i) \Rightarrow i\le k(x)-1$.\\
+$y_1$-re tehat letezik $f_s(x,y_1)$, es erre $R(x, f_s(x,y_1))$="true", azaz\\
+$R(x, f_s(x, f_A(x,y_0))$="true"=$f_s(x,y_0)$.\\
+Ezzel az iteracio kovetkeztetesi szabalyanak helyesseget bebizonyitottuk.
+\newpage
+%
+% 12. eloadas
+%
+\begin{flushleft}
+\textbf{12. eloadas}
+\end{flushleft}
+Adott BR bizonyitasi rendszer es $BR_{sec}$ a bizonyitasi rendszerben levezetheto formulak halmaza.\\
+- A BR bizonyitasi rendszer megbizhato, ha $(\forall \varphi: \varphi\in BR_{sec}) \Rightarrow \varphi =$"true".\\
+- A BR bizonyitasi rendszer teljes, ha $(\forall\varphi: \varphi\in BR \wedge \varphi=$"true"$) \Rightarrow \varphi \in BR_{sec}$.\\
+\\
+\textbf{A Hoare modszer teljessegi tetele:}\\
+Adva $S(x,y)$ strukturalt program, $S(x,y)$ tetszoleges reszprogramja: $s(x,y)$.
+Felteves:\\
+$\lbrace Q(x) \wedge y=I_S(x)\rbrace s(x,y) \lbrace Q(x) \wedge y=O_S(x)\rbrace=$"true", ahol $f_s(x, I_S(x))=O_S(x)$.\\
+\textbf{Allitas:} Minden ilyen tulajdonsagu $s(x,y)$ resz - programra vonatkozo fenti tetel a Hoare-modszer segitsegevel levezetheto.\\
+\textbf{Megjegyzes:} Nyilvan:\\
+\indent $\lbrace Q(x)\wedge y=x\rbrace S(x,y) \lbrace Q(x)\wedge y=O_s(x)\rbrace=$"true",\\
+azaz $P(x):Q(x)\wedge y=x; R(x,y):Q(x) \wedge y=O_s(x)$;\\
+$\lbrace P(x)\rbrace S(x,y) \lbrace R(x,y)\rbrace=$"true".\\
+\textbf{Bizonyitas:} (parcialis helyesseg) Az alapstrukturak egymasba skatulyazasanak szama szerinti teljes indukcioval.\\
+Alapeset: $s(x,y) = y \leftarrow g(x,y)$\\
+A tetel: $\lbrace Q(x) \wedge y=I_s(x)\rbrace y \leftarrow g(x,y) \lbrace Q(x) \wedge y=O_s(x)\rbrace$= "true",
+$$\underline{Q(x) \wedge y=I_s(x) \Rightarrow Q(x) \wedge g(x,y)=O_s(x)}$$
+$$\lbrace Q(x) \wedge y=I_s(x)\rbrace y \leftarrow g(x,y) \lbrace Q(x) \wedge y=O_s(x)\rbrace$$
+Indukcio: Tegyuk fel, hogy "k" melysegu egymasva skatulyazas eseten a tetel igaz es bizonyitsuk "k+1"-re is.\\
+Harom eset:\\
+\indent - a k+1. struktura egy szekvencia;\\
+\indent - a k+1. struktura egy felteteles elagazas;\\
+\indent - a k+1. struktura egy iteracio.
+\begin{enumerate}
+\item A k+1. struktura egy szekvencia: $s(x,y) = s_1(x,y) ; s_2(x,y)$;\\
+A program fuggvenyek: $f_{s_1}(x,y), f_{s_2}(x,y)$.\\
+Indukcios feltevesunk:
+\begin{itemize}
+\item $\lbrace Q(x) \wedge y=I_{s_1}(x)\rbrace s_1(x,y) \lbrace Q(x) \wedge y=O_{s_1}(x)\rbrace$,
+\item $\lbrace Q(x) \wedge y=I_{s_2}(x)\rbrace s_2(x,y) \lbrace Q(x) \wedge y=O_{s_2}(x)\rbrace$,
+\end{itemize}
+tetelek helyessege Hoare modszerrel bebizonyithatoak, azaz\\
+$O_{s_1}(x)=f_{s_1}(x,I_{s_1}(x))$, es $O_{s_2}(x) = f_{s_2}(x,I_{s_2}(x))$.\\
+A szekvencia szemantikaja alapjan:\\
+$I_s(x) = I_{s_1}(x)$, es $O_{s_1}(x) = I_{s_2}(x) es O_{s_2}(x) = O_s(x)$;\\
+ezert $f_s(x, I_s(x)) = f_{s_2}(x,f_{s_1}(x, I_{s_1}(x)))$.\\
+$$\lbrace Q(x)\wedge y=I_{s_1}(x)\rbrace S_1(x,y) \lbrace Q(x)\wedge y=O_{s_1}(x)\rbrace$$
+$$\underline{\lbrace Q(x)\wedge y=I_{s_2}(x)\rbrace S_2(x,y) \lbrace Q(x)\wedge y=O_{s_2}(x)\rbrace}$$
+$$\lbrace Q(x)\wedge y=I_s(x)\rbrace S_1(x,y);S_2(x,y) \lbrace Q(x)\wedge y=O_s(x)\rbrace$$
+\item a k+1. struktura egy felteteles elagazas:\\
+$s(x,y)$= if $\alpha(x,y)$ then $S_1(x,y)$ else $S_2(x,y)$ fi\\
+Indukcios feltevesunk szerint:\\
+$\lbrace Q(x) \wedge y=I_{s_1}(x)\rbrace S_1(x,y) \lbrace Q(x)\wedge y=O_{s_1}(x)\rbrace$,\\
+$\lbrace Q(x) \wedge y=I_{s_2}(x)\rbrace S_2(x,y) \lbrace Q(x)\wedge y=O_{s_2}(x)\rbrace$,\\
+tetelek helyessege Hoare modszerrel bebizonyithatok.\\
+$(Q(x)\wedge y=I_s(x,y) \wedge\alpha(x,y)) \Rightarrow (Q(x)\wedge y=I_{s_1}(x,y))$,\\
+$(Q(x)\wedge y=I_s(x,y) \wedge\neg\alpha(x,y)) \Rightarrow (Q(x)\wedge y=I_{s_2}(x,y))$,\\
+masreszt\\
+$(Q(x)\wedge y=I_s(x,y)\wedge \alpha(x,y)) \Rightarrow O_s(x)=O_{s_1}(x)$,\\
+$(Q(x)\wedge y=I_s(x,y)\wedge \neg\alpha(x,y)) \Rightarrow O_s(x)=O_{s_2}(x)$,\\
+$Q(x)\wedge y=I_s(x,y) \wedge \alpha(x,y)) \Rightarrow (Q(x) \wedge y=I_{s_1}(x,y))$,\\
+$(Q(x)\wedge y=I_s(x,y) \wedge \neg\alpha(x,y)) \Rightarrow (Q(x) \wedge y=I_{s_2}(x,y))$,\\
+$\lbrace Q(x)\wedge y=I_{s_1}(x))\rbrace S_1(x,y) \lbrace Q(x)\wedge y=O_{s_1}(x)\rbrace$,\\
+$\lbrace Q(x)\wedge y=I_{s_2}(x))\rbrace S_2(x,y) \lbrace Q(x)\wedge y=O_{s_2}(x)\rbrace$,\\
+$(Q(x)\wedge y=O_{s_1}(x)) \Rightarrow y=O_s(x)$,\\
+$\underline{(Q(x)\wedge y=O_{s_2}(x)) \Rightarrow y=O_s(x)}$,\\
+$\lbrace Q(x)\wedge y=I_s(x)\rbrace$ if $\alpha (x,y))$ then $S_1(x,y)$ else $S_2(x,y)$ fi $\lbrace Q(x) \wedge y=O_s(x)\rbrace$.
+\item k+1. struktura egy iteracio:\\
+$s(x,y)=$ while $\alpha(x,y)$ do $A(x,y)$ od.\\
+$\lbrace Q(x) \wedge y=I_A(x)\rbrace A(x,y) \lbrace Q(x)\wedge y=O_A(x)\rbrace$ mar bizonyithato a Hoare modszerrel.\\
+Legyen $A(x,y)$ programfuggvenye: $f_A(x,y)$.\\
+A tetel, amely bizonyithato: $\lbrace Q(x) \wedge y=I_A(x)\rbrace y\leftarrow f_A(x,y) \lbrace Q(x) \wedge y=O_A(x)\rbrace$.\\
+Jeloles:\\
+$k=0 \Rightarrow h(x,y,k) = y$\\
+$k>0 \Rightarrow h(x,y,k) = \underbrace{f_A}_{1}(x, \underbrace{f_A}_{2}(x, \cdots\underbrace{(f_A(x,y))}_{k}))$;\\
+Az iteracio szemantikajat leiro invarians: $I(x,y,k):Q(x)\wedge y=h(x,I_A(x),k) \wedge f_s(x,y) = f_s(x, I_s(x))$.\\
+A bizonyitando tetelek:
+\begin{itemize}
+\item $(Q(x) \wedge y=I_s(x)) \Rightarrow I(x,y,0)$;
+\item $\lbrace I(x,y,k) \wedge \alpha(x,y)\rbrace A(x,y) \lbrace I(x,y,k+1)\rbrace$;
+\item $(I(x,y,k) \wedge \neg\alpha(x,y)) \Rightarrow (Q(x) \wedge y=O_s(x))$.
+\end{itemize}
+\begin{enumerate}
+\item 1. tetel: $(Q(x) \wedge y=I_s(x)) \Rightarrow I(x,y,0)$,\\
+$(Q(x) \wedge y=I_s(x)) \Rightarrow (Q(x) \wedge y=I_A(x) \wedge f_s(x,y) = f_s(x, I_s(x)))$, ami trivialis.
+\item 2. tetel. $\lbrace I(x,y,k) \wedge \alpha(x,y)\rbrace A(x,y) \lbrace I(x,y,k+1)\rbrace$, az ertekadas kovetkeztetesi szabalya alapjan:\\
+$I(x,y,k) \wedge \alpha(x,y)) \Rightarrow I(x,f_A(x,y), k+1)$,\\
+$(Q(x)\wedge y=h(x,I_A(x), k)\wedge f_s(x,y) = f_s(x, I_s(x)) \wedge \alpha(x,y)) \Rightarrow$\\
+$(Q(x) \wedge f_A(x,y)=h(x, I_A(x), k+1) \wedge f_s(x, f_A(x,y)) = f_s(x,I_s(X))$.
+\item 3. tetel. $(I(x,y,k) \wedge \neg\alpha(x,y)) \Rightarrow (Q(x) \wedge y=O_s(X))$, azaz\\
+$(Q(x) \wedge y=h(x,I_A(x), k) \wedge f_s(x,y) = f_s(x,I_S(x)) \wedge \neg\alpha(x,y)) \Rightarrow (Q(x) \wedge y=O_S(x))$.\\
+Mivel $\neg\alpha(x,y)$ eseten $f_s(x,y)=y$, masreszt a definicio alapjan $f_s(x,I_s(x)) = O_s(x)$.
+$$Q(x) \wedge y=I_s(x) \Rightarrow I(x,y,0)$$
+$$\lbrace I(x,y,k) \wedge \alpha(x,y)\rbrace A(x,y) \lbrace I(x,y,k+1) \rbrace$$
+$$\underline{I(x,y,k) \wedge \neg\alpha(x,y) \Rightarrow Q(x) \wedge y=O_s(x)}$$
+$$\lbrace Q(x) \wedge y=I_s(x)\rbrace \text{ while } \alpha(x,y) \text{ do } A(x,y) \text{ od } \lbrace Q(x) \wedge y=O_s(x)\rbrace$$
+\end{enumerate}
+\end{enumerate}
+Adva $d_s=(A, F, E_a)$ absztrakt specifikacio, $d_c=(C,G,E_c)$ konkret specifikacio.\\
+\indent $A=\lbrace A_0, A_1, \cdots, A_n\rbrace$; \indent $F=\lbrace f_0, f_1, \cdots, f_m\rbrace$;\\
+\indent $C=\lbrace C_0, C_1, \cdots, C_n\rbrace$; \indent $G=\lbrace g_0, g_1, \cdots, g_m\rbrace$;\\
+\indent $E_a=\lbrace\cdots, e_{a_i}(\cdots, f_j(a), \cdots; a), \cdots\rbrace$;\\
+\indent $E_c=\lbrace\cdots, e_{c_i}(\cdots, g_j(c), \cdots; c), \cdots\rbrace$;\\
+A reprezentacios fuggveny:\\
+$\varphi: C\to a=A$, $f_0=\varphi(g_0), (\forall f_c\in F_c)(\forall c\in C) ((f_c(\varphi(c))=\varphi(g_c(c))$.\\
+Altalanos formaban az azonos jelentes:\\
+$e_{a_i}(\cdots, f_j(\varphi(c)), \cdots;\varphi(c)) = e_{c_i}(\cdots, g_j(c), \cdots;c)$.\\
+A helyesseg definiciojat szimulacio alapjan definialtuk:\\
+\indent $(\forall f_s\in F_s)(\forall c\in C)(f_s(\varphi(c)) =\varphi(g_s(c)))$.\\
+Az azonos jelentes:
+\begin{itemize}
+\item Algebrai - algebrai" eset:\\
+$f_s(f_c(\varphi(c)) = f_c(f_s(\varphi(c))) \equiv g_s(g_c(c)) = g_c(g_s(c))$.
+\item "Kulso felulet - kulso felulet" eset:\\
+$(pre_{f_i}(\varphi(c)) \wedge post{f_i}(\varphi(c),\varphi(c')))\equiv(pre_{g_i}(c)\wedge post_{g_i}(c,c'))$.
+\end{itemize}
+\end{document}

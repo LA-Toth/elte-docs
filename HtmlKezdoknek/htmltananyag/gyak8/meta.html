@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1250">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>META informaciok</title>
+</head>
+
+<body link="#0000FF" bgcolor="#F4FEFF" background="../../images/bg1.gif">
+
+
+  <table border="0" cellpadding="5" cellspacing="0" width="100%" background="../../images/bg2.gif" bgcolor="#003366">
+    <tr>
+      <td align="center"><b><font color="#FFFFFF" face="Arial" size="3">A META
+        elemek használata</font></b></td>
+    </tr>
+  </table>
+
+  <table border="0" width="100%" bgcolor="#F4FEFF" cellspacing="0" cellpadding="5">
+    <tr>
+      <td width="100%" colspan="2">
+<script
+language="JavaScript">
+<!--
+//-
+document.write('<h5><p align="Right"> Utolsó módosítás: ')
+document.write(document.lastModified)
+document.write('</p></h5>')
+// -->
+</script>
+
+<p align="left"><font face="Arial" size="2">A META elemek egyik felhasználása az, amikor a
+keresõrendszereknek adunk információkat. Ugyanis a WWW-en
+mûködõ legtöbb keresõrendszer már felhasználja a
+&lt;META&gt; tagban definiált információkat. Ez azért jó,
+mert oldalainkat nagyobb eséllyel találják meg azok, akik
+valamilyen téma, vagy kulcsszó szerint keresnek a Weben.</font></p>
+
+<p align="left"><font face="Arial" size="2">A &lt;META&gt; taget a dokumentum elején a
+&lt;HEAD&gt; és &lt;/HEAD&gt; tagek közé érdemes elhelyezni.</font> </p>
+
+<p align="left"><font face="Arial" size="2">A következõ információkat adhatjuk meg:</font></p>
+
+<hr>
+
+<p align="left"><font face="Arial" size="2"><strong>Szerzõ (author): </strong>a dokumentum
+szerzõjének neve</font></p>
+
+<p align="left"><font face="Arial" size="2">pl. <br>
+&lt;META NAME=&quot;author&quot; CONTENT=&quot;Gipsz
+Jakab&quot;&gt;</font></p>
+
+<hr>
+
+<p align="left"><font face="Arial" size="2"><strong>Szerzõi jogok (Copyright)</strong></font></p>
+<p align="left"><font face="Arial" size="2">Az adott oldalra vonatkozó szerzõi
+jogokat írhatjuk le a segítségével.</font> </p>
+
+<p align="left"><font face="Arial" size="2">&lt;META NAME=&quot;copyright&quot;
+CONTENT=&quot;Csak oktatási célra tölthetõ le az oldal&quot;&gt;</font><br>
+ </p>
+
+<hr>
+<p align="left"><font face="Arial" size="2"><strong>Jellemzés (description)</strong></font> </p>
+
+<p align="left"><font face="Arial" size="2">Az adott oldal témáját itt részletesen
+kifejthetjük.&nbsp;</font> </p>
+
+<p align="left"><font face="Arial" size="2">Használata:</font> </p>
+
+<p align="left">&lt;META NAME=&quot;description&quot; CONTENT=&quot;Az oldal az
+empiriokriticizmus eszmerendszerével foglalkozik.&quot;&gt;<br>
+ </p>
+
+<hr>
+
+<p align="left"><font face="Arial" size="2"><strong>Kulcsszavak (keywords):</strong> olyan
+szavak, amelyek jól jellemzik oldalainkat.</font> </p>
+
+<p align="left"><font face="Arial" size="2">Pl. jelen esetben<br>
+&lt;META NAME=&quot;keywords&quot; CONTENT=&quot;HTML
+szerkesztes, HTML segedanyagok, honlapkeszites
+kezdoknek&quot;&gt;</font></p>
+
+<p align="left"><font face="Arial" size="2">Az is elõfordulhat, hogy a kulcsszavakat más
+nyelveken is meg szeretnénk adni. Ehhez a LANG paramétert kell
+használnunk, amivel megadhatjuk a keresõnek, hogy az ott
+megadott kulcsszó milyen nyelvre vonatkozik. Ezután - a
+következõ példa szerint - mind a magyar, mind az angol nyelven
+keresõk jó eséllyel meg fognak találni minket. Ehhez persze
+az általuk beállított nyelvnek meg kell egyeznie azzal, amit
+mi adtunk meg a kulcsszavaknál.</font></p>
+
+<p align="left"><font face="Arial" size="2">pl.<br>
+&lt;META NAME=&quot;keywords&quot; LANG=&quot;hu&quot;
+CONTENT=&quot;zene, autok, filmek&quot;&gt;<br>
+&lt;META NAME=&quot;keywords&quot; LANG=&quot;en&quot;
+CONTENT=&quot;music, cars, films&quot;&gt;</font></p>
+
+<p align="left"><font face="Arial" size="2">Ekkor ha pl. az <a href="http://www.altavista.com/" target="_blank">altavistan</a>
+keresünk arra szóra, hogy &quot;filmek&quot;, akkor a Search
+gomb lenyomása elõtt állítsuk be a magyar nyelvet.
+(Hungarian)</font></p>
+
+<p align="left"><img border="0" src="altavist.gif" width="574" height="66"></p>
+
+<hr>
+
+<p align="left"><font face="Arial" size="2">A &lt;META&gt; elemekkel a fentieken kívül más
+funkciókat is megvalósíthatunk.</font></p>
+
+<p align="left"><strong><font face="Arial" size="2">Automatikus oldal betöltés
+(Refresh)</font></strong></p>
+
+<p align="left"><font face="Arial" size="2">pl.<br>
+&lt;META HTTP-EQUIV=&quot;Refresh&quot;
+content=&quot;5;url=http://valerie.inf.elte.hu/&quot;&gt;</font></p>
+
+<p align="left"><font face="Arial" size="2">Ez a kód azt eredményezi, hogy az általunk
+megadott idõ (másodperc) után - ami a fenti példában 5 - az
+ablakba betöltõdik a megadott oldal. (http://valerie.inf.elte.hu/)</font></p>
+
+<p align="left"><font face="Arial" size="2">(Ezt a funkciót nem mindegyik böngészõ
+támogatja, ezért lehetõvé kell tenni, hogy a megadott oldalra
+egy linken keresztül is el lehessen jutni.)</font></p>
+
+<p align="left"><font face="Arial" size="2">pl. az alábbi kód eredményét a <a href="refresh.html" target="_blank">refresh.html</a> oldalon
+ellenõrízhetitek.</font></p>
+
+<p align="left"><font face="Arial" size="2">&lt;HTML&gt;<br>
+&lt;HEAD&gt;<br>
+&lt;/HEAD&gt;<br>
+&lt;BODY&gt;<br>
+&lt;META HTTP-EQUIV=&quot;refresh&quot;
+CONTENT=&quot;10;URL=http://valerie.inf.elte.hu/speci/html&quot;&gt;<br>
+&lt;b&gt;A honlapom címe megváltozott.&lt;/b&gt; Ha a
+bookmarkod még a régi címemet tartalmazza, kérlek változtasd
+meg.&lt;br&gt;<br>
+Ha 10 másodperc múlva nem töltõdik be az új oldal, akkor
+&lt;a
+href=&quot;http://valerie.inf.elte.hu/speci/html/&quot;&gt;itt&lt;/a&gt;
+találod meg a honlapomat.<br>
+<br>
+&lt;p&gt;(ez az oldal a &amp;lt;META
+HTTP-EQUIV=&quot;refresh&quot;
+CONTENT=&quot;10;URL=http://valerie.inf.elte.hu/speci/html&quot;&amp;gt;
+sor hatását szeml&amp;eacute;lteti)&lt;/p&gt;<br>
+&lt;/BODY&gt;<br>
+&lt;/HTML&gt;<br>
+</font>
+</p>
+
+<hr>
+
+<p align="left"><strong><font face="Arial" size="2">Az oldal érvényességi idejének
+megadása</font></strong></p>
+
+<p align="left"><font face="Arial" size="2">&lt;META HTTP-EQUIV=&quot;Expires&quot;
+content=&quot;Wed, 2 Dec 1999 12:45 GMT&quot;&gt;<br>
+<br>
+Ezzel a taggel azt a dátumot és idõpontot adhatjuk meg a
+böngészõnek, amikor az adott oldal aktualitását veszti.
+Ezután a dátum után a böngészõ nem az ideiglenes
+tárolóhelyrõl (cache) tölti be az oldalt, hanem újra
+letölti az aktuális oldalt. Így elkerülhetõ az, hogy a
+gyakran frissített honlapunk helyett régebbi verziót olvasson
+valaki.</font></p>
+
+<hr>
+
+<p align="left"><strong><font face="Arial" size="2">Karakterkészlet beállítása</font></strong></p>
+
+<p align="left"><font face="Arial" size="2">Az alábbi paraméterek segítségével adhatjuk
+meg a böngészõnek, hogy milyen karakterkészlet szerint
+jelenítse meg az oldalunkat. A magyar ékezetes betûk
+megjelenítéséhez az alábbi kódolásokat választhatjuk ki:</font></p>
+
+<p align="left"><font face="Arial" size="2">&lt;META HTTP-EQUIV=&quot;Content-Type&quot;
+CONTENT=&quot;text/html; charset=windows-1250&quot;&gt; <br>
+vagy</font></p>
+
+<p align="left"><font face="Arial" size="2">&lt;META HTTP-EQUIV=&quot;Content-Type&quot;
+CONTENT=&quot;text/html; charset=iso-8859-2&quot;&gt;</font> </p>
+
+<hr>
+
+<p align="left"><strong><font face="Arial" size="2">Cache control</font></strong></p>
+
+<p align="left"><font face="Arial" size="2">A Cache control opció&nbsp; arra
+lenne jó, hogy a böngészõ ne az ideiglenes tárolóból (cache) töltse be
+az (esetleg régebbi adatokat tartalmazó) oldalunkat. A feltételes módot azért
+alkalmaztam, mert sajnos a böngészõk többsége figyelmen kívül
+hagyja.&nbsp;</font></p>
+
+<p align="left"><font face="Arial" size="2">Használata:</font></p>
+
+<p align="left"><font face="Arial" size="2">&lt;META
+HTTP-EQUIV=&quot;Cache-control&quot; CONTENT=&quot;no-cache&quot;&gt;<br>
+</font></p>
+
+<hr>
+<p align="left"><font face="Arial" size="2"><b>Robotok (robots)</b></font></p>
+
+<p align="left"><font face="Arial" size="2">Ez a META TAG kontrolálja a web robotok viselkedését.&nbsp;<br>
+ 'Index': megengedi a robotoknak, hogy oldaladat indexeljék.&nbsp;<br>
+ 'Follow': megengedi, hogy az oldaladról kiinduló linkeket is indexeljék.&nbsp;<br>
+(Lehetséges értékek: Index, Noindex, Follow, Nofollow)</font></p>
+
+<p align="left">pl.</p>
+
+<p align="left"><font face="Arial" size="2">&lt;META NAME=&quot;ROBOTS&quot; CONTENT=&quot;FOLLOW,
+NOINDEX&quot;&gt;</font><br>
+</p>
+
+<p align="left"><font face="Arial" size="2">A META tagek oldalunkba illesztésénél
+megkönnyíti a dolgunkat a <a href="../../online/meta/metagen.htm">Teleport
+Online Meta Tag Generáló</a>. (Forrás: <a
+href="http://free.netlap.hu/teleport3000/webgarazs.html"
+target="_blank">Web-Garázs</a>)</font></p>
+
+<p align="left"><font face="Arial" size="2">&nbsp;</font></p>
+
+      </td>
+    </tr>
+    <tr>
+      <td width="50%">&nbsp;</td>
+      <td width="50%" align="right">&nbsp;</td>
+    </tr>
+  </table>
+
+<p>&nbsp;</p>
+</body>
+</html>

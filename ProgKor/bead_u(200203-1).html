@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0047)http://progkor.inf.elte.hu/200203.1/bead_u.html -->
+<HTML><HEAD><TITLE>Beadando feladatok - UNIX</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content="MSHTML 5.50.4522.1800" name=GENERATOR></HEAD>
+<BODY>
+<CENTER>
+<H3>Beadandó feladatok - UNIX</H3></CENTER><SPACER SIZE="20" TYPE="VERTICAL">
+<H4>A kiadott feladatok közül legalább kettõnek a megoldását kell beadni.</H4>
+<UL>
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#1">1. feladat</A> 
+
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#2">2. feladat</A> 
+
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#3">3. feladat</A> 
+
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#4">4. feladat</A> 
+
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#5">5. feladat</A> 
+
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#6">6. feladat</A> 
+
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#7">7. feladat</A> 
+
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#8">8. feladat</A> 
+
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#9">9. feladat</A> 
+
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/bead_u.html#10">10. 
+  feladat</A> 
+  <LI><A href="http://progkor.inf.elte.hu/200203.1/evf_zh.htm">Értékelés</A> 
+  </LI></UL><SPACER SIZE="20" TYPE="VERTICAL">
+<DL compact>
+  <DT><B>A beadás szabályai:</B>
+  <DD>
+  <P>A megoldásokat tartalmazó fájlokat levél mellékleteként (<B>"pine" 
+  Attchment</B>) küldje el <B>az alul megadott címre</B>. (Semmiképp ne "csa" 
+  vagy "maulis" levelezési címére !) <BR><B>Csak a pandora-ról, <EM>pine</EM>-al 
+  küldött - beadott feladatokat tartalmazó - leveleket fogadok el !</B> <BR>Az 
+  <B><FONT color=red>összes Unix beadottat egyszerre</FONT></B>, egy levélben 
+  küldje el. (Több küldés esetén csak az utolsó levél lesz feldolgozva.) <BR>A 
+  levél <B>SUBJECT</B>-je legyen "<B>UNIX-BEADANDO</B>". <BR>(Megfordítva: Az 
+  alább megadott címre csak a megoldásokat küldjék. Minden olyan levelet, amire 
+  "választ" várnak, "csa@inf.elte.hu"-nak küldjenek.) 
+  <P>A fájlok neve kezdõdjön a "unix" szóval (kis betûkkel!). Ezt minden feladat 
+  esetén a feladat sorszáma kövesse. Ha egy feladat megoldása további fájlokból 
+  áll, azok neve kezdõdjön ugyanúgy, mint a megoldás "fõ"-fájljáé, és kapjon 
+  valami "extension"-t. Pl. a 3. feladat megoldása a <B>unix3</B> fájlba 
+  kerüljön, s ha további két fájl tartozik a megoldáshoz, akkor ezek neve lehet 
+  pl. <B>unix3.tesztadat</B> ill. <B>unix3.sedpar</B>. 
+  <P>Tehát <B>a levél maga soha ne tartalmazza a megoldást !</B> (Kommentárokat 
+  se, a levelet el sem fogom olvasni, tehát lehet teljesen üres ! Ennek 
+  megfelelõen, minden, a megoldásra vonatkozó kommentárt a megoldást tartalmazó 
+  fájlokba tegyen, ill. -help-re írja ki - ld. alább.) 
+  <P><B><FONT color=red>Próbálja ki (a pandora-n és/vagy Linuxon) a beadott 
+  feladatokat !</FONT></B> Ha csak Linuxon fut, akkor a Lovardában levõ Linuxon 
+  mûködnie kell. 
+  <P>Fontos, mindegyik Unix beadandóra vonatkozó kötelezõ részfeladat: <FONT 
+  color=blue>Ha a parancsfájlt a "-help" opcióval hívják meg, akkor nem a 
+  feladatát kell ellátnia, hanem a standard outputra ki kell írnia minden 
+  fontos, a scriptre vonatkozó információt, de legalább az alábbiakat:</FONT> 
+  <UL>
+    <LI>A script rövid leírását, beleértve a paraméterezését is. 
+    <LI>Annak a felsorolását, hogy milyen gépen ill. Unixon lett tesztelve. 
+    (Célszerû a tesztadatokat is beküldeni, de fontos, hogy a korábban leírt 
+    fájlnév konvenciókkal nevezzük el a tesztadat-fájlokat is. Ha tesztelésre 
+    egész directory struktúrát használunk, azt "tar"-ral összecsomagolva is be 
+    lehet küldeni, de csak akkor használjunk tar-t, ha mindenképp szükség van 
+    rá, és a tar-ral csak relatív nevekkel csomagoljunk fájlokat, directorykat. 
+    Maguk a scriptek soha ne kerüljenek tar fájlba!! Pl. az elsõ feladat 
+    esetében unix1.tar nevû fájlba kerülhetnek tesztadatok.) (Tesztfájl neve ne 
+    legyen "beégetve" a scriptbe. Vagyis: egy "szûrõ" a standard inputról vagy 
+    paraméterként adott fájlból dolgozzon, és a standard outputra írjon !) Csak 
+    szolid méretû tesztfájlt küldjön be, mindenkit arra kérek, hogy 
+    óriásfájlokkal ne terhelje a levelezést és a telefonszámlámat! 
+    <LI>Annak a leírását, hogy esetleges nehezítéseket tud-e a script (ha van 
+    ilyen a feladatban). 
+    <LI>Annak a leírását, ha esetleges egyszerûsítésekkel tudta csak megoldani a 
+    feladatot. (Ilyen esetben a megoldást értékelõ dönti el, hogy a megoldást 
+    elfogadja-e!). </LI></UL>
+  <P><FONT color=red><B>Csak az itt leírtaknak megfelelõ megoldást fogadom 
+  el.</B></FONT> (Ezt tudom Unix scripttel feldolgozni.) 
+  <P><FONT color=blue><B>A tananyagban nem szereplõ, Unix alatt (is) használható 
+  programozási eszközökkel (pl. c, perl, Pascal) megvalósított megoldásokat nem 
+  fogadunk el.</B></FONT> 
+  <P><B>A feladatokat</B> mindenkinek <B>egyedül kell megoldani</B>a, semmiféle 
+  "csapatmunka" nem megengedett ! <BR><B><FONT color=red>A puskázás gyanúját is 
+  kerülje !</FONT></B> (Puskázásból több baja származhat a beadottakkal 
+  kapcsolatban, mint akármi másból.) 
+  <P>Nem mûködõ beadott annyival rosszabb a be se adottnál, hogy az azt 
+  kiértékelõt feleslegesen dolgoztatja. <FONT color=blue><B>A ki nem tesztelt 
+  beadott nem számít beadottnak, az utólagos javítására nincs 
+  lehetõség!</B></FONT> (Annyit sem ér, mint ha be se küldte volna.) 
+  <P>Az elküldést elõször próbálja ki úgy, hogy saját magának küldi el a levelet 
+  és melléklete(i)t ! 
+  <P>Megjegyzések: 
+  <UL>
+    <LI>Azért is érdemes kettõnél több megoldást beadni, mert így egyrészt akkor 
+    is meglesz a kötelezõ, ha az értékelés valamelyik megoldást rossznak 
+    találja, másrészt "féljegyre" megírt ZH eredményének megajánlott gyakjeggyé 
+    kerekítését a nagyon szép vagy kettõnél több jó beadott fölfele irányítja. 
+    <LI>Ha valaki másolatot (azaz közös terméket) küld be, akkor is "csalt" 
+    megjegyzéses elégtelent szerez, ha emellett önálló(nak látszó) megoldásokat 
+    is küld. (Attól is függetlenül, hogy õ volt-e a közös beadott szerzõje.) 
+    <LI>A pandora gyakori leállásaira számítva, ne hagyja a határidõ elõtti 
+    órákra vagy napra a munkát, mert bõ másfél hónapja van rá, tehát mindenkinek 
+    a maga rizikója, hogy mennyi kockázatot vállal ill. mennyire bízik abban, 
+    hogy a pandora az utolsó órákban talpon lesz. </LI></UL></DD></DL><SPACER 
+SIZE="20" TYPE="VERTICAL"><B>Tanácsok a teszteléshez:</B> 
+<UL>
+  <P>
+  <LI>A scriptek teszteléskor nem (feltétlen) lesznek a PATH-ban szereplõ 
+  directoryban; 
+  <P></P>
+  <LI>A scripteket nem (feltétlen) az aktuális könyvtárból indítjuk (több 
+  file-ból álló megoldás esetén fontos); 
+  <P></P>
+  <LI>A paraméterekben szereplõ file-ok és vagy könyvtárak, ha mást nem mondunk, 
+  nem feltétlen az aktuális könyvtárban vannak, és lehetnek abszolút vagy 
+  relatív névvel (természetesen az aktuális könyvtárhoz képest, nem pedig a 
+  script helyéhez képest) megadottak; </LI></UL><SPACER SIZE="20" TYPE="VERTICAL">
+<DL compact>
+  <DT><B>A beadás visszaigazolása:</B>
+  <DD>
+  <P>A beadást követõ egy héten belül (az utolsó héten egy napon belül) felkerül 
+  a neve és a beadott feladatainak a directory listája egy <A 
+  href="http://progkor.inf.elte.hu/200203.1/beadta.html">másik html-lap</A>ra. 
+  Ha ez nem történik meg, reklamáljon, és küldje újra a megoldásokat. 
+</P></DD></DL><SPACER SIZE="20" TYPE="VERTICAL">
+<H4><A name=1>1. feladat.</H4>
+<UL>Egy textfájl 1. sorában az 1, 2, ..., n számok egy tetszõleges 
+  permutációja, a második sorban ugyanennyi szó áll, helyközzel tagolva. Mindkét 
+  sort azonosan átrendezve olyan eredményt kell kapni, aminek az elsõ sorában a 
+  számok (numerikusan) növekvõ sorrendben állnak. Írjon Unix parancsfájlt, ami 
+  paraméterként a fájl nevét kapja, és az eredmény 2. sorát írja a standard 
+  outputra. 
+  <P>Pl: 
+  <DL>
+    <DL><KBD>6 1 2 4 5 3 <BR>korán reggel ritkán rikkant a rigó </KBD></DL></DL>
+  <P>Eredmény: 
+  <DL>
+    <DL><KBD>reggel ritkán rigó rikkant a korán </KBD></DL></DL>
+  <P>"n" értéke akármilyen pozitív egész lehet. Azzal nem kell foglalkozni, hogy 
+  a leírtaknak nem megfelelõ inputtal mit csinál a script. </P></UL><SPACER 
+SIZE="15" TYPE="VERTICAL">
+<H4><A name=2>2. feladat.</H4>
+<UL>Írjon Unix szûrõt, ami a paraméterként adott fájlban a "du -k -s *" 
+  parancs eredményét találja (egy bizonyos directoryra). Vagyis egy kétoszlopos 
+  táblázatot, amiben a 2. oszlop fájl vagy aldirectory neveket tartalmaz, az 
+  elsõ pedig rendre ezek KB-ban mért helyfoglalását. A sorbeli két információt 
+  TABulátorjel választja el. 
+  <P>A MERET nevû exportált környezetváltozó KB-ban megmondja, hogy mekkora 
+  adagokra osszuk fel az input fájlban levõ fájlokat/directorykat. 
+  <P>A felosztás eredménye a standard outputon: az input 2. oszlopa, úgy sorokba 
+  osztva, hogy az oszlopon belüli sorrend marad, és egy sorban a lehetõ legtöbb 
+  fájl/aldirectory neve szerepel úgy, hogy az egyes sorokban szereplõ 
+  fájlok/aldirectoryk összmérete nem több $MERET KB-nál. 
+  <P>Pl, <B>export MERET=1400</B>-al, az input: 
+  <DL>
+    <DL>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD align=left>423</TD>
+          <TD align=left>Images</TD></TR>
+        <TR>
+          <TD align=left>32</TD>
+          <TD align=left>Other</TD></TR>
+        <TR>
+          <TD align=left>1</TD>
+          <TD align=left>altinf.html</TD></TR>
+        <TR>
+          <TD align=left>905</TD>
+          <TD align=left>diakig</TD></TR>
+        <TR>
+          <TD align=left>3</TD>
+          <TD align=left>felfog.html</TD></TR>
+        <TR>
+          <TD align=left>2</TD>
+          <TD align=left>hataridok.html</TD></TR>
+        <TR>
+          <TD align=left>1</TD>
+          <TD align=left>index.html</TD></TR>
+        <TR>
+          <TD align=left>2</TD>
+          <TD align=left>informaciok.html</TD></TR>
+        <TR>
+          <TD align=left>7</TD>
+          <TD align=left>iratk</TD></TR>
+        <TR>
+          <TD align=left>243</TD>
+          <TD align=left>kepzesikov.html</TD></TR>
+        <TR>
+          <TD align=left>21</TD>
+          <TD align=left>kredit</TD></TR>
+        <TR>
+          <TD align=left>2</TD>
+          <TD align=left>linkek.html</TD></TR>
+        <TR>
+          <TD align=left>1</TD>
+          <TD align=left>megkoz.html</TD></TR>
+        <TR>
+          <TD align=left>4</TD>
+          <TD align=left>menu.html</TD></TR>
+        <TR>
+          <TD align=left>27</TD>
+          <TD align=left>nevsor</TD></TR>
+        <TR>
+          <TD align=left>222</TD>
+          <TD align=left>other</TD></TR>
+        <TR>
+          <TD align=left>34</TD>
+          <TD align=left>statisztika</TD></TR></TBODY></TABLE></DL></DL>
+  <P>Eredmény: 
+  <DL>
+    <DL><BR>Images Other altinf.html diakig felfog.html hataridok.html 
+      index.html informaciok.html iratk <BR>kepzesikov.html kredit linkek.html 
+      megkoz.html menu.html nevsor other statisztika </DL></DL>
+  <P>Az elsõ sorban levõ dolgok mérete 1376 KB, a "kepzesikov.html" már nem fér 
+  bele az 1400 KB-ba, a maradék (eredmény 2. sora) 554 KB-ot képvisel. 
+  <P>Ha a fenti input végére az alábbi részt tesszük, akkor olyan méretû sor 
+  következik, ami önmaga sem fér a MERET-be. 
+  <DL>
+    <DL>
+      <TABLE>
+        <TBODY>
+        <TR>
+          <TD align=left>22675</TD>
+          <TD align=left>tanrend</TD></TR>
+        <TR>
+          <TD align=left>4</TD>
+          <TD align=left>tanulmugyint.html</TD></TR>
+        <TR>
+          <TD align=left>1</TD>
+          <TD align=left>title.html</TD></TR>
+        <TR>
+          <TD align=left>12</TD>
+          <TD align=left>todolg</TD></TR>
+        <TR>
+          <TD align=left>5</TD>
+          <TD align=left>todolg.html</TD></TR></TBODY></TABLE></DL></DL>
+  <P>Ekkor az eredmény vagy így folytatódjon (jobb híján): 
+  <DL>
+    <DL><BR>tanrend <BR>tanulmugyint.html title.html todolg todolg.html 
+  </DL></DL><BR>vagy csak annyit tegyen a script, hogy kiírja: NEM MEGY! 
+</UL><SPACER SIZE="15" TYPE="VERTICAL">
+<H4><A name=3>3. feladat.</H4>
+<UL>Írjon parancsfájlt, ami az ls-tõl eltérõ, az alábbi minta szerinti 
+  formában készít directory listát: 
+  <P>"ls -l /etc/passwd /usr/bin/passwd" eredménye egy gépen: <PRE>  -rw-r--r--   1 root     bin           761 Sep 27 08:15 /etc/passwd
+  -rws--x--x   1 root     bin         30520 Oct 20  1998 /usr/bin/passwd
+   </PRE>
+  <P>A script eredménye "<KBD>/etc/passwd /usr/bin/passwd</KBD>" paraméterekkel: 
+
+  <P>&nbsp; &nbsp; name="/etc/passwd" time="Sep 27 08:15" size="761" perm="0644" 
+  user="root" group="bin" links="1"<BR>&nbsp; &nbsp; name="/usr/bin/passwd" 
+  time="Oct 20 1998" size="30520" perm="4711" user="root" group="bin" links="1" 
+  </P></UL><SPACER SIZE="15" TYPE="VERTICAL">
+<H4><A name=4>4. feladat.</H4>
+<UL>Írjon parancsfájlt, ami a paraméterként adott (vagy ha nincs paraméter, 
+  akkor az aktuális) directory (közvetlen) tartalmát a fájl- ill. directorynevek 
+  kiterjesztése szerint, azon belül a teljes fájlnév szerint (növekvõen) 
+  rendezi. Kiterjesztésnek a névben szereplõ utolsó pont utáni rész számít. (Ha 
+  nincs kiterjesztés a névben, akkor csak a teljes név szerint kell rendezni.) 
+  <P>A megoldásban nem használható a Linux "ls" parancsának a "--sort=extension" 
+  lehetõsége, hiszen éppen ezt kellene máshogy megoldani. </P></UL><SPACER 
+SIZE="15" TYPE="VERTICAL">
+<H4><A name=5>5. feladat.</H4>
+<UL>Írjon parancsfájlt, ami a paraméterként adott (vagy ha nincs paraméter, 
+  akkor az aktuális) directory (közvetlen) tartalmát a fájl fajtája, azon belül 
+  a fájl/directory mérete szerint (növekvõen) rendezi. A fájl fajtája az a jel, 
+  ami az "ls -l" listában az "rwx" információ elõtt áll. A fájl mérete az a 
+  szám, ami az "ls -l" listában az utolsó módosítás dátuma elõtt áll. </UL><SPACER 
+SIZE="15" TYPE="VERTICAL">
+<H4><A name=6>6. feladat.</H4>
+<UL>Írjon parancsfájlt, ami a paraméterként adott (vagy ha nincs paraméter, 
+  akkor az aktuális) directoryról a következõ információkat írja ki, mindegyiket 
+  külön sorba: 
+  <P>
+  <DL>
+    <DL>név: a directory teljes neve (a paraméter lehet relatív név is!) 
+      <P>összméret KB: a directoryval induló részfa mérete (szimbolikus linkeket 
+      ne kövesse!) 
+      <P>közvetlen ág: a directoryban közvetlenül található fájlok és 
+      aldirectoryk száma (. és .. hivatkozás nélkül) 
+      <P>összes ág: a directoryval induló részfa (rész)ágainak száma 
+      (szimbolikus linkeket ne kövesse!) <BR>Máshogy fogalmazva: a directory fa, 
+      mint gráf, összes éleinek száma. </P></DL></DL>
+  <P>Pl. az elõadás emlékeztetõ elején levõ "home" directoryra az eredmény: 
+  <P>
+  <DL>
+    <DL>név: /home <BR>összméret KB: ehhez nincs elég információ <BR>közvetlen 
+      ág: 2 <BR>összes ág: 8 </DL></DL></UL><SPACER SIZE="15" TYPE="VERTICAL">
+<H4><A name=7>7. feladat.</H4>
+<UL>Írjon parancsfájlt, ami a paraméterként adott fájlhoz megkeresi (és a 
+  standard outputra írja) azoknak a hozzá hard-linkelt fájloknak a nevét, amik a 
+  fájl directoryjából induló részfában vannak. (Ne keressen linkeket a script, 
+  ha nincsenek!) </UL><SPACER SIZE="15" TYPE="VERTICAL">
+<H4><A name=8>8. feladat.</H4>
+<UL>Írjon Unix szûrõt, ami a paraméterként adott fájlban található, vagy a 
+  standard inputról kapott névsorban levõ magyar nevek "keresztneveit" rövidíti 
+  úgy, hogy minden "keresztnevet" az elsõ betûjével és egy ponttal helyettesít. 
+  <P>A nevek mindegyike külön sorban van, a részeit helyköz vagy "-" jel 
+  választja el, a részek elsõ jele nagybetû, a többi kisbetû. "Keresztnév"-nek 
+  számít a 2.-tól kezdve minden résznév! A "magyar" azt jelenti, hogy Cs, Gy, 
+  Ly, Ny, Sz, Ty, Zs betûvel is kezdõdhet egy "keresztnév". 
+  <P>Feltehetjük, hogy a nevek csak a felsorolt jeleket tartalmazzák. 
+  <P>Pl. az 
+  <P>
+  <DL>
+    <DL>Adorján Csaba <BR>Ágas Attila László <BR>Ambrus Zoltán <BR>Ambrus 
+      Zoltán Gergely <BR>Kasler Lóránd-Péter <BR>Szent-Iványi Szabolcs Ferenc 
+      <BR>Zilahi-Sebess László István </DL></DL>
+  <P>névsort így kell átalakítani: 
+  <P>
+  <DL>
+    <DL>Adorján Cs. <BR>Ágas A. L. <BR>Ambrus Z. <BR>Ambrus Z. G. <BR>Kasler 
+      L.-P. <BR>Szent-I. Sz. F. <BR>Zilahi-S. L. I. </DL></DL></UL><SPACER SIZE="15" 
+TYPE="VERTICAL">
+<H4><A name=9>9. feladat.</H4>
+<UL>A KV környezetváltozónak egy fájl neve az értéke. Ha van ilyen fájl, akkor 
+  az egysoros, és a sora egy környezetváltozó nevét tartalmazza. Annak ismét 
+  csak egy fájl neve az értéke. Ha van ilyen fájl, akkor az egysoros, és a sora 
+  egy környezetváltozó nevét tartalmazza. Annak ismét csak ... 
+  <P>A lánc vagy úgy végzõdik, hogy "nincs ilyen fájl", vagy úgy, hogy "nem jó a 
+  fájl", vagy úgy, hogy "nincs ilyen környezetváltozó". Akkor "nem jó a fájl", 
+  ha van fájl, de vagy nem egysoros, vagy üres az egyetlen sora. 
+  <P>Írjon Unix parancsfájlt, ami az idézõjeles szövegek közül a megfelelõt írja 
+  ki, amikor a lánc végére ért, megelõzve a szöveget a nemlétezõ vagy nem jó 
+  fájl ill. a nem definiált környezetváltozó nevével és egy azt követõ 
+  kettõsponttal. A scriptnek észre kell vennie legalább az egyszerû végtelen 
+  láncokat. </P></UL><SPACER SIZE="15" TYPE="VERTICAL">
+<H4><A name=10>10. feladat.</H4>
+<UL>Készítsen directory belsejében stringet keresõ parancsfájlt! Az elsõ 
+  paramétere egy könyvtár, ebbõl kiindulva minden textfájlban (és az 
+  alkönyvtárak textfájljaiban, és esetleg azok alkönyvtárainak 
+  textfájljaiban..., tehát a directoryhoz tartozó teljes részfában) keresse meg 
+  a második paraméterként adott stringet (ami reguláris kifejezés is lehet). 
+  Textfájlnak számítson az a fájl, amire a<KBD> "file" </KBD>parancs eredménye 
+  tartalmazza a<KBD> " text" </KBD>szót. 
+  <P>A feladathoz a grep-et kell használni, és bármilyen további opciót (pl. 
+  "-i") megadunk a parancsfájlnak (3., 4. ... paraméterként, kivéve, ha a 3. 
+  paraméter "-db" - alább lesz róla szó), azt a grep-nek át kell adni! (A 
+  futtató baja, ha értelmetlen opciót - vagy nem is opciót - ad meg.) 
+  <P>A talált sorokat nem kell kiírni, csak a fájlok nevét (teljes elérési 
+  útvonallal), amikben megtalálható a keresett kifejezés. Ha a script 3. 
+  paramétere nem a "-db" opció (vagy nincs 3. paraméter), akkor a végén azt is 
+  ki kell írni, hogy hány fájlt találtunk összesen. </P></UL>
+<CENTER>
+<HR>
+
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD width=700><EM>Csizmazia Albert</EM></TD>
+    <TD><A 
+  href="mailto:progkor@fi.inf.elte.hu">progkor@fi.inf.elte.hu</A></TD></TR></TBODY></TABLE>
+<HR>
+</CENTER></A></BODY></HTML>

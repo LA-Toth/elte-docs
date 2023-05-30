@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="Description" content="Online Keret Generáló.">
+<meta name="keywords"
+content="frame generator, frame, javascript, javascript tools, java,keretek,html">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Teleport Online Keret Generáló</title>
+</head>
+
+<body background="../../images/bg1.gif" text="#000000">
+<script language="JavaScript">
+
+
+
+
+
+<!-- Hide contents from wack browsers 
+
+
+
+function pct1handler(form) {
+
+
+
+     if (form.framesetpct.value > 100) {
+
+
+
+         alert("A maximum: 100%!");
+
+         form.framesetpct.value = 100 - form.framesetpct2.value;
+
+     }
+
+     else {
+
+
+
+        if (form.framesetpct.value < 1)
+
+{
+
+    alert("A minimum: 1%!");
+
+    form.framesetpct.value = 100 - form.framesetpct2.value;
+
+}
+
+  else form.framesetpct2.value = 100 - form.framesetpct.value;
+
+}
+
+}
+
+
+
+function pct2handler(form)
+
+{
+
+if (form.framesetpct2.value > 100)
+
+{
+
+   alert("A maximum: 100%!");
+
+   form.framesetpct2.value = 100 - form.framesetpct.value;
+
+}
+
+else
+
+{
+
+  if (form.framesetpct2.value < 1)
+
+{
+
+    alert("A minimum 1%!");
+
+    form.framesetpct2.value = 100 - form.framesetpct.value;
+
+}
+
+  else
+
+    form.framesetpct.value = 100 - form.framesetpct2.value;
+
+}
+
+}
+
+
+
+
+
+function generateframes(form) 
+
+{   
+
+if (confirm("Elkészíthetem a kódot?"))      
+
+{
+
+
+
+form.framescode.value = "<HTML>" ;
+
+form.framescode.value = form.framescode.value + "<HEAD>" ;
+
+form.framescode.value = form.framescode.value + "<TITLE>"+form.title.value+"</TITLE>" ;
+
+form.framescode.value = form.framescode.value + "</HEAD>" ;
+
+form.framescode.value = form.framescode.value + "<FRAMESET "+form.frameset.options[form.frameset.selectedIndex].text+"=\""+form.framesetpct.value+"%,"+form.framesetpct2.value+"%\">"; 
+
+form.framescode.value = form.framescode.value + "<FRAME SRC=\""+form.URL1.value+"\" NAME=\""+form.name1.value+"\" MARGINWIDTH=\"1\" MARGINHEIGHT=\"1\">"; 
+
+form.framescode.value = form.framescode.value + "<FRAME SRC=\""+form.URL2.value+"\" NAME=\""+form.name2.value+"\" MARGINWIDTH=\"1\" MARGINHEIGHT=\"1\">";
+
+form.framescode.value = form.framescode.value + "<NOFRAMES>"; 
+
+form.framescode.value = form.framescode.value + form.noframes.value;
+
+form.framescode.value = form.framescode.value + "</NOFRAMES>"; 
+
+form.framescode.value = form.framescode.value + "</FRAMESET>"; 
+
+form.framescode.value = form.framescode.value + "</HTML>";
+
+
+
+
+
+alert("A HTML kód elkészült.  Másold le a kódot egy HTML editorba!");
+
+
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+function previewPage(form) {
+
+
+
+   if (navigator.appName == "Netscape"){
+
+
+
+
+
+      var ResultsWindow=window.open("");
+
+      ResultsWindow.document.writeln(form.framescode.value);
+
+          
+
+
+
+   }
+
+
+
+   else {
+
+
+
+     alert("Ezt a funkciót a Microsoft Internet Explorer böngészõk nem támogatják.");
+
+
+
+   }
+
+}
+
+
+
+// end hiding contents from old browsers  -->
+
+
+
+
+
+</script>
+
+<table border="0">
+    <tr>
+        <td><table border="0" cellpadding="25" bgcolor="#F4FEFF">
+            <tr>
+                <td><font size="5" face="Arial"><b>Teleport Keret
+                Generátor&nbsp;</b></font> <form
+                name="framewizform">
+                    <p><font size="2" face="Arial"><b>1</b>:
+                    Dokumentumod címe:</font> <br>
+                    <input type="text" size="40" name="title"
+                    value="My homepage"> <br>
+                    </p>
+                    <hr>
+                    <p><font size="2" face="Arial"><b>2</b>:
+                    Keretek típusa (COLS=Oszlopok ;
+                    ROWS=Sorok):&nbsp;</font> <br>
+                    <select name="frameset" size="1">
+                        <option>COLS&nbsp;</option>
+                        <option selected>ROWS&nbsp;</option>
+                    </select> <br>
+                    </p>
+                    <hr>
+                    <p><font size="2" face="Arial"><b>3</b>:&nbsp;
+                    Hány százalékban töltsék be a keretek a
+                    böngészõ ablakát? Példánkban Frame 1 az
+                    ablak 90%-át, a Frame 2 az ablak 10%-át
+                    foglalja el.&nbsp;</font> </p>
+                    <p><font size="2" face="Arial"><i>Frame 1</i>:&nbsp;<input
+                    type="text" size="5" name="framesetpct"
+                    value="90" onblur="pct1handler(this.form)"><i>Frame
+                    2</i>:&nbsp;</font><input type="text"
+                    size="5" name="framesetpct2" value="10"
+                    onblur="pct2handler(this.form)"> <br>
+                    </p>
+                    <hr>
+                    <p><font size="2" face="Arial"><b>4</b>:&nbsp;&nbsp;
+                    Dokumentumok betöltése a megadott
+                    keretekbe:&nbsp;</font> </p>
+                    <p><font size="2" face="Arial">Frame 1 URL
+                    címe: :&nbsp;</font> </p>
+                    <p><input type="text" size="50" name="URL1"
+                    value="http://free.netlap.hu/teleport3000"> </p>
+                    <p><font size="2" face="Arial">Frame 1 neve:
+                    :&nbsp;</font> </p>
+                    <p><input type="text" size="20" name="name1"
+                    value="main"> </p>
+                    <p><font size="2" face="Arial">Frame 2 URL
+                    címe: :&nbsp;</font> </p>
+                    <p><input type="text" size="50" name="URL2"
+                    value="http://free.netlap.hu/teleport3000/autok.html">
+                    </p>
+                    <p><font size="2" face="Arial">Frame 2 neve:
+                    :&nbsp;</font> </p>
+                    <p><input type="text" size="20" name="name2"
+                    value="contents"> <br>
+                    </p>
+                    <hr>
+                    <p><font size="2" face="Arial"><b>5</b>: Írj
+                    egy üzenetet azok számára akiknek
+                    böngészõje nem támogatja a kereteket:
+                    :&nbsp;</font> </p>
+                    <p><textarea name="noframes" rows="15"
+                    cols="50" wrap="physical">&lt;font
+
+face=&quot;Arial&quot;&gt;&lt;font size=-1&gt;&lt;HTML&gt; &lt;HEAD&gt; &lt;TITLE&gt; Frame Alert
+
+&lt;/TITLE&gt; &lt;/HEAD&gt; &lt;BODY BGCOLOR=&quot;#ffffff&quot;&gt; &lt;;H1&gt; Böngészõd
+
+nem támogatja a kereteket...ideje lenne lecserélni :-). &lt;/H1&gt;&gt;
+
+&lt;/BODY&gt; &lt;/HTML&gt;&lt;/font&gt;&lt;/font&gt;</textarea> <br>
+                    </p>
+                    <hr>
+                    <p><font size="2" face="Arial"><b>6</b>:
+                    Készítsd el lapodat!&nbsp;</font> </p>
+                    <p><input type="button"
+                    value="Kód Generáló"
+                    onclick="generateframes(this.form)"> <br>
+                    </p>
+                    <hr>
+                    <p><font size="2" face="Arial"><b>7</b>:
+                    Másold le a HTML kódot egy
+                    szövegszerkesztõbe vagy HTML editorba:
+                    :&nbsp;</font> </p>
+                    <p><font size="2" face="Arial"><b>HTML
+                    kód:&nbsp;</b></font> </p>
+                    <p><input type="button" name="preview"
+                    value="Elõzetes"
+                    onclick="previewPage(this.form)"> </p>
+                    <p><textarea name="framescode" rows="20"
+                    cols="50" wrap="physical"></textarea> <br>
+                    </p>
+                </form>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

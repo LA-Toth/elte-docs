@@ -1,0 +1,98 @@
+Az SQL*NET hasznalata
+
+Ha ket kulonbozo gepen levo oracle program kommunikal egymassal akkor
+azt csak az SQL*NET segitsegevel tudjak megtenni. Futhat pl. az egyik
+gepen az SQLPLUS vagy egy PROC program a masikon pedig a szerver,
+de futhat mindket gepen is egy-egy szerver es neha az egyik szerver
+kerdezi le a masikon levo tablakat, neha forditva. Ilyenkor mindig
+aki kerdez az a kliens oldal, aki valaszol az a kiszolgalo (szerver)
+oldal.
+
+A kliens oldal beallitasa:
+
+SQL*NET easy configuration nevu program segitsegevel.
+(Ha a kliens oldal mondjuk egy PC) Ha a kliens oldal nem PC akkor
+"kezzel" kell beleirni azokba a file-okba, amikbe amugy az SQL*NET
+easy configuration program beleir. (tnsnames.ora, sqlnet.ora)
+Minden kliens oldali program (pl. SQLPLUS) az itt beallitott parameterek
+alapjan fog kapcsolodni a szerverre.
+
+Meg kell adni a halozati protokollt (pl. TCP/IP)
+A szerver eleresi cimet (pl. TCP/IP eseten az ip cimet)
+Az instancia azonositojat (a szerveren elvileg tobb instancia is futhat)
+   Ez utobbit szokas SID-nek nevezni.
+Az igy megadott parametereket egyuttesen menti el a konfiguracios program
+es ennek ad egy nevet. (Database Alias) A kliens programnak csak ezt az
+aliast kell megadnia a kapcsolodas keresekor. (Ezt hivjak Host String-nek)
+Es persze az Oracle azonositot es jelszot, akinek a jogaival a kapcsolatot
+keri.  Pl. sqlplus scott/tiger@alias_nev
+
+Ha a kliens program (pl. SQLPLUS) is a szerver gepen fut akkor annak
+csak azt kell tudnia, hogy melyik instanciahoz kell kapcsolodni.
+(Ha pl. tobb is fut a szerveren.) Ezt pedig az ORACLE_SID es az
+ORACLE_HOME unix shell valtozok beallitasaval mondhatjuk meg a kliens
+programnak. A fenti ket valtozo megvaltoztatasaval mas es mas instanciahoz
+tudunk kapcsolodni.
+
+
+A szerver oldal beallitasa:
+
+Az instancia neve installalaskor eldol es kesobb nem is valtoztathato meg.
+Az installalt instanciak nevei benne vannak egy ORATAB nevu file-ban.
+(altalaban /etc/oratab)
+Hogy ez a file hol van azt legegyszerubben a dbstart scriptbol lehet
+megtudni. Ez a dbstart nevu script inditja el az egyes instanciakat es
+persze neki is tudnia kell, hogy egyaltalan milyen instanciak indithatoak.
+Ezert o is olvassa az ORATAB file-t. Es azt inditja el, aminek a neve
+megegyezik az ORACLE_SID kornyezeti valtozoval.
+Az instancia elindulasakor olvasando parameter fileok (init.ora, config.ora)
+helye is a scriptbol keresheto meg legegyszerubben (PFILE)
+
+Altalaban az instancia neve megegyezik az adatbazis nevevel. (kiveve
+parallel server eseten, amikor tobb instancia is ugyanazt az adatbazist
+kezeli) Az adatbazis neve benne van a parameter file-ban. (db_name=V8)
+
+Ahhoz, hogy a szerver oldal fogadni tudja a kliensek kapcsolodasi kerelmeit
+a TNS Listener process futasa szukseges. (Transparent Network Substrate)
+Ha a kliens program is a szerveren fut akkor nem szukseges az SQLNET,
+kiveve a tobbszalas konfiguraciot, mert ilyenkor mindenkeppen kell az SQLNET.
+Ilyen esetben a parameter file-ban be kell allitani a tobb szalas szerverre
+vonatkozo parametereket. (Multi Threaded Server -> mts)
+
+mts_service=fab
+mts_listener_address="(ADDRESS=(PROTOCOL=ipc) (KEY=fab))"
+... stb.
+
+A Listener process elindulasakor szinten egy parameter file-bol veszi
+a beallitasait. Ennek neve es helye altalaban:
+  $ORACLE_HOME/network/admin/listener.ora.
+Ebbol a file-bol olvassa ki a listener, hogy melyik ORACLE_SID-hez
+melyik ORACLE_HOME tartozik.
+A listener process elinditasa a lsnrctl program segitsegevel tortenik.
+  tnsnames.ora -> ebbol olvassa ki a kliens program, hogy egy alias-hoz
+milyen kapcsolodasi parameterek tartoznak (ip cim, protokoll, instancia ...)
+  sqlnet.ora -> altalanos beallitasok vannak benne, amiket a kliens olvas.
+Ebben vannak pl. a naplozasi es trace parameterek.
+
+A kliens oldalon a naplozas a sqlnet.log file-ba tortenik.
+
+Ha olyan lekerdezest hajtunk vegre, ami tobb adatbazisban levo tablat
+is erint akkor a kovetkezo a helyzet:
+
+A gep:	SQLPLUS 			B gep:	 Adatbazis szerver
+	Adatbazis szerver
+
+SELECT * FROM t1, t2@b_gep WHERE ...
+
+Ehhez eloszor az A gepen futo szerveren letre kell hozni egy adatbazis
+linket (ennek a neve most -> b_gep) a kovetkezo sql utasitassal:
+
+CREATE [PUBLIC] DATABASE LINK <db_link_nev>
+CONNECT TO <user_nev> IDENTIFIED BY <jelszo> USING 'connect_string'
+
+A connect string egy adatbazis alias, (ennek a tnsnames.ora file-ban is
+benne kell lennie) ami alapjan az A gepen futo processz megtalalja a
+B gepet es az ott futo megfelelo instanciat.
+
+
+

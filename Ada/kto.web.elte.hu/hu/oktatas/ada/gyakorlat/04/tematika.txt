@@ -1,0 +1,9 @@
+matrix
+verem
+racionalis
+
+Házi feladat
+- Valósítsd meg a Sor típust korlátozott átlátszatlan típusként egy
+  könyvtári egységként elkészített csomagban! A reprezentációhoz használj
+  diszkriminánsos rekordot és megszorítás nélküli indexhatárú tömböt!
+

@@ -1,0 +1,45 @@
+A honlapon szereplõ feladatokat kötelezõen meg kell csinálni a 
+gyakorlati jegy megszerzéséhez. NE KULDJÉTEK EL egyesével a megoldásokat, 
+hanem majd a félév végén egyetlen levélben fogom kérni az összeset.
+A megoldásokban a lekérdezéseket és a végeredményt is el kell küldeni.
+
+
+2. feladat
+
+Adjuk meg az alabbi informaciokat az eppen futo adatbazis-kezelorol:
+(Ahol a kerdesben nem szerepel az adatbazis neve, ott eleg az oradb-n megadni a valaszt.)
+
+
+Adjuk meg, hogy mikor indult el a jelenleg futo instancia.
+
+Az instancia elindulasa ota hany felhasznaloi bejelentkezes tortent a rendszerbe?
+Hany commit es hany rollback utasitast adtak ki?
+
+Mennyi memoriat foglal le a futo instancia az egyes blokk pufferek szamara?
+Mekkora a log puffer merete?
+Mekkora a shared pool merete?
+
+Maximum hany nyitott kurzort tarthatnak fenn az egyes sessionok?
+Hany konkurrens tranzakcio futasat engedi meg egyidejuleg az  adatbaziskezelo?
+
+Kik vannak jelen pillanatban bejelentkezve az adatbazis-kezelobe?
+Melyik felhasznalo van legregebben bejelentkezve? 
+Hany masodperce van bejelentkezve 
+
+Mi a dbpc75 gepen levo adatbazis neve es mikor lett letrehozva?
+Mi a szolgáltatás neve, amivel a kliensek elérhetik az instanciát?
+
+Melyik adatfile-ra vonatkozoan tortent a legtobb blokk-olvasasi muvelet
+az instancia elindulasa ota?
+
+Melyek az adatbazishoz tartozo log file-ok? 
+Melyek az adatbazishoz tartozo control fajlok?
+
+Adjuk meg egy olyan SQL utasitasnak a szoveget (eleg az utasitas elso 60 
+karakteret megadni), amit valaki mas eppen futtat. Azt is adjuk meg, hogy ki 
+futtatja az utasitast.
+
+A jelenleg telepitett adatbazisban hasznalhato-e a particionalasi illetve
+a bitmap index opcio?
+
+Milyen adatbazisbeli fogalom (objektum) a DBA, SYSDBA illetve SYSOPER?

@@ -1,0 +1,24 @@
+Programozás Technológia I. tételek
+==================================
+
+
+1. A szoftvertechnológia kialakulása, projektmenedzselés.
+
+2. Programfejlsztési modellek
+
+3. Nagy rendszerek fejlesztési fázisai, kapcsolataik
+
+4. Az objektumelvû programozás kialakulása. Az objektumelvû modellezés alapjai
+   (nézetrendszer, objektum, osztály, objektumdiagram, osztálydiagram)
+
+5. Objektumosztályok közötti kapcsolatok (definíció, tulajdonságok, jelölések).
+
+6. Állapotdiagram (állapot, esemény, akció, általánosítás, aggregácó,
+   speciális állapotok)
+
+7. Szekvenciadiagram (osztályszerep, életvonalak, üzenetek)
+
+8. Együttmûködési, adatfolyam, aktivációs diagram
+
+9. Komponensdiagram, rendszerszerkezetek, környezeti diagram, felhaszmálói
+   esetek diagramja 

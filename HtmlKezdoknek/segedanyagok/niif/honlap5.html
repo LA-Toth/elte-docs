@@ -1,0 +1,324 @@
+<head>
+<title>Hogyan készítsünk saját honlapot a Weben?</title>
+</head>
+
+<body bgcolor="ffffee">
+
+<center>
+<a href="honlap4.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap6.html">Következô fejezet</a>
+</center>
+
+<hr>
+
+<h2>Linkek</h2>
+
+Amit eddig tettünk, az alig különbözik egy bármilyen kiadványszerkesztô
+programmal elôállítható laptól -- sôt igazából azokhoz képest elég
+szerények a lehetôségek. Van azonban valami, amitôl egy HTML lap életre
+kel: ezek a kapcsolatok, vagy angol szakszóval a linkek. Lapunkon
+bárhol elhelyezhetünk linkeket egy-egy szóhoz, mondathoz, akár szövegrészhez
+vagy képhez kapcsolva, s aki erre rákattint, máris új oldalt kap. Vége
+a lexikonok "lásd még" utalói után folytatott lapozgatásnak és a szószedet
+szerinti keresgélésnek, a "lineáris" olvasásnak -- csak egy kattintás az
+egész. Ez a <b>hipertext</b>.
+<p>
+Persze ezeknek a linkeknek valaminô értelemmel kell bírniuk.
+<p>
+Technikai oldalról a link nem más, mint egy cím, a kapcsolódó anyag (mert
+az nemcsak egy másik HTML lap lehet) <b>URL</b>-je, azaz hálózati 
+"lelôhelye".
+
+<h3>Az URL felépítése</h3>
+
+A legegyszerûbb, ha rögtön egy példával kezdjük:
+<pre>
+http://www.honlapiskola.hu:8080/~jakab/cdlista.html#koncz
+</pre>
+
+<h4>Protokol</h3>
+
+A kettôspontig bezárólag tudatjuk, hogy az általunk elérni kívánt anyagot
+milyen kommunikációs eljárással lehet elérni.
+<ul>
+
+<li><b>http</b><br><br>
+
+HyperText Transfer Protocol. Ez a honlapok számára kitalált adatcsere mód,
+szinte mindig ezzel találkozunk majd.<br><br>
+
+<li><b>gopher</b><br><br>
+
+Gopher. A gopher tekinthetô a webvilág ôsének. Itt szigorú menüstruktúrák 
+közt válogathatunk, míg el nem jutunk az anyagunkhoz. Sokkal kevésbé 
+rugalmas, mint a web, ám egy igazán jó gopher még ma is életképes!<br><br>
+
+<li><b>ftp</b><br><br>
+
+File Transfer Protocol. Ez már özönvíz elôtti technológia, de mert az elsô
+igazi program- és adatkönyvtárak ezzel kezdték, elterjedt. Igazán jó 
+turkálóhelyek léteznek, sôt most is nyílnak ezzel a protokollal. 
+Böngészôvel egész kellemes keresgélni bennük, olyan, mintha egy 
+file-managert (pl. a Norton Commandert) használnánk. (Eredeti formájában 
+iszonyatos. ;-))<br><br>
+
+<li><b>file</b><br><br>
+
+Ez ugyanaz, mint az ftp, csak a saját gépünkön.<br><br>
+
+<li><b>telnet</b><br><br>
+
+Telnet. Ezzel egy gépbe léphetünk be, mintha terminállal dolgoznánk. Van 
+egy-két különleges szolgáltatás, fôleg nagy könyvtárak belsô keresôrendszerei,
+amelyet így tudunk elérni, de nagyon idegen a web világától, inkább csak
+a teljesség kedvéért került be. (A böngészôprogramok nem is kezelik
+egyelôre, hanem egy önálló telnet programot hívnak meg.)<br><br>
+
+<li><b>mailto</b><br><br>
+
+Ez egy hasznos protokol: ha ide kattint valaki, akkor levelet írhat a
+megfelelô címre. Ha a saját címünk az, akkor nekünk -- egy ilyet illik is
+feltenni a lapunkra! A folytatása eltér a többitôl és a fenti példától,
+ugyanis a kettôspont után egy e-mail címet kell írnunk. Jakabé így
+néz ki:
+<pre>
+A levélcímem:&lt;br&gt;
+&lt;address&gt;
+&lt;a href="mailto:jakab@www.honlapiskola.hu"&gt;jakab@www.honlapiskola.hu&lt;/a&gt;
+&lt;/address&gt;
+</pre><br>
+
+<li><b>news</b><br><br>
+
+Az Interneten több ezer newsgroup, azaz elektronikus vitafórum 
+létezik. Ezeket is elérhetjük, de igazán ez sem része a webnek. Szintén 
+sajátos megadási módja van:
+<pre>
+&lt;a href="news:news.group"&gt;news.group&lt;/a&gt;
+</pre><br>
+
+<li><b>java</b><br><br>
+
+Ez egy új fejlesztés, majd megemlítem, de nem ennek az iskolának
+az anyaga.
+</ul>
+
+<h4>Host</h4>
+
+A hostokat már említettük, itt lakik az egyik hoston a mi lapunk is. Kétféle
+megadási mód van: név vagy IP szám szerinti.
+<p>
+Név szerint pl. a már ismert <b>www.honlapiskola.hu</b>.
+<p>
+IP szám szerint pl. a <b>193.6.1.39</b>.
+<p>
+Ez utóbbit kerüljük. Csak akkor szükséges, ha a host-nak nincs bejegyzett
+neve (gyakori kis vagy frissen telepített gépeknél, tehát rákényszerülhetünk).
+
+<h4>Port</h4>
+
+Általában elhagyható. Ritkán, de elôfordul, hogy a böngészônk magától nem 
+tudja megállapítani, melyik "ajtón" kell belépnie a távoli gépbe. Ekkor a 
+hostnevet (vagy az IP számot) egy kettôsponttal és egy számmal egészítjük 
+ki. Nehéz kideríteni, ha vaktában kell próbálkoznunk (ami elég 
+reménytelen), akkor ezeket a számokat érdemes elôször megpróbálni: 8000, 
+8080. A szabványos szám ugyanis a 80-as, de új szervereknél megesik, hogy
+tesztelés vagy más ok miatt nem ezt használják.
+
+<h4>Elérési út és állománynév</h4>
+
+Kezdjük azzal, hogy ha ide semmit nem adunk meg, akkor a megcímzett gép
+legfôbb lapjának kell(ene) megjelennie, amely általában az üzemeltetô
+honlapja. "Társbérlôk" egy / után megadott néven érhetôk el, ha vannak.
+A felhasználók viszont a ~ jel után a <b>user</b> nevük alapján, azaz
+Jakab kezdôlapja a ~jakab "útvonalon". Ha e mögé állománynevet nem 
+illesztünk, akkor a megadott útvonal egy könyvtárra mutat (ez esetünkben
+Jakab public_html könyvtára) és abban az index.html állomány az, ami majd
+megjelenik. Ez az alapértelmezés. Ezért kellett pont ezt a könyvtárat és
+állománynevet megadnunk a "tanfolyam" elején.
+<p>
+Kínos, de az ellenség keze ide is betette a lábát. Bizonyos jó 
+marketingpolitikával, ám annál (khmm) erôtlenebb operációs rendszerrel
+rendelkezô cégek ránk hagyományozták a 8+3 betûs állományneveket. Ekkor
+az index.html index.htm-mé válik, ami kavarodást okozhat. Ha barátunk
+lapját nem érjük el, esetleg próbáljuk meg az egyébként nem kötelezô
+index.html-t index.htm-ként beírni a cím végére! (Vagy esetleg az 
+index.html-t, ha a szolgáltató éppen a 8+3-at tekintette alapértelmezésnek.)
+Van amikor segít...
+<p>
+Más lapok elérésénél már semmit nem takaríthatunk meg, a teljes utat és az
+állomány nevét is meg kell adnunk. A példában Jakab cdlista.html állományát
+címeztük meg.
+
+<h4>Kiegészítôk</h4>
+
+A <b>#</b> jel után egy HTML lapon belül egy adott részre hivatkozunk, ezt a
+lap írójának elôre ki kell jelölnie a megfelelô HTML jellel. Hosszú 
+tematikus listáknál például jól jön. Jakab sokféle CD-t hallgat, de 
+nekünk csak Koncz Zsuzsa kell. Tehát megy a végére az, hogy #koncz.
+<p>
+A <b>?</b> után viszont paramétert ad át a böngészô. Ez már túlmutat azon, 
+amivel mi foglalkozunk, de ha ilyet látunk valahol, érdemes figyelni és 
+találgatni, hogyan is mûködik.
+
+<h3>A link jelölése</h3>
+
+Linkre nekünk is szükségünk lesz. Háromféle "távolságra" vethetjük ki
+a lasszót: távolra, helybe, vagy az oldalon belülre. A linket az 
+<b>&lt;a href=valami&gt;</b> leíróval jelezzük és ezt zárni is kell a 
+<b>&lt;/a&gt;</b> jelzôvel.
+
+<h4>Link távolra</h4>
+
+A teljes URL címet meg kell adnunk:
+<pre>
+&lt;a href="http://www.homepageschool.edu/~donald/cdlista.html"&gt;Donald CD-i&lt;/a&gt;
+</pre>
+Ezzel amerikai Donald barátunk listájára mutató linket helyeztünk el a
+lapunkban. A lapon a "Donald CD-i" felirat jelenik meg (olyan színben, 
+amilyet a <b>link=</b> vagy a <b>vlink=</b> határoz meg -- alapesetben kéken).
+Az egeret odairányítva a nyílból kéz lesz, azaz kattinthatunk. Kattintás
+után érkezik meg Donald barátunk lapja.
+
+<h4>Link helybe</h4>
+
+Jakab a saját public_html könyvtárán belül az állományok neveivel (és az
+esetleges alkönyvtárnevekkel kiegészítve) hivatkozhat a saját lapjaira.
+<pre>
+&lt;a href="cdlista.html"&gt;A saját CD-im&lt;/a&gt;
+</pre>
+Jakab a(z index.html) lapjában egy másik, cdlista.html nevû lapjára 
+hivatkozott. Ezt írhatta volna így is:
+<pre>
+&lt;a href="http://www.honlapiskola.hu/~jakab/cdlista.html&gt;A saját CD-im&lt;/a&gt;
+</pre>
+Ez nemcsak hosszabb, de rugalmatlanabb is. Ha véletlenül költözik a lapunk
+egy másik hostra, akkor az ilyen címeket egyenként mind át kell írni! Jobb
+a rövid (ún. relatív) cím és kényelmesebb is!
+
+<h4>Link dokumentumon belüli ugrásra</h4>
+
+Egy hosszú dokumentumon belüli ugráláshoz elég csak a <b>címkét</b> megadni.
+<pre>
+&lt;a href="#koncz"&gt;Koncz Zsuzsa CD-k&lt;/a&gt;
+</pre>
+Ehhez azonban ezeket a címkéket el kell helyezni. Erre az 
+<b>&lt;a name=cimke&gt;</b> leíró szolgál, ezt is <b>&lt;/a&gt;</b> zárja.
+<pre>
+&lt;a name="koncz"&gt;&lt;/a&gt;
+</pre>
+Itt nem, de a linkeknél muszáj valamit a nyitójel és a záró jel közé tenni,
+mert különben nem lesz mit kattintani!
+<p>
+Link egyébként nem csak HTML lapra, hanem bármi másra is mutathat. A böngészô
+vagy meg tudja jeleníteni (.txt, .gif, .jpg), vagy át tudja adni
+valamilyen csatolt segédprogramnak (.mpg-t videolejátszónak, .au-t 
+hanglejátszónak), amennyiben ilyet el tud érni, végsô esetben pedig 
+felajánlja, hogy letölti nekünk a munkakönyvtárunkba, aztán azt csinálunk 
+vele, amit akarunk.
+
+<h3>Hova kerülhet link a lapon?</h3>
+
+Linket bárhová rakhatunk. Egy szövegbe, egy szóhoz, egy kifejezéshez
+rendelve.
+
+<pre>
+&lt;a href="magamrol.html"&gt;Jakab&lt;/a&gt; vagyok, most tanulom a 
+honlapkészítés rejtelmeit. 
+</pre>
+
+Jakab ebben a példában valószínûleg hosszabban értekezik önmagáról a
+magamrol.html lapon, de ezt csak akkor olvashatjuk el, ha a "Jakab"
+szóra kattintunk.
+<p>
+Akár egy egész bekezdést is elláthatunk linkkel, ha ennek van valami 
+értelme (pl. egy cikkbôl idézünk röviden, de ezt inkább az idézet
+végére írt irodalmi hivatkozás pár szavára illesztjük).
+<p>
+Ha valamit listaszerûen oldunk meg, arra van némi plusz segítségünk.
+Jakab a CD-it így jelöli meg:
+<pre>
+Jakab fantasztikus otthoni CD gyûjteménye:
+&lt;ul&gt;
+&lt;li&gt;&lta href="#cseh"&gt;Cseh Tamás&lt/a&gt;
+&lt;li&gt;&lta href="#koncz"&gt;Koncz Zsuzsa&lt/a&gt;
+&lt;li&gt;&lta href="#pici"&gt;Presser Gábor&lt/a&gt;
+&lt;li&gt;&lta href="#zoran"&gt;Sztevanovity Zorán&lt/a&gt;
+&lt;/ul&gt;
+</pre>
+A tételek egymás alatt lesznek, kicsit beljebb, mint a lap széle és egy
+kis tömör ponttal kezdôdnek majd. A bekezdést az <b>&lt;ul&gt;</b>, a pontokat
+(és az új tétel miatt az új sort) a <b>&lt;li&gt;</b> jelzi. Pontozott lista
+helyett számozottat is kérhetünk az <b>&lt;ol&gt;</b> leíróval.
+<p>
+Linket tehetünk képre is. Mondjuk feltettük a lapunkra ôsi és veretes
+családi címerünket JPEG képként, s azt szeretnénk, hogy az eredeti kutyabôr
+teljes szövegét elolvashassa az, aki rákattint a címerre. Nézzük:
+<pre>
+&lt;a href="kutyabor.html"&gt;&lt;img src="cimer.jpg" alt="cimer"&gt;&lt;/a&gt; 
+</pre>
+A képre kattintva máris jön a kutyabor.html lapunk...
+<p>
+Érdekes és viszonylag új lehetôség képen belül bizonyos területek
+kijelölése. Azt szeretnénk például, hogy kedvenc üdülôfalunk, Baltásasszonyfa
+térképét feltéve a nevezetesebb intézményekrôl (horgásztanya, kocsma) rövid
+leírást adhatnánk. Kicsit bonyolult, de nem veszélyes.
+<p>
+Elôször is kell egy baltásasszonyfai térkép mondjuk GIF-ben, ennek mérete
+pl. 320x200 pixel (nem nagy falu, tömegben nem lehet pihenni!):
+<pre>
+&lt;img usemap="#helyek" src="basszonyfa.gif" alt="B.asszonyfa City"&gt;
+</pre>
+Ebben az új a <b>usemap=</b> jelzés volt. Ez is lehet más lapra, sôt távoli
+lapra való hivatkozás is, de célszerûbb rögtön helyben elintézni a
+feldolgozást:
+<pre>
+&lt;map name="helyek"&gt;
+
+&lt;area shape="rect" coords="110, 90,130,110" href="horgasztanya.html"&gt;
+&lt;area shape="rect" coords="190, 20,210, 40" href="kocsma.html"&gt;
+&lt;area shape="rect" coords="  0,  0,319,199" nohref&gt;
+
+&lt;/map&gt;
+</pre>
+A <b>shape=</b> megjelöli, hogy milyen alakzatot használunk, de egyelôre
+ez csak a téglalap (<b>rect</b>) lehet, ennek bal felsô és jobb alsó 
+koordinátáit adjuk meg pixelben. Ezek után a képen ide kattintva a 
+<b>href=</b> után megadott lap hívódik meg, akár egy linkrôl. A 
+<b>nohref</b> sor elhagyható.
+<p>
+Okos dolog, de ne felejtsük el, hogy aki kép nélkül hívja le ezt az oldalt, 
+az nem tudja használni ezt a lehetôséget! Nyakra-fôre ne éljünk vele,
+ha pedig mégis kell, akkor találjunk ki valamit szegény karakteres 
+felhasználóknak is -- mondjuk egy sima kis listát a kép alá, ugyanezekkel
+a lapokkal.
+<p>
+A végére egy kis fekete leves:
+
+<h3>Gondok a linkekkel</h3>
+
+Sok link, sok gond. Az Internet állandóan átalakul, a szolgáltatások költöznek
+és megszûnnek, vagy csak átmenetileg bezárnak, s újabbak nyílnak. Aki tehát
+nagy nekibuzdulással ezer linket szedett össze az oldalára, az nagy munkát
+szakasztott a saját nyakába: ha nem akar leégni a vakvilágba mutató elavult
+linkjeivel, azt folyamatosan ellenôriznie és frissítenie kell! Ez pedig
+sok idôt igényel. Szóval mértékletesség! Tényleg csak oda tegyünk távoli
+linket, ahova feltétlenül szükséges és idônként ellenôrizzük! Az elsô "not
+found" még nem jelenti azt, hogy nincs többé a címzett lap, dugulások
+elôfordulnak. Próbálkozzunk máskor! Egy hete elérhetetlen lap azonban
+már gyanús, kezdjük el keresni az új címét (ha van még egyáltalán)!
+
+<hr>
+
+<center>
+<a href="honlap4.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap6.html">Következô fejezet</a>
+</center>
+
+</body>

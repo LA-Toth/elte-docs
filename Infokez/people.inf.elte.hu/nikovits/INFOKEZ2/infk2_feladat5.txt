@@ -1,0 +1,47 @@
+A honlapon levo feladatokat kotelezoen meg kell csinalni a gyakorlati 
+jegy megszerzesehez. 
+NE KULDJETEK EL egyesevel a megoldasokat, hanem egy allomanyban 
+gyujtsetek oket es majd a felev folyaman fogom kerni oket.
+A megoldasokban a lekerdezeseket es a vegeredmenyt is el kell kuldeni.
+
+
+5. feladat  (PL/SQL)
+
+
+Irjunk meg egy package-et, amelyben van egy TIPUS(input_szoveg IN VARCHAR2) 
+nevu fuggveny, amelyik a parameterul kapott karakterlancrol eldonti, hogy az 
+numerikus ertek, datum, vagy egyik sem, azaz csak szovegkent ertelmezheto. 
+A datumok eseten eleg ha a fuggveny egyetlen datumformatumot 
+(pl. az alapertelmezettet) felismer. 
+A fuggveny altal visszaadott ertek legyen mondjuk: 1, 2, illetve 3, a parameter 
+tipusanak megfeleloen.
+
+A fuggvenyt probaljuk is ki proceduralis utasitasokban is es SQL utasitasokban is.
+pl.   valtozo := <package_nev>.tipus(parameter);
+      SELECT oszlop1, <package_nev>.tipus(oszlop1) FROM tabla_nev
+formaban. 
+Ehhez tegyük be egy tábla karakteres oszlopába a következõ adatokat:
+'1240', '12A3', 'Blabla', '2005-04-19', '12.5', '2004-apr-19' 
+
+TIPP: Hasznalhatjuk az Oracle konverzios fuggvenyeit plusz a hibakezelest.
+
+
+Az ORAUSER nevu oracle felhasznalo tulajdonaban van egy dolgozo_2 es 
+egy osztaly nevu tabla. A dolgozo_2 tabla annyiban kulonbozik a korabban 
+megismert dolgozo tablatol, hogy a jutalek nevu oszlopa VARCHAR2 tipusu 
+es bizonyos soraiban tenyleges szamokat, bizonyos soraiban pedig csupan 
+megjegyzest tartalmaz.  Irjunk olyan PL/SQL programot, amelyik a ket tabla 
+alapjan a kovetkezo informaciokkal tolt fel egy PL/SQL tablat (tombot):
+(osztaly neve, dolgozok szama, az osztaly legregebbi dolgozoja, 
+ osszes fizetes + jutalek az osztalyon)
+A program a PL/SQL tabla tartalmat irja is ki a feltoltes utan.
+
+TIPP: Hasznalhatjuk az elozoekben megirt fuggvenyt.
+
+
+Írjunk meg egy pl/sql blokkot, ami a következõ karakterláncot írja ki a 
+képernyõre.
+Vegyük azokat az egyedi kulcs (U) tipusú megszorításokat ábécé sorrendben, 
+amelyek pontosan 3 oszlopra vonatkoznak. Adjuk meg a neveik utolsó betûibõl 
+álló karakterláncot. (Elég a sorrendben elsõ 10 táblát venni, ha véletlenül
+ennél több lenne.) 

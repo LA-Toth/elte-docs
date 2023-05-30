@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0042)http://www.elte.hu/~bel/speci/secspec.html -->
+<HTML><HEAD><TITLE>Security speci</TITLE>
+<META content="text/html; charset=windows-1250" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2614.3500" name=GENERATOR></HEAD>
+<BODY>
+<H1 align=center><A href="http://www.inf.elte.hu/speci/security3">Security 
+speci</A> </H1>
+<H4 align=center>IBM nagygépek és a RACF, 2002. március 19.</H4>
+<H2>Tartalomjegyzék</H2>
+<UL>
+  <LI><A href="http://www.elte.hu/~bel/speci/secspec.html#DoD">a DoD 
+  kategóriái,</A> 
+  <LI><A href="http://www.elte.hu/~bel/speci/secspec.html#label">biztonsági 
+  cimkék</A> 
+  <LI><A href="http://www.elte.hu/~bel/speci/secspec.html#VM">a minimális 
+  security nagygépeken (VM önmagában),</A> 
+  <LI><A href="http://www.elte.hu/~bel/speci/secspec.html#RACF">RACF - a profi 
+  security nagygépeken,</A> 
+  <LI><A 
+  href="http://www.elte.hu/~bel/speci/secspec.html#LINK">irodalomjegyzék.</A> 
+  <LI><A href="http://www.elte.hu/~bel/speci/secspec.html#label">Biztonsági 
+  cimkék</A> </LI></UL>
+<HR>
+
+<H3 align=center><A name=DoD>A DoD kategóriái</A></H3>Mi is az a DoD: az 
+Egyesült Államok Védelmi Minisztériuma (Department of Defense). 
+<P>A DoD különböző kategóriákba sorolta a számítógépes rendszereit security 
+szempontjából, és ezt használják a beszállítói is. 
+<P>Ezek a kategóriák, a megbízhatóság növekedő sorrendjében: <B>D, C1, C2, B1, 
+B2, B3, A1, A1+</B> 
+<H4>D </H4>A semminél több, de a C1-nél kevesebb (pl.: PC-DOS, BIOS jelszóval 
+:-)) 
+<H4>C </H4>Ez már érdekesebb. Ennek ellenére legfontosabb jellemzője (az én 
+szememben) mindkét C kategóriának, hogy arról szól, mennyire megbízhatóra 
+<B>tervezték</B> a rendszert. Az, hogy itt-ott van benne egy kis 
+buffer-overflow, az már implementációs részletkérdés. 
+<H4>C1 </H4>Milyenre kell tervezni egy ilyen rendszert: 
+<UL>
+  <LI>DAC: Discretionary Access Control: a felhasználók objektumokhoz (pl. file, 
+  program) való hozzáférését szabályozza, és lehetővé teszi a felhasználók 
+  számára, hogy egyének vagy csoportok számára megosszák saját objektumaikat. 
+  Ezen kívűl alkalmanként mások (pl. privilégizált adminisztrátorok) is adhatnak 
+  jogot. 
+  <LI>ID: azonosíthatóak és ellenőrizhetőek legyenek a felhasználók, mielőtt 
+  bármit is megtehetnének. 
+  <LI>Jól dokumentált legyen. 
+  <LI>És még van néhány kevésbé fontos kritérium (pl. gyártó által tesztelt). 
+  </LI></UL>
+<H4>C2 </H4>Ez egy fokkal erősebb követelményeket támaszt. Ezek is viszonylag 
+széles körűen kielégíthetőek (VMS, egyes UNIX-ok által), de csökkenti a 
+hatékonyságot ezekben a rendszerekben, ezért gyakran nem használják ki. A 
+nagygépeken ez a minimális szint (egyetemi környezetben ennél magasabb szint 
+felesleges). 
+<UL>
+  <LI>C1 security 
+  <LI>Audit: a biztonsággal kapcsolatos események naplózása. Képes legyen a 
+  userek aktivitását (pl. programindítás, állománymegnyitás) naplózni, és 
+  security szempontból érzékeny személyek (adminisztrátorok) tevékenységét 
+  kiemelt figyelemmel kisérni. Természetesen minden betörési kisérletet is. A 
+  napló számos információt (pl.: időpont, hely, userid, esemény kategóriája 
+  stb.) tartalmaz. Az adminisztrátor beállíthatja a kivánt naplózási 
+  részletességet. 
+  <LI>Object Reuse: semmilyen módon sem lehet újrahasznosítani az objektumokat. 
+  Amikor erőforrást igényel egy subject (user), akkor az ne tartalmazzon 
+  információt. </LI></UL>
+<H4>B </H4>Véleményem szerint a legnagyobb különbség a komoly tesztelés. Míg a C 
+kategóriákban elég volt a saját teszt, addig itt már független szakértők 
+tesztelik a rendszert (természetesen olyanok, akik átlátják mind a koncepciókat, 
+mind a megoldást, és rendelkezésükre áll a teljes source code is). Ha megbukik a 
+teszten, azonnal visszavonják a B minősítést, és (javítás után) kezdhetik 
+előlről a tesztelést. 
+<P>Rendkívül kevés rendszer képes ezeket az igényeket kielégíteni, de a 
+konstruktív munkát mindenképpen gátolja. Egy átlag cégnél (pl. bank) ez 
+elfogadható, egyes helyeken (pl. egyetemen, kutatóintézetben) nem. 
+<P>Egy ilyen rendszert rendkívül jól meg kell tervezni ahhoz, hogy a mindennapos 
+munkát ne gátolja. Jó tempóban dolgoznak annál a cégnél, ahol egyetlen év alatt 
+be lehet vezetni. Jellemzően a cég teljes átvilágításával kezdik (ezt külső 
+szakértők készítik el), melynek folyamán megállapítják a pontos hierarchiát. Ezt 
+a security adminisztrátor formális nyelven leírja. <A name=B1></A>
+<H4>B1 </H4>
+<UL>
+  <LI>C2 security 
+  <LI>Címkék: minden subject (felhasználó) és objektum rendelkezik egy ún. 
+  security label-lel. Ennek van hierarchikus része, és nem hierarchikus része. 
+  Ez elválaszthatatlan az objektumoktól (kivétel az egyszintű eszközök), és pl. 
+  nyomtatásnál is a lap alján/tetején meg kell hogy jelenjen. Csak megfelelő 
+  cimkéjű subject férhet hozzá az objektumokhoz 
+  <LI>MAC - Mandatory Access Control: a hozzáférés vezérlése kötelező. Egy 
+  subject csak akkor olvashat objektumot, ha legalább akkora jogai vannak (a 
+  hierarchikus minősítése legalább akkora, és minden nem hierarchikus 
+  minősítéssel rendelkezik, amivel az objektum). Ez még eléggé logikusan 
+  hangzik, hiszen ezáltal elkerülhető a "reading up" (alacsony minősítésű 
+  subject magas minősítésű objektumot olvas). Viszont a párja, a "writing down" 
+  is tilos, vagyis nem írhat a subject nála kisebb jogú objektumot. </LI></UL>
+<H4>B2 </H4>
+<UL>
+  <LI>B1 security 
+  <LI>Trusted Path: megbízható kommunikációs csatorna a user és a gép között. 
+  <LI>Device Label: minden eszköz is rendelkezik címkével, amely megadja, hogy 
+  mennyire érzékeny adatok tárolhatóak rajta fizikai szempontból. 
+  <LI>Structured Protection: jól definiált formális modell alapján épül fel a 
+  rendszer, melynek minden subject és objektum a része. </LI></UL>
+<H4>B3 </H4>
+<UL>
+  <LI>B2 security 
+  <LI>A biztonsággal kapcsolatos kód rövid és áttekinthető. Jól elválasztható az 
+  operációs rendszer egyéb részeitől. 
+  <LI>Security adminisztrátor alkalmazása </LI></UL>
+<H4>A </H4>Az A minősítés fókuszában a bizonyított helyeség áll. 
+<H4>A1 </H4>Funkcionálisan megegyezik a B3-mal, azonban formálisan bizonyított a 
+tervezés helyesége. 
+<H4>A1+ </H4>"Beyond A1": a teljes rendszer bizonyítottan jó: a source szintig 
+formálisan bizonyított a helyessége, és a compilerek, linkerek helyessége is 
+bizonyított. 
+<P>A közeljövőben nem várható ilyen rendszer. 
+<H3 align=center><A name=label>Biztonsági cimkék</A></H3>Nézzük meg kicsit 
+részletesebben a B biztonsági szintnél emlitett cimkéket. 
+<P>Egy cimkének akkor felel meg valaki, ha mindkét összetevôjének megfelel. Ez 
+is csak szükséges, de nem elégsés feltétel, mivel a C szintnél megismert 
+ellenörzés csak ez után következik. Tehát a cimkék egy olyan plusz biztonságot 
+jelentenek, amit nagyon egyszer&ucirc; átlátni, és megkerülhetetlen. 
+<P>
+<H4>Security level</H4>A security label hierarchikus részét lehet szintnek is 
+nevezni. Mivel hierarchikus, ezért egy adott szintre vonatkozó jog automatikusan 
+magában foglalja a hierarchiában alatta található szintekre vonatkozó jogokat 
+is. 
+<P>Egy konkrét példa (az <A 
+href="http://www.complex.hu/kzldat/t9800080.htm/mun_2.htm">1998. évi LXXX. 
+törvény az államtitokról és a szolgálati titokról szóló 1995. évi LXV. törvény 
+módosításáról</A>5/B. § (2)): 
+<UL>
+  <LI>"COSMIC TOP SECRET" - "KIEMELTEN SZIGORÚAN TITKOS"; 
+  <LI>"NATO SECRET" - "NATO TITKOS"; 
+  <LI>"NATO CONFIDENTIAL" - "NATO BIZALMAS"; 
+  <LI>"NATO RESTRICTED" - "NATO KORLÁTOZOTT TERJESZTÉSŰ". 
+  <LI>"UNCLASSIFIED" - NEM MINÔSÍTET; (en nem szerepel a fent említett 
+  törvényben, de logikailag mindenképpen ide tartozik.) </LI></UL>Ekkor pl. egy 
+NATO CONFIDENTAL minôsítés&ucirc; infohoz hozzáférhet az is, aki NATO SECRET 
+minôsítéssel rendelkezik. 
+<H4>Security category</H4>A security label nem hierarchikus részét lehet 
+kategóriának is nevezni. Mivel nincsen kapcsolat a kategóriák között, azért csak 
+akkor férhetünk hozzá egy infohoz, ha minden szükséges category-val 
+rendelkezünk. 
+<P>Egy példa: 
+<UL>
+  <LI>atom robbanófej 
+  <LI>robotrepülôgép 
+  <LI>harckocsi </LI></UL>Ilyen esetben csak az jogosult infohoz egy atom 
+robbanófej&ucirc; robotrepülôgéppel kapcsolatban, aki mindkét categoryra minôsített. 
+<H3 align=center><A name=VM>A minimális security nagygépeken (VM 
+önmagában)</A></H3>
+<H4>Mi az a nagygép? </H4>A nagygép 3 szempontból "nagy": 
+<UL>
+  <LI>nagy a megbízhatósága, 
+  <LI>nagy az adatfeldolgozó képessége, 
+  <LI>nagy a security benne. </LI></UL>Az IBM nagygépek mindhárom kategóriában 
+világelsők, ebből persze most csak az utolsó a fontos. 
+<P>Milyen oprendszerek találhatóak rajta: 
+<UL>
+  <LI>VM - Virtual Machine: Teljes értékű virtuális gépeket nyújt 1971-től. 
+  <LI>MVS, OS/390, zOS - A világ leghibatűrőbb operációs rendszere, a nagygépek 
+  fő oprendszere 1964-től, egyben az egyik leggyorsabban fejlődő oprendszer. Az 
+  MVS továbbfejlesztése (? :-)) az OS/390, ami az egyik első Unix95 szabványú 
+  oprendszer. 
+  <LI>VSE - 1962-ben ideiglenesen összedobta pár ember az IBM-nél, amíg kész 
+  lesz az OS, de azóta sem sikerült kidobniuk. </LI></UL>
+<H4>CP </H4>A VM alatt az ún. CP (Control Program) segítségével befolyásolhatjuk 
+a virtuális gépeket. Alapvető szerepe van a gép securityjében, hiszen ha 
+(jogosultság nélkül) módosítani tudunk egy másik virtuális gépet, akkor már 
+gyakorlatilag bármit megtehetünk. 
+<P>Egy lehetséges megoldás, ha a felhasználók nagy részének azt engedélyezzük, 
+hogy a saját virtuális gépükre vonatkozó paramétereket módosíthassák; néhánynak 
+pedig azt, hogy mások virtuális gépeit, illetve a fizikai gépet módosíthassák 
+(pl. shutdown). Ez egy 2 szintű modell lett volna, hasonlóan a Unix 
+filozófiájához. 
+<P><A name=CLASS></A>Azonban az IBM-nél nem ezt az utat követték, hanem 
+classokat vezettek be, és a CP utasítások/diagnose-ok (kb. API-k) ezek alapján 
+használhatóak. Maximum 32 class lehetséges, ebből 8-nak van alapértelmezése (az 
+OFFI-ban pl. 12-t használtunk). Ezek nem épülnek egymásra, hanem függetlenek, 
+ezáltal 4 milliárd szint különböztethető meg elméletben. Így elkerülhető volt a 
+Unixok legnagyobb hibája, hogy a suid bites programot megtörve túl sok jogot 
+kapunk. 
+<P>Ezek a classok egy-egy betűvel (illetve számjeggyel) azonosíthatóak, és az 
+alábbi az alapértelmezés: 
+<UL>
+  <LI>A - Fő operátor 
+  <LI>B - Erőforráskezelő operátor 
+  <LI>C - Rendszerprogramozó 
+  <LI>D - Spoolkezelő operátor 
+  <LI>E - Rendszeranalizáló 
+  <LI>F - Rendszermérnök (hardveres) 
+  <LI>G - Közönséges felhasználó 
+  <LI>H - IBM használatára fenntartott </LI></UL>A user szintű használathoz a G 
+jog szükséges, segítségével adhatunk ki a virtuális gépünkre vonatkozó 
+parancsokat (pl. újraindítás, trace-elés, memória és processzor módosítása az 
+engedélyezett határokon belül). A más virtuális gépére, illetve az egész gépre 
+vonatkozó parancsokat szokás az ettől eltérő classokba rakni. 
+<P>Néhány parancsra példa: 
+<UL>
+  <LI>A - FORCE, SHUTDOWN, XAUTOLOG: automatikusan beléptet egy virtuális gépet 
+  jelszó nélkül 
+  <LI>B - XAUTOLOG, ATTACH: nem megosztható eszköz (pl. mágnesszalag) 
+  hozzárendelése egy virtuális géphez 
+  <LI>C - STORE H : fizikai memória módosítása 
+  <LI>D - TRANSFER : más felhasználó spool állományának áthelyezése 
+  <LI>E - MONITOR EVENT : CP események naplózása 
+  <LI>F - SYNCMDRS : fizikai eszközök hibaüzeneteinek beolvasása 
+  <LI>G - QUERY VIRTUAL : a saját virtuális gépre vonatkozó információk kiírása 
+  <LI>H - 
+  <LI>&nbsp;&nbsp;&nbsp; - LOGOFF </LI></UL><A name=DIRM>
+<H4>DIRMAINT </H4></A>A DIRMAINT virtuális gép segítségével tároljuk a 
+felhasználók adatait. Ezek közé tartozik az azonosítójuk, accountjuk, jelszavuk, 
+jogaik (ld. <A href="http://www.elte.hu/~bel/speci/secspec.html#CLASS">előző 
+pont</A>), speciális jogok (pl. LNKNO, ld. <A 
+href="http://www.elte.hu/~bel/speci/secspec.html#LNKNO">később</A>), általuk 
+használt minidiszkek stb. 
+<P>Ez szintén kényes pont, hiszen a DIRMAINT adatait módosítva megtörhető lenne 
+a teljes rendszer. Ezért ennek a "belső" securityje is igen átgondolt, és a 
+rendszer egészéhez hasonlóan classokra vannak osztva a különböző jogok (régebben 
+ez nem így volt, hanem 6 - egymással nem keverhető - jogosultság volt benne 
+csupán). Ezek a classok: 
+<UL>
+  <LI>A - Adminisztráció, non-DASD (DASD: vinyó más néven) 
+  <LI>D - DASD management 
+  <LI>G - Közönséges felhasználó 
+  <LI>H - Felhasználói tanácsadó 
+  <LI>M - Password monitor 
+  <LI>O - System operator 
+  <LI>P - DASD management program, (pl. DFSMS/VM, amely többszintű tárolást 
+  biztosít) 
+  <LI>S - Support programmer 
+  <LI>Z - Internal communication </LI></UL>Természetesen ezek is módosíthatóak 
+menet közben. 
+<H4>SFS </H4>Régen (kb. 1986-ig) egy igen egyszerű file-rendszer volt VM alatt. 
+Minidiszkeken (hasonlóak a PC-s partíciókhoz) voltak a file-ok, és (RACF nélkül) 
+egész minidiszkre lehetett jogot adni, amelyeket háromféle módon lehetett 
+elérni: 
+<OL>
+  <LI><A href="http://www.elte.hu/~bel/speci/secspec.html#DIRM">DIRMAINT</A> 
+  segítségével: ekkor a security biztosított, viszont kicsit nehézkes, mivel a 
+  user nem adhat jogot a saját minidiszkjére sem. 
+  <LI>Jelszóval: jelszó segítségével a megadott módon (pl. írás, olvasás, 
+  multi-írás) elérhető. Természetesen az alapértelmezés, hogy így nem érhető el, 
+  de akár publikussá is tehető. 
+  <LI><A name=LNKNO>LNKNO</A> jog esetén jelszó nélkül </LI></OL>Jelenleg ezt a 
+módszert ritkán használjuk felhasználói adatok tárolására, helyette egy "igazi" 
+file rendszert, az SFS-t (Shared File System). Ez a virtuális gépek "között" van 
+(hasonlóan az NFS-hez). 
+<P>SFS file-ok lehetséges jogai: Read, Write. Ezek egyes felhasználóknak 
+adhatóak (vagy publikussá tehetőek). A write magában foglalja a read-et. 
+<P>SFS könyvtárak lehetséges jogai: Read, Write, Newread, Newwrite. Az utóbbiak 
+a könyvtárba később bekerülő file-okra vonatkoznak. Ha a könyvtárra nincs 
+olvasási jog, de a benne lévő file-ra igen, akkor aliast (kb. "ln -s" Unixon) 
+lehet rá készíteni. 
+<P>Háromféle felhasználó lehetséges SFS-en belül: 
+<UL>
+  <LI>Adminisztrátor: joga van leállítani, kimenteni stb. a file-rendszert, és 
+  joga van minden objektumhoz, mintha a sajátja lenne. Létrehozhat/töröhet 
+  felhasználókat, módosíthatja a limitjüket. 
+  <LI>User: a saját állományaihoz/könyvtáraihoz joga van (a saját könyvtára a 
+  file-rendszeren belüli azonosítójával kezdődik). 
+  <LI>Egyéb felhasználók: a gép nem minden felhasználójának van automatikusan 
+  joga a gép összes file-rendszeréhez. Ha egy file-rendszert publikussá tettek, 
+  akkor az azon belüli publikus adatokhoz hozzáférhet a gép bármely 
+  felhasználója. </LI></UL>
+<H3 align=center><A name=RACF>RACF - a profi security nagygépeken</A></H3>A RACF 
+(Resource Access Control Facility) segítségével lehet B securityt elérni 
+nagygépeken. Lehet C2-re is konfigurálni, és tekintettel arra, hogy a kreatív 
+munkát mennyire akadályozza a B szint (különösen a Mandatory Access Control) 
+általában a hivatalos B1 szintet nem érik el. Mivel az OS/390 megfelel a Unixos 
+specifikációknak is, ezért nem éri el a hivatalos B1 szintet (csak az MVS). Ha 
+kivesszük belőle az OS/390 UNIX támogatást, akkor ismét C2 helyett B1-szer&ucirc; 
+lesz. 
+<P>Az MVS-t, OS/390-et a legtöbb helyen RACF-el használják. Valószínűleg azért, 
+mert akinek van pénze arra, hogy OS/390-et vegyen, annak már fontosak annyira az 
+adatai, hogy a RACF-fel járó kényelmetlenségeket is vállalja. 
+<H4>Fő előnyök: </H4>
+<UL>
+  <LI>Rugalmas vezérlés: helyi szabályok segítségével hozzáalakítható a konkrét 
+  elvárásokhoz. 
+  <LI>Széles körű illeszthetőség: nagyszámú (nagygépes) programmal 
+  együttműködik. 
+  <LI>Központi/osztott ellenőrzés: amennyiben túl bonyolult/nagyméretű a 
+  rendszer ahhoz, hogy egyetlen security adminisztrátor felügyelje, létre lehet 
+  hozni csoportokat. Ekkor a csoport egésze kap jogokat a fő security 
+  adminisztrátortól, és a csoporton belüli security adminisztrátor osztja ezeket 
+  tovább az egyes usereknek. 
+  <LI>Átlátszóság: számos felhasználó nem törődik a securityvel, a maradék is 
+  időnként nem megfelelően védi az adatait. RACF esetén nincs szükség arra, hogy 
+  aggódjunk a userek magatartása miatt, mivel nem nekik kell az adataik 
+  védelmével törődni. 
+  <LI>Exit rutinok: ezek segítségével 100%-osan szabadon konfigurálható a 
+  rendszer. 
+  <LI>Sysplex támogatás: segítségével a sysplexen belül (amelybe 32 processor 
+  complex tartozhat) a security is közös. </LI></UL>
+<H4>RACF és az oprendszer </H4>A RACF az operációs rendszerhez képest egy önálló 
+réteget képez, ami miatt gyakran ESM-nek (External Security Manager) nevezik. 
+<P>Működésére egy példa, hogy egy már bejelentkezett felhasználó módosítani akar 
+egy létező RACF objectumot: 
+<P><IMG src="IBM nagygépek és RACF_elemei/racf11.gif"> 
+<OL>
+  <LI>A felhasználó hozzáférést kér az objektumhoz (pl. editorral megnyitja) a 
+  resource managertől. 
+  <LI>A resource manager a RACF-hez fordul a kéréssel. 
+  <LI>A RACF az adatbázisa alapján ... 
+  <LI>... ellenőrzi, hogy van-e megfelelő joga a felhasználónak... 
+  <LI>... a profile-ja alapján. 
+  <LI>A RACF visszaadja a státuszt a resource managernek. 
+  <LI>A resource manager teljesíti (vagy sem) a kérést. </LI></OL>
+<H4>Belépés </H4>
+<OL>
+  <LI>RACF számára definiálva van-e a user 
+  <LI>megfelelő jelszót (PassTicket-et, UIDCARD-ot, digitális aláírást) adott-e 
+  a user 
+  <LI>OS/390 UNIX esetén az UID és a GID érvényes-e 
+  <LI>REVOKE (letiltott) státuszú-e a user 
+  <LI>az adott napon és időpontban beléphet-e a user 
+  <LI>használhatja-e az adott terminált (az adott időben) 
+  <LI>használhatja-e az alkalmazást </LI></OL>
+<H4>Profile </H4>2 fő fajtája van a profile-oknak: 
+<P>1. resource: 
+<P><IMG src="IBM nagygépek és RACF_elemei/racf32.gif"> 
+<P>
+<UL>
+  <LI>Resource name: a védeni kívánt erőforrás neve (a végén tartalmazhat joker 
+  karaktert) 
+  <LI>Profile owner: nem biztos, hogy az erőforrás tulajdonosa is 
+  <LI>UACC: mindenki számára engedélyezett hozáférés (mint Unixban a world 3 
+  bitje) 
+  <LI>ACL: a groupok, userek listája, akik hozzáférhetnek az erőforráshoz (a 
+  móddal együtt, pl. read, alter, update) 
+  <LI>Classification: seclevel + seccategory (security label) (ld. <A 
+  href="http://www.elte.hu/~bel/speci/secspec.html#B1">B1</A>) A seclevel a 
+  hierarchikus része a security labelnek, amelyet 0-254 közötti egész számként 
+  implementáltak, minnél magasabb, annál érzékenyebb szintet jelez. A 
+  seccategory a nem hierarchikus része a security labelnek, legfeljebb 32k 
+  különböző lehet egy rendszerben. 
+  <LI>Auditing/warning/notification options </LI></UL>
+<P>2. user: 
+<P><IMG src="IBM nagygépek és RACF_elemei/racf41.gif"> 
+<UL>
+  <LI>User ID: userid és valós név 
+  <LI>Password 
+  <LI>Profile owner 
+  <LI>User attributes: mikor léphet be, felfüggesztett-e, definiáláskori 
+  security label, auditor/operator/special-e, card illetve digitális aláirás 
+  megkövetelt-e 
+  <LI>Classification: aktuális security label 
+  <LI>Data: egyéb adatok </LI></UL>
+<H4>Erőforráshozzáférés ellenőrzése </H4>
+<OL>
+  <LI>Security level ellenőrzése (read: user &gt;= object, read-write: user = 
+  object, terminál: ha kisebb, akkor ideiglenesen csökkenti a user security 
+  leveljét) 
+  <LI>Security category ellenőrzése (ha van olyan security category, amivel a 
+  user nem rendelkezik, de az erőforrás igen, akkor a RACF megtagadja a 
+  hozzáférést) 
+  <LI>az alábbiak közül legalább egy teljesül: 
+  <UL>
+    <LI>az erőforrás dataset (kb. file) és a HighLevelQualifier (kb. főkönyvtár) 
+    megegyezik a useriddel 
+    <LI>a userid az ACL-ben van megfelelő joggal 
+    <LI>a group az ACL-ben van megfelelő joggal 
+    <LI>az UACC engedélyezi a hozzáférést </LI></UL></LI></OL>
+<P><IMG src="IBM nagygépek és RACF_elemei/racf22.gif">
+<P>
+<H4>Naplózás </H4>Egyrészt statisztikai adatokat gyűjt a RACF (ki mikor, 
+hányszor lépett be, mit hányszor használt), másrészt naplózza az alábbiakat: 
+<UL>
+  <LI>engedély nélküli belépési kisérletek 
+  <LI>érvényes és érvénytelen kisérletek RACF által védett erőforrások 
+  használatára 
+  <LI>érvényes és érvénytelen kisérletek RACF parancsok kiadására 
+</LI></UL>Természetesen számos eszközzel rendelkezik, amivel a logokat elemezni 
+lehet. 
+<P> 
+<P>
+<H3 align=center><A name=LINK>Irodalomjegyzék</A></H3>
+<UL>
+  <LI><A href="http://www.inf.elte.hu/speci/security/anyagok/tc.zip">Orange Book 
+  (DoD kategóriák) (Postscript formátumban),</A> 
+  <LI><A href="http://www.inf.elte.hu/speci/security/anyagok/tcrtf.zip">Orange 
+  Book (DoD kategóriák) (RTF formátumban),</A> 
+  <LI><A 
+  href="http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/Shelves/ICHZBK20">z/OS 
+  V1R3.0 Security Server </A>
+  <LI><A 
+  href="http://www.s390.ibm.com/bookmgr-cgi/bookmgr.cmd/Shelves/EZ33RA07">RACF 
+  and Security Redbooks Bookshelf </A>
+  <LI><A 
+  href="http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/Shelves/ICHVMB08">RACF 
+  V1R10 for VM Bookshelf </A>
+  <H3></H3></LI></UL>
+<P> 
+<P>
+<H4 align=right>Készítette: <A href="mailto:bel@icss.hu">Bel</A> 
+</H4></BODY></HTML>

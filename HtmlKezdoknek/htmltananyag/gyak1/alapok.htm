@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1250">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Alapok</title>
+<script language="JavaScript"> 
+function ujablak() 
+{
+html = window.open("","","resizable=1,scrollbars=1,width=400,height=300,screenx=50,screenY=50"); 
+} 
+function updatewin(input_form) 
+{ html.document.open("text/html"); 
+html.document.write(input_form); 
+html.document.close() 
+} 
+</script> 
+</head>
+
+<body link="#0000FF" bgcolor="#F4FEFF" background="../../images/bg1.gif">
+<basefont size="2">
+  <table border="0" cellpadding="5" cellspacing="0" width="100%" background="../../images/bg2.gif" bgcolor="#003366">
+    <tr>
+      <td align="center"><b><font color="#FFFFFF" face="Arial" size="3">Bevezetés</font></b></td>
+    </tr>
+  </table>
+
+  <table border="0" width="100%" bgcolor="#F4FEFF" cellspacing="0" cellpadding="5">
+    <tr>
+      <td width="100%" colspan="2">
+<h2>
+<br>
+<script
+language="JavaScript"><!--
+//-
+document.write('<h5><p align="Right"> Utolsó módosítás: ')
+document.write(document.lastModified)
+document.write('</p></h5>')
+// --></script><b><font face="Arial">A HTML Stuktúra&nbsp;</font><br>
+</b>
+</h2>
+<p><font face="Arial" size="2">Amint a <a href="techbev.htm">bevezetõben</a>
+olvashattuk, minden HTML formátumú szövegfájl a &lt;HTML&gt; utasítással
+kezdõdik és a &lt;/HTML&gt; záró utasítással végzõdik. </font><font face="Arial" size="2">A
+dokumentumot a fejlécelemek vezetik be, melyek kezdetét a &lt;HEAD&gt; utasítás
+jelzi. A fejlécelemek között szokás a dokumentumcímet megadni, mely címet
+a &lt;TITLE&gt; és a &lt;/TITLE&gt; utasítások közé kell zárni. A fejlécet
+a &lt;/HEAD&gt; utasítás zárja.&nbsp;</font></p>
+<p><font face="Arial" size="2">A dokumentumtörzs a fájl &lt;BODY&gt; és
+&lt;/BODY&gt; utasítások közötti része. Ezen elemek között kell
+elhelyezni mindent: a szöveget, hivatkozásokat, képeket, stb. (A keretek és
+a JavaScript kódok kivételével!)</font></p>
+<p><font face="Arial" size="2">Tehát a következõkben a következõ
+szerkezetet fogjuk használni:</font></p>
+<p><font face="Arial" size="2">&lt;HTML><br>
+&lt;HEAD><br>
+&lt;TITLE> Ide jön az oldal címe, ezt a szöveget fogod latni a böngészõ címsorában&lt;/TITLE><br>
+&lt;/HEAD><br>
+&lt;BODY><br>
+Ide jön a dokumentumtörzs.<br>
+&lt;/BODY><br>
+&lt;/HTML></font></p>
+
+<p><font face="Arial" size="2">A következõkben egyszerû formázó tag-ekre mutatok példát,
+amelyet a &lt;body&gt; és &lt;/body&gt; tagek közé kell elhelyezni.</font></p>
+
+<p><font face="Arial" size="2">&nbsp;A
+táblázatban láthatjátok a kódot, és mellette a kód
+eredményét. Amint látni fogjátok, minden tag-et (formázó utasítást) a &lt; jel vezet be, és a
+&gt; jel zár le. Az adott tag hatását a megfelelõ lezáró
+tag szünteti meg, amely &lt;/tag&gt; formátumú.&nbsp;</font></p>
+
+<p><font face="Arial" size="2">Az adott kódok eredményét azonnal kipróbálhatod,
+ha a legfelsõ ikonsorban elindítod az online szerkesztõt. (<a href="../../gyakorlas/index.html" target="_blank"><img border="0" src="gyak2.gif" align="top" width="46" height="15"></a>)
+Ha nem ezt szeretnéd használni, akkor természetesen bármilyen szöveges
+szerkesztõben (pl. notepad, joe, pico) megírhatod a kódot, amit&nbsp; el kell
+mentened, majd a böngészõdbe be kell olvasnod.</font></p>
+
+<table border="1" cellpadding="9" width="728">
+    <tr>
+        <td width="700" colspan="3" bgcolor="#003366" height="22">
+          <h3><font face="Arial" color="#FFFFFF">Betûtípusok, stílusok &lt;b&gt;
+          &lt;i&gt; &lt;u&gt; &lt;tt&gt;</font></h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="19"><font face="Arial" color="#FF0000" size="2">Ha ezt a kódot
+          beírod a dokumentumtörzsbe</font></td>
+        <td width="20" height="19">&nbsp;</td>
+        <td width="390" height="19"><font face="Arial" color="#FF0000" size="2">ez lesz az
+          eredménye</font></td>
+    </tr>
+    <tr>
+        <td width="290" height="19"><font face="Arial">&lt;b&gt;Kövér betûk (bold) &lt;/b&gt;</font></td>
+        <td width="20" height="19"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="19"><b><font face="Arial">Kövér betûk (bold)</font></b></td>
+    </tr>
+    <tr>
+        <td width="290" height="19"><font face="Arial">&lt;i&gt;Dõlt betûk (italic)&lt;/i&gt;</font></td>
+        <td width="20" height="19"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="19"><i><font face="Arial">Dõlt betûk (italic)</font> </i></td>
+    </tr>
+    <tr>
+        <td width="290" height="18"><font face="Arial">&lt;u&gt;Aláhúzott betûk (underlined) &lt;/u&gt;</font></td>
+        <td width="20" height="18"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="18"><u><font face="Arial">Aláhúzott betûk (underlined)</font> </u></td>
+    </tr>
+    <tr>
+        <td width="290" height="18"><font face="Arial">&lt;tt&gt;Írógép betûk (teletype) &lt;/tt&gt;</font></td>
+        <td width="20" height="18"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="18"><tt><font face="Arial">Írógép betûk (teletype)</font> </tt></td>
+    </tr>
+    <tr>
+        <td colspan="3" width="695" bgcolor="#003366" height="70"><h3><font color="#FFFFFF"><font face="Arial">Fejléc
+          &lt;h1&gt; ... &lt;h6&gt;<br>
+          <font size="2">(</font></font><font face="Arial" size="2">A fejlécek
+          - mint ahogy a szövegszerkesztésnél is megszokhattuk - a html
+          oldalak logikai felosztását teszik lehetõvé. pl. h1 az oldal címe,
+          h2 egy alcím, h3 annak az alcíme és így tovább. A HTML oldalak esetén
+          6 fejlécet használhatunk)</font></font></h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="37"><font face="Arial">&lt;h1&gt;1-es fejléc &lt;/h1&gt;</font></td>
+        <td width="20" height="37"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="37"><h1><font face="Arial">1-es fejléc</font></h1>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="29"><font face="Arial">&lt;h2&gt;2-es fejléc &lt;/h2&gt;</font></td>
+        <td width="20" height="29"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="29"><h2><font face="Arial">2-es fejléc</font></h2>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="22"><font face="Arial">&lt;h3&gt;3-as fejléc &lt;/h3&gt;</font></td>
+        <td width="20" height="22"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="22"><h3><font face="Arial">3-as fejléc</font></h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="19"><font face="Arial">&lt;h4&gt;4-es fejléc &lt;/h4&gt;</font></td>
+        <td width="20" height="19"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="19"><h4><font face="Arial">4-es fejléc</font></h4>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="18"><font face="Arial">&lt;h5&gt;5-ös fejléc &lt;/h5&gt;</font></td>
+        <td width="20" height="18"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="18"><h5><font face="Arial">5-ös fejléc</font></h5>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="18"><font face="Arial">&lt;h6&gt;6-os fejléc &lt;/h6&gt;</font></td>
+        <td width="20" height="18"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="18"><h6><font face="Arial">6-os fejléc</font></h6>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" width="695" bgcolor="#FFFFEA" height="225"><font face="Arial"><br>
+          <font size="2">
+          Ha nem az alapértelmezett
+          (balra) igazítást szeretnénk használni, megadhatjuk az igazítás
+          típusát az align paraméter segítségével. (left=balra, center=középre,
+          right=jobbra) pl.</font></font> 
+          <p><font face="Arial">&lt;h1 align=&quot;center&quot;&gt; Ez egy középre
+          igazított 1-es fejléc &lt;/h1&gt;</font></p>
+          <h1 align="center"> Ez egy középre igazított 1-es fejléc </h1>
+          <p align="left"> <font face="Arial">&lt;h3 align=&quot;right&quot;&gt; Ez egy
+          jobbra
+          igazított 3-as fejléc &lt;/h3&gt;</font> </p>
+
+          <h3 align="right"> Ez egy jobbra igazított 3-as fejléc </h3>
+
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" width="695" bgcolor="#003366" height="22"><h3><font face="Arial" color="#FFFFFF">Betûméret
+          &lt;font size=&quot; &quot;&gt;</font></h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="700" colspan="3" bgcolor="#FFFFEA" height="48"><font face="Arial" size="2"><br>
+          A betûméretet
+          kétféleképpen állíthatjuk be: abszolút és relatív módon.<br>
+          Az <b> abszolút méretmegadás</b>ban 1 és 7 között állíthatjuk be a méretet,
+          ahol a 7-es a legnagyobb az 1-es a legkisebb...</font>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="22"><font face="Arial">&lt;font size =&quot;4&quot;&gt; 4-es betûméret &lt;/font&gt;</font></td>
+        <td width="20" height="22"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="22"><font size="4" face="Arial">4-es betûméret </font></td>
+    </tr>
+    <tr>
+        <td width="290" height="55"><font face="Arial">&lt;font size =&quot;7&quot;&gt; 7-es betûméret &lt;/font&gt;</font></td>
+        <td width="20" height="55"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="55"><font size="7" face="Arial">7-es betûméret </font></td>
+    </tr>
+    <tr>
+        <td colspan="3" width="695" bgcolor="#FFFFEA" height="102">&nbsp;<font face="Arial" size="2">A
+          <b> relatív
+          méretbeállítás</b>nál azt adhatjuk meg, hogy az alapként beállított
+          betûmérethez képest mennyivel nagyobb, illetve kisebb betûméretet
+          akarunk látni. Ha pl. 2-el nagyobbat, akkor a +2, ha 1-el kisebbet,
+          akkor a -1 méretmegadást kell alkalmaznunk.&nbsp;</font>
+          <p><font face="Arial" size="2">Azt, hogy mihez képest legyen nagyobb
+          vagy kisebb az adott betûméret a &lt;basefont size=&quot;méret&quot;&gt;
+          tag segítségével állíthatjuk be.</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="36"><font face="Arial">&lt;font size =&quot;+2&quot;&gt; Kettõvel nagyobb betûméret
+        &lt;/font&gt;</font></td>
+        <td width="20" height="36"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="36"><font size="5" face="Arial">Kettõvel nagyobb betûméret </font></td>
+    </tr>
+    <tr>
+        <td width="290" height="36"><font face="Arial">&lt;font size =&quot;-1&quot;&gt; Eggyel kisebb betûméret
+        &lt;/font&gt;</font></td>
+        <td width="20" height="36"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="36"><font size="2" face="Arial">Eggyel kisebb betûméret </font></td>
+    </tr>
+    <tr>
+        <td colspan="3" width="695" bgcolor="#FFFFEA" height="347"><font face="Arial" size="2">&nbsp;Az alábbi ablakban
+          módosíthatod a kódot, és kipróbálhatod a méretmegadások közti
+          különbségeket. pl. megváltoztathatod a basefont beállításokat
+          is...&nbsp;</font>
+          <form name="t1">
+          <p><font face="Arial" size="3">
+          <textarea name="forras" rows="13" cols="50">&lt;HTML>
+&lt;HEAD&gt;
+&lt;TITLE>Meret megadasok&lt;/TITLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+&lt;basefont size="3"&gt;
+&lt;font size="2"> 2-es méret &lt;/font&gt;
+&lt;font size="4"> 4-es méret &lt;/font&gt;
+&lt;font size="7"> 7-es méret &lt;/font&gt;
+&lt;font size="+2"> 2-el növel méret &lt;/font&gt;
+&lt;font size="-1"> 1-el csökkentett méret &lt;/font&gt;
+&lt;font size="-2"> 2-vel csökkentett méret &lt;/font&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+          </textarea>
+          </font>
+          </p>     
+          <p>
+          <font face="Arial" size="2">
+          <input type="button" value="Megnézem" onclick="ujablak(); updatewin(t1.forras.value)"> 
+          <input type="reset" value="Eredeti visszaállítása"> </font> </p> 
+          </form> 
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" width="695" bgcolor="#003366" height="180"><h3><font face="Arial" color="#FFFFFF">Betûtípus
+          &lt;font face=&quot; &quot;&gt;</font></h3>
+          <p><font face="Arial" size="2"><font color="#FFFFFF">A Face paraméter segítségével állítható
+          be a kívánt betûtípus.&nbsp;</font><br>
+          </font></p>
+          
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#F3DFB4"><img border="0" src="../figyelem.gif" width="53" height="47"></td>
+    <td bgcolor="#FFFFFF">
+          <font color="#FF0000" size="2" face="Arial"><b>
+          Figyelem!</b> Ne használj különleges, egyedi betûtípusokat, mert
+          nagy valószínûséggel a látogatók semmit sem vesznek észre belõle.
+          (ugyanis azon betûtípusok esetében, amelyek nincsenek az adott gépre
+          felinstallálva, a böngészõ a hagyományos betûtípusokat jeleníti
+          meg.)
+          </font></td>
+  </tr>
+</table>
+
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="18"><font face="Arial">&lt;font face =&quot;Arial&quot;&gt;Arial
+        betûtípus. &lt;/font&gt;</font></td>
+        <td width="20" height="18"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="18"><font face="Arial">Arial betûtipus. </font></td>
+    </tr>
+    <tr>
+        <td width="290" height="36"><font face="Arial">&lt;font face =&quot;Courier&quot;&gt;Courier
+        betûtípus. &lt;/font&gt;</font></td>
+        <td width="20" height="36"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="36"><font face="Courier">Courier betûtipus.</font></td>
+    </tr>
+    <tr>
+        <td colspan="3" width="695" bgcolor="#003366" height="73"><h3><font face="Arial" color="#FFFFFF">Betûszín
+          &lt;font color=&quot; &quot;&gt;</font></h3>
+          <p><font face="Arial" size="2" color="#FFFFFF">A betûk színét is többféleképpen
+          lehet beállítani. Az elsõ esetben a szín nevét használjuk, természetesen
+          angolul. pl. red, yellow, black, white, stb... A második esetben egy
+          kóddal adjuk meg a színt. A 6 jegyû kódot a # jel vezeti be.</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td width="290" height="18"><font face="Arial">&lt;font color=red&gt; Piros &lt;/font&gt;</font></td>
+        <td width="20" height="18"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="18"><font color="#FF0000" face="Arial">Piros </font></td>
+    </tr>
+    <tr>
+        <td width="290" height="19"><font face="Arial">&lt;font color=<i>#898134</i>&gt; Kevert
+        &lt;/font&gt;</font></td>
+        <td width="20" height="19"><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td width="390" height="19"><font color="#898134" face="Arial">Kevert</font></td>
+    </tr>
+    <tr>
+        <td colspan="3" width="695" bgcolor="#FFFFFF" height="80"><font face="Arial" size="2"><i>#898134 a szín úgynevezett RGB
+        kódja. Az elsõ két karakter a vörös </i><font
+        color="#FF0000"><i>(R=red)</i></font><i> szín
+        erõsségét mutatja 16-os számrendszerben
+        (hexadecimálisan). A leggyengébb a 00, a legerõsebb az
+        FF. A 3.és 4. karakter a zöld szín erõssége </i><font
+        color="#008000"><i>(G=green)</i></font><i>, az 5. és 6.
+        a kéké <font color="#0000FF">(B=blue)&nbsp;<br>
+          </font> </i></font></td>
+    </tr>
+</table>
+
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#FFFFE1"><font face="Arial" size="2"><img border="0" src="../tipp.gif" width="39" height="102"></font>
+    </td>
+    <td bgcolor="#FFFFFF"><font face="Arial" size="2">A színek kódját a grafikai programok többsége
+          megmutatja az adott színt kiválasztva. De az <a href="../../online/rgbpicker/RGBPicker.html" target="_blank"><b>RGB
+          picker</b></a> segítségével online módon is megtudhatod a színek kódját.</font> 
+    </td>  
+  </tr>  
+</table>  
+  
+ 
+
+<p><font face="Arial"><b>Ezek kombinálása: (a fent megismert paramétereket
+egymás mögé is írhatjuk)</b></font></p>
+
+<p><font face="Arial"><br>
+&lt;font face=&quot;Arial&quot; size=&quot;+4&quot;
+color=&quot;Blue&quot;&gt; Ez csak próba &lt;/font&gt;<br>
+<font color="#0000FF" size="7" face="Arial">Ez csak próba</font></font></p>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%" bgcolor="#BFDFFF">
+  <tr>
+    <td bgcolor="#003366">
+      <h3><font face="Arial" color="#FFFFFF">Vízszintes vonal &lt;hr&gt;</font></h3>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#003366"><font face="Arial" color="#FFFFFF">Ha a dokumentumon belül valamilyen szakaszt el
+      szeretnénk különíteni a többitõl, használhatunk vízszintes elválasztó
+      vonalat a &lt;hr&gt; tag használatával.</font></td>
+  </tr>
+</table>
+
+<p><font face="Arial">Ez egy vízszintes vonal (horizontal rule) &lt;hr&gt;</font> </p>
+
+<hr>
+
+<p><font face="Arial">Az elválasztó vonal szélességét (width) és vastagságát
+(size) is megadhatjuk. Az igazítás (align)&nbsp; balra (left), jobbra (right),
+középre (center) történhet.&nbsp;</font></p>
+
+<p><font face="Arial">pl. <font size="2">&lt;hr size=&quot;3&quot;
+align=&quot;center&quot; width=&quot;150&quot;&gt;</font></font></p>
+<hr size="3" align="center" width="150">
+<p><font face="Arial">A vonal szélességét megadhatjuk képpontokban (ahogy a
+fenti példa mutatja), vagy pedig a rendelkezésre álló hely százalékában.&nbsp;</font></p>
+<p><font face="Arial">
+pl.<font size="2"> &lt;hr size=&quot;3&quot; align=&quot;center&quot;
+width=&quot;80%&quot;&gt;</font></font></p>
+<hr size="3" align="center" width="80%">
+
+<p>&nbsp;</p>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%" bgcolor="#BFDFFF">
+  <tr>
+    <td bgcolor="#003366">
+      <h3><font face="Arial" color="#FFFFFF">Bekezdések &lt;p&gt;</font></h3>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#003366"><font face="Arial" color="#FFFFFF">A &lt;p&gt; elem segítségével a szöveget bekezdésekre
+      tördelhetjük. Az adott bekezdést a &lt;p&gt; és &lt;/p&gt; elemek közé
+      kell tenni. A bekezdést az align paraméterrel balra, középre, jobbra
+      igazíthatjuk.<br>
+      A böngészõk az egyes bekezdések elõtt és után - a tagolás érdekében
+      - nagyobb helyet hagynak.</font></td>
+  </tr>
+</table>
+
+<h4><font face="Arial">Igazítás (align): left(balra), center(közép),
+right(jobbra)</font> </h4>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="5" width="90%">
+    <tr>
+        <td width="100%"><font face="Arial">&lt;P align=&quot;left&quot;&gt; Ez egy
+        balra igazított bekezdés &lt;/P&gt;</font> </td>
+    </tr>
+    <tr>
+        <td width="100%"><font face="Arial"><img src="arrowdn.gif" width="17"
+        height="18"></font></td>
+    </tr>
+    <tr>
+        <td width="100%"><font face="Arial">Ez egy balra igazított bekezdés</font></td>
+    </tr>
+</table>
+</div>
+
+<p><font face="Arial">&nbsp;</font></p>
+<hr>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="5" width="90%">
+    <tr>
+        <td width="100%"><font face="Arial">&lt;P align=&quot;center&quot;&gt; Ez
+        egy középre igazított bekezdés &lt;/P&gt;</font> </td>
+    </tr>
+    <tr>
+        <td align="center" width="100%"><font face="Arial"><img src="arrowdn.gif"
+        width="17" height="18"></font></td>
+    </tr>
+    <tr>
+        <td width="100%"><p align="center"><font face="Arial">Ez egy középre
+        igazított bekezdés</font></p>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p align="left"><font face="Arial">&nbsp;</font></p>
+<hr>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="5" width="90%">
+    <tr>
+        <td width="100%" align="right"><font face="Arial">&lt;P align=&quot;right&quot;&gt; Ez egy
+        jobbra igazított bekezdés &lt;/P&gt;</font> </td>
+    </tr>
+    <tr>
+        <td align="right" width="100%"><font face="Arial"><img src="arrowdn.gif"
+        width="17" height="18"></font></td>
+    </tr>
+    <tr>
+        <td width="100%"><p align="right"><font face="Arial">Ez egy jobbra
+        igazított bekezdés</font></p>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p>&nbsp;
+</p>
+
+<table border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="#BFDFFF">
+  <tr>
+    <td bgcolor="#003366">
+      <h3><font face="Arial" color="#FFFFFF"><b>Sortörés &lt;br&gt;</b> 
+</font>
+      </h3>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#003366"><font face="Arial" size="2" color="#FFFFFF">Ha a szövegben egy sort feltétlenül új
+      sorban akarunk kezdeni a &lt;br&gt; taget kell használnunk.</font></td>
+  </tr>
+</table>
+
+<table border="1">
+    <tr>
+        <td><font face="Arial">Ez az elsõ sor&lt;br&gt;Ez pedig a második</font></td>
+        <td><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td><font face="Arial">Ez az elsõ sor<br>
+        Ez pedig a második</font></td>
+    </tr>
+</table>
+
+<hr>
+<table border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="#BFDFFF">
+  <tr>
+    <td>
+      <h3><font face="Arial"><b>Hiperlinkek </b>&lt;a href=&quot;URL&quot;&gt;&nbsp;
+      szöveg &lt;/a&gt;</font></h3>
+ 
+    </td> 
+  </tr> 
+  <tr> 
+    <td><font face="Arial" size="2">A hiperlinkekkel hozhatunk létre
+      kapcsolatot szövegrészek, illetve dokumentumok között. A böngészõk
+      a linkeket aláhúzással illetve eltérõ színnel jelölik, persze ezek
+      a beállítások megváltoztathatóak.</font></td>
+  </tr>
+</table>
+
+<p><font face="Arial">
+<br>
+<b>Az URL (Uniform Resource Locator, egységes dokumentum
+meghatározó rendszer) a következõ lehet:</b> </font> </p>
+
+<p><font face="Arial" size="2">Ha a saját gépünkön lévõ dokumentumra
+szeretnénk hivatkozni, akkor az URL megadásánál a file:// &quot;elõtagot&quot;
+kell használnunk. Ha pl. a c:\web\iskola\palyazat.html oldalra szeretnénk
+linket, akkor a
+        file://C|WEB/ISKOLA/PALYAZAT.HTML URL-t kell használni. A c:\ megadás
+helyett használjuk a c| formát.<br>
+</font></p>
+
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#F3DFB4"><img border="0" src="../figyelem.gif" width="53" height="47"></td>
+    <td bgcolor="#FFFFFF"><font face="Arial" size="2"><font color="#FF0000">Jól
+      gondoljuk meg, hogy valóban erre a megadási módra van-e szükségünk.
+      (ha ugyanezt az oldalt másik géprõl néznénk, akkor a link az azon a gépen
+      lévõ web alkönyvtárban keresné az iskola alkönyvtárat és abban a
+      palyazat.htm oldalt...)</font></font></td>
+  </tr>
+</table>
+
+<dl>
+    <dt><b><font face="Arial">file://</font></b></dt>
+    <dd><font face="Arial"><b>dokumentum a kliens számítógépen</b> <br>
+        file://C|WEB/ISKOLA/PALYAZAT.HTML</font> </dd>
+    <dd>&nbsp;</dd>
+</dl>
+
+<hr>
+<p><font face="Arial" size="2">Ha egy FTP szerveren elhelyezkedõ állományt
+akarunk belinkelni, akkor az ftp:// protokolt kell használni.</font></p>
+
+<dl>
+    <dt><b><font face="Arial">ftp://</font></b></dt>
+    <dd><font face="Arial"><b>file átviteli protocol</b> <br>
+        ftp://ftp.c3.hu/Utilities/winzip70.exe</font> </dd>
+</dl>
+
+<hr>
+<p><font face="Arial" size="2">Ha egy másik weboldalra akarunk linket, használjuk
+a következõt:</font></p>
+
+<dl>
+    <dt><b><font face="Arial">http://</font></b></dt>
+    <dd><font face="Arial"><b>hypertext transfer protocol</b> <br>
+        http://www.elte.hu/</font> </dd>
+</dl>
+
+<hr>
+<p><font face="Arial" size="2">Ha a link segítségével be szeretnék
+jelentkezni (telnet segítségével) egy gépre, használjuk a következõt:</font></p>
+
+<dl>
+    <dt><b><font face="Arial">telnet://</font></b></dt>
+    <dd><font face="Arial"><b>bejelentkezés egy távoli gépre</b> <br>
+        telnet://ludens.elte.hu/</font> </dd>
+    <dt></dt>
+    <hr>
+    <dt><font face="Arial" size="2">Ha a mailto:email cím formát használjuk,
+      az adott linkre kattintva betöltõdik az alapértelmezett levelezõprogram,
+      amellyel emailt küldhetünk a megadott email címre.</font></dt>
+    <dd>&nbsp;</dd>
+    <dt><b><font face="Arial">mailto:</font></b></dt>
+    <dd><font face="Arial"><b>email cím megadása</b> <br>
+      mailto:abonyita@freemail.hu</font> </dd>
+    <dt>&nbsp;</dt>
+    <dd>
+      <dt><font face="Arial" size="2">(A levél tárgya is megadható a
+        ?subject=szöveg elemmel, sõt az is hogy ki kapjon másolatot
+        (?cc=cimzett) Ha több opciót akarunk megadni, akkor az &amp;jelet kell
+        alkalmazni. pl. mailto:abonyita@freemail.hu?CC=gipszjakab@freemail.hu&amp;Subject=Proba)</font></dt>
+</dl>
+
+
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#FFFFE1"><font face="Arial" size="2"><img border="0" src="../tipp.gif" width="39" height="102"></font>
+    </td>
+    <td bgcolor="#FFFFFF"><font face="Arial" size="2">Az Online Segédanyagok között találtok egy <b><a href="../../online/mailto/mailto.html" target="_blank">mailto
+url generátort</a></b>, amely sokat segíthet az ilyen típusú linkek létrehozásánál.</font>
+    </td> 
+  </tr> 
+</table> 
+ 
+
+<p><font face="Arial"><b>Példák:</b> <br>
+</font>
+</p>
+
+<table border="1" cellpadding="2">
+    <tr>
+        <td><font face="Arial" size="2">&lt;a href=&quot;http://www.elte.hu/&quot;&gt;Ez az
+        ELTE honlapja&lt;/a&gt;</font></td>
+        <td><font face="Arial" size="2"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td><a href="http://www.elte.hu/"><font face="Arial" size="2">Ez az ELTE honlapja</font></a></td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&lt;a
+        href=&quot;ftp://ftp.c3.hu/Utilities/Winzip70.exe
+        &quot;&gt;A winzip letölthetõ errõl a
+        címrõl&lt;/a&gt;</font></td>
+        <td><font face="Arial" size="2"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td><a href="ftp://ftp.c3.hu/Utilities/Winzip70.exe"><font face="Arial" size="2">A
+        winzip letölthetõ errõl a címrõl</font></a></td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&lt;a
+        href=&quot;mailto:abonyita@freemail.hu?subject=Üdvözlet&quot;&gt;Itt
+        írhat nekem levelet&lt;/a&gt;</font></td>
+        <td><font face="Arial" size="2"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td><a href="mailto:abonyita@freemail.hu?subject=Üdvözlet"><font face="Arial" size="2">Itt írhat
+        nekem levelet</font></a></td>
+    </tr>
+</table>
+
+<p><font face="Arial" size="2">A következõkben (pl. a frameknél) még
+foglalkozunk a hiperlinkek megadási módjaival.</font></p>
+
+<hr>
+
+
+
+<table border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="#BFDFFF">
+  <tr>
+    <td bgcolor="#003366">
+      <h3><font face="Arial" color="#FFFFFF"><b>Felsorolások</b></font></h3>
+ 
+    </td> 
+  </tr> 
+  <tr> 
+    <td bgcolor="#003366"><font face="Arial" size="2" color="#FFFFFF">A HTML nyelv lehetõséget ad arra, hogy különbözõ
+      listákat (felsorolás, sorszámozott, meghatározás) hozzunk létre.</font></td> 
+  </tr> 
+</table> 
+ 
+ 
+ 
+
+<table border="1" cellpadding="10">
+    <tr>
+        <td colspan="3"><b><font face="Arial">Egyszerû felsorolás</font></b>
+          <p><font face="Arial" size="2">Egyszerû felsorolás esetén az
+          &lt;ul&gt; és &lt;/ul&gt; tagek közé kell elhelyeznünk a
+          listaelemeket, amelyeket a &lt;li&gt; tagek vezetnek be. pl.</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td><font face="Arial">&lt;ul&gt;<br>
+        &lt;li&gt;elsõ elem <br>
+        &lt;li&gt;második elem <br>
+        &lt;li&gt;harmadik elem <br>
+        &lt;/ul&gt;</font></td>
+        <td><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td><ul>
+            <li><font face="Arial">elsõ elem</font> </li>
+            <li><font face="Arial">második elem</font> </li>
+            <li><font face="Arial">harmadik elem</font> </li>
+        </ul>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3"><b><font face="Arial">Sorszámozott lista</font></b>
+          <p><font face="Arial" size="2">Sorszámozott lista&nbsp; esetén az
+          &lt;ol&gt; és &lt;/ol&gt; tagek közé kell elhelyeznünk a
+          listaelemeket, amelyeket a &lt;li&gt; tagek vezetnek be. pl</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td><font face="Arial">&lt;ol&gt;<br>
+        &lt;li&gt;elsõ elem <br>
+        &lt;li&gt;második elem <br>
+        &lt;li&gt;harmadik elem <br>
+        &lt;/ol&gt;</font></td>
+        <td><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td><ol>
+            <li><font face="Arial">elsõ elem</font> </li>
+            <li><font face="Arial">második elem</font> </li>
+            <li><font face="Arial">harmadik elem</font> </li>
+        </ol>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3"><b><font face="Arial">Meghatározás lista</font></b>
+          <p><font face="Arial" size="2">Meghatározás lista esetén az
+          &lt;dl&gt; és &lt;/dl&gt; tagek közé kell elhelyeznünk a
+          listaelemeket, amelyek a fogalom megadásából (&lt;dt&gt; tag vezeti
+          be) és a magyarázatából (&lt;dd&gt; tag vezeti be) állnak.</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td><font face="Arial">&lt;dl&gt;<br>
+        &lt;dt&gt;1. fogalom &lt;dd&gt;az elsõ fogalom
+        magyarázata <br>
+        &lt;dt&gt;2. fogalom &lt;dd&gt;a második fogalom
+        magyarázata&lt;/dd&gt; <br>
+        &lt;/dl&gt;</font></td>
+        <td><font face="Arial"><img src="arrow.gif" width="18" height="17"></font></td>
+        <td><dl>
+            <dt><font face="Arial">1. fogalom</font> </dt>
+            <dd><font face="Arial">az elsõ fogalom magyarázata</font> </dd>
+            <dt><font face="Arial">2. fogalom</font> </dt>
+            <dd><font face="Arial">a második fogalom magyarázata</font></dd>
+        </dl>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" bgcolor="#003366">
+          <h3><font face="Arial" color="#FFFFFF">Speciális karakterek, ékezetes betûk</font></h3>
+          <p><font face="Arial" size="2" color="#FFFFFF">Elõfordulhat, hogy az oldalon speciális
+          jeleket szeretnénk megjeleníteni. (Speciális jelnek számít már a
+          &lt; és a &gt; jel is, hiszen gondoljunk bele, ha a forráskódban
+          használjuk ezeket a jeleket, akkor a böngészõ úgy értelmezi,
+          hogy valamilyen taget akarunk megadni, és nem fogja megjeleníteni.
+          Ebben az esetben speciális karaktereket kell használnunk.<br>
+          <br>
+          Ugyanez a helyzet az ékezetes betûkkel is. Ha ékezetes betûket
+          szeretnénk használni akkor a következõ kódokat kell
+          &quot;megjegyeznünk&quot;:</font>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+          <table border="1" cellpadding="10">
+            <tr>
+              <td bgcolor="#FFFFEA"><font face="Arial" size="2">&amp;aacute;= <b>á</b></font></td>
+              <td><font face="Arial" size="2">&amp;Aacute;= <b>Á</b></font></td>
+              <td bgcolor="#FFFFEA"><font face="Arial" size="2">&amp;ouml;= <b>ö</b></font></td>
+              <td><font face="Arial" size="2">&amp;Ouml;= <b>Ö</b></font></td>
+            </tr>
+            <tr>
+              <td bgcolor="#FFFFEA"><font face="Arial" size="2">&amp;eacute;= <b>é</b></font></td>
+              <td><font face="Arial" size="2">&amp;Eacute;= <b>É</b></font></td>
+              <td bgcolor="#FFFFEA"><font face="Arial" size="2">&amp;uuml;= <b>ü</b></font></td>
+              <td><font face="Arial" size="2">&amp;Uuml;= <b>Ü</b></font></td>
+            </tr>
+            <tr>
+              <td bgcolor="#FFFFEA"><font face="Arial" size="2">&amp;iacute;= <b>í</b></font></td>
+              <td><font face="Arial" size="2">&amp;Iacute;= <b>Í</b></font></td>
+              <td bgcolor="#FFFFEA"><font face="Arial" size="2">&amp;otilde;= <b>õ</b></font></td>
+              <td><font face="Arial" size="2">&amp;Otilde;= <b>Õ</b></font></td>
+            </tr>
+            <tr>
+              <td bgcolor="#FFFFEA"><font face="Arial" size="2">&amp;oacute;= <b>ó</b></font></td>
+              <td><font face="Arial" size="2">&amp;Oacute;= <b>Ó</b></font></td>
+              <td bgcolor="#FFFFEA"><font face="Arial" size="2">&amp;ucirc;= <b>û</b></font></td>
+              <td><font face="Arial" size="2">&amp;Ucirc;= <b>Û</b></font></td>
+            </tr>
+            <tr>
+              <td bgcolor="#FFFFEA"><font face="Arial" size="2">&amp;uacute;= <b>ú</b></font></td>
+              <td><font face="Arial" size="2">&amp;Uacute;= <b>Ú</b></font></td>
+              <td colspan="2">&nbsp;</td>
+            </tr>
+          </table>
+          <p><font face="Arial" size="2">Tehát ha pl. az árvíztûrõ tükörfúrógép
+          szöveget akarjuk megjeleníteni, akkor a következõket kell a kódba
+          elhelyeznünk:</font></p>
+          <p><font size="2" face="Arial">&amp;aacute;rv&amp;iacute;zt&amp;ucirc;r&amp;otilde; t&amp;uuml;k&amp;ouml;rf&amp;uacute;r&amp;oacute;g&amp;eacute;p</font>&nbsp;</p>
+          <p><font face="Arial" size="2">Mielõtt teljesen elkoptatnátok a
+          billentyûzeteteket és elmenne a kedvetek a magyar ékezetes betûk
+          használatától, megnyugtatok mindenkit, hogy van egyszerûbb módja
+          az ékezetes betûk megadásának. Az alternatívát a META tagek
+          lehetõségei jelentik, amelyrõl egy külön fejezetben is
+          foglalkozunk. Most elég csak annyit tudnunk, hogy a következõ sorok
+          valamelyikét be kell illesztenünk az oldal forráskódjába (mégpedig
+          a &lt;head&gt; &lt;/head&gt; tagek közé) és innentõl kezdve bátran
+          használhatjuk hagyományos módon az ékezetes betüket.&nbsp;</font></p>
+          <p><font face="Arial" size="2"><b>Tehát a megoldás:</b></font></p>
+          <p><font face="Arial" size="2"><br>
+          &lt;META HTTP-EQUIV=&quot;Content-Type&quot; CONTENT=&quot;text/html;
+          charset=windows-1250&quot;&gt;<br>
+          <br>
+          vagy<br>
+          <br>
+          &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;
+          charset=iso-8859-2&quot;&gt;&nbsp;<br>
+          <br>
+          sor használata a &lt;HEAD&gt; részben.&nbsp;</font></p>
+          <h2><font face="Arial" size="2">Egyéb speciális karakterek</font></h2>
+          <table border="1" cellpadding="10" width="50%">
+            <tr>
+              <td><font face="Arial" size="2">&amp;lt; = &lt;</font></td>
+              <td><font face="Arial" size="2">&amp;gt; = &gt;</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial" size="2">&amp;amp; = &amp;</font></td>
+              <td><font face="Arial" size="2">&amp;quot = &quot;</font></td>
+            </tr>
+            <tr>
+              <td><font face="Arial" size="2">&amp;deg; = °</font></td>
+              <td><font face="Arial" size="2">&amp;copy = ©</font></td>
+            </tr>
+          </table>
+        </td>
+    </tr>
+</table>
+
+<p><font face="Arial" size="2">Tehát pl. a &lt;&lt;&lt; Szia &gt;&gt;&gt; szöveg
+megjelenítéséhez a <font color="#000000">&amp;lt;&amp;lt;&amp;lt; Szia
+&amp;gt;&amp;gt;&amp;gt; kódot kell használnunk.</font></font></td>
+    </tr>
+    <tr>
+      <td width="50%">&nbsp;</td>
+      <td width="50%" align="right">&nbsp;</td>
+    </tr>
+  </table>
+
+<p>&nbsp;</p>
+</body>
+</html>

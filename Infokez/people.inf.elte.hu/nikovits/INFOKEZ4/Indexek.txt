@@ -1,0 +1,62 @@
+Indexek
+CREATE INDEX vagy ALTER INDEX utasításban adhatók meg az index paraméterei.
+A hagyományos index B-fa szerkezetû, a fa leveleiben vannak a bejegyzések, és mellettük a sorazonosító.
+Az index lehet 1 vagy többoszlopos. Ha egy érték többször szerepel a táblában, akkor az indexben is több bejegyzés 
+lesz az értékhez.
+
+Az index tárolásával kapcsolatos paraméterek hasonló szerepet töltenek be, mint a tábla esetén.
+TABLESPACE
+LOGGING    ->   Az index létrehozása naplózva legyen-e.
+PARALLEL <n>
+PCTFREE, PCTUSED, INITRANS, MAXTRANS
+INITIAL, MINEXTENTS, PCTINCREASE, BUFFER_POOL … 
+
+UNIQUE   -> egyedi index létrehozása
+ASC | DESC  növekvõ vagy csökkenõ sorrend
+
+NOSORT
+Azt jelezzük vele, hogy nem kell rendezni az index létrehozásakor, mert a sorok már rendezve vannak. Ha mégsem 
+így van, az oracle hibát jelez. Pl.
+
+CREATE TABLE ind_t(o1 int, o2 varchar2(20), o3 char(10));
+BEGIN
+  FOR i IN 1..100 LOOP
+    INSERT INTO ind_t VALUES(i, 'sor'||to_char(i)||'-BLABLA', ’ABC’);
+  END LOOP;
+  COMMIT;
+END;
+CREATE INDEX ind_t_ix ON ind_t(o1) NOSORT;
+Ha még egy (o1=1) sort beszúrnánk a táblába, akkor már hibaüzenetet kapnánk a fenti NOSORT-ra.
+
+COMPRESS <n>
+A kulcs értékek ismételt tárolását szüntetjük meg vele az index elsõ n oszlopában. Vagyis ezek a kulcsértékek csak 
+egyszer lesznek tárolva, és mellettük több sorazonosító lesz, azoknak a soroknak megfelelõen, amelyek az adott 
+értékkel rendelkeznek.
+CREATE INDEX ind_t_ix2 ON ind_t (o3, o2) COMPRESS 1;
+
+Függvény alapú index (DBA_IND_EXPRESSIONS)
+CREATE INDEX ind_t_ix3 ON ind_t (SUBSTR(o2, 1, 5), UPPER(o3));
+
+BITMAP 
+Bitmap index létrehozása. A táblában elõforduló értékek mindegyikéhez egy bitvektor tartozik. Minden sornak egy 
+bit felel meg, ami azokra a sorokra lesz 1-es, amelyek az adott értéket tartalmazzák.
+CREATE BITMAP INDEX ind_t_ix4 ON ind_t (o2);
+
+Index szervezett tábla (IOT)
+CREATE TABLE cikk_iot
+  ( ckod integer,
+    cnev varchar2(20),
+    szin varchar2(15),
+    suly float,
+       CONSTRAINT cikk_iot_pk PRIMARY KEY (ckod)  )
+ORGANIZATION INDEX
+PCTTHRESHOLD 20 INCLUDING cnev
+OVERFLOW TABLESPACE system;
+
+PCTTRESHOLD: Egy index bejegyzés a blokknak hány százalékát foglalhatja el
+INCLUDING: Mely oszlopok tárolódjanak együtt a kulccsal.
+
+A fenti utasítás hatására két szegmens jön létre (egy index és egy tábla), valamint egy olyan
+objektum, amihez nem tartozik szegmens, és így nincs is DATA_OBJECT_ID-ja.
+
+Információk az indexekrõl a katalógusban: DBA_INDEXES, DBA_IND_COLUMNS

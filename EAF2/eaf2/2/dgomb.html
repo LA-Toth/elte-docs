@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+<title>dgomb</title>
+<link rel="stylesheet" type="text/css" media="screen" href="menu.css">
+<style type="text/css">
+</style>
+</head>
+
+<body>
+<script>
+var pos=1;
+function show_next() {
+pos = pos + 1;
+show(pos);
+}
+function show_prev() {
+if (pos > 1) pos = pos - 1;
+show(pos);
+}
+
+function show_first() {
+pos=1;
+show(pos);
+}
+function show() {
+parent.content.document.open("text/html");
+parent.content.document.write("<img src='images/dia");
+parent.content.document.write(pos);
+parent.content.document.write(".jpg' width='600' height='500'>");
+parent.content.document.write("<br>");
+parent.content.document.write(pos);
+parent.content.document.write(". diakép");
+parent.content.document.close(); 
+}
+</script>
+
+
+<table border="0">
+  <tr>
+    <td><a href="#" onclick="show_next();"><img src=images/arrw21a.gif></a></td>
+    <td><a href="#" onclick="show_prev();"><img src=images/arrw21b.gif></a></td>
+    <td><a href="index.html" target="_top"><img src=images/exit_sel.gif></a></td>
+  </tr>
+</table>
+
+<form method="POST">
+</form>
+</body>
+</html>

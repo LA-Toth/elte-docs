@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="Author" content="Teleport">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Generator</title>
+</head>
+
+<body background="../../images/bg1.gif" bgcolor="#000099" text="#000000"
+link="#000099" vlink="#000000" alink="#66FFFF">
+<script language="JavaScript">
+
+
+
+<!--
+
+var a = 18
+
+function create() {
+
+
+
+        this.line = ''
+
+}
+
+
+
+function hiphop(tipform) {
+
+hhbe1 = tipform.bilden.value;
+
+hhbe2 = tipform.bildtva.value;
+
+call1 = tipform.srcen.value;
+
+call2 = tipform.srctva.value;
+
+constname = tipform.bildnmn.value;
+
+wide = tipform.wideen.value;
+
+tall = tipform.tallen.value;
+
+urllink = tipform.urllink.value;
+
+
+
+if (hhbe1 == '' || hhbe2 == '' || call1 == '' || call2 == '' || constname == '' || wide == '' || tall == '' || urllink == ''){
+
+  alert('\n Elõbb töltsd ki pontosan a szöveg boxokat!');
+
+  } else {
+
+
+
+line = new Array()
+
+for(var i=1; i<=a; i++) { line[i] = new create() }
+
+line[1] = '<html><head><title>Kód ablak</title></head><body bgcolor="#FFFFFF">'
+
+line[2] = '&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;Oldalad címe&lt;/TITLE&gt;<P>'
+
+line[3] = '&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;<BR>&lt;!--<BR>'
+
+line[4] = '/** TELEPORT mouseover event generátor.http://www.extra.hu/teleport **/<BR>Browser = false ;<BR>if(navigator.appName.indexOf("Netscape") != -1)<BR>'
+
+line[5] = '{ if( (navigator.appVersion.indexOf("3.") != -1) || (navigator.appVersion.indexOf("4.") != -1) )<BR>'
+
+line[6] = '{ Browser = true;<BR>'
+
+line[7] = hhbe1+'= new Image();<BR>'
+
+line[8] = hhbe1+'.src = "'+call1+'";<BR>'
+
+line[9] = hhbe2+' = new Image();<BR>'
+
+line[10] = hhbe2+'.src = "'+call2+'";<BR>}   }<P>'
+
+line[11] = 'function blunt(place, imgName) {<BR>'
+
+line[12] = 'if (Browser == true) {<BR>'
+
+line[13] = 'document[place].src =eval(imgName + ".src");<BR>'
+
+line[14] = '} }<BR>'
+
+line[15] = '//--&gt;<BR>'
+
+line[16] = '&lt;/SCRIPT&gt;<P>&lt;/HEAD&gt;<br>&lt;BODY&gt;<P><B>A Javascript kódot írd a head /head tagok közé, ezt a kódot, pedig a body-nak arra a részére ahol a képet látni akarod ! </B><BR>'
+
+line[17] = '&lt;A HREF="'+urllink+'" onMouseOver="blunt(&#039;'+constname+'&#039;,&#039;'+hhbe2+'&#039;)" onMouseOut="blunt(&#039;'+constname+'&#039;,&#039;'+hhbe1+'&#039;)"&gt;'
+
+line[18] = '<BR>&lt;IMG SRC="'+call1+'" NAME="'+constname+'" HEIGHT="'+wide+'" WIDTH="'+tall+'" BORDER="0"&gt;&lt;/A&gt;'
+
+line[19] = '<P>&lt;/BODY&gt;&lt;/HTML&gt;<P><FORM><INPUT TYPE="button" VALUE="Ablak bezárása" OnClick="self.close()"></FORM></BODY></HTML>'
+
+nyaWin = window.open('','utskrift','toolbar=0,location=0,directories=0,status=1,menubar=1,scrollbars=1,resizable=0,copyhistory=0,width=600,height=400')
+
+nytt ()
+
+}
+
+}
+
+g = 0
+
+function nytt() {
+
+g++
+
+nyaWin.document.writeln(line[g]);
+
+if (g < (a+1)) nytt()
+
+nyaWin.document.close()
+
+g = 0
+
+}
+
+
+
+Browser = false ;
+
+if(navigator.appName.indexOf("Netscape") != -1)
+
+{ if( (navigator.appVersion.indexOf("3.") != -1) ||
+
+(navigator.appVersion.indexOf("4.") != -1) )
+
+{ Browser = true;
+
+pillet= new Image();
+
+pillet.src = "images/img_1.gif";
+
+tr808 = new Image();
+
+tr808.src = "images/img_2.gif";
+
+} }
+
+
+
+function blunt(place, imgName) {
+
+if (Browser == true) {
+
+document[place].src =eval(imgName + ".src");
+
+} }
+
+//-->
+
+
+
+</script><div align="center"><center>
+
+<table border="0" width="100%" cols="1">
+    <tr>
+        <td><form>
+            <div align="center"><center><table border="0"
+            width="100%" bgcolor="#F4FEFF" cols="1">
+                <tr>
+                    <td><font size="4">&nbsp;</font><font
+                    color="#000099" size="4"><b>Mouseover
+                    esemény kód generáló</b></font> </td>
+                </tr>
+            </table>
+            </center></div><div align="center"><center><table
+            border="1" width="100%" bgcolor="#F4FEFF" cols="3">
+                <tr>
+                    <td><font color="#000099"><b>Elsõ kép neve:</b></font></td>
+                    <td><input type="text" size="20"
+                    name="bilden"> </td>
+                    <td><font color="#000099"><b>Például: </b><b><i>one</i></b></font></td>
+                </tr>
+                <tr>
+                    <td><font color="#000099"><b>1. kép file
+                    neve és típusa:</b></font></td>
+                    <td><input type="text" size="20" name="srcen">
+                    </td>
+                    <td><font color="#000099"><b>Például: </b><b><i>img1.gif</i></b></font></td>
+                </tr>
+                <tr>
+                    <td><font color="#000099"><b>Kép
+                    szélessége (pixelben):</b></font></td>
+                    <td><input type="text" size="20"
+                    name="wideen"> </td>
+                    <td><font color="#000099"><b>Például: </b><b><i>100</i></b></font></td>
+                </tr>
+                <tr>
+                    <td><font color="#000099"><b>Kép magassága:</b></font></td>
+                    <td><input type="text" size="20"
+                    name="tallen"> </td>
+                    <td><font color="#000099"><b>Például: </b><b><i>50</i></b></font></td>
+                </tr>
+                <tr>
+                    <td><font color="#000099"><b>Második kép
+                    neve:</b></font></td>
+                    <td><input type="text" size="20"
+                    name="bildtva"> </td>
+                    <td><font color="#000099"><b>Például: </b><b><i>two</i></b></font></td>
+                </tr>
+                <tr>
+                    <td><font color="#000099"><b>2. kép file
+                    neve és típusa:</b></font></td>
+                    <td><input type="text" size="20"
+                    name="srctva"> </td>
+                    <td><font color="#000099"><b>Például: </b><b><i>img2.gif</i></b></font></td>
+                </tr>
+                <tr>
+                    <td><font color="#000099"><b>Kép-objektum
+                    neve:</b></font></td>
+                    <td><input type="text" size="20"
+                    name="bildnmn"> </td>
+                    <td><font color="#000099"><b>Például: </b><b><i>mylink</i></b></font></td>
+                </tr>
+                <tr>
+                    <td><font color="#000099"><b>URL cím:</b></font></td>
+                    <td><input type="text" size="20"
+                    name="urllink"> </td>
+                    <td><font color="#000099"><b>Például: </b><b><i>index.htm</i></b><i>l</i></font></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="button"
+                    value="Kérem a kódot !"
+                    onclick="hiphop(this.form)"> </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            </center></div>
+        </form>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

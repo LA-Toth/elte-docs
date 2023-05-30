@@ -1,0 +1,55 @@
+A honlapon levo feladatokat kotelezoen meg kell csinalni a gyakorlati 
+jegy megszerzesehez. 
+NE KULDJETEK EL egyesevel a megoldasokat, hanem egy allomanyban 
+gyujtsetek oket es majd a felev folyaman fogom kerni oket.
+A megoldasokban a lekerdezeseket es a vegeredmenyt is el kell kuldeni.
+
+4. feladat
+
+ROWID adattipus formatuma es jelentese
+
+18 karakteren irodik ki, a kovetkezo formaban: OOOOOOFFFBBBBBBRRR
+OOOOOO -  az objektum azonositoja
+FFF    -  fajl azonositoja (tablateren beluli relativ sorszam)
+BBBBBB -  blokk azonosito (a fajlon beluli sorszam)
+RRR    -  sor azonosito (a blokkon beluli sorszam)
+
+A ROWID megjeleniteskor 64-es alapu kodolasban jelenik meg. 
+Az egyes szamoknak (0-63) a következo karakterek felelnek meg:
+A-Z -> (0-25), a-z -> (26-51), 0-9 -> (52-61), '+' -> (62), '/' -> (63)
+
+Pl. 'AAAAAB' -> 000001
+
+Irjunk meg egy PL/SQL fuggvenyt, ami a fenti 64-es kodolasnak megfelelo
+szamot adja vissza. A fuggveny parametere egy karakterlanc, eredmenye 
+pedig a kodolt numerikus ertek legyen. (Eleg ha a fuggveny maximum 6 
+hosszu, helyesen kodolt karakterlancokra mukodik, hosszabb karakterlancra,
+vagy rosszul kodolt parameterre adjon vissza -1-et.)
+Ennek a fv-nek a segitsegevel adjuk meg egy tablabeli sor pontos fizikai 
+elhelyezkedeset. (Melyik fajl, melyik blokk, melyik sora) Peldaul az
+ORAUSER.DOLGOZO tabla azon sorara, ahol a dolgozo neve 'KING'.
+
+
+Indexek  
+(DBA_INDEXES, DBA_IND_COLUMNS, DBA_IND_EXPRESSIONS)
+
+Hozzunk letre egy tablahoz ket kulonbozo indexet, az egyik legalabb ket 
+oszlopot tartalmazzon. 
+
+Allapitsuk meg, hogy egy tablahoz milyen indexek vannak letrehozva. 
+(index neve, indexbeli oszlopok neve es sorrendje, index fizikai tarolasanak
+parameterei -> INITIAL, NEXT, PCT... stb.)
+
+Adjuk meg azoknak a tablaknak a nevet, amelyeknek van csokkeno sorrendben indexelt oszlopa.
+
+Adjuk meg azoknak az indexeknek a nevet, amelyek legalabb 10 oszloposak.
+
+Adjuk meg, hogy hany bitmap index van az adatbazisban.
+
+Adjuk meg a ketoszlopos fuggveny alapu indexek nevet.
+Adjuk meg az egyikukre, hogy milyen kifejezesek szerint vannak indexelve a soraik. 
+(Vagyis mi a fuggveny, ami alapjan a bejegyzesek keszulnek.)
+
+Adjuk meg az adatbazisban egy IOT tabla nevet, a hozza tartozo tulcsordulasi szegmens nevet,
+valamint mindketto objektum azonositojat es adat-objektum azonositojat (ha van).
+

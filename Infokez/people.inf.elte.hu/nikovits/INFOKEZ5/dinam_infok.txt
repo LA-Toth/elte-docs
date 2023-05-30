@@ -1,0 +1,164 @@
+Inicializációs paraméterek
+
+Az inicializációs paramétereket a rendszer arra használja, hogy az 
+instancia elindulásakor ezeknek megfelelõ beállitásokkal fog az
+adatbázis szerver elindulni.
+
+Ezen beallitasok segitsegevel lehet pl. 
+- a kulonbozo celu memoriateruletek mereteit valtoztatni es ezaltal 
+  javitani a rendszer hatekonysagat
+- az egesz adatbazisra jellemzo default ertekeket beallitani
+  (pl. optimalizalas modja, NLS_ parameterek ... stb.)
+- az egesz rendszerre vonatkozo korlatokat beallitani
+  (pl. a konkurens session-ok szama)
+- bizonyos fajlok vagy konyvtarak nevet megadni
+
+A parameterek altalaban egy init.ora (vagy init_<sid>.ora nevu szoveges 
+allomanyban vannak felsorolva a kliens oldalon. (Mivel ezt az sqlplus
+program fogja olvasni, amikor elindítjuk az adatbázist.)
+Van egy szerver oldali paraméter fájl is, amibe a rendszer a menet közbeni
+változásokat beírja. Így azok nem vesznek el, ha leállítjuk az 
+instanciát. Ez utóbbi nem olvasható formátumú. SQL utasítással 
+mindegyikbõl létre lehet hozni a másik fajta állományt.
+
+Minden parameternek van alapertelmezes szerinti erteke, igy egyiknek
+a megadasa sem kotelezo. Futas kozben a dinamikus nezettablakbol
+nezheto meg az aktualis ertekuk. (V$parameter, v$system_parameter)
+
+A parameterek kozott vannak olyanok, amelyeket futas kozben
+az ALTER SYSTEM vagy az ALTER SESSION utasitassal meg lehet valtoztatni.
+
+ALTER SESSION SET param = ...
+ALTER SYSTEM SET param = ... [DEFERRED]  
+  (deferred -> csak az új sessionökre vonatkozóan élnek a beállítások)
+
+Vannak ugynevezett szarmaztatott parameterek, amelyek erteket mas 
+parameterekbol szamitja ki a rendszer. Ha megis megadjuk ezeket, azzal 
+felulbiralhatjuk a kiszamitott erteket.
+
+
+
+Néhány fontosabb inicializációs paraméter:
+(a régebbi verziók paramétereit '--' jelöli)
+
+--always_anti_join          (nested_loops/merge/hash)  
+                          antijoin alkerdesek kiertekelesi modja
+--always_semi_join          (nested_loops/merge/hash)  
+                          semijoin alkerdesek kiertekelesi modja
+background_dump_dest      a hatterprocessek trace fajljainak helye
+--buffer_pool_keep          az egyik (opcionális) blokk puffer mérete blokkokban
+--buffer_pool_recycle       az egyik (opcionális) blokk puffer mérete blokkokban
+commit_point_strength     (elosztott tranzakcioban az lesz a koordinator,
+                          ahol a legnagyobb szam van beallitva)
+compatible                (pl. 8.1.6 v. 9.2.0)  visszafele kompatibilitas merteke
+control_files             kontrol fájlok neve
+cursor_space_for_time     (true/false)   nem engedi "kioregedni" azokat a shared
+                          SQL teruleteket, amelyekhez meg tartozik nyitott kurzor.
+--db_block_buffers          az egyik (opcionális) blokk puffer merete blokkokban
+db_block_size             a standard blokkmeret (SYSTEM táblatér)
+--db_block_max_dirty_target maximum ennyi modositott blokk lehet a pufferben
+db_cache_size             blokk puffer mérete standard méretû blokkokban
+db_files                  adatfajlok maximalis darabszama
+db_keep_cache_size        az egyik (opcionális) blokk puffer merete blokkokban
+db_recycle_cache_size     az egyik (opcionális) blokk puffer merete blokkokban
+db_name                   az adatbázis neve
+db_writer_processes       hany adatbazis-iro processz fusson az instancian belul
+dispatchers               diszpécser folyamatok specifikálása
+--distributed_transactions  hany elosztott tr-ban vehet reszt az adatbaziskezelo
+dml_locks                 az egyidejuleg engedelyezheto lock-ok szama
+fixed_date                (tesztelesi celokra) a sysdate ezt fogja visszaadni
+hash_area_size            a hash join-hoz felhasznalhato memoria merete
+hash_join_enabled         az optimalizalo figyelembe vegye-e a hash join lehetoseget
+instance_name             instancia neve
+java_pool_size            java pool mérete
+--job_queue_interval        az SNP processzek aktivizalodasi ideje kozotti ido
+job_queue_processes       hany db SNP processz fusson (ezek vegzik a DBMS_JOB altal
+                          utemezett feladatokat)
+large_pool_size           large pool mérete
+licence_max_sessions      maximum ennyi konkurens session lehet
+licence_max_users         maximum ennyi user hozhato letre az AB-ban
+log_archive_dest          ide írja az archive logokat
+log_buffer                napló puffer mérete
+log_checkpoint_interval   a checkpointok gyakorisagat hatarozza meg a lemezre irt 
+                          redo blokkok szamanak fuggvenyeben 
+log_checkpoint_timeout    masodpercekben adja meg a ket checkpoint kozotti idot
+max_dispatchers           maximum ennyi diszpécser futhat
+max_enabled_roles         maximum ennyi szerepet vehet fel egyszerre egy user
+max_shared_servers        osztott szerver processzek max. száma
+mts_sessions              max. ennyi session kapcsolódhat osztott szerveren keresztül
+nls_ ...                  nemzeti nyeli tamogatas
+open_cursors              egy session altal megnyithato kurzorok max. szama
+optimizer_mode            (rule/choose/first_rows/all_rows) 
+processes                 ebbe beleszamit az osszes hatterprocessz
+resource_limit            (true) a profile-okon beluli korlatozasok megkovetelese
+row_locking               sor szintû zárolás engedélyezése
+serializable              tranzakciók beállítása
+service_names             ilyen neveken érik el a kliensek a példányt (több is lehet)
+session_cached_cursors    hany kurzort tehet a cache-be egy session
+sessions                  (1.1*PROCESSES + 5) a felhasznaloi es rendszer session-ok
+sga_max_size              az SGA max. mérete
+sga_target                bizonyos SGA területek összmérete; ha megadjuk, akkor a következõ
+                          méreteket automatikusan kezeli az oracle: shared_pool_size,
+                          large_pool_size, java_pool_size, db_cache_size
+shared_pool_size          shared pool mérete
+shared_servers            az osztott szerverek száma példány induláskor
+sort_area_size            a rendezesekhez hasznalhato memoria merete
+spfile                    a szerver oldali paraméterfájl neve
+sql_trace                 teszteleshez celszeru, mert eroforrasokat kot le
+timed_statistics          ez is eroforrasokat kot le
+transactions              (1.1*sessions)
+transactions_per_rollback_segments
+undo_management           (manual/auto) rollback szegmens vagy undo táblatér 
+undo_tablespace           undo táblatér neve (auto management módban)
+utl_file_dir              a plsql-beli I/O a megadott konyvtarakba lehetseges
+
+
+
+Dinamikus nezettablak
+
+A rendszer allapotarol es a rendszerben torteno esemenyekrol az ugynevezett dinamikus 
+nezettablakbol kaphatunk informaciokat. Ezek neve V$... alaku es a legfontosabbak 
+kozuluk az alabbiak:  (esetenkent a fontosabb oszlopokat is megadtam zarojelben )
+
+
+V$ACCESS                      melyik session milyen objektumot kezel (zárol) éppen
+V$BGPROCESS                   hatterprocessek (azok futnak, ahol a paddr<>0)
+V$BUFFER_POOL                 infók az elérhetõ blokk pufferekrõl
+V$CONTROLFILE                 kontrol file-ok nevei
+V$DATABASE(name, created)
+V$DATAFILE                    A kontrollfájlban tárolt infók az adatfájlokról
+V$DATAFILE_HEADER             A kontrollfájlban tárolt adatfájl fejléc infók
+V$DB_OBJECT_CACHE             mik vannak eppen a LIBRARY CACHE-ben
+V$DISPATCHERS                 infó a diszpécserekrõl
+V$FILESTAT                    file-ok irasa/olvasasa-ra vonatkozo statisztikak
+V$FIXED_TABLE                 a dinamikus nezetek felsorolasat tartalmazza
+V$FIXED_VIEW_DEFINITION       a dinamikus nezetek forrasszovegei
+V$INSTANCE                    nehany fontos adat az instanciarol
+V$LIBRARYCACHE                a library cache aktivitasarol     
+V$LICENSE                     user illetve session korlatok az AB-ra vonatkozoan        
+V$LOCK                        lock-ok illetve lock-ra varakozasok
+V$LOCKED_OBJECT               a zarolas alatt tartott objektumok
+V$LOG                         A naplozas pillanatnyi allapota
+V$LOGFILE                     A log file-ok
+V$MYSTAT vagy V$SESSTAT       (V$STATNAME is kell hozza)
+V$NLS_PARAMETERS              az ervenyes nemzeti nyelvi beallitasok
+V$NLS_VALID_VALUES            az NLS parameterek lehetseges ertekei
+V$OPEN_CURSOR                 ki milyen utasitast futtat eppen
+V$OPTION                      A telepitett opciok listaja
+V$PARAMETER(name, value, description)
+V$PARAMETER2                  az elõzõ nézet normalizált változata (1 érték/oszlop)
+V$PROCESS                     az eppen aktiv processek
+V$PWFILE_USERS                password fájl által authentikált userek
+V$ROLLNAME                    rollback szegmensek nevei
+V$ROLLSTAT                    statisztika a rollback szegmensekrol
+V$ROWCACHE                    statisztikak az adatszotar cache-rol
+V$SESSION                     az aktiv session-ok informacioi
+V$SESSION_EVENT               milyen esemenyekre varakoztak a session-ok
+V$SGA                         információk az SGA részeirõl
+V$SGAINFO                     bõvebb infók az SGA részeirõl
+V$SGASTAT                     még bõvebb statisztika az SGA-rol
+V$STATNAME(statistic#, name)  az egyes informaciok kodja es neve
+V$SYSSTAT                     altalanos informaciok a rendszer mukodeserol
+V$VERSION                     verziószámokat tartalmaz                 
+
+

@@ -1,0 +1,601 @@
+Az Optimalizalo
+
+Az optimalizalo az adatbazis szervernek resze, amelyik vegrehajtasi tervet keszit az 
+egyes lekerdezesekhez.
+
+PELDA
+
+SELECT dnev, szakma, fizetes, onev  FROM  dolgozo,osztaly
+WHERE dolgozo.oszam = osztaly.oszam AND NOT EXISTS
+	(SELECT * FROM fiz_kategoriak 
+	WHERE dolgozo.fizetes BETWEEN also_h AND felso_h)
+
+A fenti lekerdezes egy vegrehajtasi terve lehet a következõ:
+
+FILTER
+  NESTED LOOPS
+    TABLE ACCESS  FULL  dolgozo
+    TABLE ACCESS  BY ROWID  osztaly
+      INDEX UNIQUE SCAN  pk_oszam
+  TABLE ACCESS (full) fiz_kategoriak
+
+Minden lepes egy sorhalmazt ad vissza, ami vagy a vegeredmeny vagy egy következõ 
+lepes fogja felhasznalni. Elõször a leveleket hajtja vegre majd ezek szuleit. 
+Sokszor a szulo csomopont rögtön vegrehajthato ha egy sort megkapott a gyermeketõl, 
+(table access, index access, nested loop join, filter), neha a teljes eredmenyt 
+meg kell varni. (sort, sort-merge-join, group fv-ek, aggregalasok)
+
+Az optimalizalo mûködese lehet szabaly alapú (heurisztikakon alapul) vagy költseg alapú. 
+(OPTIMIZER_MODE = RULE|COST) Az utobbi esetben az adatszotarban levõ informaciokat is 
+figyelembe veszi az optimalizalo, sõt a lekerdezesbe beleirt "tippekkel" is lehet 
+befolyasolni. 
+Az optimalizalo szamara hasznos informaciokat az ANALYSE parancs hozza letre. 
+
+Az optimalizalas celja lehet a teljes lekerdezes leggyorsabb vegrehajtasa vagy a 
+legjobb valaszidõ elerese. 
+(ALTER SESSION SET OPTIMIZER_GOAL = ALL_ROWS|FIRST_ROWS ...)
+
+
+Hogyan lehet megnezni, hogy milyen tervet keszit az optimalizalo egy lekerdezes 
+vegrehajtasahoz?
+
+   EXPLAIN PLAN SET STATEMENT_ID = 'utasitas_neve'
+   INTO <tablanev>	       -- default tablanev -> PLAN_TABLE
+   FOR	<sql utasitas>;
+
+   A PLAN_TABLE letrehozasa utlxplan.sql script segitsegevel. (/rdbms/admin/)
+
+   A PLAN_TABLE tartalmanak megnezese:
+
+   select lpad(' ',2*(level-1))||operation||' '||options||' '||object_name "Terv"
+   from plan_table
+   start with id=0 AND statement_id='utasitas_neve'
+   connect by prior id=parent_id AND statement_id='utasitas_neve'
+
+Az azonos szinten levõ mûveletek sorrendjet a position oszlop erteke hatarozza meg.
+
+
+Mi alapjan dönt az optimalizalo?
+
+
+Szabaly alapú esetben:
+
+Elõre meghatarozott rangsora van az egyes adateleresi lehetõsegeknek. 
+A legjobban rangsorolt modszert valasztja az optimalizalo fuggetlenul a 
+tablak tenyleges adattartalmatol.
+
+Költseg alapú esetben:
+
+Elõször lehetseges vegrehajtasi terveket general az optimalizalo. 
+Majd megbecsuli ezek költseget a rendelkezesere allo statisztikai 
+informaciok alapjan. 
+(Vigyazat! Ezek az informaciok rossz esetben eleg elavultak is lehetnek). 
+Vegul a legolcsobbnak itelt valtozat mellett dönt.
+
+A felhasznalt statisztikak a következõ tablakban vannak:
+USER_TABLES 
+USER_TAB_COLUMNS
+USER_INDEXES
+USER_HISTOGRAMS
+USER_CLUSTERS
+
+Az optimalizalo a következõ lepeseket hajtja vegre:
+
+1. a kifejezesek es feltetelek kiertekelese
+2. utasitasok atalakitasa mas ekvivalens formara
+3. nezettablak definicioinak merge-elese a lekerdezesbe
+4. tablak eleresi modjainak kivalasztasa
+5. join-olasi sorrend kivalasztasa
+6. join mûvelet kivalasztasa
+
+Milyen utasitasokat optimalizal?
+
+Egyszerû utasitas (egy tabla)
+Join (egyenlõseges, nemegyenlõseges, kulsõ join)
+Descartes szorzat
+Komplex utasitasok (subquery-t tartalmazo)
+Összetett utasitasok (halmazmûvelettel: UNION, INTERSECT, MINUS)
+
+
+1. A kifejezesek es feltetelek kiertekelese
+
+Konstansokkal valo egyszerûsites.    Oszl > 24000/12   ->   Oszl > 2000
+Ezt nem:       Oszl*12 > 24000
+
+LIKE metakarakterek nelkul  -> egyenlõseg   kif LIKE 'abc'  ->  kif = 'abc'
+
+IN helyett egyenlõseg vagyokkal elvalasztva   
+Oszl IN ('abc', 'def', 'ghi')  ->  oszl='abc' OR oszl='def' OR oszl='ghi'
+
+ANY helyett vagy feltetelek
+Oszl > ANY(:a, :b)  -> oszl > :a  OR  oszl > :b
+
+ANY + subquery helyett EXISTS
+X > ANY(SELECT oszl ... WHERE ...)  ->  
+	EXISTS(SELECT oszl ... WHERE ... AND X > oszl
+
+ALL helyett es feltetelek
+Oszl > ALL(:a, :b)  -> oszl > :a  AND  oszl > :b
+
+ALL + subquery helyett ANY + subquery
+X > ALL(SELECT ...)  ->  NOT (X <= ANY(SELECT ...)
+(A masodikat aztan EXIST-te konvertalja)
+
+BETWEEN helyett >= AND <=
+
+NOT eliminalasa    NOT X = ...   ->   X <> ...
+
+
+2. Utasitasok atalakitasa
+
+
+OR feltetelbõl összetett kerdest csinalhat, ha mindket resz index segitsegevel elerhetõ. 
+Ha barmelyik resz FULL TABLE SCAN-t igenyel akkor nem transzformal.
+	SELECT * FROM emp WHERE ename = 'SMITH' OR sal > comm  helyett:
+	SELECT * FROM emp WHERE ename = 'SMITH' 
+	UNION ALL 
+	SELECT * FROM emp WHERE  sal > comm;
+
+
+Komplex lekerdezes Join-na alakitasa ha lehetseges.
+SELECT * FROM accounts WHERE custno IN (SELECT custno FROM customers) ->
+	SELECT accounts.* FROM accounts ,customers 
+	WHERE accounts.custno =customers.custno 
+Ez csak akkor jo ha a custno primary key a CUSTOMERS-ben.
+
+
+3. Nezettablak definicioinak merge-elese a lekerdezesbe
+
+
+CREATE VIEW emp_10
+AS SELECT empno,ename,job,mgr,sal,deptno FROM emp WHERE deptno = 10
+
+SELECT empno FROM emp_10 WHERE empno > 8000
+
+Az optimalizalo a kovetkezove alakitja: (a nezettablat az alaptablaival helyettesiti)
+
+SELECT empno FROM emp WHERE deptno = 10 AND empno > 8000
+
+Ha az utobbi ket oszlopra leteznek indexek akkor azok elerhetok lesznek a lekerdezes szamara.
+
+
+Lekerdezes merge-elese a nezettabla definicioba
+
+Ha a nezettabla definicioja halmazmuveleteket is tartalmaz vagy GROUP BY reszt akkor 
+az elozo modszer nem mukodik. Ilyenkor mukodhet a forditottja.
+
+CREATE VIEW two_emp_tables (empno,ename,job,mgr,sal,deptno)
+AS SELECT empno,ename,job,mgr,sal,deptno FROM emp1 
+UNION
+SELECT empno,ename,job,mgr,sal,deptno FROM emp2 
+
+SELECT empno,ename FROM two_emp_tables WHERE deptno = 20
+
+Az optimalizalo a kovetkezove alakitja: 
+
+SELECT empno, ename FROM emp1 WHERE deptno = 20 
+UNION
+SELECT empno, ename FROM emp2 WHERE deptno = 20 
+
+Ha a deptno oszlopra letezik index akkor az elerheto lesz. (az alabbi tervben ez nincs benne)
+1. VIEW two_emp_tables
+2.	PROJECTION
+3.		SORT (UNIQUE)
+4.			UNION-ALL
+5.				TABLE ACCESS (full) emp1
+6.				TABLE ACCESS (full) emp2
+
+Masik pelda:
+
+CREATE VIEW emp_group_by_deptno
+AS SELECT deptno, AVG(sal) avg_sal, MIN(sal) min_sal, MAX(sal) max_sal
+FROM emp GROUP BY deptno
+
+SELECT * FROM emp_group_by_deptno WHERE deptno = 10
+
+SELECT deptno, AVG(sal) avg_sal, MIN(sal) min_sal, MAX(sal) max_sal
+FROM emp WHERE deptno = 10 GROUP BY deptno
+
+Ha van a deptno oszlopra index akkor az elerheto lesz.
+1. VIEW emp_group_by_deptno
+2.	SORT (GROUP BY)
+3.		TABLE ACCESS (by rowid) emp
+4.			INDEX (range scan) emp_deptno_index
+
+Harmadik lehetoseg, hogy vegrehajtja a nezettablat definialo lekerdezest es annak 
+sorait ugy hasznalja mintha az egy tabla volna.
+
+Pl.
+SELECT dept.deptno, avg_sal, min_sal, max_sal, dname, loc 
+FROM emp_group_by_deptno, dept
+WHERE emp_group_by_deptno.deptno = dept.deptno
+
+Ezt nem alakitja at, hanem a kovetkezokeppen hajtja vegre:
+1. NESTED LOOPS
+2.	VIEW (emp_group_by_deptno)
+3.		SORT (GROUP BY)
+4.			TABLE ACCESS (full) emp
+5.	TABLE ACCESS (by rowid) dept 
+6.		INDEX (unique scan) pk_dept
+
+
+4. Tablak eleresi modjainak kivalasztasa
+
+Egy tabla sorainak beolvasasahoz sokfele eleresi ut lehetseges. Pl. akar tobb 
+indexet is lehetne hasznalni. Ezekbol az utakbol valaszt az optimalizalo. 
+Az alapveto eleresi utak a kovetkezok:
+
+Full table scan
+Table access by rowid (mar elozoleg tudja valahonnan a sorazonositot)
+Cluster scan  (egy indexelt clusterben az azonos cluster kulcs ertekkel biro sorok egy
+  adatblokkban - vagy lancolt adatblokkokban - helyezkednek el.) Itt is elozoleg mar tudja
+  a sorazonositot a cluster indexbol.
+Hash scan  (egy hash clusterben az azonos hash ertekkel rendelkezo sorok egy 
+  adatblokkban - lancolt blokkokban - helyezkednek el.) 
+  Elozoleg mar tudja a hash erteket.
+Index scan (Az indexelt oszlopok ertekein kivul a sorazonosito van benne az indexben.
+  Ha csak az indexben szereplo oszlopokra van szukseg akkor a tablat magat nem is
+  bantja.) 
+  Unique scan -> csak egy sorazonositot ad vissza
+  Range scan  -> tobb sorazonositot ad vissza
+
+
+Ha több eleresi út is lehetseges akkor a szabaly alapú optimalizalo a következõkeppen 
+rangsorolja a lehetõsegeket.
+
+
+
+1. Egyetlen sor elerese sorazonosito alapjan
+
+Hasznalhato ha a WHERE utan szerepel a ROWID = ... 
+vagy a CURRENT OF cursornev eseten
+
+
+2. Egyetlen sor elerese cluster join alapjan
+
+Ha ket tabla egy clusteren van, ismerem egy azonos cluster kulcsú sor cimet es biztos, 
+hogy csak egy sort kapok vissza. pl. 
+  SELECT * FROM emp, dept WHERE emp.deptno=dept.deptno
+  AND emp.empno = 1200
+Mivel empno es deptno egyedi kulcs a megfelelõ tablaban ezert biztos csak 1 sort 
+kapok vissza.
+
+1. NESTED LOOPS
+2.	TABLE ACCESS  (by rowid)  emp
+3.		INDEX  (unique scan)  pk_emp 
+4.	TABLE ACCESS  (cluster)  dept 
+
+
+3. Egyetlen sor elerese hash cluster kulcs alapjan
+
+Ha ismerem a hash cluster kulcsot es biztos, hogy csak 1 sort kapok vissza. pl.
+  SELECT * FROM orders WHERE orderno = 12
+Ha orderno hash kulcs is es egyedi kulcs is.
+
+
+4. Egyetlen sor elerese egyedi kulcs alapjan.
+
+Ha ismerem egy egyedi kulcs erteket. pl. 
+  SELECT * FROM emp WHERE empno = 112
+
+
+5. Sorok elerese cluster join alapjan
+
+Ha a sorokkal azonos cluster kulcsú sorok cimet mar ismerem. (Mint a 2. eset) pl.
+  SELECT * FROM emp,dept WHERE emp.deptno=dept.deptno
+1. NESTED LOOPS
+2.   TABLE ACCESS  (full)  dept
+3.   TABLE ACCESS  (cluster)  emp 
+
+
+6. Sorok elerese hash cluster kulcs alapjan
+
+Ha ismerem a hash cluster kulcsot. (Mint a 3. eset) pl.
+	SELECT * FROM items WHERE orderno = 12
+
+
+
+7. Sorok elerese index cluster kulcs alapjan
+
+Ha ismerem az index cluster kulcs erteket pl. 
+	SELECT * FROM emp WHERE deptno = 10
+1. TABLE ACCESS  (cluster)  emp
+2. INDEX  (unique scan)  clust_ind
+
+
+8. Összetett (több oszlopos) index hasznalata
+
+
+9. Több egyoszlopos index hasznalata
+
+	pl.  SELECT * FROM emp WHERE job = 'CLERK'  AND  deptno = 21
+1. TABLE ACCESS  (by rowid) emp
+2.	AND-EQUAL
+3.		INDEX  (range scan)  job_ind
+4.		INDEX  (range scan)  deptno_ind
+
+
+10. Korlatos intervallum kereses indexelt oszlopban
+
+Ha az indexelt oszlopra also es felsõ korlatozast is tartalmaz a lekerdezes.
+(oszl= kif,  oszlop BETWEEN ...,  oszl < ... AND oszl > ..., oszl LIKE 'c%')
+
+
+11. Nem korlatos intervallum kereses indexelt oszlopban
+
+Ha az indexelt oszlopra vonatkozoan vagy also vagy felsõ korlatozast tartalmaz a lekerdezes.
+
+
+12. Sort Merge Join
+
+Ha olyan tablakra vonatkozik a lekerdezes, amelyek nincsenek egy clusteren es a 
+join feltetel az oszlopokra vonatkozo egyenlõsegekbõl all. Lasd meg a join-nal.
+
+	Pl. SELECT * FROM emp, dept WHERE emp.deptno = dept.deptno
+1. MERGE JOIN
+2.	SORT  join
+3.		TABLE ACCESS  (full)  emp
+4.	SORT  join
+5.		TABLE ACCESS  (full)  dept
+
+
+13. Indexelt oszlop maximumanak vagy minimumanak a keresese
+
+Ha nincs mas oszlop a lekerdezesben, es nincs where es group by sem.
+Ilyenkor a tablahoz nem is kell nyúlni.
+
+
+14. Order by egy indexelt oszlopra (oszlopokra)
+
+Primary key vagy not null constraintnek kell garantalnia, hogy legalabb az 
+egyik oszlop nem tartalmazhat null-t. Ilyenkor az oracle mar az indexben a 
+megfelelõ sorrendben eri el a sorokat.
+
+
+15. Full table scan
+
+Az alabbi konstrukciok nem teszik lehetõve az elõzõ modszereket es ilyenkor 
+nem marad mas, mint a full table scan:
+	oszlop1  > oszlop2  (<, <=, ... stb.)
+	oszlop  IS [NOT]  NULL
+	oszlop  NOT  IN
+	oszlop  !=  kifejezes
+	oszlop  LIKE  '%c'
+
+
+A költseg alapú optimalizalo altal hasznalt statisztikak
+
+USER_TABLES.NUM_ROWS          A sorok szama egy tablaban
+USER_TAB_COLUMNS.NUM_DISTINCT     A kulönbözõ ertekek szama
+USER_TAB_COLUMNS.HIGH_VALUE     A legnagyobb ertek
+USER_TAB_COLUMNS.LOW_VALUE     A legkisebb ertek
+USER_HISTOGRAMS
+
+A fentiek alapjan becsuli meg a lekerdezes szelektivitasat.
+	pl. SELECT * FROM emp WHERE empno < 100 esetben.
+
+Ha valtozo van a lekerdezesben akkor heurisztikusan 25%-ra becsuli a szelektivitast
+	pl. SELECT * FROM emp WHERE empno < :v1 esetben.
+
+
+Több feltetel eseten az alabbi keplettel szamolja ki a szelektivitast:
+S = ABS(S1 + S2 -1)
+	pl. SELECT * FROM EMP WHERE empno BETWEEN 30 AND 50
+
+
+JOIN mûveletek optimalizalasa
+
+Elõször a szereplõ tablakra vonatkozo eleresi utat kell meghatarozni 
+(ugyanúgy ahogy egyszerû utasitasokra), majd a join mûveletet, vegul a join sorrendet.
+
+Join mûveletek:
+  Nested Loops (egymasba agyazott ciklussal)
+  Sort Merge (az adatforrasok elõzetes rendezesevel)
+  Cluster (ha a ket tabla egy clusteren van es a join feltetel a cluster kulcsra vonatkozo
+     egyenlõseg)
+
+
+n darab tabla join-olasa a szabaly alapú optimalizalas eseteben:
+
+n kulönbözõ join sorrend elõallitasa, amelyben mindig mas az elsõ tabla. 
+
+Ez a következõk szerint:
+A tovabbi poziciok kitöltesekor mindig a legjobban rangsorolt eleresi úttal 
+rendelkezõ tabla jön elõbb. Ezt join-olja az elõzõleg össze join-olt adatforrassal a 
+következõk szerint:
+A sort merge rangsorolasa 12. Ha az eppen következõ tabla elerese ennel jobb akkor 
+nested loops, amelyben a korabbi adatforras lesz a kulsõ ciklus.
+Ha az aktualis tabla elerese rosszabb, mint 12 es equijoin van akkor sort merge.
+Ha rosszabb, mint 12 es nem equijoin akkor nested loops es a korabbi adatforras lesz 
+a kulsõ ciklus.
+
+Az n eleresi útbol valasztas a következõk szerint:
+Ahol a legkevesebb olyan nested loop van, amiben a belsõ cikluban full table scan van.
+Ahol a legkevesebb sort merge van.
+Ahol a legelsõ tabla elerese a legjobban rangsorolt.
+Ahol az elsõ tabla kesõbb szerepel a FROM utan.
+
+
+n darab tabla join-olasa költseg alapú esetben
+
+Megbecsuli a kulönbözõ terveket es a legjobbat valasztja a következõk alapjan:
+A SORT_AREA_SIZE parameter növelese növeli a sort merge eselyet.
+A DB_FILE_MULTIBLOCK_READ_COUNT parameter növelese növeli a sort merge eselyet.
+
+
+Csillag-szerû (vagy hopehely) lekerdezesek
+Ahol egy nagy tablat sok kis tablaval kell join-olni. 
+(pl. szallit tablat szallito, cikk, project-tel)
+
+Itt celszerû elõször a kis tablakat szûres utan join-olni, majd az eredmenyt 
+join-olni a nagyhoz indexek hasznalataval.
+
+Összetett lekerdezesek
+
+Optimalizalja a komponenseket, majd jöhet a halmazmûvelet.
+
+	SELECT part FROM orders1
+	UNION ALL
+	SELECT part FROM orders2
+
+1. PROJECTION
+2.	UNION-ALL
+3.		TABLE ACCESS (full) orders1
+4.		TABLE ACCESS (full) orders2
+
+
+	SELECT part FROM orders1
+	UNION 
+	SELECT part FROM orders2
+
+1. PROJECTION
+2.	SORT  (unique)
+3.	.	UNION-ALL
+4.			TABLE ACCESS (full) orders1
+5.			TABLE ACCESS (full) orders2
+
+
+	SELECT part FROM orders1
+	INTERSECT 
+	SELECT part FROM orders2
+
+1. PROJECTION
+2. 	INTERSECTION
+3.		SORT  (unique)
+4.			TABLE ACCESS (full) orders1
+5.		SORT  (unique)
+6.			TABLE ACCESS (full) orders2
+
+
+Hisztogrammok hasznalata 
+
+Hasznalatuk akkor hasznos ha az adatok eloszlasa nem egyenletes. Hol tarolodnak?
+USER_HISTOGRAMS, ALL_HITOGRAMS, DBA_HISTOGRAMS
+(tulajdonos, tablanev, oszlopnev, vegpont sorszama, vegpont erteke)
+
+Height-balanced -> a bucket-ek vegpontjait úgy hatarozza meg, hogy azonos darabszamú 
+ertek keruljön az egyes bucketekbe.
+Width-balanced -> a bucket-ek vegpontjait egyenletesen osztja szet es azt mondja meg, 
+hogy hany darab ertek esik az egyes bucketekbe.
+
+Az oracle az elõzõt hasznalja. Az jobb is, mivel az utobbinal az egy bucketen belul 
+esõ ertekek gyakorisaganak elteresere semmi informacionk nincs.
+
+Letrehozasuk az ANALYZE paranccsal  pl. egy 10 bucketes histogram letrehozasa:
+	ANALYZE TABLE emp COMPUTE STATISTICS FOR COLUMNS sal SIZE 10
+
+
+Mivel segithetjuk elõ a gyorsabb vegrehajtast?
+
+
+Indexek hasznalata
+Azokra a tablakra, amelyeknek gyakran csak egy kis reszet (5-10%) valasztjak ki a lekerdezesek.
+Azokra az oszlopokra, amelyek gyakran szerepelnek a WHERE utan, amelyekre gyakran törtenik 
+join, amelyeknek jo a szelektivitasa, amelyek ertekei nem gyakran valtoznak. 
+(A lekerdezeseket úgy irjuk meg, hogy az indexek elerhetõk legyenek a szamara.)
+
+
+Clusterek hasznalata
+Olyan tablakra, amelyeket gyakran join-olunk. Amelyekre a cluster kulcs erteke 
+nem nagyon valtozik. Amelyekre ritkan van kulön-kulön full table scan. 
+Ahol az azonos cluster kulcsú sorok nem foglalnak el több helyet egy-ket blokknal.
+
+
+Hash cluster hasznalata
+Olyan tablakra, amelyeket gyakran (szinte mindig) a hash kulcs alapjan erunk el. 
+Ahol egyenletes a hash ertekek eloszlasa. Ahol elõre lathato a tabla jövõbeni növekedese. 
+Ahol a gyors eleres sokkal fontosabb az elfoglalt lemezteruletnel.
+
+
+Tippek (hint) adasa az optimalizalonak
+
+Mindig csak arra az utasitas blokkra vonatkoznak, amiben szerepelnek. 
+Az utasitas blokk a következõk egyike lehet:
+Egyszerû SELECT, UPDATE, DELETE utasitas
+Komplex utasitasban a subquery vagy a kulsõ utasitas
+Összetett utasitas egyik resze
+A tipp csak közvetlenul az utasitas kulcsszava utan jöhet megjegyzesben.
+[SELECT|DELETE|UPDATE]   /*+  tipp lista  */    (a + elõtt nincs szoköz !!! )
+Ha hiba van a hint-ben az oracle figyelmen kivul hagyja de nem jelez hibat.
+
+A hasznalhato tippek:
+
+ALL_ROWS
+Költseg alapú optimalizalast valaszt es azon belul is a teljes lekerdezesre optimalizal.
+	SELECT /*+ ALL_ROWS */  * FROM emp WHERE ...
+
+FIRST_ROWS
+Költseg alapú optimalizalast valaszt es azon belul is a legjobb valaszidõre optimalizal.
+(Ha lehet indexet hasznal, ha lehet nested loop joint hasznal)
+
+CHOOSE
+Ha legalabb egy tablara van statisztika akkor költseg alapú optimalizalot hasznal, 
+egyebkent szabaly alapút.
+
+RULE
+Szabaly alapú optimalizalast hasznal
+
+FULL(tablanev)   vagy  FULL(aliasnev)
+Nem hasznal indexet, hanem full table scant.
+
+ROWID(tabla)
+CLUSTER(tabla)
+HASH(tabla)
+
+INDEX(tabla  [index lista])
+A tablat index alapjan eri el. Ha nem adunk meg index nevet (vagy többet adunk meg) 
+akkor a legolcsobb költsegû indexet (a felsoroltakbol) hasznalja.
+
+INDEX_ASC(tabla  [index lista])
+Növekvõ sorrendben eri el az index bejegyzeseket.
+
+INDEX_DESC(tabla  [index lista])
+Csökkenõ sorrendben eri el az index bejegyzeseket.
+
+AND_EQUAL(tabla  index  index  [index]  [index]  [index])
+Egyoszlopos indexek altal visszaadott sorok merge-elese. Legalabb ket index megadasa 
+kötelezõ es ötnel több nem adhato meg.
+
+ORDERED
+A tablakat abban a sorrendben fogja join-olni, ahogy azok a FROM utan megjelennek.
+
+
+USE_NL(tabla lista)
+A megadott tablakat nested looppal join-olja a többi adatforrashoz. A megadott tabla 
+lesz a belsõ ciklus tablaja.
+
+USE_MERGE(tabla lista)
+A megadott tablakat sort-merge-el join-olja a többi adatforrashoz.
+
+CACHE(tabla)
+Hatasara a tabla blokkjai a buffer cache LRU listajanak "regi" vegere kerulnek. 
+Kis tablaknal hasznos, hogy sokaig csucsulhessenek a bufferben.
+
+NOCACHE(tabla)
+Hatasara a tabla blokkjai a buffer cache LRU listajanak "friss" vegere kerulnek. 
+Alapertelmezes szerint is ide kerulnenek.
+
+A lekerdezes ugyesebb megirasa
+
+Melyek azok az osztalyok, amelyeken nem dolgozik senki? 
+Tegyuk fel az emp tabla deptno oszlopara van egy deptno_index nevû index.
+
+	SELECT dname, deptno FROM dept WHERE deptno NOT IN
+		(SELECT deptno FROM emp)
+
+1. FILTER
+2.	TABLE ACCESS (full) dept
+3.	TABLE ACCESS (full) emp
+
+A fenti lekerdezes nem hasznalja az indexet, mert az nem elerhetõ a szamara. 
+Az alabbi egy jobb formaja ugyanennek a lekerdezesnek, mert az hasznalja az indexet.
+
+	SELECT dname, deptno FROM dept WHERE NOT EXISTS
+		(SELECT deptno FROM emp WHERE dept.deptno = emp.deptno)
+
+1. FILTER
+2.	TABLE ACCESS (full) dept
+3.	INDEX (range scan) deptno_index
+9
+
+

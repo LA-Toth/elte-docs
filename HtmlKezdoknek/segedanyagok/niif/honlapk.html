@@ -1,0 +1,195 @@
+<head>
+<title>Hogyan készítsünk saját honlapot a Weben?</title>
+</head>
+
+<body bgcolor="ffffee">
+
+<center>
+<a href="honlap8.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlapf.html">Következô fejezet</a>
+</center>
+
+<hr>
+
+<br>Egy kis kiegészítés:
+
+<h2>Pár hasznos UNIX parancs DOS motorosoknak</h2>
+
+Ezt csak azok olvassák el, akik a DOS-táborból kerültek hirtelen "ellenséges
+területre".
+
+<h3>Ami ugyanaz</h3>
+
+A <b>cd</b>, az <b>mkdir</b> és az <b>rmdir</b> nagyjából ugyanúgy mûködik, 
+mint DOS-ban, bár a <b>cd</b> önmagában paraméter nélkül nem az aktuális 
+könyvtár útvonalát adja vissza (erre a <b>pwd</b> parancs szolgál), hanem a 
+bejelentkezési (bázis) könyvtárba visz minket. A cd (és minden más 
+parancs mögé is) kötelezô szóközt tenni, azaz például nem a <b>cd..</b>, 
+hanem a <b>cd ..</b> a helyes.
+
+<h3>Állománylista</h3>
+
+<h4>ls</h4>
+
+A DOS alatt ezt DIR (pontosabban DIR /W) parancsnak ismerjük. Kilistázza
+a könyvtárban található állományokat. A rejtett állományokat nem. UNIX alatt
+ezek a ponttal kezdôdô állományok. Ezekhez a
+
+<h4>ls -a</h4>
+
+parancs kiadása szükséges.
+
+<h4>ls -l</h4>
+
+Részletes listát ad, többet, mint a DOS DIR parancsa. Közli az állomány
+elérési engedélyeit, a tulajdonosát és csoportját, a létrehozás dátumát
+és a méretet is. 
+
+<pre>
+total 17
+drwxr-xr-x   4 jakab    users        1024 Aug 11 00:02 ./
+drwxr-xr-x   8 jakab    users        1024 Jul 24 15:26 ../
+drwx------   4 jakab    users          47 Aug 11 00:04 mail/
+drwxr-xr-x   4 jakab    users           3 Aug 11 00:05 public_html/
+</pre>
+
+Az elsô oszlop az állomány típusa (a "d" könyvtár, a "-" hétköznapi állomány).
+Utána kilenc oszlopban 3x3-as rendben a tulajdonos, a tulajdonos csoportja
+és a külvilág elérési jogai láthatók kódolva. Az "r" olvasási, a "w" írási,
+az "x" pedig végrehajtási jog. (Ez utóbbit könyvtárra is ki kell adni.)
+<p>
+A tulajdonos neve jó, ha egyezik a mi bejelentkezési nevünkkel, különben
+aligha tudunk felhôtlenül és zavartalanul dolgozni. A csoport neve most
+lényegtelen.
+<p>
+Ügyeljünk arra, hogy minden könyvtárunk elérési kódja a fenti példában
+szereplô public_html kódjának feleljen meg, míg a többi állományé ugyanez
+"x" nélkül (maradhat rajta, de okozhat zavart: txt szövegállományok pl.
+eltérôen viselkednek, "x" nélkül preformattáltnak veszi ôket a Netscape,
+míg "x" jelenlétében nem, azaz összefolyatja a szöveget...).
+<p>
+Az elérési kód beállítására a
+
+<h4>chmod</h4>
+
+parancs szolgál. Könyvtár szokásos beállítása:
+
+<pre>
+chmod 755 public_html
+</pre>
+
+Állomány szokásos beállítása:
+
+<pre>
+chmod 644 index.html
+</pre>
+
+Az <b>ls</b> nem mond semmit arról, mekkora hely áll még a rendelkezésünkre.
+Erre a
+
+<h4>quota -v</h4>
+
+parancs szolgál. Vegyük komolyan az "addig nyújtózkodj, amíg a takaród ér!"
+mondást! A quota túllépése figyelmeztetést, sôt account letiltást is 
+eredményezhet.
+<p>
+Ha véletlenül azt üzeni vissza a gép, hogy nincs quota megszorítás a gépen,
+akkor elvileg az egész a miénk lehet, de ezt ne próbáljuk ki. A fizikai 
+kapacitás korlátjáról is érdeklôdhetünk, ezt a<br><br>
+
+<h4>df</h4>
+
+parancs által szolgáltatott statisztikából olvashatjuk ki. Keressük a 
+<b>/home</b> bejegyzést, illetve ha ez nincs, akkor a <b>/</b> bejegyzés 
+sorát.
+
+<h3>Állománymozgatás</h3>
+
+<h4>cp</h4>
+
+A DOS alatt ezt COPY parancsnak ismerjük. Fontos eltérés, hogy mindig
+ki kell tennünk a célt jelölô paramétert is, tehát az aktuális könyvtárba
+másoláskor is (ezt egyébként egyszerûen egy ponttal jelöljük).
+<pre>
+cp /tmp/test.jpg .
+</pre>
+A DOS alatt ismert 
+<pre>
+COPY *.DOC *.TXT
+</pre>
+trükköt pedig felejtsük el, nem megy. Viszont ha egy sereg .txt állományt
+másolunk mondjuk egy könyvtárba, UNIX alatt nem kell a pontot beütni:
+<pre>
+cp *txt stories/
+</pre>
+Ha egy másik géprôl szeretnénk másolni, azt az
+
+<h4>ftp</h4>
+
+tudja, de ez már inkább program. Paraméterként a másik gép nevét vagy IP
+számát írjuk be. Kérdésre login nevet és password-öt kell megadnunk,
+ezek után pedig egy nagyon korlátozott parancsfelületbe jutunk. Listázni
+itt is az <b>ls</b> tud, állományt a <b>get</b> hoz le, a <b>put</b> meg
+feltesz. Ha nem szöveget mozgatunk, adjuk ki elôtte a <b>bin</b> utasítást!
+Kilépni a <b>bye</b> paranccsal lehet. Az ftp ennél többet is tud, errôl
+a <b>?</b> parancs mesél -- persze angolul. (Az FTP részletes 
+leírását a legtöbb Internet könyvben megtaláljuk -- már magyarul is.)
+<br><br>
+
+<h4>mv</h4>
+
+A DOS alatt ezt REN parancsnak ismerjük. Sajnos ez sem ismeri a
+<pre>
+REN *.DOC *.TXT
+</pre>
+trükköt. Könyvtárba viszont ezzel is lehet egyszerre több állományt 
+mozgatni.<br><br>
+
+<h4>rm</h4>
+
+A DOS alatt ezt DEL parancsnak ismerjük.
+<p>
+<b>Nagyon fontos eltérés, hogy UNIX alatt nincs mód a letörölt állományok 
+visszahozatalára!</b>
+<p>
+UNIX alatt egyes programok nagy szemetet hagynak maguk után hiba esetén.
+Ezek szinte mindig <b>core</b> névre, vagy végzôdésre "hallgatnak". Sokra
+nem megyünk velük, érdemes eltakarítani ôket, ha felbukkannak:
+<pre>
+rm *core
+</pre>
+
+<h3>Állományok megtekintése</h3>
+
+Itt most csakis egyszerû szövegállományokról lesz szó. Egy szöveget a <br><br>
+
+<h4>cat</h4>
+
+parancs ír a képernyôre. Ezt a DOS alatt TYPE parancsnak ismerjük. A hibája
+is ugyanaz: ha hosszú a szöveg, leszalad a képernyôrôl. Használjuk helyette a
+
+<h4>more</h4>
+
+parancsot! Ez lapokra bontja a kiírást és csak space-re lép tovább. Ha 
+meguntuk, 'q'-val befejezhetjük.
+
+<h3>A UNIX-ról bôvebben...</h3>
+
+A UNIX kezelésérôl remek könyvek jelentek meg, így azt tanácsolom, hogy
+idôvel ezeket is érdemes elolvasni azoknak, akik használják ezt a
+rendszert. Barátságtalannak tûnik, de nemcsak megszokható, meg is kedvelhetô.
+
+<hr>
+
+<center>
+<a href="honlap8.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlapf.html">Következô fejezet</a>
+</center>
+
+</body>

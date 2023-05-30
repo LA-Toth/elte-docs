@@ -1,0 +1,78 @@
+Informatika szigorlati kérdések
+Programtervező matematikus szak, 2004/2005.
+
+Szigorlati tárgyak:
+	A párhuzamos programozás alapjai, Formális nyelvek és automaták, Adatbáziskezelés, Számítógép hálózatok, Fordítóprogramok 1-2, Operációs rendszerek.
+
+
+1.Párhuzamos feladat, program, megoldás
+A feladat fogalmának általánosítása folyamatokra (specifikációs feltételek, paramétertér).
+Párhuzamos program fogalma (nemdeterminisztikusság és összefésüléses szemantika, 
+feltétlenül pártatlan ütemezés axiómája, viselkedési reláció). A megoldás definíciója
+	feltétlen pártatlan ütemezés mellett, levezetési szabályok, a feladat lépesenkénti finomítása.
+
+2.Programkonstrukciók
+	Viselkedési relációjuk, levezetési szabályaik, lokalitás tétel.
+	Programtranszformáció: aszinkronitás tétel. Implementációs módszerek, leképezések, PVM.
+
+3.Programozási tételek
+	Folyamathálók, csatornaváltozók. Adatcsatorna alkalmazása, asszociatív függvény
+	kiszámítása.
+
+4.Formális nyelvek
+	Formális nyelvek, nyelvtanok, nyelvtanok típusai (alap, kiterjesztett és normál-forma),
+	Chomsky-hiearchia, Church-tézis.
+
+5.Matematikai gépek
+	Matematikai gépek, típusaik és az általuk elfogadott nyelvek kapcsolata a Chomsky-osztályokkal.
+
+6.Reguláris és környezet-független nyelvek tulajdonságai
+	Kapcsolatuk a műveletekkel, szükséges és elégséges feltételek, algoritmikusan megoldható problémák.
+
+7.Az adatbázis-kezelő rendszerek fogalmai
+	Sémák, előfordulások, fizikai, fogalmi és alkalmazói szintek, katalógusok,
+	jogok, tranzakciók, a rendszer különböző funkciókat feldolgozó részei. 
+	A fizikai fájlszervezés hatékonysági jellemzői: hasító függvények, 
+	elsődleges és másodlagos indexek, kereső fák, B-fák.
+
+8.Adatmodellezés
+	Relációs adatmodell, az adatbázis tervezés problémái, dekompoziciók, egyed kapcsolat
+	(E/K) modell, kapcsolattípusok, az E/K diagram transzformálása relációs modellé,
+	beágyazott relációs adatmodell.
+
+9.Lekérdező nyelvek
+	Relációs algebra alapvető és származtatott műveletei, relációs sor- és komponens-
+	kalkulusok,	tartományfüggetlenség és biztonságosság, SQL, alkalmazások készítése
+	programozási környezetben.
+10.Hálózati rétegelt architekturák
+	Hálózati réteg, hálózati réteg interfész. Rétegelt architektúra működési modellje. 
+	A TCP/IP hálózati architektúra.
+
+11.Transzport réteg feletti alkalmazói interfészek
+	A socket és a tli interfész. Kliens-szerver modellek, szerver logikák.
+
+12.A DNS adatbázis és implementációja
+
+13.Az Internet protokoll forgalomirányítási modellje
+	Statikus és dinamikus forgalomirányítás. Osztott aszinkron Bellman-Ford	algoritmus,
+	Dijkstra algoritmus és alkalmazásaik.
+
+14.Az assembly nyelvek tulajdonságai és fordítása
+	Masm, 1 és 2 menetes assembler, szerkesztés, betöltés, kapcsolat	szegmensek és
+	programmodulok között, makrók, makro assemblerek.
+
+15.Felülről lefele elemzés
+	Lexikális elemzés, LL elemzések, szemantikus elemzés, kódgenerálás, szimbólumtábla- és memória kezelés.
+
+16.Alulról felfele elemzés
+	Lexikális elemzés, LR elemzések, szemantikus elemzés, kódgenerálás,
+	szimbólumtábla- és memóriakezelés.
+
+17.Párhuzamos folyamatok
+	Holtpont, kölcsönös kizárás, szinkronizáció.
+
+18.Virtuális memóriakezelés
+	Lapcserélési és szegmenselhelyezési algoritmusok.
+
+19.Operációs rendszerek
+	Feladat, szerkezet, osztályozás.

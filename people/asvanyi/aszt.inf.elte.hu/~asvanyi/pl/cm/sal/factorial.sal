@@ -1,0 +1,14 @@
+begin
+   int Value, Result;
+   read Value;
+   Result := 1;
+   begin
+      int Count;
+      Count := 1;
+      while Count<Value do begin
+	 Count:=Count+1;
+	 Result:=Result*Count;
+      end
+   end;;
+   write Result;
+end

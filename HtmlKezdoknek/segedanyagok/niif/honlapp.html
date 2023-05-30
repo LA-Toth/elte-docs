@@ -1,0 +1,233 @@
+<head>
+<title>Hogyan készítsünk saját honlapot a Weben?</title>
+</head>
+
+<body bgcolor="ffffee">
+
+<center>
+<a href="honlapf.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlapa.html">Következô fejezet</a>
+</center>
+
+<hr>
+
+<h2>Példalap</h2>
+
+<pre>
+<b>
+&lt;!--#exec cmd="./.ct index"--&gt;
+&lt;!--#exec cmd="./.lg index"--&gt;
+</b>
+
+&lt;!-- A lap elején két script indul, az egyik a számlálót növeli, --&gt;
+&lt;!-- a másik pedig a látogatók gépeinek neveit gyûjti (hiúságból). ;-) --&gt;
+
+<b>
+&lt;head&gt;
+&lt;title&gt;Ali's Homepage&lt;/title&gt;
+&lt;/head&gt;
+</b>
+
+&lt;!-- Ez itt a fej, benne a fejlécszöveg. --&gt;
+
+<b>
+&lt;body background="bg.gif" text="#ffffff" link="#ffff00" vlink="#00ffff"&gt;
+</b>
+
+&lt;!-- A lapnak kékes árnyalatú tapétája lesz, de míg az be nem töltôdik --&gt;
+&lt;!-- a hátter fekete. Az írás színe fehér, a linkek meglátogatásuk --&gt;
+&lt;!-- elôtt sárgák, utána világoskékek lesznek --&gt;
+
+<b>
+&lt;map name="facemap"&gt;
+
+&lt;area shape="rect" coords="195,120,254,159" href="monitor.html"&gt;
+&lt;area shape="rect" coords="100, 20,180, 80" href="friend/il.jpg"&gt;
+&lt;area shape="rect" coords="  0,  0,319,199" nohref&gt;
+
+&lt;/map&gt;
+</b>
+
+&lt;!-- Egy "facemap" nevû tartománylistat készítünk egy képhez. --&gt;
+&lt;!-- Az egyik esetben egy helyi lapot tölt be, a másik esetben --&gt;
+&lt;!-- egy helyi könyvtárban lévô képet. A kép többi része érzéketlen. --&gt;
+
+<b>
+&lt;table&gt;
+</b>
+
+&lt;!-- Táblázat segítségével felosztjuk a lap további részét. --&gt;
+&lt;!-- Miután keretszélességet nem adtunk meg, az nulla, -- &gt;
+&lt;!-- azaz láthatatlan. --&gt;
+
+<b>
+&lt;td width=110&gt;
+</b>
+
+&lt!-- Az elsô cella szélessége 110 pixel, de egyébkent üresen marad. --&gt;
+
+<b>
+&lt;td valign=top&gt;
+</b>
+
+&lt;!-- A második cella elfoglalja a kép további részét. --&gt;
+&lt;!-- A cellában minden a felsô vonalhoz igazodik --&gt;
+
+<b>
+&lt;img usemap="#facemap" src="prlface.jpg" border=0 alt=""&gt;
+</b>
+
+&lt;!-- Itt a kép, amihez a tartománylista tartozik. --&gt;
+&lt;!-- Nincs kerete és aki grafika nélkül nézi, semmit nem lát belôle, --&gt;
+&lt;!-- meg egy [IMAGE] felíratot sem, mert az idézôjelek közt semmi sincs. --&gt;
+
+<b>
+&lt;h5&gt;It is high time I developed a homepage... :-(&lt;/h5&gt;
+</b>
+
+&lt;!-- Ez egy kisbetûs kiírás, azaz inkább morgolódás... ;-) --&gt;
+
+<b>
+&lt;h1&gt;Ali's Homepage&lt;/h1&gt;
+</b>
+
+&lt;!-- Ez viszont nagybetûs, mivel a lap fôcíme. --&gt;
+
+<b>
+&lt;!--#exec cmd="echo 'This page has been accessed &lt;b&gt;'`cat .ct.index`'&lt;/b&gt; times since 11/07/96.'"--&gt;
+</b>
+
+&lt;!-- Itt íratjuk ki a számláló értékét, a hozzá tartozó szöveggel együtt. --&gt;
+
+<b>
+&lt;p&gt;
+</b>
+
+&lt;!-- Ez az elhatárolás azért kell, hogy ne csusszon rá --&gt;
+&lt;!-- a következô blokkra a kiírás. --&gt;
+
+<b>
+&lt;tr&gt;
+</b>
+
+&lt;!-- Vége a cellának és ennek a cellasornak is, új kezdôdik. --&gt;
+
+<b>
+&lt;td valign=top width=110&gt;
+</b>
+
+&lt;!-- Ez a cella ismét 110 pixel széles és --&gt;
+&lt;!-- ami benne lesz, az a felsô vonalhoz igazodik. --&gt;
+
+<b>
+&lt;a href="cv.txt"      &gt;&lt;img src="icon/c/cv.gif"      alt="C"&gt;&lt;/a&gt;
+&lt;a href="intro.html"  &gt;&lt;img src="icon/c/intro.gif"   alt="I"&gt;&lt;/a&gt;
+&lt;a href="story.html"  &gt;&lt;img src="icon/c/story.gif"   alt="S"&gt;&lt;/a&gt;
+&lt;a href="friend.html" &gt;&lt;img src="icon/c/friend.gif"  alt="F"&gt;&lt;/a&gt;
+&lt;a href="work.html"   &gt;&lt;img src="icon/c/work.gif"    alt="W"&gt;&lt;/a&gt;
+&lt;a href="yellow.html" &gt;&lt;img src="icon/c/yellow.gif"  alt="L"&gt;&lt;/a&gt;
+&lt;a href="miskolc.html"&gt;&lt;img src="icon/c/miskolc.gif" alt="M"&gt;&lt;/a&gt;
+&lt;a href="hungary.html"&gt;&lt;img src="icon/c/hungary.gif" alt="H"&gt;&lt;/a&gt;
+&lt;a href="gb/"&gt;         &lt;img src="icon/c/visitor.gif" alt="V"&gt;&lt;/a&gt;
+</b>
+
+&lt;!-- Ezek apró kattintható ikonok. A sor elsô fele a link, --&gt;
+&lt;!-- utána maga az ikon jön képként és egybetûs karakteres megfelelôvel --&gt;
+&lt;!-- majd lezárjuk a linket. A linkek helyi állományokra mutatnak --&gt;
+&lt;!-- illetve az egyik egy könyvtárra, ami mögött egy index.html --&gt;
+&lt;!-- található, így azt nem kellett kiírni (kedvezô esetben). --&gt;
+
+<b>
+&lt;td valign=top&gt;
+</b>
+
+&lt;!-- Itt az újabb cella, az elôbbi mellett, ez is a felsô sorhoz igazít. --&gt;
+
+<b>
+&lt;h2&gt;
+&lt;a href="cv.txt"&gt;Curriculum Vitae / &Ouml;n&eacute;letrajz&lt;/a&gt;&lt;br&gt;
+&lt;a href="intro.html"&gt;Introduction / Bemutatkoz&aacute;s&lt;/a&gt;&lt;br&gt;
+&lt;a href="story.html"&gt;Stories / T&ouml;rt&eacute;netek&lt;/a&gt;&lt;br&gt;
+&lt;a href="work.html"&gt;Works / Munk&aacute;k&lt;/a&gt;&lt;br&gt;
+&lt;a href="ref.txt"&gt;References / Referenci&aacute;k&lt;/a&gt;&lt;br&gt;
+&lt;a href="friend.html"&gt;Friends / Bar&aacute;taim&lt;/a&gt;&lt;br&gt;
+&lt;a href="yellow.html"&gt;Links / C&iacute;mjegyz&eacute;k&lt;/a&gt;&lt;br&gt;
+&lt;a href="gb/"&gt;Guestbook / Vend&eacute;gk&ouml;nyv&lt;/a&gt;&lt;br&gt;
+&lt;/h2&gt;
+</b>
+
+&lt;!-- Kisebb, 2-es méretu betûkkel írja ki a szöveget. --&gt;
+&lt;!-- Minden sor egy link, hasonlóan az elôzô ikonos megoldáshoz, --&gt;
+&lt;!-- csak itt a szövegre lehet kattintani. --&gt;
+&lt;!-- A sorokat, hogy össze ne keveredjenek, br választja el --&gt;
+
+<b>
+&lt;strong&gt;
+&lt;address&gt;
+Perlaki Attila&lt;br&gt;
+3527 &lt;a href="miskolc.html"&gt;MISKOLC&lt;/a&gt; Selyemr&eacute;t 26&lt;br&gt;
+&lt;a href="hungary.html"&gt;HUNGARY&lt;/a&gt;, &lt;a href="europe.html"&gt;EUROPE&lt;/a&gt;&lt;br&gt;
+Internet: 
+&lt;a href="mailto:irtpa@gold.uni-miskolc.hu"&gt;irtpa@gold.uni-miskolc.hu&lt;/a&gt;, 
+h7476per@ella.hu&lt;br&gt;
+FidoNet: 2:370/23&lt;br&gt; 
+&lt;/address&gt;
+&lt;/strong&gt;
+</b>
+
+&lt;!-- A címet address jelzôk között illik megadni, a strong pedig --&gt;
+&lt;!-- még jobban kiemeli ezt. A címben néhány szóhoz link --&gt;
+&lt;!-- kapcsolódik, illetve a "kötelezô" mailto link is --&gt;
+&lt;!-- szerepel az internet címnél. A sorokat itt is br tördeli. --&gt;
+
+<b>
+&lt;p&gt;
+
+&lt;/table&gt;
+</b>
+
+&lt;!-- Ezt a táblázatot befejeztük. --&gt;
+
+<b>
+&lt;a href="http://www.lib.uni-miskolc.hu/imho"&gt;&lt;img src="imho.gif" alt="In Memoriam HT1080Z bOard"&gt;&lt;/a&gt;&lt;br&gt;
+</b>
+
+&lt;!-- Itt egy nagyobb kép szerepel távoli linkkel és karakteres leíróval. --&gt;
+
+<b>
+&lt;table&gt;
+&lt;td width=110&gt;
+&lt;td&gt;
+&lt;h6&gt;
+&lt;!--#exec cmd="echo 'LAST MODIFIED AT ' $LAST_MODIFIED"--&gt;
+&lt;/h6&gt;
+&lt;/table&gt;
+</b>
+
+&lt;!-- Itt egy újabb táblázat szerepel, ami a fentihez hasonló --&gt;
+&lt;!-- paraméterekkel rendelkezik. Nem véletlen, hiszen --&gt;
+&lt;!-- megjelenésében illeszkednie kell ahhoz. --&gt;
+&lt;!-- A benne rejlô scripthívás az utolsó módosítás dátumát írja ki. --&gt;
+
+<b>
+&lt;/body&gt;
+</b>
+
+&lt;!-- Itt a vége, fuss el véle! ;-) --&gt;
+
+</pre>
+
+<hr>
+
+<center>
+<a href="honlapf.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlapa.html">Következô fejezet</a>
+</center>
+
+</body>

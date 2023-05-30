@@ -1,0 +1,47 @@
+Szállítások
+Nyilvántartjuk a szállítók nevét, telephelyét, státuszát, a cikkek nevét, színét, 
+súlyát, a projektek nevét, helyszínét, valamint, a szállításokat azok mennyiségével 
+együtt. Két azonos nevû szállító elõfordulhat, de ezeknek nem lehet azonos a telephelye. 
+Különbözõ szállítók telephelye lehet azonos. A projektek nevei mind különbözõek, 
+a cikkeket viszont a nevük nem azonosítja egyértelmûen, hanem csak a nevük és a 
+színük együtt. 
+
+A valódi életbõl vett modellek esetén sok esetben mesterséges kulcs attribútumokat 
+is nyilvántartunk, mert e nélkül nem lehetne garantálni a kulcs létezését, vagy csak 
+nagyon sok attribútum együttesen alkotna kulcsot. Ezért a fenti példában bevezetnénk a 
+Ckód, Pkód, Szkód attribútumokat.
+
+
+Kocsmák-sörök
+Nyilvántartjuk a vevõk nevét, életkorát, címét, a sörök nevét, fajtáját, származási 
+országát, a kocsmák nevét és címét, valamint, hogy melyik vevõ milyen söröket szeret, 
+ki melyik kocsmákat látogatja (rendszeresen), és hogy melyik kocsma milyen söröket 
+kínál. Feltehetjük, hogy a vevõk, kocsmák és sörök neve egyedi.
+
+
+Filmek-mozik-színészek
+Nyilvántartjuk a filmek címét, a készítésük évét, hosszát, és rendezõjét. 
+A színészek nevét, nemzetiségét, és eddigi keresetét. A mozik nevét, címét, típusát, 
+valamint, hogy melyik mozi melyik filmet milyen idõpontban és milyen jegyárral vetíti, 
+továbbá, hogy melyik színész melyik filmben játszik. A filmek esetén a cím és az 
+évszám azonosít, a többi esetben már a név is.
+
+
+Autókölcsönzõ
+Egy autókölcsönzõ cég szeretne nyilvántartást vezetni a vevõirõl, és a kölcsönzésekrõl. 
+A vevõkrõl fontos információ az igazolványszámuk, nevük, telefonszámuk és életkoruk. 
+Az autókról nyilvántartanák a rendszámot, típust, gyártási évet, származási országot, 
+és a napi kölcsönzési díjat. A kölcsönzések esetén nyilvántartandó a vevõ, az autó, 
+a kölcsönzés dátuma, valamint hossza (napokban). Elõjegyzéseket is fel lehet venni, 
+ez tulajdonképpen egy jövõbeni kölcsönzés. Azok a vevõk, akik összesen már több mint 
+30 napra kölcsönöztek autót, törzsvásárlókká válnak. Ezeket is nyilvántartjuk, mert 
+nekik kedvezményt tudunk nyújtani.
+
+
+Vállalati dolgozók, projektek
+Egy vállalat a dolgozóiról és az azok által végzett munkákról szeretne nyilvántartást 
+vezetni. Az alkalmazottak esetén fontos információ a név, lakcím adószám és fizetés. 
+A munkák projekt formában történnek, minden projektnek nyilvántartjuk a kezdetét, a 
+befejezés határidejét, a projekt nevét és jellegét. Egy dolgozó dolgozhat egy vagy 
+több projekten is. Minden projektnek van egy vezetõje, aki szintén egy dolgozó. 
+A projektvezetõk esetén az illetõ telefonszámát is nyilvántartjuk. 

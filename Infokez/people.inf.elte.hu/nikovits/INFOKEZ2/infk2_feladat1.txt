@@ -1,0 +1,39 @@
+A honlapon levo feladatokat kotelezoen meg kell csinalni a gyakorlati 
+jegy megszerzesehez. 
+NE KULDJETEK EL egyesevel a megoldasokat, hanem egy allomanyban 
+gyujtsetek oket es majd a felev folyaman fogom kerni oket.
+A megoldasokban a lekerdezeseket es a vegeredmenyt is el kell kuldeni.
+
+Az SQL utasitasokat gyujtsetek ossze, amivel az objektumokat letrehozzatok
+illetve amikkel az informaciokat osszegyujtitek a rendszerkatalogusokbol.
+
+1. feladat
+
+Hozzatok letre egy TIPUSOK nevu tablat, aminek van 2 kulonbozo hosszu CHAR 
+tipusu oszlopa, 2 kulonbozo hosszu VARCHAR2 tipusu oszlopa, 3 kulonbozo 
+numerikus oszlopa, datum tipusu, rowid tipusu es CLOB tipusu oszlopa. 
+Legyen a tabla legalabb ket oszlopanak DEFAULT erteke, az egyik a datum 
+tipusu oszlop legyen. Nezzuk meg a ketfajta karakter-osszehasonlitasi 
+szemantikat ugy, hogy betesszuk az 'AB ' illetve 'AB' karakterlancot
+a fix illetve valtozo hosszu karakteres oszlopokba, majd vizsgaljuk
+a karakterlancok egyenloseget.
+
+Adatok lekerdezese a rendszerkatalogus tablakbol 
+(DBA_TABLES, DBA_TAB_COLUMNS)
+
+Adjuk meg azoknak a felhasznaloknak a nevet, akiknek van olyan tablaja,
+hogy a tabla nevenek 3. betuje 'Y'. 
+
+Adjuk meg azoknak a tablaknak a nevet, amelyeknek van 'Z' betuvel kezdodo
+oszlopa.
+
+Adjuk meg azoknak a tablaknak a nevet, amelyeknek 6 darab datum tipusu
+oszlopa van.
+
+Adjuk meg azoknak a tablaknak a nevet, amelyeknek 1. es 4. oszlopa is
+VARCHAR2 tipusu.
+
+Barmelyik lekerdezesnel eleg az elso 10 sort megadni, ha a vegeredmenynek
+tul sok sora lenne.
+
+

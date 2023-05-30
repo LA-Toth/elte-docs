@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0069)http://developer.netscape.com/viewsource/husted_mailto/mailtoApp.html -->
+<HTML><HEAD><TITLE>MAILTO URL készítése</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<SCRIPT language=JavaScript>
+
+
+// CREATE A MAILTO URL OR MAILTO ANCHOR TAG
+function createMailto(sourceForm, targetField, urlType) {
+
+    // AUTHOR:  Robert W. Husted
+    // COMPANY: Netscape Communications
+    // DATE:    10/22/98
+
+    var to      = sourceForm.to.value;
+    var cc      = sourceForm.cc.value;
+    var bcc     = sourceForm.bcc.value;
+    var subject = sourceForm.subject.value;
+    var body    = sourceForm.body.value;
+
+    var urltext = "";
+
+    // IF THE VALUE IS SET, INCLUDE IT IN THE URL
+    if (to != "") {
+        urltext += to;
+    }
+    else {
+        alert("Sorry, you must fill out the 'To' field");
+        sourceForm.to.focus();
+        return(1);
+    }
+    if (cc != "") {
+        urltext = addDelimiter(urltext);
+        urltext += "CC=" + cc;
+    }
+    if (bcc != "") {
+        urltext = addDelimiter(urltext);
+        urltext += "BCC=" + bcc;
+    }
+    if (subject != "") {
+        urltext = addDelimiter(urltext);
+        urltext += "Subject=" + escape(subject);
+    }
+    if (body != "") {
+        urltext = addDelimiter(urltext);
+        urltext += "Body=" + escape(body);
+    }
+
+    if (urlType == "url") {
+        urltext = "mailto:" + urltext;
+    }
+    else {
+        urltext = "<A HREF=\"mailto:" + urltext + "\">linkszövege</A>";
+    }
+
+    // PUT THE NEW URL IN THE FORM FIELD
+    targetField.value = urltext;
+
+    // GIVE THE FIELD FOCUS AND HIGHLIGHT THE TEXT -- 
+    // TO FACILITATE EASY COPYING AND PASTING OF THE NEW URL
+    targetField.focus();
+    targetField.select();
+    return(1);
+}
+
+
+// ADD THE "?" OR "&" NAME/VALUE SEPARATOR CHARACTER
+function addDelimiter(inputString) {
+
+    var inString = inputString;
+
+    // IF '?' NOT FOUND, THEN THIS IS THE FIRST NAME/VALUE PAIR
+    if (inString.indexOf("?") == -1) {
+        inString += "?";
+    }
+    // ELSE IT'S A SUBSEQUENT NAME/VALUE PAIR, SO ADD THE '&' CHARACTER
+    else {
+        inString += "&";
+    }
+    return inString;
+}
+
+
+// TEST THE MAILTO URL -- ASSIGN THE URL TO THE DOCUMENT LOCATION
+// TO POP UP THE MESSAGE WINDOW
+function testMailto(loc) {
+
+    var doc = loc;
+
+    // IF MAILTO URL IS EMBEDDED IN AN ANCHOR TAG
+    if (doc.indexOf("HREF=") != -1) {
+        // EXTRACT THE MAILTO URL FROM THE ANCHOR TAG
+        var doc = doc.substring(doc.indexOf("HREF=")+6, doc.indexOf(">")-1);
+    }
+
+    // ASSIGN THE MAILTO URL TO THE DOCUMENT (THIS WILL POP UP A MAIL WINDOW)
+    window.location = doc;
+}
+
+
+function viewMailto(linktext) {
+
+    alert("URL:\n\n" + linktext);
+}
+
+</SCRIPT>
+
+<META content="Microsoft FrontPage 4.0" name=GENERATOR></HEAD>
+<BODY aLink=#ff0000 bgColor=#ffffff link=#0000ee text=#000000 
+vLink=#551a8b>
+<CENTER>
+<p><font face="Arial, Helvetica" size="4"><b>Mailto URL készítése</b></font></p>
+<FORM name=mailtoForm></CENTER>
+<CENTER>
+<TABLE bgColor=#d3d3d3 border=1 cellPadding=0 cellSpacing=0>
+  <TBODY>
+  <TR align=left vAlign=top>
+    <TD align=right colSpan=3>
+      <p align="center"><b><font color="#408080" face="Arial, Helvetica" size="3">Írd
+      ide a levél tulajdonságait</font></b></p>
+    </TD></TR>
+  <FONT face="Arial, Helvetica" size=-1>
+  <TR>
+    <TD align=right><INPUT name=buttonPress type=hidden><FONT 
+      face="Arial, Helvetica" size=-1><B>To:</B></FONT></TD>
+    <TD><INPUT name=to size=30></TD>
+</FONT>
+    <TD><font face="Arial, Helvetica" size="2">A címzett email címe. Többet is
+      beírhatsz, de pontosvessz&#337;vel válaszd el &#337;ket.</font></TD></TR>
+  <FONT face="Arial, Helvetica" size=-1>
+  <TR align=left vAlign=top>
+    <TD align=right><FONT face="Arial, Helvetica" size=-1><B>CC:</B></FONT></TD>
+    <TD><INPUT name=cc size=30></TD>
+</FONT>
+    <TD><font face="Arial, Helvetica" size="2">Azon címzettek, akik másolatot kapnak.</font></TD></TR>
+  <FONT face="Arial, Helvetica" size=-1>
+  <TR align=left vAlign=top>
+    <TD align=right><FONT face="Arial, Helvetica" 
+size=-1><B>BCC:</B></FONT></TD>
+    <TD><INPUT name=bcc size=30></TD>
+</FONT>
+    <TD><font face="Arial, Helvetica" size="2">Azon címzettek, akik bcc másolatot kapnak. (nem látják, hogy rajtuk
+      kívül, ki kapta még meg a levelet)</font></TD>
+  <FONT face="Arial, Helvetica" size=-1>
+  <TR align=left vAlign=top>
+    <TD align=right><FONT face="Arial, Helvetica" 
+      size=-1><B>Subject:</B></FONT></TD>
+    <TD><INPUT name=subject size=30></TD>
+</FONT>
+    <TD><font face="Arial, Helvetica" size="2">A levél tárgya</font></TD></TR>
+  <FONT face="Arial, Helvetica" size=-1>
+  <TR align=left vAlign=top>
+    <TD align=right><FONT face="Arial, Helvetica" 
+    size=-1><B>Body:<br>
+      (Levéltörzs)&nbsp;</B></FONT></TD>
+    <TD 
+    colSpan=2><TEXTAREA cols=80 name=body rows=6 wrap=VIRTUAL></TEXTAREA></TD></TR>
+  <TR>
+    <TD colSpan=3>
+      <CENTER><INPUT name=Clear type=reset value=Töröl><INPUT name=CreateURL onclick="createMailto(document.mailtoForm, document.linkForm.text, 'url')" type=button value="URL generálása"><INPUT name=CreateAnchor onclick="createMailto(document.mailtoForm, document.linkForm.text, 'anchor')" type=button value="Link készítése"></CENTER></TD></TR></TBODY></TABLE></CENTER></FORM>
+<CENTER>
+<FORM method=get name=linkForm></CENTER>
+</FONT>
+<CENTER>
+<TABLE bgColor=#d3d3d3 border=1 cellPadding=0 cellSpacing=0>
+  <TBODY>
+  <TR>
+    <TD align=right colSpan=2>
+      <p align="center"><b><font color="#408080" face="Arial, Helvetica" size="3">Ezt
+      a kódot használhatod fel</font></b></p>
+    </TD></TR>
+  <FONT face="Arial, Helvetica" size=-1>
+  <TR>
+    <TD align=right><FONT face="Arial, Helvetica" size=-1><B>Mailto 
+      URL:</B></FONT></TD>
+    <TD><INPUT name=text size=60></TD></TR>
+  <TR>
+    <TD colSpan=2>
+      <CENTER><INPUT name=Test onclick=testMailto(document.linkForm.text.value) type=button value="Teszt"><INPUT name=View onclick=viewMailto(document.linkForm.text.value) type=button value="Megnéz"></CENTER></TD></TR></TBODY></TABLE></CENTER></FORM></FONT>
+<p><br>
+</p>
+<HR SIZE=1>
+
+<CENTER><FONT face="Arial, Helvetica" size=-2><NOBR>Copyright © 1999 <A 
+href="http://home.netscape.com/misc/trademarks.html" target=_top>Netscape 
+Communications Corporation</A></NOBR>.&nbsp;<br>
+Az eredeti oldal a <a href="http://developer.netscape.com/viewsource/husted_mailto/mailtoApp.html">http://developer.netscape.com/viewsource/husted_mailto/mailtoApp.html</a>
+címen található.</FONT></CENTER>
+<p>&nbsp;</p>
+</BODY></HTML>

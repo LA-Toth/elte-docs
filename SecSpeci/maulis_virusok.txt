@@ -1,0 +1,61 @@
+- Pár szó a vírusoról, férgekrõl
+   - Xmas (az elsõ, biztonsági alrendszer nélküli IBM mainframeken "futott")
+   - Internet Worm http://www.cert.org/research/JHThesis/Chapter3.html
+   - I love you    http://www.cert.org/advisories/CA-2000-04.html
+   - W32/SirCam    http://www.cert.org/advisories/CA-2001-22.html
+   - Codered I     http://www.cert.org/advisories/CA-2001-23.html
+   - Codered II    http://www.cert.org/incident_notes/IN-2001-09.html
+   - nimda         http://www.cert.org/advisories/CA-2001-26.html
+
+   - egy VMS + DecNet worm, csak érdekességképpen:
+        http://www.cert.org/advisories/CA-1989-04.html
+
+- A vírus/féreg jelentõsége
+   (egy cég csõdje, egy ország csõdje, a teljes civilizáció vége)
+
+- A terjedés-elmélet.
+
+Az elõadásomban azon volt a hangsúly, hogy egy vírus terjedése
+globálisan milyen tulajdonságokkal bír. Tehát nem egy-két vírus
+konkrét mûködése, vagy a vírusok általános mûködési módszertana
+volt a téma, hanem az, hogy milyen egyéb, nem szorosan vett
+technikai feltételei vannak egy járványnak. Úgy is mondhatnám,
+hogy nem víruselmélet, hanem járványelmélet volt az elõadás témája.
+
+Minden technikai részletet (hogy: technikailag lehetséges-e
+önszaporító kódot írni, hogy mennyire védett a rendszer) egyetlen
+valószínségi változóban foglaltam össze:
+az adott platformon egy vírus terjedési esélye p.
+Nagyon jó rendszereknél a terjedési esély 0.000000000001, ami elég kicsi :-)
+azonban abszolúlt 0 esélyrõl beszélni nem valóságos, ugyanis mindenben
+lehet hiba.
+
+egy régi PC-n, DOS oprendszer alatt a vírus terjedési esélye 1 (100%)
+ha van rajta valami elavult víruskeresõ, akkor 0.9, ha egy jobbképességû
+víruskeresõ van rajta, akkor 0.5 (50%) ezek becsült számok. A lényeg az,
+hogy nem bocsájtkoztam operációs-rendszer vitába, hogy milyen oprendszereken
+mennyire valószínû, vagy valószínûtlen a vírus, ez az elõadásom témájától
+független.
+
+Arra próbáltam hangsúlyt fektetni, hogy a járványnál nem igazából a
+vegpontok (számítógépek, etc) fertõzhetõsége, vagy jósága a kérdéses,
+hanem az, hogy abból a platformból hány darab létezik, és az mennyire
+van egymással összekötve (itt vírus terjedõségi összekötést nézek,
+tehát olyan csatornákat, amin egy vírus át tud menni.)
+
+E tekintetben lényegtelen, hogy milyen a gép személyes védelme, ha
+csak 8 darab van belõle össz-vissz, és ezek sem állnak egymással
+kapcsolatban, akkor nem lesz járvány; Ha viszont iszonyatos mennyiség
+áll rendelkezésre egy platformból (lényegesen nagyobb mennyiség,
+mint az adott platform fertõzhetôsége, vagyis N*p >>1) akkor lesz
+járvány.
+
+
+Kialakulási valószínûség:
+
+Közbevetett kérdésre/ötletre: a vírusok nem "teremnek" hanem valaki
+írja õket. Így az is egy valószínségi mutatóval határozható meg,
+hogy mekkora eséllyel jelenik meg egy újabb vírus az adott platformra.
+
+Üdv,
+Maulis Ádám

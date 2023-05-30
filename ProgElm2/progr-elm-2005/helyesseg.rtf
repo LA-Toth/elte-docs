@@ -1,0 +1,441 @@
+{\rtf1\ansi\ansicpg1250\uc1 \deff0\deflang1033\deflangfe1038{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f8\froman\fcharset0\fprq2{\*\panose 00000000000000000000}Tms Rmn;}
+{\f16\froman\fcharset238\fprq2 Times New Roman CE;}{\f17\froman\fcharset204\fprq2 Times New Roman Cyr;}{\f19\froman\fcharset161\fprq2 Times New Roman Greek;}{\f20\froman\fcharset162\fprq2 Times New Roman Tur;}
+{\f21\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f64\froman\fcharset238\fprq2 Tms Rmn CE;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;
+\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{
+\widctlpar\adjustright \cgrid \snext0 Normal;}{\*\cs10 \additive Default Paragraph Font;}}{\info{\title Konkurens folyamatok helyess\'e9ge}{\author x y}{\operator RE}{\creatim\yr2002\mo3\dy18\hr16\min50}{\revtim\yr2002\mo3\dy18\hr16\min50}{\version2}
+{\edmins1}{\nofpages12}{\nofwords3574}{\nofchars20377}{\*\company  }{\nofcharsws25024}{\vern89}}\paperw11907\paperh16834\margl1798\margr1798\margt1441\margb1441 
+\widowctrl\ftnbj\aenddoc\noextrasprl\prcolbl\cvmme\sprsspbf\brkfrm\swpbdr\lytprtmet\hyphcaps0\formshade\fracwidth\viewkind1\viewscale100\pgbrdrhead\pgbrdrfoot \fet0\sectd \binfsxn1\binsxn1\linex0\headery709\footery709\colsx709\endnhere\sectdefaultcl 
+{\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang{\pntxta )}}{\*\pnseclvl5
+\pndec\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnstart1\pnindent720\pnhang
+{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}\pard\plain \qc\widctlpar\adjustright \cgrid {\b\i\fs36 Konkurens folyamatok helyess\'e9ge
+\par }\pard \qc\widctlpar\adjustright {\i (alapfogalmak)
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {\tab Egy helyes konkurens programnak ki kell el\'e9g\'edtenie bizonyos}{\b  tulajdons\'e1gokat.}{ Egy tulajdons\'e1got \'e1ltal\'e1ban valamilyen \'e1ll\'edt\'e1sk\'e9
+nt fogalmazhatunk meg. Akkor mondjuk, hogy egy konkurens program valamely \'e9rtelemben helyes, ha az adott tulajdons\'e1gokat le\'edr\'f3 \'e1ll\'edt\'e1sokat a konkurens program minden leg\'e1lis v\'e9grehajt\'e1si szekvenci\'e1ja teljes\'ed
+ti. Az adott tulajdons\'e1gok \'e1ltal\'e1ban az adott alkalmaz\'e1st\'f3l f\'fcggenek. 
+\par }\pard \qj\widctlpar\adjustright {\i Owicki}{ \'e9s }{\i Lamport }{1982-ben pontos\'edtotta a korrekt konkurens program fogalm\'e1t, amely a k\'f6vetkez\'f5: egy konkurens program korrekt, ha biztons\'e1gos (}{\b safe}{) \'e9s eleven }{\b (live).
+\par }\pard \qj\widctlpar\adjustright {Egy konkurens program t\'f6bbf\'e9le szempontb\'f3l lehet biztons\'e1gos \'e9s eleven egyszerre. \'cdgy mind a biztons\'e1goss\'e1gi (safety) tulajdons\'e1gok mind az elevens\'e9gi (liveness) tulajdons\'e1gok egy-egy k
+\'fcl\'f6n oszt\'e1lyt alkotnak. E k\'e9t oszt\'e1lyt a k\'f6vetkez\'f5 m\'f3don defini\'e1lhatjuk:
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {A }{\b biztons\'e1goss\'e1gi tulajdons\'e1gok (safety properties) }{azt \'e1ll\'edtj\'e1k, hogy semmi "rossz" nem t\'f6rt\'e9nik a konkurens program v\'e9grehajt\'e1sa alatt.
+\par Az }{\b elevens\'e9gi tulajdons\'e1gok (liveness }{or }{\b progress properties) }{azt \'e1ll\'edtj\'e1k, hogy valami "j\'f3" el\'f5bb-ut\'f3bb bek\'f6vetketik a konkurens program v\'e9grehajt\'e1sa sor\'e1n.
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {Az elevens\'e9gi tulajdons\'e1gok teh\'e1t arra vonatkoznak, hogy a program mindig k\'e9pes valami konstrukt\'edv cselekv\'e9sre. Az ilyen tulajdons\'e1gok bizony\'edt\'e1sa \'e1ltal\'e1ban csak azut\'e1n lehets\'e9
+ges, ha bizonyos biztons\'e1gos viselked\'e9s\'e9t m\'e1r bebizony\'edtottuk a programunknak.
+\par }\pard \qj\widctlpar\adjustright {
+\par }{\b \tab Biztons\'e1goss\'e1gi tulajdons\'e1gok
+\par }{P\'e9ld\'e1k.
+\par \tab - }{\i K\'f6lcs\'f6n\'f6s kiz\'e1r\'e1s (mutual exclusion).
+\par }\pard \qj\widctlpar\adjustright {\i \tab \tab }{Ez a tulajdons\'e1g azt biztos\'edtja, hogy k\'e9t vagy t\'f6bb folyamat egyszerre \tab \tab nem lehet a kritikus szakasz\'e1ban.
+\par }\pard \qj\widctlpar\adjustright {\tab - }{\i Holtpontmentess\'e9g (freedom from deadlock).
+\par }\pard \qj\widctlpar\adjustright {\i \tab \tab }{A holtpont egy olyan \'e1llapot, amelyben a folyamatok blokkoltak \'e9s a \tab \tab tov\'e1bbhalad\'e1s felt\'e9tele sohasem teljes\'fcl.
+\par }\pard \qj\widctlpar\adjustright {\tab - }{\i Parci\'e1lis helyess\'e9g.
+\par 
+\par \tab }{\b Elevens\'e9gi tulajdons\'e1gok
+\par }{P\'e9ld\'e1k.
+\par \tab - }{\i A rendszer mentes az \'fan. livelock-t\'f3l.
+\par }\pard \qj\widctlpar\adjustright {\i \tab \tab }{A livelock egy olyan felt\'e9tel, amelynek teljes\'fcl\'e9se eset\'e9n a folyamatok \tab \tab az utas\'edt\'e1sokat haszontalanul, minden eredm\'e9ny n\'e9lk\'fcl hajtj\'e1k v\'e9gre \'e9s \tab \tab ek\'f6
+zben konstrukt\'edv m\'f3don sohasem haladnak el\'f5re.
+\par }\pard \qj\widctlpar\adjustright {\tab - }{\i Bel\'e9p\'e9s a kritikus szakaszba.
+\par }\pard \qj\widctlpar\adjustright {\i \tab \tab }{Ez atulajdons\'e1g azt fejezi ki, hogy ha egy folyamat be akar l\'e9pni a \tab \tab \tab kritikus szakasz\'e1ba , akkor el\'f5bb-ut\'f3bb be is l\'e9phet oda.
+\par }\pard \qj\widctlpar\adjustright {\tab }{\i - Teljes helyess\'e9g.
+\par }{
+\par \tab - }{\i Koplal\'e1smentess\'e9g (freedom from starvation).
+\par }\pard \qj\widctlpar\adjustright {\i \tab \tab }{Ez a tulajdons\'e1g azt fejezi ki, hogy a folyamatok egy r\'e9szhalmaza nem \tab \tab koplalhat \'f6r\'f6kk\'e9. 
+\par }\pard \qj\widctlpar\adjustright {\tab \tab Egy vagy t\'f6bb folyamat a rendszerben }{\i koplal (starve), }{ha a rendszer \tab \tab t\'f6bbi folyamat\'e1val versengve a k\'f6z\'f6s er\'f5forr\'e1s\'e9rt mind\'edg alulmaradnak \tab \tab e verseng\'e9
+sben. (Ilyen eset nagyon k\'f6nnyen el\'f5fordul p\'e9ld\'e1ul akkor, ha \tab \tab a folyamatoknak priorit\'e1suk van).
+\par }\pard \qj\widctlpar\adjustright {\i 
+\par }\pard \qj\widctlpar\adjustright {\i \tab }{\b Holtpont
+\par }\pard \qj\widctlpar\adjustright {\b \tab }{A konkurens rendszerek alapvet\'f5 tulajdons\'e1ga, hogy a v\'e9grehajt\'e1suk sor\'e1n id\'f5r\'f5l id\'f5re sz\'fcks\'e9g\'fck van er\'f5forr\'e1sokra. M\'e1gnesszalag egys\'e9gek, nyomtat\'f3k, mem\'f3riater
+\'fcletek, adat\'e1llom\'e1nyok, de maguk a k\'f6zponti processzorok is lehetnek ilyen er\'f5forr\'e1sok. A k\'fcl\'f6nb\'f6z\'f5 er\'f5forr\'e1sfajt\'e1kat \'fan. pool-okba szervezhetj\'fck \'e9s ezeket az \'fan. er\'f5forr\'e1svez\'e9rl\'f5
+ folyamatok fel\'fcgyelik.
+\par }\pard \qj\widctlpar\adjustright {Egy folyamat az er\'f5forr\'e1st a k\'f6vetkez\'f5 protokoll szerint haszn\'e1lhatja:
+\par }\pard \qj\widctlpar\adjustright {\tab ig\'e9nyli (request) }{\field\flddirty{\*\fldinst {SYMBOL 174 \\f "Symbol"}}{\fldrslt }}{ haszn\'e1lja (use) }{\field\flddirty{\*\fldinst {SYMBOL 174 \\f "Symbol"}}{\fldrslt }}{ elengedi (release).
+\par }\pard \qj\widctlpar\adjustright {Az er\'f5forr\'e1svez\'e9rl\'f5 feladata igen bonyolult, mivel sz\'e1mos er\'f5forr\'e1st a folyamatok k\'f6lcs\'f6n\'f6s kiz\'e1r\'e1sos alapon haszn\'e1lhatnak. Ilyen m\'f3don az er\'f5forr\'e1sig\'e9ny nem b\'ed
+ztos, hogy azonnal kiel\'e9g\'edthet\'f5, a folyamatoknak teh\'e1t esetenk\'e9nt v\'e1rniuk kell az ig\'e9nyelt er\'f5forr\'e1sra. Ez a v\'e1rakoz\'e1s k\'f6nnyen v\'e1lhat v\'e9gtelenn\'e9, a rendszer holtpont \'e1llapotba juthat.
+\par }\pard \qj\widctlpar\adjustright {\i Coffman (1971) }{szerint a holtpont el\'f5fordul\'e1s\'e1nak sz\'fcks\'e9ges \'e9s el\'e9gs\'e9ges felt\'e9telei a k\'f6vetkez\'f5k:
+\par \tab - a folyamatok a k\'f6z\'f6s er\'f5forr\'e1sokat k\'f6lcs\'f6n\'f6s kiz\'e1r\'e1sos alapon haszn\'e1lj\'e1k \tab \tab }{\i (mutual exclusion }{felt\'e9tele);
+\par \tab - a folyamatok a m\'e1r lek\'f6t\'f6tt er\'f5forr\'e1saikat megtartj\'e1k azon id\'f5 alatt is, am\'edg \tab \tab tov\'e1bbi er\'f5forr\'e1sig\'e9nyeik kiel\'e9g\'edt\'e9s\'e9re v\'e1rakoznak (}{\i  wait for }{felt\'e9tele);
+\par \tab - a rendszer er\'f5szakkal nem vehet el er\'f5forr\'e1st egy folyamatt\'f3l, ha egyszer \tab \tab allok\'e1lta a sz\'e1m\'e1ra (}{\i non preeption }{felt\'e9tele);
+\par \tab - az er\'f5forr\'e1sokra v\'e1rakoz\'f3 folyamatok ciklikus l\'e1nca l\'e9tezik (}{\i circular wait \tab \tab }{felt\'e9tele ).
+\par }\pard \qj\widctlpar\adjustright {
+\par \tab }{\b A holtpont kezel\'e9se
+\par }{K\'e9t k\'fcl\'f6nb\'f6z\'f5 strat\'e9gia l\'e9tezik a holtpont kezel\'e9s\'e9re vonatkoz\'f3an:
+\par }\pard \qj\widctlpar\adjustright {\tab - be\'e9p\'edt\'fcnk a rendszerbe olyan komponenseket, amelyek \'e9szlelik (}{\b detect}{) a \tab holtpont bek\'f6vetkezt\'e9t, \'e9s ezut\'e1n v\'e9grehajtanak bizonyos tev\'e9kenys\'e9geket a \tab holtpont megsz
+\'fcntet\'e9se \'e9rdek\'e9ben (}{\b recovery}{);
+\par }\pard \qj\widctlpar\adjustright {\tab - \'fagy tervezz\'fck meg a rendszer\'fcnket, hogy a holtpont sohase k\'f6vetkezhessen \tab be.
+\par }\pard \qj\widctlpar\adjustright {A m\'e1sodik esetben k\'e9t k\'fcl\'f6nb\'f6z\'f5 megk\'f6zel\'edt\'e9s lehets\'e9ges:
+\par }\pard \qj\widctlpar\adjustright {\tab - holpont elker\'fcl\'e9s (}{\b deadlock avoidance),
+\par \tab }{- holtpont megel\'f5z\'e9s (}{\b deadlock prevention).
+\par }\pard \qj\widctlpar\adjustright {A }{\i holtpont-elker\'fcl\'e9s }{l\'e9nyege az, hogy tudva a holtpont lehet\'f5s\'e9g\'e9r\'f5l megel\'f5z\'f5 tev\'e9kenys\'e9geket hajtunk v\'e9gre. Mivel a holtpont alapvet\'f5en az er\'f5forr\'e1sok sz\'e1m\'e1nak v
+\'e9gess\'e9ge miatt l\'e9phet fel, egy c\'e9l\'edr\'e1nyos megel\'f5z\'f5 tev\'e9kenys\'e9g az lehet, hogy egy folyamat er\'f5forr\'e1sig\'e9ny\'e9t a rendszer csak akkor el\'e9g\'edti ki, ha a folyamatok er\'f5forr\'e1sokra vonatkoz\'f3 tov\'e1bbi, m
+\'e9g ki nem el\'e9g\'edtett ig\'e9nyei ismeret\'e9ben, ez nem vezet k\'e9s\'f5bb holtponthoz.
+\par }\pard \qj\widctlpar\adjustright {A }{\i holpont-megel\'f5z\'e9s }{l\'e9nyege, hogy a holtpont bek\'f6vetkez\'e9se logikailag lehetetlen legyen. Ebben az esetben nincs sz\'fcks\'e9g a holtpont figyel\'e9s\'e9re, mert a rendszer szervez\'e9
+se olyan, hogy holtpont semmif\'e9le k\'f6r\'fclm\'e9nyek k\'f6z\'f6tt nem l\'e9phet fel.
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b A holtpont \'e9szlel\'e9se \'e9s megsz\'fcntet\'e9se (dealock detection and recovery)
+\par }\pard \qj\widctlpar\adjustright {Ez a m\'f3dszer a m\'e1sik kett\'f5t\'f5l abban k\'fcl\'f6nb\'f6zik, hogy a holtpont bek\'f6vetkezhet a rendszerben, de van egy \'e9szlel\'f5 \'e9s egy holtpont-megsz\'fcntet\'f5 komponense a rendszernek. Ehhez sz\'fcks
+\'e9g van arra, hogy a rendszer aktu\'e1lis \'e1llapot\'e1r\'f3l, k\'fcl\'f6n\'f6s tekintettel az er\'f5forr\'e1sok \'e1llapot\'e1ra, megfelel\'f5 inform\'e1ci\'f3val rendelkezz\'fcnk. Ezen inform\'e1ci\'f3 p\'e9ld\'e1ul }{\b ir\'e1ny\'edtott (p\'e1
+ros) gr\'e1fokkal }{reprezent\'e1lhat\'f3 a rendszerben.
+\par }\pard \qj\widctlpar\adjustright {A er\'f5forr\'e1s gr\'e1f csom\'f3pontjai az egyes folyamatok ill. er\'f5forr\'e1sok. Az \'e9lek k\'e9tf\'e9l\'e9k lehetnek:
+\par }\pard \qj\widctlpar\adjustright {\tab - a folyamatt\'f3l az er\'f5forr\'e1shoz vezet\'f5 \'e9l egy k\'e9r\'e9st reprezent\'e1l;
+\par }\pard \qj\widctlpar\adjustright {\tab - az er\'f5forr\'e1st\'f3l a folyamathoz vezet\'f5 \'e9l egy hozz\'e1rendel\'e9st (allok\'e1ci\'f3t) \tab reprezent\'e1l.
+\par }\pard \qj\widctlpar\adjustright {Ha minden egyes folyamatot \'e9s minden egyes egyedi er\'f5forr\'e1st eg-egy k\'fcl\'f6n csom\'f3pont reprezent\'e1l a gr\'e1fban, akkor az er\'f5forr\'e1s gr\'e1fban egy k\'f6r megl\'e9te holtpontot jelent.
+\par }\pard \qj\widctlpar\adjustright {\i P\'e9lda. }{Tegy\'fck fel, hogy adottak a P1 \'e9s P2 folyamatok, az R1 \'e9s R2 er\'f5forr\'e1sok, amelyeket csak k\'f6lcs\'f6n\'f6s kiz\'e1r\'e1sos alapon haszn\'e1lhatnak az egyes folyamatok. Mindk\'e9t folyamat ig
+\'e9nyli mindk\'e9t er\'f5forr\'e1st m\'fck\'f6d\'e9se sor\'e1n. Tegy\'fck fel, hogy a P1 folymat m\'e1r meg is kapta az R1 er\'f5forr\'e1st a rendszert\'f5l, a P2 folyamat viszont az R2 er\'f5forr\'e1st haszn\'e1lja \'e9ppen. Ezt az \'e1llapotot a k\'f6
+vetkez\'f5 p\'e1ros gr\'e1ffal reprezent\'e1lhatjuk.
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\pard\plain \qj\widctlpar\adjustright \cgrid {\object\objemb\rsltmerge\objw3160\objh2440{\*\objclass MSDraw}{\*\objdata 0105000002000000070000004d534472617700000000000000000080050000
+0800c615d0100100090000039902000004005a00000000001500000026060f001f00ffffffff0400150000004d7245640f004d6963726f736f6674204472617700005a00000026060f00a9004d72456402009f0000009d000100420042007c0298010000000000000100030000000000ffffff0000000000ffffff000100
+000100000001000000000001000000000000010c0053797374656d0003008a00ff00290003015f0b020011000301af0d0200120003100000000000ffffff00c0c0c00080808000ff00000080000000ffff00008080000000ff00000080000000ffff00008080000000ff0000008000ff00ff0080008000000e0000002606
+0f0012004d7245640300080000004801580038062804050000000b0258004801050000000c02d003f004030000001e000400000003010800050000000102ffffff000500000009020000000004000000070103000400000004010d0004000000060101000400000002010200030000001e000e00000026060f001200ffff
+ffff00000800000048015800380628040e00000026060f0012004d7245640300080000005001e0014002a00207000000fc020000ffffff00ffff040000002d01000008000000fa0206000800080000000000040000002d010100070000001b04a4024402dc014c010e00000026060f0012004d7245640300080000004005
+e0013006a002070000001b04a4023406dc013c050e00000026060f0012004d7245640300080000006003600020042001070000001804240124045c005c030e00000026060f0012004d72456403000800000030036003f00320040700000018042404f4035c032c030b00000026060f000c004d7245640100020000000000
+080000002503020040024002600320010b00000026060f000c004d7245640100020000000000080000002503020030032001600320010b00000026060f000c004d7245640100020000000000080000002503020060032001600350010b00000026060f000c004d7245640100020000000000080000002503020030036003
+400270020b00000026060f000c004d724564010002000000000008000000250302007002d002400270020b00000026060f000c004d7245640100020000000000080000002503020040027002a00270020b00000026060f000c004d7245640100020000000000080000002503020020042001400510020b00000026060f00
+0c004d724564010002000000000008000000250302001005b001400510020b00000026060f000c004d72456401000200000000000800000025030200e004e001400510020b00000026060f000c004d7245640100020000000000080000002503020040057002f00390030b00000026060f000c004d724564010002000000
+00000800000025030200f0039003500460030b00000026060f000c004d72456401000200000000000800000025030200f003900320043003040000002e011800040000000201010010000000fb02a0ff0000000000009001000000000000002053797374656d000f040000002d01020008000000320ac000900302000000
+503108000000320ac003600302000000503208000000320a4002800102000000523108000000320a400270050200000052320a00000026060f000a00ffffffff01000000000010000000fb021000070000000000bc02000000000102022253797374656d0006040000002d01030004000000f001020008000000fa020500
+00000000ffffff00040000002d01020004000000f001010007000000fc020100000000000000040000002d01010004000000f0010000040000002701ffff040000002701ffff0300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000026002600
+2600260026002600260026002600260019001b00190001050000050000000d0000004d45544146494c455049435400c615000030efffff3c0500000800c615d0100000
+0100090000039902000004005a00000000001500000026060f001f00ffffffff0400150000004d7245640f004d6963726f736f6674204472617700005a00000026060f00a9004d72456402009f0000009d000100420042007c0298010000000000000100030000000000ffffff0000000000ffffff000100000100000001
+000000000001000000000000010c0053797374656d0003008a00ff00290003015f0b020011000301af0d0200120003100000000000ffffff00c0c0c00080808000ff00000080000000ffff00008080000000ff00000080000000ffff00008080000000ff0000008000ff00ff0080008000000e00000026060f0012004d72
+45640300080000004801580038062804050000000b0258004801050000000c02d003f004030000001e000400000003010800050000000102ffffff000500000009020000000004000000070103000400000004010d0004000000060101000400000002010200030000001e000e00000026060f001200ffffffff00000800
+000048015800380628040e00000026060f0012004d7245640300080000005001e0014002a00207000000fc020000ffffff00ffff040000002d01000008000000fa0206000800080000000000040000002d010100070000001b04a4024402dc014c010e00000026060f0012004d7245640300080000004005e0013006a002
+070000001b04a4023406dc013c050e00000026060f0012004d7245640300080000006003600020042001070000001804240124045c005c030e00000026060f0012004d72456403000800000030036003f00320040700000018042404f4035c032c030b00000026060f000c004d7245640100020000000000080000002503
+020040024002600320010b00000026060f000c004d7245640100020000000000080000002503020030032001600320010b00000026060f000c004d7245640100020000000000080000002503020060032001600350010b00000026060f000c004d7245640100020000000000080000002503020030036003400270020b00
+000026060f000c004d724564010002000000000008000000250302007002d002400270020b00000026060f000c004d7245640100020000000000080000002503020040027002a00270020b00000026060f000c004d7245640100020000000000080000002503020020042001400510020b00000026060f000c004d724564
+010002000000000008000000250302001005b001400510020b00000026060f000c004d72456401000200000000000800000025030200e004e001400510020b00000026060f000c004d7245640100020000000000080000002503020040057002f00390030b00000026060f000c004d724564010002000000000008000000
+25030200f0039003500460030b00000026060f000c004d72456401000200000000000800000025030200f003900320043003040000002e011800040000000201010010000000fb02a0ff0000000000009001000000000000002053797374656d000f040000002d01020008000000320ac000900302000000503108000000
+320ac003600302000000503208000000320a4002800102000000523108000000320a400270050200000052320a00000026060f000a00ffffffff01000000000010000000fb021000070000000000bc02000000000102022253797374656d0006040000002d01030004000000f001020008000000fa02050000000000ffff
+ff00040000002d01020004000000f001010007000000fc020100000000000000040000002d01010004000000f0010000040000002701ffff040000002701ffff0300000000000000}{\result {{\pict\wmetafile8\picw5574\pich4304\picwgoal3160\pichgoal2440 
+0100090000039902000004005a00000000001500000026060f001f00ffffffff0400150000004d7245640f004d6963726f736f6674204472617700005a00000026060f00a9004d72456402009f0000009d000100420042007c0298010000000000000100030000000000ffffff0000000000ffffff00010000010000000100
+0000000001000000000000010c0053797374656d0003008a00ff00290003015f0b020011000301af0d0200120003100000000000ffffff00c0c0c00080808000ff00000080000000ffff00008080000000ff00000080000000ffff00008080000000ff0000008000ff00ff0080008000000e00000026060f0012004d724564
+0300080000004801580038062804050000000b0258004801050000000c02d003f004030000001e000400000003010800050000000102ffffff000500000009020000000004000000070103000400000004010d0004000000060101000400000002010200030000001e000e00000026060f001200ffffffff00000800000048
+015800380628040e00000026060f0012004d7245640300080000005001e0014002a00207000000fc020000ffffff00ffff040000002d01000008000000fa0206000800080000000000040000002d010100070000001b04a4024402dc014c010e00000026060f0012004d7245640300080000004005e0013006a00207000000
+1b04a4023406dc013c050e00000026060f0012004d7245640300080000006003600020042001070000001804240124045c005c030e00000026060f0012004d72456403000800000030036003f00320040700000018042404f4035c032c030b00000026060f000c004d72456401000200000000000800000025030200400240
+02600320010b00000026060f000c004d7245640100020000000000080000002503020030032001600320010b00000026060f000c004d7245640100020000000000080000002503020060032001600350010b00000026060f000c004d7245640100020000000000080000002503020030036003400270020b00000026060f00
+0c004d724564010002000000000008000000250302007002d002400270020b00000026060f000c004d7245640100020000000000080000002503020040027002a00270020b00000026060f000c004d7245640100020000000000080000002503020020042001400510020b00000026060f000c004d72456401000200000000
+0008000000250302001005b001400510020b00000026060f000c004d72456401000200000000000800000025030200e004e001400510020b00000026060f000c004d7245640100020000000000080000002503020040057002f00390030b00000026060f000c004d72456401000200000000000800000025030200f0039003
+500460030b00000026060f000c004d72456401000200000000000800000025030200f003900320043003040000002e011800040000000201010010000000fb02a0ff0000000000009001000000000000002053797374656d000f040000002d01020008000000320ac000900302000000503108000000320ac0036003020000
+00503208000000320a4002800102000000523108000000320a400270050200000052320a00000026060f000a00ffffffff01000000000010000000fb021000070000000000bc02000000000102022253797374656d0006040000002d01030004000000f001020008000000fa02050000000000ffffff00040000002d010200
+04000000f001010007000000fc020100000000000000040000002d01010004000000f0010000040000002701ffff040000002701ffff03000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000}}}}}{
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {A gr\'e1f ir\'e1ny\'edtott k\'f6rt tartalmaz, a fentiek szerint a rendszer holtpontba ker\'fclt. Val\'f3ban, hiszen a P1 folyamat m\'e9g k\'e9ri az R2 er\'f5forr\'e1st a P2 folyamat pedig az R1 er\'f5forr\'e1
+st, de ezek foglaltak. Mivel er\'f5szakkal lek\'f6t\'f6tt er\'f5forr\'e1st a rendszer nem szabad\'edt fel, a holtpont bek\'f6vetkezik.
+\par }\pard \qj\widctlpar\adjustright {Amikor a rendszer \'e9szleli a holtpontot (az er\'f5forr\'e1s gr\'e1fban kialakul a k\'f6r), vagy a sz\'e1m\'edt\'f3g\'e9p oper\'e1tor\'e1nak k\'fcld \'fczenetet a holtpont bek\'f6vetkezt\'e9r\'f5l k\'e9rve annak megsz
+\'fcntet\'e9s\'e9t, vagy automatikusan elind\'edtja a holpont megsz\'fcntet\'e9s\'e9t v\'e9gz\'f5 elj\'e1r\'e1st.
+\par }\pard \qj\widctlpar\adjustright {A holtpont megsz\'fcntet\'e9se a k\'f6vetkez\'f5 m\'f3dokon k\'e9pzelhet\'f5 el:
+\par \tab - abort\'e1lunk minden olyan folyamatot, amely r\'e9szese a holtpontnak;
+\par \tab - egyes\'e9vel abort\'e1ljuk a folyamatokat add\'edg, am\'edg a holtpont meg nem sz\'fcnik;
+\par }\pard \qj\widctlpar\adjustright {\tab - egyes\'e9vel elvessz\'fck az er\'f5forr\'e1sokat a folyamatokt\'f3l, am\'edg a holtpont meg nem sz\'fcnik.
+\par }\pard \qj\widctlpar\adjustright {Gondoljuk meg, mindegyik megk\'f6zel\'edt\'e9s igen k\'f6lts\'e9ges, r\'e1ad\'e1sul az abort\'e1lt folyamatokat \'fajra ind\'edtva a redszer ism\'e9telten holtpontba ker\'fclhet, b\'e1r ennek a val\'f3sz\'edn\'fbs\'e9
+ge meglehet\'f5sen kicsi. A rendszer hat\'e9konyabb m\'fbk\'f6d\'e9se szempontj\'e1b\'f3l az is l\'e9nyeges lehet, hogy a folyamatokat milyen sorrendben abort\'e1ljuk ill. milyen sorrendben vessz\'fck el t\'f5l\'fck az er\'f5forr\'e1st. Erre vonatkoz\'f3
+an n\'e9h\'e1ny szempont:
+\par }\pard \qj\widctlpar\adjustright {\tab - a kiv\'e1laszt\'e1s priorit\'e1s szerint t\'f6rt\'e9njen;
+\par \tab - a r\'f6videbb ideje m\'fbk\'f6d\'f5 folyamatot c\'e9lszer\'fb el\'f5bb v\'e1lasztani;
+\par \tab - nem c\'e9lszer\'fb azt a folyamatot abort\'e1lni, ami nagyon k\'f6zel van a befejez\'e9shez;
+\par }\pard \qj\widctlpar\adjustright {\tab - azt a folyamatot c\'e9lszer\'fbbb abort\'e1lni, ami m\'e9g t\'f6bb er\'f5forr\'e1st ig\'e9nyel a \tab tov\'e1bbi m\'fbk\'f6d\'e9se sor\'e1n;
+\par \tab - bizonyos er\'f5forr\'e1sokat k\'f6nnyebb elvenni a folyamatokt\'f3l, mint m\'e1sokat. \tab \tab V\'e1lasszuk a k\'f6nnyebb utat!
+\par }\pard \qj\widctlpar\adjustright {
+\par }{\i 
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b A holtpont elker\'fcl\'e9se (deadlock avoidance)
+\par }\pard \qj\widctlpar\adjustright {A holtpont-elker\'fcl\'f5 algoritmusok l\'e9nyege, hogy ne k\'f6ss\'f6n le a rendszer egy er\'f5forr\'e1st egy folyamat sz\'e1m\'e1ra ha ez\'e1ltal holtpont keletkezhet. Ebb\'f5l a szempontb\'f3l nem elegend\'f5
+ csak egy l\'e9p\'e9st el\'f5re tekinteni. Az igazi megold\'e1st }{\i Dijkstra }{\'fan. }{\b Bank\'e1r algoritmusa (Banker's algorithm) }{adja meg. A n\'e9v onnan ered, hogy amegold\'e1s eml\'e9keztet arra, ahogy egy bank\'e1r menedzseli a k\'f6lcs\'f6n
+\'f6ket \'e9s bev\'e9teleket. Az algoritmus a holtpont kialakula\'e1s\'e1nak n\'e9gy felt\'e9tele k\'f6z\'fcl a cirkul\'e1ris v\'e1r\'e1koz\'e1s felt\'e9tel\'e9nek bek\'f6vetkez\'e9s\'e9t z\'e1rja ki.
+\par }\pard \qj\widctlpar\adjustright {A bank\'e1rokra vonatkoz\'f3 probl\'e9ma megfogalmaz\'e1sa:
+\par }\pard \qj\widctlpar\adjustright {\tab - egy bank\'e1r meghat\'e1rozott mennyis\'e9g\'fb t\'f5k\'e9vel rendelkezik. A t\'f5k\'e9t k\'f6lcs\'f6n akarja adni meghat\'e1rozott sz\'e1m\'fa \'fcgyfel\'e9nek;
+\par }\pard \qj\widctlpar\adjustright {\tab - minden \'fcgyf\'e9l el\'f5re k\'f6zli maxim\'e1lis forintig\'e9ny\'e9t;
+\par \tab - a bank\'e1r akkor fogadja el egy \'fcgyf\'e9l ig\'e9ny\'e9t, ha az nem haladja meg t\'f5k\'e9j\'e9t.
+\par }\pard \qj\widctlpar\adjustright {\tab - a bank\'e1r egy \'fcgyf\'e9lnek ny\'fajtott k\'f6lcs\'f6n ideje alatt tov\'e1bbi p\'e9nz\'fcgyi akci\'f3kat bonyol\'edthat le egym\'e1s ut\'e1n;
+\par \tab - el\'f5fordulhat, hogy egy \'fcgyf\'e9lnek v\'e1rakoznia kell a k\'f6lcs\'f6nre, de a bank\'e1r garant\'e1lja, hogy a v\'e1rakoz\'e1si id\'f5 mindig v\'e9ges;
+\par \tab - egy \'fcgyf\'e9l t\'e9nylegs tartoz\'e1sa sohasem l\'e9pheti t\'fal a maxim\'e1lis ig\'e9ny\'e9nek \'f6sszeg\'e9t;
+\par \tab - ha a bank\'e1r egy \'fcgyf\'e9l maxim\'e1lis ig\'e9ny\'e9t kiel\'e9g\'edtette, akkor az \'fcgyf\'e9l garant\'e1lja, hogy v\'e9ges id\'f5n bel\'fcl lebonyol\'edtja tranzakci\'f3j\'e1t \'e9s a k\'f6lcs\'f6nt visszafizeti.
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {Egy \'e1llapotot }{\b biztosnak }{nevez\'fcnk, ha a bank\'e1r biztis\'edtani tudja, hogy minden \'fcgyfele v\'e9ges id\'f5n bel\'fcl le tudja bonyol\'edtani tranzakci\'f3j\'e1t. Ellenkez\'f5 esetben az \'e1llapot }{\b 
+nem biztos.}{
+\par }\pard \qj\widctlpar\adjustright {Egy olyan algoritmust keres\'fcnk, amely eld\'f6nti, hogy a bank\'e1r helyzete biztos-e vagy sem.
+\par }\pard \qj\widctlpar\adjustright {Egy \'fcgyf\'e9l helyzet\'e9t az \'e9ppen l\'e9tez\'f5 k\'f6lcs\'f6ne \'e9s a tov\'e1bbi ig\'e9nye jellemzi:
+\par \tab \tab \tab }{\i claim = need - loan.
+\par }{A bank\'e1r helyzet\'e9t a t\'f5k\'e9je \'e9s a pillanatnyi k\'e9zp\'e9nze jellemzi:
+\par \tab \tab \tab cash = capital - sum of loan.
+\par 
+\par }\pard \qj\widctlpar\adjustright {Vegy\'fck a k\'f6vetkez\'f5 p\'e9ld\'e1t. Adottak P, Q, R \'fcgyfelek, akik osztozni kiv\'e1nnak a bank\'e1r 10 forintnyi t\'f5k\'e9j\'e9n. P, Q, R egy\'fcttes ig\'e9nye 20 forint. A pillanatnyi helyzet legyen a k\'f6
+vetkez\'f5:
+\par }\pard \qj\widctlpar\adjustright {\tab capital: \tab 2
+\par \tab P:\tab \tab 4(4)
+\par \tab Q:\tab \tab 2(1)
+\par \tab R:\tab \tab 2(7),
+\par }\pard \qj\widctlpar\adjustright {vagyis a bank\'e1r k\'e9zp\'e9nze jelenleg 2 Ft, P k\'f6lcs\'f6ne 4 Ft \'e9s ig\'e9nyel m\'e9g 4 Ft-ot, Q k\'f6lcs\'f6ne 2 Ft \'e9s ig\'e9nyel m\'e9g 1 Ft-ot, R ig\'e9nye 2 Ft \'e9s ig\'e9nyel m\'e9g 7 Ft-ot.
+\par }\pard \qj\widctlpar\adjustright {Az algoritmus egyenk\'e9nt megvizsg\'e1lja az \'fcgyfeleket, keresve azt, akinek az ig\'e9nye nem l\'e9pi t\'fal a bank\'e1r k\'e9zp\'e9nz\'e9t. P\'e9ld\'e1nkban Q az egyetlen ilyen \'fcgyf\'e9l. Miut\'e1n Q megkapta a k
+\'e9rt maxim\'e1lis k\'f6lcs\'f6nt, v\'e9ges id\'f5n bel\'fcl vissza is fizette a bank\'e1rnak. A helyzet ekkor a k\'f6vetkez\'f5:
+\par }\pard \qj\widctlpar\adjustright {\tab capital: \tab 4
+\par \tab P:\tab \tab 4(4)
+\par \tab R:\tab \tab 2(7).
+\par }\pard \qj\widctlpar\adjustright {Most P ig\'e9nye el\'e9g\'edthet\'f5 ki, miut\'e1n \'f5 is visszafizette a teljes k\'f6cs\'f6nt, a helyzet a k\'f6vetkez\'f5:
+\par }\pard \qj\widctlpar\adjustright {\tab capital: \tab 8
+\par \tab R:\tab \tab 2(7).
+\par }\pard \qj\widctlpar\adjustright {Ekkor m\'e1r R ig\'e9nye is kiel\'e9g\'edthet\'f5, miut\'e1n R is visszafizette k\'f6lcs\'f6n\'e9t kapjuk a k\'f6vetkez\'f5t:
+\par }\pard \qj\widctlpar\adjustright {\tab capital: \tab 10.
+\par Ez \'e9ppen azt jelenti, hogy a kiindul\'e1si \'e1llapot biztos \'e1llapot volt.
+\par }\pard \qj\widctlpar\adjustright {Term\'e9szetesen biztos \'e1llapotb\'f3l eljuthatunk nem biztos\'e1llapotba is, aminek egyenes k\'f6vetkezm\'e9nye a holtpont bek\'f6vetkez\'e9se.
+\par }\pard \qj\widctlpar\adjustright {
+\par Az algoritmust hierarchikusan adjuk meg f\'f6l\'fclr\'f5l lefel\'e9. A legfels\'f5 szint trivi\'e1lis:
+\par }{\i 1.1 Algoritmus.
+\par }\pard \qj\widctlpar\adjustright {\b \tab type }{S = ?
+\par \tab }{\b function }{safe (current state : S): boolean;
+\par }\pard \qj\widctlpar\adjustright {Az algoritmus egyetlen f\'fcggv\'e9nyb\'f5l \'e1ll, amelynek egyetlen param\'e9tere az aktu\'e1lis \'e1llapot. Ezen a szinten sem a f\'fcggv\'e9ny r\'e9szletei sem pedig az aktu\'e1lis \'e1llapot tartalma, szerkezete nem 
+\'e9rdekes a sz\'e1munkra. A safe f\'fcggv\'e9ny megadja, hogy az aktu\'e1lis \'e1llapot biztos-e vagy sem.
+\par }\pard \qj\widctlpar\adjustright {A k\'f6vetkez\'f5 l\'e9p\'e9sben finom\'edtjuk az algoritmust. Kifejtj\'fck a safe f\'fcggv\'e9nyt. A f\'fcggv\'e9ny szimul\'e1lja az \'fcgyfelek tranzakci\'f3inak befejez\'e9s\'e9t, ha azok egy\'e1ltal\'e1n befejezhet
+\'f5k. Ha minden tranzakci\'f3 befejezhet\'f5, az \'e1llapot biztos
+\par }\pard \qj\widctlpar\adjustright {\i 1.2 Algoritmus.
+\par }\pard \qj\widctlpar\adjustright {\i \tab }{\b type }{S = ?
+\par \tab }{\b function }{safe (current state : S): boolean;
+\par \tab \tab }{\b var }{state: S;
+\par \tab \tab }{\b begin\tab }{state := current state;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab complete transactions(state);
+\par \tab \tab \tab safe := all transactions completed(state);
+\par \tab \tab }{\b end
+\par 
+\par }\pard \qj\widctlpar\adjustright {Az algoritmus tov\'e1bbi finom\'edt\'e1s\'e1t az S \'e1llapot r\'e9szletez\'e9s\'e9vel \'e9s a complete transactions elj\'e1r\'e1s finom\'edt\'e1s\'e1val folytatjuk.
+\par }\pard \qj\widctlpar\adjustright {Az \'e1llapot rekord t\'edpus\'fa, komponensei a k\'f6vetkez\'f5k:
+\par }\pard \qj\widctlpar\adjustright {\tab - Egy B t\'f6mb, amely az egyes \'fcgyfelek ig\'e9ny\'e9t \'e9s \'e9rv\'e9nyes k\'f6lcs\'f6n\'e9t tartja nyilv\'e1n, tov\'e1bb\'e1 azt, hogy az \'fcgyf\'e9l tranzakci\'f3ja befejez\'f5d\'f6tt-e vagy sem. Minden \'fc
+gyf\'e9lhez a B t\'f6mb egy rekordja tartozik.
+\par \tab - A rekord tov\'e1bbi komponensei a bank\'e1r t\'f5k\'e9j\'e9re vonatkoz\'f3 inform\'e1ci\'f3kat tartalmazz\'e1k, capital, cash. A valut\'e1k reprezent\'e1ci\'f3ja ezen a szinten m\'e9g nem l\'e9nyeges.
+\par }\pard \qj\widctlpar\adjustright {Ezen a szinten defini\'e1ljuk a complete trasactions elj\'e1r\'e1st. Ez az elj\'e1r\'e1s egym\'e1s ut\'e1n megvizsg\'e1lja az \'fcgyfelek helyzet\'e9t. Ha az \'e9ppen vizsg\'e1lt \'fcgyf\'e9l m\'e9
+g nem fejezte be a tranzakci\'f3j\'e1t, de a befejez\'e9s lehets\'e9ges, akkor az algoritmus ezt szimul\'e1lja, \'e9s a bank\'e1rnak visszaadja az \'fcgyf\'e9l k\'f6lcs\'f6n\'e9t. Az elj\'e1r\'e1s addig folytat\'f3dik, am\'edg van befejezhet\'f5 tranzakci
+\'f3.
+\par }\pard \qj\widctlpar\adjustright {\i 1.2 Algoritmus.
+\par }\pard \qj\widctlpar\adjustright {\i \tab }{\b type \tab }{S = \tab }{\b record
+\par \tab \tab \tab \tab }{transactions: }{\b array }{B}{\b  of
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab \tab \tab \tab record
+\par \tab \tab \tab \tab \tab \tab \tab }{claim, loan : C;
+\par \tab \tab \tab \tab \tab \tab \tab completed: boolean;
+\par \tab \tab \tab \tab \tab \tab }{\b end;}{
+\par \tab \tab \tab \tab capital, cash: C;
+\par \tab \tab \tab }{\b end;
+\par \tab \tab }{B = 1.. number of customers;
+\par \tab \tab C = ?
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b procedure }{complete transactions(}{\b var }{state: S);
+\par \tab \tab }{\b var }{customers: B; progress: boolean;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b begin
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab with }{state}{\b  do
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab repeat
+\par \tab \tab \tab \tab }{progress : = false;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab \tab }{\b for every }{customers }{\b do
+\par \tab \tab \tab \tab with }{transactions(customers) }{\b do
+\par \tab \tab \tab \tab if not }{completed }{\b then
+\par \tab \tab \tab \tab if }{completion possible(claim, cash) }{\b then
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab \tab \tab begin
+\par \tab \tab \tab \tab \tab \tab }{return (loan, cash);
+\par \tab \tab \tab \tab \tab \tab completed. = true;
+\par \tab \tab \tab \tab \tab \tab progress: = true;
+\par \tab \tab \tab \tab \tab }{\b end
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab until not }{progress;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b end
+\par 
+\par }{Defini\'e1ljuk ezut\'e1n az all transactions completed f\'fcggv\'e9nyt.
+\par }{\i 2.3 Algoritmus.
+\par }\pard \qj\widctlpar\adjustright {\i \tab }{\b function }{all tarsactions completed(state: S): }{\b boolean;
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab begin
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab with }{state }{\b do
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab \tab }{all transactions completed := capital = Cash;
+\par \tab \tab }{\b end
+\par }\pard \qj\widctlpar\adjustright {Vagyis a 2.3 algoritmus szerint az aktu\'e1lis \'e1llapot akkor biztos, ha a bank\'e1r a szimul\'e1ci\'f3 v\'e9g\'e9n visszakapja eredeti t\'f5k\'e9j\'e9t.
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {A tov\'e1bbiakban megadjuk a valut\'e1k reprezent\'e1ci\'f3j\'e1t \'e9s a completion possible f\'fcggv\'e9ny definici\'f3j\'e1t.
+\par }\pard \qj\widctlpar\adjustright {\i 2.4 Algoritmus.
+\par }\pard \qj\widctlpar\adjustright {\i \tab }{\b type \tab }{C = }{\b array }{D }{\b of }{integer;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab D = 1.. number of currencies;
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b function }{completion possible(claim, cash: C): boolean;
+\par \tab \tab }{\b var }{currency: D;
+\par \tab \tab }{\b label }{no;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b begin
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab for every }{currency }{\b do
+\par \tab \tab \tab if }{Claim(currency) > cash(currency) }{\b then
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab \tab begin
+\par \tab \tab \tab \tab \tab }{completion possible := false;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab \tab \tab }{\b exit }{no
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab \tab }{\b end
+\par }{\tab \tab \tab completion possible : = true;
+\par \tab \tab }{\b end
+\par 
+\par }{V\'e9g\'fcl defini\'e1ljuk a return loan elj\'e1r\'e1st.
+\par }{\i 2.5 Algoritmus
+\par }\pard \qj\widctlpar\adjustright {\i \tab }{\b procedure }{return loan(}{\b var }{loan, cash: C);
+\par \tab \tab }{\b var }{currency : D;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b begin
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab for every }{currency }{\b do
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab \tab }{cash(currency) := Cash)currency) + loan(currency);
+\par \tab \tab }{\b end
+\par 
+\par }\pard \qj\widctlpar\adjustright {\'c9rdemes megjegyezni, hogy a bank\'e1r probl\'e9ma megfogalmaz\'e1sa kapcs\'e1n adott felt\'e9telek alapj\'e1n a holtpont n\'e9gy felt\'e9tele k\'f6z\'fcl mindegyik teljes\'fclhetne, \'edgy az algoritmusra val\'f3ban sz
+\'fcks\'e9g van. 
+\par }\pard \qj\widctlpar\adjustright {\tab A k\'f6lcs\'f6n\'f6s kiz\'e1r\'e1s felt\'e9tele teljes\'fcl, mert a bank\'e1r ugyanazt a p\'e9nzt egy adott id\'f5tartamra csak egy \'fcgyf\'e9lnek adhatja oda.
+\par \tab Az \'fcgyfelek csak a teljes tranzakci\'f3 befejez\'e9se ut\'e1n adj\'e1k vissza a teljes k\'f6cs\'f6n \'f6sszeg\'e9t, egyszerre.
+\par \tab A bank\'e1r er\'f5szakkal nem hajtja be az \'fcgyf\'e9len a tartoz\'e1st, ha az m\'e9g nem fejezte be tranzakci\'f3j\'e1t \'e9s esetleg tov\'e1bbi k\'f6lcs\'f6nre v\'e1r.
+\par \tab Az \'fcgyfelek egym\'e1sra v\'e1r\'f3 ciklikus l\'e1nca kialakulhat, ha a bank\'e1r nem el\'f5rel\'e1t\'f3an \'fctemezi a k\'f6lcs\'f6nig\'e9nyek teljes\'edt\'e9s\'e9t.
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {A t\'f6bb l\'e9p\'e9sben megkostru\'e1lt algoritmus csak arra j\'f3, hogy a bank\'e1r eld\'f6nthesse, hogy egy adott \'e1llapot biztos-e vagy sem, de azt, hogy a k\'f6vetkez\'f5 \'fcgyfelet milyen sziszt\'e9ma szerint v
+\'e1lasszuk ki, nem mondja meg. A holtpont elker\'fclhet\'f5, ha biztos\'edtjuk azt, hogy a rendszer\'fcnk biztos \'e1llapotb\'f3l biztos \'e1llapotba menjen \'e1t. Azaz olyan tranzakci\'f3t, ami a bank\'e1r helyzet\'e9t bizonytalann\'e1 tenn\'e9
+, nem eged\'fcnk meg. 
+\par }\pard \qj\widctlpar\adjustright {A holtpont-elker\'fcl\'e9s probl\'e9m\'e1j\'e1nak matematikai modellj\'e9t Habermann adta meg (1969).
+\par }\pard \qj\widctlpar\adjustright {
+\par \tab }{\b Holtpont-megel\'f5z\'e9s (deadlock prevention)
+\par }\pard \qj\widctlpar\adjustright {A fentiekb\'f5l is l\'e1that\'f3, hogy a mind a holtpont-\'e9szlel\'f5, mind a holtpont-elker\'fcl\'f5 algoritmusok igen k\'f6lts\'e9gesek. Ez\'e9rt is c\'e9lszer\'fb megvizsg\'e1
+lni azt, hogy nem lehet-e a rendszert eleve \'fagy szervezni, hogy a holtpont lehet\'f5s\'e9g\'e9t eleve kiz\'e1rjuk. Mivel a holtpont kialakul\'e1s\'e1nak sz\'fcks\'e9ges felt\'e9teleit ismerj\'fck, ez\'e9rt erre minden lehet\'f5s\'e9g\'fcnk megvan. Vegy
+\'fck sorra a felt\'e9teleket. 
+\par }\pard \qj\widctlpar\adjustright {\tab Az er\'f5forr\'e1sok k\'f6lcs\'f6n\'f6s kiz\'e1r\'e1sos alapon haszn\'e1lhat\'f3k. Ezen a felt\'e9telen \'e1ltal\'e1bna nem tudunk laz\'edtani, mivel ez az adott er\'f5forr\'e1s bels\'f5 tulajdons\'e1
+ga. Vannak azonban olyan kiz\'e1r\'f3lagos haszn\'e1lat\'fa er\'f5forr\'e1sok, p\'e9ld\'e1ul a nyomtat\'f3k, amelyek haszn\'e1lata megszervezhet\'f5 \'fagy, mintha konkurensen el\'e9rhet\'f5k lenn\'e9nek. A nyomtat\'f3k eset\'e9ben a nyomtatand\'f3
+ adatokat a felhaszn\'e1l\'f3k egy saj\'e1t adat\'e1llom\'e1nyban helyezik el \'e9s az oper\'e1ci\'f3s rendszer ezeket az adat\'e1llom\'e1nyokat megfelel\'f5en sorbarendezve nyomtatja ki az esetleg egyetlen nyomtat\'f3n ( printer spooler). A felhaszn\'e1l
+\'f3 ilyen m\'f3don egy olyan }{\b virtu\'e1lis nyomtat\'f3val }{dolgozhat, ami sz\'e1m\'e1ra konkurens m\'f3don \'e9rhat\'f5 el.
+\par }\pard \qj\widctlpar\adjustright {\tab A m\'e1sodik felt\'e9tel azt mondja ki, hogy a lek\'f6t\'f6tt er\'f5forr\'e1sokat a folyamatok akkor is megtartj\'e1k, mik\'f6zben tov\'e1bbi er\'f5forr\'e1sokra v\'e1rnak. Ezen felt\'e9tel t\'f6bbf\'e9le m\'f3
+don "tagadhat\'f3". Az egyik lehet\'f5s\'e9g az, hogy a folyamatok egyszerre k\'e9rik a sz\'e1mukra sz\'fcks\'e9ges \'f6sszes er\'f5forr\'e1st, \'e9s a rendszer csak akkor allok\'e1lja az \'f6sszes er\'f5forr\'e1st a folyamat sz\'e1m\'e1
+ra, ha mindegyik szabad. Ekkor az \'f6sszes er\'f5forr\'e1st teh\'e1t egyszerre rendelj\'fck hozz\'e1 az adott folyamathoz. Ennek nagy h\'e1tr\'e1nya, hogy az er\'f5forr\'e1sok kihaszn\'e1lts\'e1ga messze nem optim\'e1lis.
+\par }\pard \qj\widctlpar\adjustright {\tab A harmadik felt\'e9tel \'fagy sz\'f3l, hogy er\'f5szakkal nem lehet egy folyamatt\'f3l er\'f5forr\'e1st elvenni, mik\'f6zben \'fajabb er\'f5forr\'e1sra v\'e1r. Az id\'f5k folyam\'e1n sz\'e1
+mos algoritmust dolgoztak ki er\'f5forr\'e1sok visszavon\'e1s\'e1ra. Ezek mindegyike azonban sz\'e1mos h\'e1tr\'e1nyos tulajdons\'e1ggal b\'edr.
+\par }\pard \qj\widctlpar\adjustright {\tab A holtpont kialakul\'e1s\'e1nak negyedik felt\'e9tele a v\'e1rakoz\'f3 foyamatok ciklikus l\'e1nc\'e1nak kialakul\'e1sa. Egy lehets\'e9ge m\'f3d a ciklikus l\'e1nc kialakul\'e1s\'e1nak megakad\'e1lyoz\'e1s\'e1ra a k
+\'f6vetkez\'f5. Szervezz\'fck az er\'f5forr\'e1sokat hierarchikus sorba \'e9s \'edrjuk el\'f5 a folyamatoknak, hogy az er\'f5forr\'e1sokat minden folyamat csak megfelel\'f5 sorrendben k\'e9rheti \'e9s k\'f6theti le. A fenti szab\'e1lyt megszeg\'f5
+ folyamatokat a rendszer abort\'e1lja. Egyszer\'fben bel\'e1that\'f3, hogy \'edgy a v\'e1rakoz\'f3 folyamatok ciklikus l\'e1nca nem alakulhat ki. E m\'f3dszer h\'e1tr\'e1ny szint\'e9n az, hogy az er\'f5forr\'e1sok haszn\'e1lata \'e1ltal\'e1ban nem optim
+\'e1lis.
+\par }\pard \qj\widctlpar\adjustright {
+\par 
+\par \tab }{\b Igazs\'e1goss\'e1g, korrekts\'e9g (fairness)
+\par }\pard \qj\widctlpar\adjustright {Az el\'f5z\'f5 fejezetekben le\'edrtuk, hogy a Pascal-FC nyelv k\'e9t k\'fcl\'f6nb\'f6z\'f5 \'fctemez\'f5vel dolgozik. Az egyik korrekt, a m\'e1sik nem korrekt \'fctemez\'f5. Most egy kiss\'e9 r\'e9szletesebben megvizsg
+\'e1ljuk az igazs\'e1goss\'e1g fogalm\'e1t. 
+\par }\pard \qj\widctlpar\adjustright {Tekints\'fcnk egy konkurens programot, amely folyamatok egy meghat\'e1rozott halmaz\'e1b\'f3l \'e1ll. Mindegyik folyamat a saj\'e1t logikai processzor\'e1n fut. Tegy\'fck fel, hogy a fizikai processzorok sz\'e1
+ma kevesebb, mint a logikai processzorok\'e9. Ekkor egy fizikai processzorra t\'f6bb logikai processzort k\'e9pez\'fcnk le. A fizikai processzor azonban minden id\'f5pillanatban csak egy logikai processzor egy utas\'edt\'e1s\'e1t k\'e9pes v\'e9
+grehajtani. \'cdgy a logikai processzorokat \'fctemezni kell a fizikai processzoron. Az \'fctemez\'f5 mindig a v\'e9grehajthat\'f3 folyamatok k\'f6z\'fcl \'fctemez egyet a fizikai processzorra. Egy igazs\'e1gos (korrekt) \'fctemez\'f5 mindig garant\'e1
+lja azt, hogy egy v\'e9grehajthat\'f3 utas\'edt\'e1s v\'e9ges id\'f5n bel\'fcl v\'e9gre is hajt\'f3dik. A nem igazs\'e1gos (nem korrekt) \'fctemez\'f5 eset\'e9n el\'f5fordulhat, hogy egy v\'e9grehajthat\'f3 utas\'edt\'e1s sohasem ker\'fcl kiv\'e1laszt\'e1
+sra. Ilyen nem korrekt \'fctemez\'f5 p\'e9ld\'e1ul a priorit\'e1son alapul\'f3 \'fctemez\'e9s, vagy a Pascal-FC nyelv nem korrekt \'fctemez\'f5je. Azonban a korrekts\'e9g k\'fcl\'f6nb\'f6z\'f5 szintjei k\'fcl\'f6nb\'f6ztethet\'f5k meg. Tekints\'fck a k
+\'f6vetkez\'f5 p\'e9ld\'e1t. Hajtsuk v\'e9gre a CoOp1 programot a Pascal-FC nem korrekt \'fctemez\'f5j\'e9vel. Azt tapasztaljuk, hogy a program sohasem termin\'e1l, korrekt \'fctemez\'f5 mellett viszont gyorsan termin\'e1l.
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b program }{CoOp1;
+\par \tab }{\b var \tab }{flag, finish: boolean;
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b process }{one;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b begin
+\par \tab \tab \tab }{flag := true;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab }{\b while not }{finish }{\b do
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab \tab null
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab end;\tab }{(* one *)
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b process }{two;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b begin
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab }{\b while not }{flag }{\b do
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab \tab null;
+\par \tab \tab \tab }{finish := true}{\b 
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab end;\tab }{(* two *)
+\par }\pard \qj\widctlpar\adjustright {\tab 
+\par \tab }{\b begin
+\par \tab \tab }{flag := false;
+\par \tab \tab finish := false;
+\par \tab \tab }{\b cobegin
+\par \tab \tab \tab }{one;
+\par \tab \tab \tab two
+\par \tab \tab }{\b coend
+\par \tab end.
+\par }{
+\par Tekints\'fck a fenti program k\'f6vetkez\'f5 m\'f3dos\'edtott v\'e1ltozat\'e1t.
+\par 
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b program }{CoOp2;
+\par \tab }{\b var \tab }{flag, finish: boolean;
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b process }{one;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b begin
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab }{\b while not }{finish }{\b do
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab begin
+\par \tab \tab \tab \tab }{flag := true;
+\par }{\b \tab \tab \tab \tab }{flag := false;}{\b 
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab end
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab end;\tab }{(* one *)
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b process }{two;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b begin
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab }{\b while not }{flag }{\b do
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab \tab null;
+\par \tab \tab \tab }{finish := true}{\b 
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab end;\tab }{(* two *)
+\par }\pard \qj\widctlpar\adjustright {\tab 
+\par \tab }{\b begin
+\par \tab \tab }{flag := false;
+\par \tab \tab finish := false;
+\par \tab \tab }{\b cobegin
+\par \tab \tab \tab }{one;
+\par \tab \tab \tab two
+\par \tab \tab }{\b coend
+\par \tab end.
+\par }{
+\par }\pard \qj\widctlpar\adjustright {A CoOp2 program szint\'e9n nem termin\'e1l a nem korrekt \'fctemez\'e9s mellett, de korrekt \'fctemez\'e9s mellett ugyancsak gyorsan termin\'e1l. Most is a two folyamat termin\'e1l el\'f5sz\'f6r, mert el\'f5bb ut\'f3
+bb a flag \'e9rt\'e9ke true lesz, amikor a two folyamat \'e9ppen a flag \'e9rt\'e9k\'e9t ellen\'f5rzi. Most azonban elvileg el\'f5fordulhat az is, hogy a two folyamat \'f6r\'f6kk\'e9 azt "l\'e1tja", hogy a flag \'e9rt\'e9ke false, de ennek a val\'f3sz\'ed
+n\'fbs\'e9ge nagyon kicsi.
+\par Az \'fctemez\'f5 a konkurens rendszer nagyon alacsony sz\'ednt\'fb f\'fcggv\'e9nye, nem v\'e1rhat\'f3 el t\'f5le, hogy minden program elv\'e1r\'e1sait "meg\'e9rtse". \'cdgy teh\'e1t azt sem v\'e1rhatjuk el egy \'fctemez\'f5t\'f5l, hogy tudja a fenti p\'e9
+ld\'e1nk eset\'e9ben, hogy a two folyamat \'fctemez\'e9se, amikor a flag \'e9rt\'e9ke mindig hamis, nem korrekt. Ez\'e9rt kell bevezetni a korrekts\'e9g k\'fcl\'f6nb\'f6z\'f5 szintjeit.
+\par }\pard \qj\widctlpar\adjustright {\tab Egy \'fctemez\'f5 }{\b gyeng\'e9n korrekt (weakly fair), }{ha garant\'e1lja, hogy ha egy folyamat folyamatosan k\'e9r valamit, akkor azt el\'f5bb ut\'f3bb meg is kapja.
+\par \tab Egy \'fctemez\'f5 }{\b er\'f5sen korrekt (strongly fair), }{ha garant\'e1lja azt, hogy ha egy folyamat valamit v\'e9gtelen sokszor k\'e9r, akkor azt el\'f5bb ut\'f3bb meg is kapja.
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {P\'e9ld\'e1k. A round robin \'fctemez\'e9si s\'e9ma gyeng\'e9n korrekt. A Pascal-FC korrekt \'fctemez\'f5je v\'e9letlen sz\'e1mot haszn\'e1l. Elvileg teh\'e1t el\'f5fordulhat, hogy p\'e9ld\'e1ul mindig a one folyamatot 
+\'fctemezi. Ennek val\'f3sz\'edn\'fbs\'e9ge nagyon kicsi, de nem z\'e9r\'f3. \'cdgy a korrekt jelz\'f5 ebben az esetben, a fenti defin\'edci\'f3k \'e9rtelm\'e9ben nem hely\'e9nval\'f3. A gyakorlatban azonban elfogadhat\'f3 korrektnek.
+\par }\pard \qj\widctlpar\adjustright {
+\par \tab }{\b Az \'e9tkez\'f5 filoz\'f3fusok probl\'e9m\'e1ja
+\par }\pard \qj\widctlpar\adjustright {A probl\'e9ma mindenki el\'f5tt j\'f3l ismert a szakirodalomb\'f3l. \'d6t filoz\'f3fus \'fcl egy kerek asztal k\'f6r\'fcl, akik felv\'e1ltva esznek \'e9s gondolkodnak. Ev\'e9skor a filoz\'f3fus helyet foglal az asztaln
+\'e1l a sz\'e1m\'e1ra kijel\'f6lt helyen. Az asztalon \'f6t t\'e1ny\'e9r van, k\'e9t t\'e1ny\'e9r k\'f6z\'f6tt pontosan egy villa tal\'e1lhat\'f3. Egy filoz\'f3fus csak k\'e9t vill\'e1val tud enni, de csak a t\'e1ny\'e9rja melletti jobb- \'e9
+s bal oldali vill\'e1t haszn\'e1lhatja. K\'f6vetkez\'e9sk\'e9ppen k\'e9t szomsz\'e9dos filoz\'f3fus egyszerre nem tud enni. \'d6t k\'f6z\'fcl legfeljebb mindig kett\'f5 \'e9tkezhet csak.
+\par }\pard \qj\widctlpar\adjustright {Egy P filoz\'f3fus egy folyamattal reprezent\'e1lhat\'f3, amelyre:
+\par }\pard \qj\widctlpar\adjustright {\tab }{\field\flddirty{\*\fldinst {SYMBOL 97 \\f "Symbol"}}{\fldrslt }}{P = \{think, eat, pickup, putdown\};
+\par \tab P = (think }{\field\flddirty{\*\fldinst {SYMBOL 174 \\f "Symbol"}}{\fldrslt }}{ pickup }{\field\flddirty{\*\fldinst {SYMBOL 174 \\f "Symbol"}}{\fldrslt }}{ pickup }{\field\flddirty{\*\fldinst {SYMBOL 174 \\f "Symbol"}}{\fldrslt }}{ eat }
+{\field\flddirty{\*\fldinst {SYMBOL 174 \\f "Symbol"}}{\fldrslt }}{ putdown }{\field\flddirty{\*\fldinst {SYMBOL 174 \\f "Symbol"}}{\fldrslt }}{ putdown }{\field\flddirty{\*\fldinst {SYMBOL 174 \\f "Symbol"}}{\fldrslt }}{ P).
+\par }\pard \qj\widctlpar\adjustright {Egy villa egy osztott k\'f6z\'f6s v\'e1ltoz\'f3val reprezent\'e1lhat\'f3 (chopstick), amelynek igaz \'e9rt\'e9ke azt jelzi, hogy a villa \'e9ppen szabad. Egy vill\'e1t egy filoz\'f3fus a pickup elj\'e1r\'e1s aktiv\'e1l
+\'e1s\'e1val szerez meg mag\'e1nak. Ennek az elj\'e1r\'e1snak a t\'f6rzse a m\'e1r ismert Dekker-f\'e9le algoritmussal p\'e9ld\'e1ul megadhat\'f3, mivel k\'f6lcs\'f6n\'f6s kiz\'e1r\'e1st kell biztos\'edtani a vill\'e1kra. A think \'e9s az eat tev\'e9kenys
+\'e9geket a sleep elj\'e1r\'e1s seg\'edts\'e9g\'e9vel szimul\'e1ljuk.
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b program }{philosophers;
+\par \tab }{\b const }{N = 5;
+\par \tab }{\b var \tab }{chopstics : }{\b array}{[1..N] }{\b of }{boolean;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab I : integer;
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b procedure }{pickup(}{\b var }{chop : boolean, }{\b var }{gotit : boolean);
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b begin
+\par \tab \tab }{(* pick up chop if available - under mutual exclusion *)
+\par \tab \tab (* if available then gotit := true; otherwise gotit := false *)
+\par \tab }{\b endk;
+\par 
+\par }\pard \qj\widctlpar\adjustright {\b \tab procedure }{putdown(}{\b var }{chop : boolean);
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b begin
+\par \tab \tab }{(* put down chop *)}{\b 
+\par }\pard \qj\widctlpar\adjustright {\b \tab end;}{
+\par }\pard \qj\widctlpar\adjustright {
+\par }\pard \qj\widctlpar\adjustright {\tab }{\b process type }{philosophers(name : integer);
+\par \tab }{\b var \tab }{I : integer;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab chop1, chop2 : integer;
+\par \tab \tab gotchop : boolean;
+\par \tab }{\b begin
+\par \tab \tab }{chop1 := name;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b if }{name = N}{\b  then }{chop2 := 1}{\b  else}{ chop2 := name + 1;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab }{\b repeat
+\par \tab \tab \tab }{sleep(random(10));\tab (* THINK *)
+\par \tab \tab \tab gotchop := false;
+\par \tab \tab \tab }{\b repeat
+\par \tab \tab \tab \tab }{pickup(chopsticks[chop1], gotchop)
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab }{\b until }{gotchop;}{\b 
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab }{gotchop : = false;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab }{\b repeat
+\par \tab \tab \tab \tab }{pickup(chopsticks[chop2], gotchop)
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab }{\b until }{gotchop;
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab sleep(random(10));\tab (* EAT *)
+\par \tab \tab \tab putdown(chopsticks[chop1]);
+\par \tab \tab \tab putdown(chopsticks[chop2])
+\par \tab \tab }{\b forever
+\par \tab end;
+\par 
+\par }\pard \qj\widctlpar\adjustright {\b \tab var \tab }{phils : }{\b array}{[1..N] }{\b of }{philosophers;
+\par }\pard \qj\widctlpar\adjustright {
+\par \tab }{\b begin
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab for }{I := 1 }{\b  to }{N}{\b  do
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab }{Chopstick[I] := true;
+\par \tab \tab }{\b cobegin
+\par }\pard \qj\widctlpar\adjustright {\b \tab \tab \tab for }{I := 1 }{\b to }{N do
+\par }\pard \qj\widctlpar\adjustright {\tab \tab \tab \tab phils[I](I) 
+\par \tab \tab }{\b coend
+\par \tab end.
+\par }\pard \qj\widctlpar\adjustright {\i Megjegyz\'e9s. }{Viszonylag k\'f6nnyen ellen\'f5r\'edzhet\'f5 viselked\'e9selemz\'e9ssel, hogy a fenti konkurens program v\'e9grehajt\'e1sakor a filoz\'f3fus folyamatok holtpontba ker\'fclhetnek, fell\'e9phet az \'fa
+n. livelock. Tov\'e1bb\'e1 h\'e1rom filoz\'f3fus mindig \'f6sszefoghat a m\'e1sik kett\'f5 ellen \'e9s v\'e9gtelen ideig koplal\'e1sra k\'e9nyszer\'edthetik \'f5ket.
+\par }\pard \qj\widctlpar\adjustright {\b\i 
+\par }{
+\par }}

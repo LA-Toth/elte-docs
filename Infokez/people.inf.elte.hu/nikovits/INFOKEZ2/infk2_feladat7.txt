@@ -1,0 +1,50 @@
+A honlapon levo feladatokat kotelezoen meg kell csinalni a gyakorlati 
+jegy megszerzesehez. 
+NE KULDJETEK EL egyesevel a megoldasokat, hanem egy allomanyban 
+gyujtsetek oket es majd a felev folyaman fogom kerni oket.
+A megoldasokban a lekerdezeseket es a vegeredmenyt is el kell kuldeni.
+
+
+7. feladat
+
+VIEW
+Hozzunk letre egy nezettablat, amelyik osztalyonkent az osszfizetest es a
+dolgozok szamat tartalmazza.
+
+Keressuk elo a megfelelo rendszertablabol a nezettablat letrehozo utasitas
+SQL "forras szoveget". (DBA_VIEWS)
+
+
+(kulso join)
+Az ORAUSER nevu oracle felhasznalo tulajdonaban van egy dolgozo es egy osztaly 
+nevu tabla. Irjunk egy olyan lekerdezest, ami kiirja a dolgozo nevet, fizeteset,
+az osztaly nevet es telephelyet. Azok az osztalyok is jelenjenek meg, amelyeken 
+meg nem dolgozik senki. Az ilyen osztalyokra a dolgozo neve oszlopban az 
+jelenjen meg, hogy 'FELVETEL ALATT', a fizetes oszlopban pedig az 
+alapertelmezes szerinti kezdo fizetes, ami 1500.
+
+(Hierarchikus lekerdezes)
+Az ORAUSER tulajdonaban van egy VAGYONOK nevu tabla, amelyben egy csalad 
+leszarmazasi es vagyoni helyzete van tarolva. Adjuk meg ADAM azon 
+leszarmazottainak osszvagyonat, akikre teljesulnek a kovetkezo feltetelek.
+Sem az illeto neveben, sem pedig a felmenoinek a neveben nem szerepel ’N’ betu.
+
+
+(beepitett SQL fuggvenyek hasznalata)
+- Adjuk meg, hogy hany masodperc telt mar el a mai napbol.
+
+- Adjuk meg azoknak az adatbazis-felhasznaloknak a neveit, akik neveben pontosan
+  3 db 'E' betu van.
+
+- Adjunk meg egy lekerdezest, amelyik megadja a tegnapi nap nevet magyarul, 
+  angolul, nemetul es franciaul.
+
+- Adjunk meg egy lekerdezest, amelyik megadja, hogy hany nap van meg hatra a 
+  honapbol.
+
+- Adjuk meg a kovetkezo ev elso hetfoi napjanak a datumat.
+
+- Tegyünk be egy táblába 10 nevet, amelyek ékezeteket is tartalmaznak, majd 
+  irassuk ki a neveket a magyar ábécé szerinti sorrendben.
+
+

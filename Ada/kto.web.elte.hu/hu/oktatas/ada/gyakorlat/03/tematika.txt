@@ -1,0 +1,13 @@
+maxhely
+summa
+rendezes
+rendezes-rek
+rendezes-fv
+matrix
+
+Házi feladat
+
+- Írd át a Max_Hely és a Szumma függvényeket rekurzívra!
+- Írj a mátrixhoz szorzás, skalárral való szorzás és skalárral való beszorzás
+  mûveleteket!
+

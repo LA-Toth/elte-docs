@@ -1,0 +1,93 @@
+<head>
+<title>Hogyan készítsünk saját honlapot a Weben?</title>
+</head>
+
+<body bgcolor="ffffee">
+
+<center>
+<a href="honlap5.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap7.html">Következô fejezet</a>
+</center>
+
+<hr>
+
+<h2>Szerkezet</h2>
+
+Elôbb-utóbb szükségessé válik egy kis rendrakás. Lapjaink elszaporodnak,
+képeinkrôl pedig egyre nehezebb lesz kideríteni, melyik laphoz is 
+tartoznak tulajdonképpen. De ezen lehet segíteni.
+
+<h3>Állománynevek, könyvtárak</h3>
+
+Hogyan is válik ôserdôvé egy könyvtár? Eleinte, amikor még csak az
+index.html lapunk üldögél, esetleg egy-két képpel együtt a public_html
+könyvtárunkban, még nincs baj. 
+<p>
+Illetve van. Ugyanis ahhoz, hogy a lapunkat a világból olvasni lehessen, 
+meg kell rá adnunk az engedélyt. Igen, errôl már volt szó, egy 
+következményérôl viszont nem. A UNIX logikájából következik, hogy a 
+saját alapkönyvtárunkat, ahová a bejelentkezéskor jutunk, szintén 
+olvasásra elérhetôvé kell tennünk. Azaz, elvileg ezzel lehetôséget 
+adunk rá, hogy ebbe is beleolvassanak idegenek. Akit ez zavar, az 
+alapkönyvtárában ne tartson zûrös anyagokat. (Sôt inkább sehol se.)
+Ha valamit el akarunk zárni a külvilág elôl, azt külön könyvtárba tegyük.
+(Persze állományonként is adhatunk vagy visszavonhatunk jogokat, de ez 
+macerás...) 
+<p>
+Egy idô után azonban annyira belejövünk (remélhetôleg) a lapok gyártásába,
+hogy feltétlenül rendszerezni leszünk kénytelenek. Erre adok néhány tippet.
+
+<h4>Témák szerint csoportosítsunk!</h4>
+
+Tegyük fel, hogy zenérôl, irodalomról és természetjárásról is több lapot
+követtünk már el. Logikus, hogy ezeket témánként külön könyvtárba tegyük.
+Használjuk fel azt, hogy az index.html-t külön (általában) nem kell kiírni,
+így a téma vezetô lapját (de ha csak egy lap az egész, akkor is) index.html
+néven helyezzük el a megfelelô könyvtárban. A témához tartozó képek és egyéb
+állományok is ide kerülhetnek.
+<p>
+Másik megoldás, hogy a téma vezetô lapja a téma könyvtárán kívül, de nevében
+megegyezôen kerül tárolásra (pl. irodalom.html és irodalom/ könyvtár). Ez
+akkor tûnik megfelelô megoldásnak, ha a témavezetô lapok megjelenése
+egységes, pl. ugyanazt a háttérképet használják.
+<p>
+Ha valamit minden lapon használunk (pl. ikonokat, logókat), azokat szintén 
+érdemes külön könyvtárba gyûjteni. Itt azonban felmerül az a probléma, hogy
+visszafelé nem lehet hivatkozni a belsô könyvtárból. Ekkor sajnos hosszú,
+azaz teljes URL-t kell használnunk.
+
+<h4>Hosszú nevek, rövid nevek</h4>
+
+Ma már több operációs rendszer is engedi a hosszú, beszédes állománynevek
+használatát, bár szóköz, ékezetes betû és írásjelek nem, vagy csak igen
+körmönfont (s ezért felesleges) módon vethetôk be. A hosszú neveket ettôl
+függetlenül érdemes alkalmazni.
+<p>
+Van kivétel. Ha a lapunk, vagy az abból nyíló szöveg, kép, stb. letöltésére
+komolyan számítunk és szeretnénk is, ez esetben úgy kell tennünk, mint a
+menekülô elefántcsapatnak. Minden csapatban van egy leglassúbb elefánt, s
+az egész csapat az ô sebességéhez alkalmazkodik. Esetünkben a leglassúbb
+elefánt a DOS a maga 3+8 karakteres állományneveivel. Szöveget, képet
+ezért érdemes még UNIX alatt is a fenti megkötés szerint elnevezni. Ha 
+viszont valami kemény UNIX-os anyagunk van (egy jó C program, egy ügyes
+script), akkor használjuk csak ki a névadás szabadságát -- ezzel egy 
+DOS-hívô úgysem tudna mit kezdeni. Vigyázzunk arra is, hogy DOS alatt a 
+kisbetû ugyanaz, mint a nagy, a UNIX alatt viszont nem! Aki DOS alapú 
+környezetben dolgozik (a sokak által használt Windows 3.x ilyen!), az 
+letöltéskor csonka, egymást felülíró állományokba futhat, ha nem vagyunk 
+elôzékenyek.
+
+<hr>
+
+<center>
+<a href="honlap5.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap7.html">Következô fejezet</a>
+</center>
+
+</body>

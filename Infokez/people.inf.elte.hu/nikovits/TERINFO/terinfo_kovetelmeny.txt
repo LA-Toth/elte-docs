@@ -1,0 +1,12 @@
+Programtervezõ matematikus szak 
+Térinformatikai adatbázisok gyakorlat 2005/2006 II. félév
+Gyakorlatvezetõ: Molnár András, Nikovits Tibor
+
+ A gyakorlati jegy megszerzésének feltételei:
+
+A félév anyaga két jól elkülöníthetõ részre osztható.
+Mindkét anyagrészbõl beadandó feladatot kell megoldani, amelyekre 
+külön-külön kapható érdemjegy. Mindkét részre legalább 2-es jegyet
+kell szerezni a gyakorlati jegyhez, amely ez esetben a két érdemjegy 
+átlaga lesz.
+

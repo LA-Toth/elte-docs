@@ -1,0 +1,519 @@
+ 
+          Automaták és formális nyelvek feladatsor, prog.mat.II.            
+          ====================================================== 
+ 
+A BNF és egyéb környezetfüggetlen szintaxisleíró módszerek 
+---------------------------------------------------------- 
+ 
+1. Írjuk át az alábbi BNF nyelvtant ekvivalens módon kiterjesztett bnf-fel  
+es szitaxisgráffal is. Használjuk ki a tömörítési lehetõségeket. 
+ 
+<kifejezés> ::= <elõjel> <tag> |  
+                <elõjel> <tag> <additív-operátor> <kifejezés0> 
+<kifejezés0> ::= <tag> | <tag> <additív-operátor> <kifejezés0> 
+<tag> ::= <tényezõ> | <tényezõ> <multiplikatív-operátor> <tag> 
+<tényezõ> ::= <azonosító> | <szám> | '(' <kifejezés> ')' 
+<elõjel> ::= | '+' | '-' 
+<additív-operátor> ::= '+' | '-' 
+<multiplikatív-operátor> ::= '*' | '/' 
+<azonosító> ::= <alfabetikus-jel> <azonosító-vég> 
+<azonosító-vég> ::= | <alfanumerikus-jel> <azonosító-vég> 
+<alfanumerikus-jel> ::= <alfabetikus-jel> | <numerikus-jel> | '_' 
+<alfabetikus-jel> ::= <kisbetû> | <nagybetû> 
+<kisbetû> ::= 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i'  
+              | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r'  
+              | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z' 
+<nagybetû> ::= 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I'  
+               | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R'  
+               | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' 
+<numerikus-jel> ::= '0' | <pozitív-numerikus-jel>  
+<pozitív-numerikus-jel> ::= '1' | '2' | '3' | '4' | '5'  
+                            | '6' | '7' | '8' |'9' 
+<szám> ::= '0' | <pozitív-numerikus-jel> <szám-vég> 
+<szám-vég> ::= | <numerikus-jel> <szám-vég> 
+ 
+2. Írjuk át az alábbi, kiterjesztett BNF-fel leírt szabályokat 
+alap BNF-re. 
+ 
+<program> ::= <utasítás> 
+<utasítás> ::= | <if-utasítás> | <while-utasítás> | <értékadás>  
+               | <input-output-utasítás> | <block-utasítás> 
+<if-utasítás> ::= 'if' <feltétel> 'then' <utasítás> ['else' <utasítás>] 
+<while-utasítás> ::= 'while' <feltétel> 'do' <utasítás> 
+<értékadás> ::= <azonosító> ':=' <kifejezés> 
+<input-output-utasítás> ::= ('read' | 'write') <azonosító> {',' <azonosító>} 
+<block-utasítás> ::= 'begin' <utasítás> {';' <utasítás>} 'end' 
+<feltétel> ::= ['not'] <reláció> { ('and' | 'or') <reláció> } 
+<reláció> ::= <kifejezés> ( '>' | '<' | '=' | '\=' | '>=' | '=<' ) <kifejezés> 
+              | '(' <feltétel> ')' 
+ 
+3. Az 1. és 2. feladatok egy egyszerû, csak egész számokkal dolgozó  
+programozási nyelv szintaxisát definiálják. årjunk meg néhány programot  
+ezen a nyelven, mint például a legnagyobb közös osztó, vagy az  
+N-edik Fibonacci szám programja. 
+ 
+------------------------------------------------------------------------------ 
+ 
+Nyelvek és grammatikák 
+---------------------- 
+ 
+Megjegyzés: 
+----------- 
+    Az alábbi nyelvtanokban altalában S a kezdõszimbólum.  
+    A nyelvtani jeleket általában nagybetûkkel,  
+    a terminálisokat pedig kisbetûkkel vagy számjegyekkel  
+    vagy aposztrófok közé tett karaktarekkel jelöljük,  
+    kivétel az 'epszilon', amely az üres szó jele. 
+    A nyelvtanokból ezért gyakran csak a szabályhalmazokat fogjuk megadni. 
+    A gondolkodtatóbb (rész)feladatokat csillaggal jelöljük. 
+ 
+1. feladat 
+    Melyik nyelveket generálják az alábbi nyelvtanok?  
+    Bizonyítsuk is a sejtéseket. 
+ 
+G = < { a,b } , { S } , P , S > 
+P = { S --> Sab | Sba | 'epszilon' } 
+ 
+G = ( {@,1} , {S,A} , P , S ) 
+P = { S --> @A , 
+      A --> A1 | AA | 'epszilon' } 
+ 
+G = < { a,b } , { S } , P , S > 
+P = { S --> aSa | bSb | 'epszilon' } 
+ 
+G = ( {1,2} , {S,A,B} , P , S ) 
+P = { S --> ASA | BSB | 'epszilon' , 
+      AB --> BA ,   BA --> AB , 
+      A --> 1 ,   B --> 2            } 
+ 
+G = < { a } , { 1,2 } , P , 1 > 
+P = { 1 --> 12 | 22 , 
+      2 --> 12 | a } 
+ 
+G = ( {a,b} , {S,X,Y} , P , S ) 
+P = { S --> aY ,   Y --> Sb , 
+      S --> aX ,   X --> b   } 
+  
+G = < { a,b } , { S } , P , S > 
+P = { S --> aSb | SS | 'epszilon' } 
+ 
+G = (  {@,.} , {S,A} , P , S ) 
+P = { S --> A | A.S , 
+      A --> AA | @ } 
+ 
+G : S --> ASC | AC  
+    AC --> CA  
+    A --> 1 | 2  
+    C --> 3 | 4   
+ 
+G = ( { 1,2,3 } , { S,A,B,C } , P , S ) 
+P = { S --> SC | ASB | AB | SS , 
+      AC --> CA , BC --> CB , 
+      A --> 1 , B --> 2 , C --> 3   } 
+ 
+G : S --> BZJ 
+    Z --> 'epszilon' | XZY 
+    XY --> YaX  
+    Xa --> aX ,  XJ --> J 
+    aY --> Ya ,  BY --> B 
+    B --> 'epszilon',  J --> 'epszilon' 
+  
+G = ( { 9 } , { S,Z,I,J,A,B } , P , S ) 
+P = {  S -> IZJ | IJ | 9 
+       Z -> AZB | AB 
+       AB -> B9A 
+       9B -> B9 
+       A9 -> 9A 
+       IB -> I9 
+       AJ -> 9J 
+       I -> 9 
+       J -> 9 } 
+ 
+2. FELADAT 
+        Készítsen grammatikákat az alábbi nyelvekhez.  
+        Bizonyítsa is a sejtéseket. 
+ 
+        A) L = { u 'eleme' {a,b,c}*   | u-ban nincs  'aa' , 'bb' es 'cc' 
+                                        résszó sem. } 
+ 
+        B) L = { u 'eleme' {a,b,c}*   | u1 = a  és  u-ban nincs 'cc' résszó  
+                                        és nem végzõdik c betûvel } 
+ 
+        C) L = { U 'eleme' { A,B,C,D }   | U = XY  és  |X| =|Y|  és 
+                        X 'eleme' { A,B }*    és  Y 'eleme' { C,D }*   } 
+ 
+        D) L = { u 'eleme' {a,b}*  | u-ban nincs 2 a betû egymás után , 
+                 a b betûk viszont páros hosszú résszavakat alkotnak.} 
+ 
+                   -1                 * 
+        E) L = { xx  | x 'eleme' {a,b}  }  
+           -- Ez a páros hosszú tükörszavak nyelve. 
+ 
+                           * 
+F) L =  { u 'eleme' { a,b }  |  l (u) = l (u) és a közvetlenül egymás után 
+                                 a       b 
+         álló 'a' betûk száma 3-mal, a közvetlenül egymás után álló  
+         'b' betûk száma 2-vel osztható } 
+ 
+G) L = { A konstans bináris egészekbõl a +,- mûveletekkel és a  (,)  
+     zárójelekkel leírható kifejezések ( midkét jel szerepelhet 
+     elõjelként és operátorként is, de ilyen: 1+-10 nem lehet, 
+     és  ilyen sem: 1+(1) de ezek: 1+(-10) , 1+1 , (1+1) szabályosak. )  } 
+ 
+                              *                                         * 
+H) L = { u 'eleme' { a,b,c,d } | u = xy , l(x) = l(y), x 'eleme' { a,b } , 
+                                            * 
+                           y 'eleme' { c,d }  } 
+ 
+HH) L = {  u 'eleme' L(G)  |  u -ban  nincs sem '[['  sem ']]'  sem '((' 
+                              sem '))' résszó  } 
+    ahol: G = < { [,],(,) } , { S } , P , S > 
+          P = { S --> SS | (S) | [S] | 'epszilon' } 
+ 
+3. FELADAT 
+        KÉSZÍTSEN HOSSZÚSÁGNEMCSÖKKENTÕ GRAMMATIKÁKAT AZ ALÁBBI NYELVEKHEZ: 
+ 
+                   N N N N 
+        I.  L = { a b a b  |  N >= 1 } 
+                                       * 
+        II. L = { u eleme { a,b,c,d,e }   |  l (u) = l (u) = l (u) + l (u) } 
+                                              a       b       c       d 
+                     2 
+                    N 
+        III. L = { a   | N >= 1 } 
+                                        * 
+        IV.  L =  { xx | x eleme { a,b } } 
+         
+                      M  N 
+        V.   L = { (xa y)  |  M >= 1  és  N >= 1 } 
+ 
+                                                                  
+4. feladat  
+    Bizonyítsa be: ha L1 , L2  i. típusú ( i 'eleme' {0,1,2,3} ) =>  
+                L1 L2 , L1 + L2 , L1*  is az. 
+    ( Adjon algoritmusokat, amelyeket felhasználva L1  és L2 i. típusú 
+    grammatikájából L1 L2 , L1 + L2 , L1*  i. típusú grammatikája 
+    megadható.)  
+ 
+5. feladat 
+	Bizonyítsa be, hogy a hármas típusú nyelvek halmaza zárt a metszet, 
+	komplementerképzés (T* -ra), különbség és szimmetrikus differencia  
+	mûveleteire. 
+ 
+ 
+6. feladat 
+                         * 
+    L = { u 'eleme' {a,b} | l (u) = l (u) } 
+                             a       b 
+ 
+Bizonyítsuk be, hogy az alábbi nyelvtanok mindegyike  
+a fenti nyelvet generálja. 
+ 
+G1 : S --> ASb | 'epszilon' 
+     Ab --> bA  
+     A --> a 
+ 
+G2 : S --> aSb | bSa | SS | 'epszilon' 
+ 
+G3 : S --> aSbS | bSaS | 'epszilon' 
+ 
+G4* : S --> 'epszilon' | aB | bA 
+      A --> aS | bAA 
+      B --> bS | aBB 
+ 
+----------------------------------------------------------------------------- 
+ 
+Szigorú típusok 
+--------------- 
+ 
+1. feladatcsoport: hármas-e a szigorú típus? (Ha nem, akkor mennyi?) 
+ 
+        ADJA MEG AZ ALÁBBI NYELVEK MYHILL-NERODE JELLEMZÉSÉT ! 
+        ( HA AZ { Lp  | p eleme T  } NYELVOSZTÁLY VÉGES, ADJA MEG A 
+          REPREZENTÁNSAIT, HA NEM, BIZONYÍTSA BE, HOGY VÉGTELEN ! ) 
+ 
+        DÖNTSE EL ENNEK SEGåTSÉGÉVEL, HOGY MELYEK HÁRMAS TåPUSÚAK ! 
+ 
+        AMELYEK HÁRMAS TÍPUSÚAK, AZOKRA ADJA MEG A MYHILL-NERODE JELLEMZÉSBÕL 
+        ADÓDÓ AUTOMATÁT IS ! 
+ 
+        AMELYEK NEM AZOK, AZOKRA BIZONYåTSA BE A "KIS" BAAR-HILLEL LEMMA 
+        SEGÍTSÉGÉVEL IS, HOGY NEM AZOK ! 
+ 
+        1.L(G) JELLEMZÉSE , HA 
+          G = ( {a,b} , {S,X,Y} , P , S ) 
+          P = { S --> aY ,   Y --> Sb , 
+                S --> aX ,   Y --> b   } 
+ 
+        2. L = { u eleme {a,b}*  | u-BAN NINCS 2 a BETÛ EGYMÁS UTÁN , 
+                A b BETÛK VISZONT PÁROS HOSSZÚ RÉSSZAVAKAT ALKOTNAK.} 
+ 
+        3. L = { xx | x eleme {a,b}*  } 
+ 
+        4. L = { xx | x eleme {a,b}*  } 
+ 
+        5. L = { u eleme {a,b,c}*   | u-BAN NINCS  'aa' , 'bb' ÉS 'cc' 
+                                        RÉSSZÓ SEM. } 
+ 
+        6. L = { u eleme {a,b,c}*   | u(1) = a  ÉS  u-BAN NINCS 'cc' RÉSSZÓ   
+                                                ÉS NEM VÉGZÕDIK c BETÛVEL } 
+ 
+        7. L(G) JELLEMZÉSE , HA  
+          G = (  {@,.} , {S,A} , P , S ) 
+          P = { S --> A | A.S , 
+                A --> AA | @ } 
+ 
+                   2 
+                  N 
+        8. L = { a    |   N >= 1 } 
+ 
+        9. L(G) JELEMZÉSE , HA 
+          G = ( {@,1} , {S,A} , P , S ) 
+          P = { S --> @A , 
+                A --> A1 | AA | 'epszilon' } 
+ 
+        10. L(G) JELLEMZÉSE , HA 
+          G = ( {1,2} , {S,A,B} , P , S ) 
+          P = { S --> ASA | BSB | 'epszilon' , 
+                AB --> BA ,   BA --> AB , 
+                A --> 1 ,   B --> 2            } 
+ 
+ 
+2.FELADAT 
+        ADOTT AZ ALÁBBI NYELVTAN: 
+        G = ( { 1,2,3,4 } , { S,A,C } , P , S ) 
+        P = {   S --> ASC | AC , 
+                 AC --> CA , 
+                 A --> 1 | 2 , 
+                 C --> 3 | 4   } 
+        MI AZ L(G) NYELV SZIGORÚ  TÍPUSA ? 
+ 
+           ( A szigorú típus az a legmagasabb nyelvosztály,  
+             amelybe az illetõ nyelv beleesik. ) 
+ 
+3.FELADAT 
+        G1 = < { (,),[,] } , { S } , S , P1 > 
+        P1 = { S -> SS | [S] | (S) | 'epszilon' } 
+ 
+        L2 = { x eleme L(G1) | x -BEN NINCS SEM '[[', SEM ']]', 
+                                      SEM  '((',  SEM  '))' RÉSSZÓ } 
+ 
+        A, ADJUNK MEG OLYAN  G2  GRAMMATIKÁT, AMELYRE L2 = L(G2) 
+ 
+        B, HATÁROZZUK MEG L2 SZIGORÚ TÍPUSÁT! 
+ 
+4.feladat 
+        L = { u eleme {a,b,c,d}*   | u = xy  és  |x| =|z|  és 
+                        x eleme { a,b }*    és  y eleme { c,d }*   } 
+        Mi az L szigorú típusa ? 
+ 
+5.FELADAT 
+        ADOTT AZ ALÁBBI NYELVTAN: 
+        G = ( { 1,2,3 } , { S,A,B,C } , P , S ) 
+        P = {   S --> SC | ASB | AB | SS , 
+                AC --> CA , BC --> CB , 
+                A --> 1 , B --> 2 , C --> 3   } 
+        MI AZ L(G) NYELV SZIGORÚ TÍPUSA ? 
+ 
+ 
+6. feladat 
+    Leírhatók-e 2-es tipusú nyelvtan segítségével az alábbi nyelvek? 
+    ( Szükség esetén az Ogden lemma is felhasználható. ) 
+ 
+             i i k i 
+a)    L = { a b c d   |  j>0 } 
+ 
+             i j k l 
+a*)   L = { a b c d   |  j = 0  vagy  i = k = l } 
+ 
+            i j 
+b)   L = { a b  |  i <> j } 
+ 
+             j                   * 
+c)   L = { uc u | u eleme { a,b }  és j>0 } 
+ 
+               j                        * 
+c*)   L = { u c v  | u ,v  eleme { a,b }  és  ( j = 0 vagy u  = v ) } 
+                          * 
+d)   L = { u eleme { a,b }  |  L (u) <> L (u) } 
+                                a        b 
+           i j k 
+e)  L = { a b c  | 0 < i < j < k } 
+ 
+            i j k 
+e*)  L = { a b c  | i <> j  és  j <> k  és  k <> i } 
+ 
+ 
+7. feladat 
+    Végezze el az "Nyelvek és grammatikák" c. feladatsor 1-3. feladataiban  
+    szereplõ nyelvek szigorú típusainak meghatározását! 
+ 
+8. feladat 
+    Bizonyítsa be, hogy a kettes típusú nyelvek halmaza nem zárt a metszet, 
+    komplementerképzés (T* -ra), különbség és szimmetrikus differencia 
+    mûveleteire. 
+ 
+----------------------------------------------------------------------------- 
+ 
+Automaták és 3-as típusú nyelvek 
+-------------------------------- 
+ 
+FELADAT 
+        AZ ALÁBBI 3-AS TÍPUSÚ NYELVTANOKHOZ: 
+ 
+        G = < { 0,1,2,# } , { S,J,K,L,M } , S , P > 
+        P = {  S -> 0S | J | 1K | 2K | # 
+                J -> #L | K 
+                K -> # 
+                L -> 1M | 0L | 'epszilon' 
+                M -> 1L | 0M | 'epszilon'  } 
+ 
+        G = ( { 1,2,3 } , { S,A,B,C } , P , S ) 
+        P = {   S --> 1S | A , 
+                 A --> B | 3C , 
+                 B --> 2B | C | 3 | 'epszilon' , 
+                 C --> 2B | 2 | 3C | 'epszilon'   } 
+ 
+        G = ( { 1,2,3 } , { A,B,C } , P , B ) 
+        P = {   A --> 1A | 2B | C | 1 , 
+                 B --> 1A | C | 2 , 
+                 C --> 1A | 2B | 3C | 3   } 
+ 
+        G = ( { 0,1 } , { S,A,B } , P , S ) 
+        P = {  S --> 0S | 1S | 0A | 1A , 
+                A --> 0A | 1B | 'epszilon' , 
+                B --> 0A | 1B | 0 | 1   } 
+ 
+        AZ ISMERT ALGORITMUST ALKALMAZVA: 
+        - ADJON VELE EKVIVALENS NEM DETERMINISZTIKUS AUTOMATÁT! 
+        - ADJON AZZAL EKVIVALENS DETERMINISZTIKUS AUTOMATÁT! 
+        - HA EZ UTÓBBI REDUKÁLHATÓ, AKKOR REDUKÁLJA! 
+        - ÍRJA VISSZA A REDUKÁLTNAK MEGFELELÕ GRAMMATIKÁT! 
+ 
+----------------------------------------------------------------------------- 
+ 
+Környezetfüggetlen nyelvtanok transzformációi 
+--------------------------------------------- 
+ 
+1.FELADAT 
+        ADJON MEG AZ ALÁBBI 2-ES TÍPUSÚ NYELVTANNAL EKVIVALENS OLYAN 2-ES 
+        TÍPUSÚ GRAMMATIKÁT , AMELY EGYES TÍPUSÚ IS!  
+        (Alkalmazzuk az epszilon-mentesítés algoritmusát!) 
+ 
+        G = ( { 1 } , { S,A,B } , P , S ) 
+        P = {   S --> A1B | 'epszilon' , 
+                A --> BS | 1BS , 
+                B --> 1A | 'epszilon'   } 
+ 
+2.feladat 
+   G = < { 1 } , { S,A,B,C,D } , P , S > 
+   p = { S --> A | 1 , 
+      A --> S | BC | 'epszilon' , 
+      C --> CD , 
+      D --> 1      } 
+ 
+   Alkamazza a fenti nyelvtanra a kövekezõ algoritmust: 
+    1, epszilon-mentesítés, 
+    2, x --> y -mentesítés, 
+    3, redukció. 
+ 
+3. feladat 
+    Redukálja az alábbi nyelvtant: 
+    G = < { 1 } , { S,X,Y,Z } , P , S > 
+    P = {  S --> X1 | 1 , 
+           X --> YZ , 
+           Y --> 1      } 
+ 
+    Mi történik, ha a redukció 2 lépését felcseréljük? Miért? 
+ 
+4. feladat 
+    Hozza Chomsky féle normálformára az alábbi nyelvtanokat!  
+    (Algoritmikusan) 
+ 
+a) G = < { a,b } , { S } , P , S > 
+   P = { S --> aSb | SS | 'epszilon' } 
+ 
+b) G = < { a,b } , { S } , P , S > 
+   P = { S --> aSa | bSb | 'epszilon' } 
+ 
+c) G = < { a,b } , { S } , P , S > 
+   P = { S --> Sab | Sba | 'epszilon' } 
+ 
+d) G = < { 1,2 } , { S,A,B } , P , S > 
+   P = { S --> ABS | ASB | SAB | 'epszilon' , 
+         A --> 11 | 2 ,    
+         B --> 1 | 22 } 
+ 
+5. feladat 
+    Hozza Greibach féle normálformára az alábbi nyelvtanokat: 
+ 
+a) G = < { a,b } , { 1,2,3 } , P , 1 > 
+   P = { 1 --> 23 , 
+         2 --> 31 | b , 
+         3 --> 12 | a } 
+ 
+b) G = < { a } , { 1,2 } , P , 1 > 
+   P = { 1 --> 12 | 22 , 
+         2 --> 12 | a } 
+ 
+c) 4/a 
+ 
+d) 4/c 
+ 
+----------------------------------------------------------------------------- 
+ 
+Automaták analízise és szintézise 
+--------------------------------- 
+ 
+9.FELADAT 
+        ALKALMAZZA AZ AUTOMATÁK SZINTÉZISÉNEK MÓDSZERÉT AZ ALÁBBI NYELVEKRE: 
+         
+                    * 
+        L0 =  a(a+1) 
+          
+                                    * 
+        L1 =  x((_+'epszilon')(x+1)) 
+         
+                          * 
+        L2 =  a(a+b+ca+cb) 
+         
+                      * 
+        L3 =  (1+x+x.) x 
+         
+                     * 
+        L4 =  (ab+ba) 
+ 
+        ALKALMAZZA AZ AUTOMATÁK ANALÍZISÉNEK MÓDSZERÉT A KAPOTT AUTOMATÁKRA ! 
+ 
+------------------------------------------------------------------------------ 
+ 
+Veremautomaták (1-vermek) 
+------------------------- 
+ 
+1. Készítsünk veremautomatát az alábbi nyelvekhez: 
+ 
+                         * 
+a) L =  { u eleme { a,b }  |  l (u) = l (u) } 
+                               a       b 
+                         * 
+b) L =  { u eleme { a,b }  |  l (u) = l (u) és a közvetlenül egymás után 
+                               a       b 
+         álló 'a' betûk száma 3-mal, a közvetlenül egymás után álló 'b'  
+         betûk száma 2-vel osztható } 
+ 
+c) L = { A konstans bináris egészekbõl a +,- mûveletekkel és a  (,)  
+     zárójelekkel leírható kifejezések ( midkét jel szerepelhet 
+     elõjelként és operátorként is, de ilyen: 1+-10 nem lehet, 
+     és  ilyen sem: 1+(1) de ezek: 1+(-10) , 1+1 , (1+1) szabályosak. )  } 
+ 
+                            *                                       * 
+d) L = { u eleme { a,b,c,d } | u = xy , l(x) = l(y), x eleme { a,b } , 
+                                              * 
+                               y eleme { c,d }  } 
+ 
+e) L = {  u eleme L(G)  |  u -ban  nincs sem '[['  sem ']]'  sem '((' 
+                                         sem '))' résszó  } 
+    ahol: G = < { [,],(,) } , { S } , P , S > 
+          P = { S --> SS | (S) | [S] | 'epszilon' } 
+ 
+-----------------------------------------------------------------------------

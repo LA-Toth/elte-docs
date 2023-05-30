@@ -1,0 +1,454 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="Author" content="Teleport">
+<meta name="Description" content="Online Meta Tag generáló">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Teleport Online Meta Tag Generáló</title>
+</head>
+
+<body background="../../images/bg1.gif" text="#000000">
+<script language="JavaScript">
+
+
+
+<!--
+
+
+
+var desc = new Array ("Author","Ez a META TAG a HTML oldal szerzõjének nevét tartalmazza (egyén, szervezet, cég..). ",
+
+"Cache-control","Ez a META TAG meghiusítja, hogy a böngészõ a cahe-ben tárolt adatokból töltse be   oldalad.  Fõleg azok számára hasznos akik gyakran frissítik, változtatják oldalaikat.",
+
+"Copyright","Ez a META TAG mutatja az adott HTML oldalra vonatkozó jogokat.",
+
+"Description","Ez a META TAG segít , hogy oldalaidat könnyebben találják meg a felhasználók és keresõk (Yahoo, Alta Vista...).",
+
+"Expires","Ez a META TAG beállít egy általad megadott dátumot .  Amikor az oldal érzékeli az általad beállított dátumot , a legtöbb böngészõ újra tölti az oldalt, néhány keresõ törli az adatbázisából vagy késõbb újra látogatja.",
+
+"Keywords","Ebbe a META TAG-be olyan kulcsszavakat írj ami az oldalad tartalmát jól jellemzik, így oldaladat  könnyebben megtalálják az emberek és indexelik a keresõk is. A kulcsszavakat vesszõvel kell egymástól elválasztani",
+
+"Refresh","Ez a META TAG néhány másodpercig késlelteti a jelenlegi oldalt mielõtt betöltené az újat.  Ellenõrizd le, hogy helyesen adtad-e meg az oldal URL címét !",
+
+"Robots","Ez a META TAG kontrolálja a web robotok viselkedését. 'Index': megengedi a robotoknak, hogy oldaladat indexeljék. 'Follow': megengedi, hogy az oldaladról kiinduló linkeket is indexeljék.  A 'No Index' és 'No Follow' check-boxokban tanácsos meghagyni a pont jeleket ha keretes (frame) oldalakkal rendelkezel.",
+
+"Window-target","Ez a META TAG meghiusítja, hogy mások, oldalaidat ne tudják használni kereteiken belül ."
+
+)
+
+        
+
+function viewDesc(whichD) {
+
+        var dText = "META Tag: " + desc[whichD];
+
+        var newPage = "<html><head></head><body bgcolor='#000000' text='#5aa5cf'>";
+
+        newPage += "<table width='100%' cellpadding='0' cellspacing='0'><tr><td width='100%'><font face='Trebuchet MS' size='3' color='#A7CFE4'><b>" + dText;
+
+        newPage += "</b></font></td></tr><tr><td width='100%' height='5'></td></tr>";
+
+        newPage += "<tr><td width='100%'  bgcolor='#ffff80'></td></tr>";
+
+        newPage += "<tr><td width='100%' height='1'></td></tr>";
+
+        newPage += "<tr><td width='100%'><font face='Trebuchet MS' size='2'>" + desc[(whichD+1)] + "</font></td></tr></table></body></html>";
+
+
+
+        dWin = window.open("","","height=150,width=350,top=150,left=200");
+
+        dWin.document.open();
+
+        dWin.document.write(newPage);
+
+        dWin.document.close();
+
+}
+
+
+
+var tempStr,temp;
+
+
+
+function buildMeta(typ,hord,str) {
+
+        tempStr = "&lt;META ";
+
+        if (hord == "h") tempStr += "HTTP-EQUIV=\"";
+
+        else tempStr += "NAME=\"";
+
+        tempStr += typ + "\" CONTENT=\"";
+
+        tempStr += str + "\"&gt;<br>";
+
+        return tempStr;
+
+}
+
+
+
+function detMeta(g) {
+
+        var sel;
+
+        temp = "";
+
+        if (g.c1.checked) temp += buildMeta("author","n",g.elements[1].value);
+
+        if (g.c2.checked) temp += buildMeta("Cache-control","h","no-cache");
+
+        if (g.c3.checked) temp += buildMeta("copyright","n",g.elements[4].value);
+
+        if (g.c4.checked) temp += buildMeta("description","n",g.elements[6].value);
+
+        if (g.c5.checked) {
+
+                sel = g.D1.options[g.D1.selectedIndex].value + ", " + g.D3.options[g.D3.selectedIndex].value;
+
+                sel += " " + g.D2.options[g.D2.selectedIndex].value + " " + g.D4.options[g.D4.selectedIndex].value;
+
+                sel += " 23:59:59 GMT";
+
+                temp += buildMeta("expires","h",sel);
+
+        }
+
+        if (g.c6.checked) temp += buildMeta("keywords","d",g.elements[13].value);
+
+        if (g.c7.checked) {
+
+                sel = g.elements[15].value + ";URL=" + g.elements[16].value;
+
+                temp += buildMeta("Refresh","h",sel);
+
+        }
+
+        if (g.c8.checked) {
+
+                sel="";
+
+                if (g.elements[18].checked) sel += "FOLLOW, ";
+
+                else sel += "NOFOLLOW, ";
+
+                if (g.elements[19].checked) sel += "INDEX";
+
+                else sel += "NOINDEX";
+
+                temp += buildMeta("ROBOTS","d",sel);
+
+        }
+
+        if (g.c9.checked) temp += buildMeta("Window-target","h","_top");
+
+        return temp;
+
+
+
+
+
+}
+
+
+
+function format(form) {
+
+        var     msg = "<html><head><title>JS Manager: META Tags</title></head><body bgcolor='#000000' text='#a7cfe4'>\r\n";
+
+
+
+        var exMeta = detMeta(form);     
+
+
+
+        msg += "<font face='Trebuchet MS, Arial, Helvetica'><font size='3'><b>A META TAG-ek elkészültek.</b></font>\r\n";
+
+        msg += "<br><br><font size='2' color='#5aa5ce'> Ahoz, hogy lementsd az elkészített meta tag-et, válaszd a menüsor  \"File\" és \"Save As...\"menüpontokat.<br><br><b>\/\/ Illeszd a kódot a &lt;head&gt; és &lt;title&gt;HTML dokumentumod tag-jai közé.</b></font>\r\n";
+
+        msg += "<br><br><font face='courier' size='2'>";
+
+        msg += "<br><br>&lt;!--<br>Teleport: Online Meta Tag Generáló ";
+
+        msg += "<br>http://free.netlap.hu/teleport3000<br>//-->\r\n";
+
+
+
+        msg += "<br><br>" + exMeta;
+
+
+
+        msg += "</body></html>";
+
+
+
+        var exWin = window.open("","Date","height=440,width=620,left=20,top=20,scrollbars,menubar");
+
+        exWin.document.open();
+
+        exWin.document.write(msg);
+
+        exWin.document.close();
+
+}
+
+
+
+
+
+if (document.images) {
+
+        img1on = new Image();
+
+        img1on.src = "images/back_arrow_a.gif";
+
+        img1off = new Image();
+
+        img1off.src = "images/back_arrow.gif";
+
+}
+
+
+
+function rollOn(iName) {
+
+        if (document.images) {
+
+                document[iName].src = eval(iName + "on.src");
+
+        }
+
+}
+
+
+
+function rollOff(iName) {
+
+        if (document.images) {
+
+                document[iName].src = eval(iName + "off.src");
+
+        }
+
+}
+
+
+
+function changeLoc2() {
+
+        top.i3.location.href="305.htm";
+
+        top.i5.location.href="505.htm";
+
+}
+
+
+
+//-->
+
+
+
+</script>
+
+<form>
+    <table border="0" width="100%" bgcolor="#F4FEFF" cols="1">
+        <tr>
+            <td><font color="#000099" size="4"><b>Teleport Online
+            Meta Tag Generáló</b></font> <br>
+            <font color="#000099" size="2" face="Trebuchet MS">Pipáld
+            ki azokat a META TAG-eket amiket elszeretnél
+            készítettni !</font> <br>
+            <font color="#000099" size="2" face="Trebuchet MS">Bõvebb
+            információért kattints a nevükre!</font> </td>
+        </tr>
+    </table>
+    <div align="center"><center><table border="1" width="100%"
+    bgcolor="#F4FEFF" cols="3">
+        <tr>
+            <td width="40"><font color="#000099"><b>Pipa helye</b></font>
+            </td>
+            <td width="100"><font color="#000099"><b>Meta Tag
+            típusa</b></font> </td>
+            <td><font color="#000099"><b>Meta Tag-hez tartozó
+            információk</b></font> </td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="c1" value="ON"> </td>
+            <td><a href="javascript:viewDesc(0)"><font
+            color="#000099" size="2" face="Trebuchet MS">Author</font></a>
+            </td>
+            <td><input type="text" size="54" name="T2"
+            onchange="document.data.c1.checked=true"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="c2" value="ON"> </td>
+            <td><a href="javascript:viewDesc(2)"><font
+            color="#000099" size="2" face="Trebuchet MS">Cache-control</font></a>
+            </td>
+            <td><font color="#000099"><i>Nem kíván egyéb
+            adatot.</i></font></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="c3" value="ON"> </td>
+            <td><a href="javascript:viewDesc(4)"><font
+            color="#000099" size="2" face="Trebuchet MS">Copyright</font></a>
+            </td>
+            <td><input type="text" size="54" name="T3"
+            onchange="document.data.c3.checked=true"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="c4" value="ON"> </td>
+            <td><a href="javascript:viewDesc(6)"><font size="2"
+            face="Trebuchet MS">Description</font></a> </td>
+            <td><textarea name="S2" rows="3" cols="52"
+            onchange="document.data.c4.checked=true"></textarea></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="c5" value="ON"> </td>
+            <td><a href="javascript:viewDesc(8)"><font size="2"
+            face="Trebuchet MS">Expires</font></a> </td>
+            <td><select name="D1" size="1"
+            onchange="document.data.c5.checked=true">
+                <option selected value="Sun">Sunday</option>
+                <option value="Mon">Monday</option>
+                <option value="Tue">Tuesday</option>
+                <option value="Wed">Wednesday</option>
+                <option value="Thu">Thursday</option>
+                <option value="Fri">Friday</option>
+                <option value="Sat">Saturday</option>
+            </select><select name="D2" size="1"
+            onchange="document.data.c5.checked=true">
+                <option selected value="Jan">January</option>
+                <option value="Feb">February</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
+            </select><select name="D3" size="1"
+            onchange="document.data.c5.checked=true">
+                <option selected value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+            </select><select name="D4" size="1"
+            onchange="document.data.c5.checked=true">
+                <option value="1997">1997</option>
+                <option value="1998">1998</option>
+                <option selected value="1999">1999</option>
+                <option value="2000">2000</option>
+                <option value="2001">2001</option>
+                <option value="2002">2002</option>
+                <option value="2003">2003</option>
+                <option value="2004">2004</option>
+                <option value="2005">2005</option>
+                <option value="2006">2006</option>
+                <option value="2007">2007</option>
+                <option value="2008">2008</option>
+                <option value="2009">2009</option>
+                <option value="2010">2010</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="c6" value="ON"> </td>
+            <td><a href="javascript:viewDesc(10)"><font size="2"
+            face="Trebuchet MS">Keywords</font></a> </td>
+            <td><textarea name="S3" rows="3" cols="52"
+            onchange="document.data.c6.checked=true"></textarea></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="c7" value="ON"> </td>
+            <td><a href="javascript:viewDesc(12)"><font size="2"
+            face="Trebuchet MS">Refresh</font></a> </td>
+            <td><table border="0" width="280" cols="2">
+                <tr>
+                    <td><font color="#000099">Késleltetés
+                    ideje:</font><input type="text" size="4"
+                    name="T4"
+                    onchange="document.data.c7.checked=true"></td>
+                    <td><font color="#000099">URL:</font><input
+                    type="text" size="36" name="T5"
+                    value="http://"
+                    onchange="document.data.c7.checked=true"></td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="c8" value="ON"> </td>
+            <td><a href="javascript:viewDesc(14)"><font size="2"
+            face="Trebuchet MS">Robots</font></a> </td>
+            <td><table border="0" width="200" cols="2">
+                <tr>
+                    <td><input type="radio" name="R1" value="V1"
+                    onclick="document.data.c8.checked=true"><font
+                    color="#000099">Follow</font></td>
+                    <td><input type="radio" name="R2" value="V3"
+                    onclick="document.data.c8.checked=true"><font
+                    color="#000099">Index</font></td>
+                </tr>
+                <tr>
+                    <td><input type="radio" checked name="R1"
+                    value="V2"><font color="#000099">No Follow</font></td>
+                    <td><input type="radio" checked name="R2"
+                    value="V4"><font color="#000099">No Index</font></td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="c9" value="ON"> </td>
+            <td><a href="javascript:viewDesc(16)"><font size="2"
+            face="Trebuchet MS">Window-target</font></a> </td>
+            <td><font color="#000099"><i>Nem kíván egyéb
+            adatot.</i></font></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><input type="button" value="Meta Tag Generáló"
+            onclick="format(this.form)"><input type="reset"
+            value="Töröl"></td>
+        </tr>
+    </table>
+    </center></div>
+</form>
+</body>
+</html>

@@ -1,0 +1,150 @@
+Néhány speciális adatszerkezet (BITMAP, IOT, PARTICIO, HISZTOGRAM)
+
+Bitmap index
+CREATE BITMAP INDEX pkod_bm ON szallit(pkod)
+CREATE BITMAP INDEX szkod_bm ON szallit(szkod)
+
+-- Példa bitmap index használatára
+select * from szallit where pkod=10 and szkod=12
+------------------------------------------------
+ SELECT STATEMENT
+   TABLE ACCESS BY INDEX ROWID SZALLIT
+     BITMAP CONVERSION TO ROWIDS
+       BITMAP AND
+         BITMAP INDEX SINGLE VALUE PKOD_BM
+         BITMAP INDEX SINGLE VALUE SZKOD_BM
+
+
+Index szervezett tábla
+CREATE TABLE cikk_iot
+  ( ckod integer,
+    cnev varchar2(20),
+    szin varchar2(15),
+    suly float,
+       CONSTRAINT cikk_iot_pk PRIMARY KEY (ckod)  )
+ORGANIZATION INDEX
+PCTTHRESHOLD 20 INCLUDING cnev
+OVERFLOW TABLESPACE system
+
+select * from cikk_iot where szin='piros'
+-----------------------------------------
+SELECT STATEMENT
+  INDEX FAST FULL SCAN CIKK_IOT_PK
+
+select * from cikk_iot where ckod between 10 and 20
+---------------------------------------------------
+SELECT STATEMENT
+  INDEX RANGE SCAN CIKK_IOT_PK
+
+
+Particionált tábla és index
+CREATE TABLE szallit_part 
+  ( ckod  integer,
+    pkod  integer,
+    szkod integer, 
+    mennyiseg integer,
+    datum  date)
+PARTITION BY RANGE ( ckod )  
+  (PARTITION sz1 VALUES LESS THAN  ( 200 ), 
+   PARTITION sz2 VALUES LESS THAN  ( 500 ), 
+   PARTITION sz3 VALUES LESS THAN  ( 800 ),
+   PARTITION sz4 VALUES LESS THAN  ( MAXVALUE) )
+
+-- Az alábbi lekérdezésben csak egy partíciót olvas, 
+-- noha ez a tervbõl nem látszik.
+select sum(mennyiseg) from szallit_part where ckod=1
+----------------------------------------------------
+SELECT STATEMENT
+  SORT AGGREGATE
+    TABLE ACCESS FULL SZALLIT_PART
+
+-- Itt viszont látható módon az összes partíciót olvassa
+select sum(mennyiseg) from szallit_part where ckod+1=2
+------------------------------------------------------
+ SELECT STATEMENT
+   SORT AGGREGATE
+     PARTITION RANGE ALL
+       TABLE ACCESS FULL SZALLIT_PART
+
+
+-- Partícionált lokális index (prefixelt)
+CREATE INDEX loc_i ON szallit_part(ckod)
+LOCAL (PARTITION sz1_i,
+       PARTITION sz2_i,
+       PARTITION sz3_i,
+       PARTITION sz4_i)
+
+-- Partícionált lokális index (nem prefixelt)
+CREATE INDEX loc_i2 ON szallit_part(datum)
+LOCAL (PARTITION sz1_i2,
+       PARTITION sz2_i2,
+       PARTITION sz3_i2,
+       PARTITION sz4_i2)
+
+select sum(mennyiseg) from szallit_part where ckod=1
+----------------------------------------------------
+SELECT STATEMENT
+  SORT AGGREGATE
+    TABLE ACCESS BY LOCAL INDEX ROWID SZALLIT_PART
+      INDEX RANGE SCAN LOC_I
+
+select sum(mennyiseg) from szallit_part where ckod=1 or ckod=601
+----------------------------------------------------------------
+SELECT STATEMENT
+  SORT AGGREGATE
+    INLIST ITERATOR
+      PARTITION RANGE ITERATOR
+        TABLE ACCESS BY LOCAL INDEX ROWID SZALLIT_PART
+          INDEX RANGE SCAN LOC_I
+
+
+-- Partícionált globális index (prefixelt)
+-- Az oszlopsorrend forditva nem lehet, mert akkor nem lenne prefixelt
+-- Az indexet létre lehetne úgy is hozni, de az nem lehetne partícionált index
+CREATE INDEX glob_i ON szallit_part(pkod, szkod) 
+   GLOBAL PARTITION BY RANGE (pkod)
+     (PARTITION pkod_1 VALUES LESS THAN (10),
+      PARTITION pkod_2 VALUES LESS THAN (MAXVALUE))
+
+select sum(mennyiseg) from szallit_part where pkod=1
+----------------------------------------------------
+SELECT STATEMENT
+  SORT AGGREGATE
+    PARTITION RANGE SINGLE
+      TABLE ACCESS BY GLOBAL INDEX ROWID SZALLIT_PART
+        INDEX RANGE SCAN GLOB_I
+
+select sum(mennyiseg) from szallit_part where ckod=1 or ckod=601
+----------------------------------------------------------------
+SELECT STATEMENT
+  SORT AGGREGATE
+    INLIST ITERATOR
+      PARTITION RANGE ITERATOR
+        TABLE ACCESS BY GLOBAL INDEX ROWID SZALLIT_PART
+          INDEX RANGE SCAN GLOB_I
+
+
+
+-- Statisztikák létrehozása
+-- Feltölti a user_tables, user_tab_columns, és user_histograms táblákat
+analyze table szallit compute statistics;
+
+-- Hisztogram intervallumainak számát így adjuk meg
+analyze table szallit compute statistics for columns ckod size 15;
+
+-- Statisztikák törlése
+analyze table szallit delete statistics;
+
+-- Statisztikák lekérdezése
+select table_name, num_rows from user_tables where num_rows is not null;
+
+-- Az utolsó két oszlop a szelektivitásra ill a hisztogramra utal
+select table_name, column_name, num_distinct, low_value, high_value,
+       num_nulls, density, num_buckets
+from user_tab_columns where num_distinct is not null;
+
+-- Hisztogram-beli intervallumok lekérdezése
+select table_name, column_name, endpoint_number, endpoint_value
+from user_histograms order by 1,2,3;
+
+

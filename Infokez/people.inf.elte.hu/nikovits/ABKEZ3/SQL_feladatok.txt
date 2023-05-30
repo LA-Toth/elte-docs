@@ -1,0 +1,102 @@
+Kiválasztás
+
+- Kik azok a dolgozók, akiknek a fizetése > 2800?
+- Kik azok a dolgozók, akik a 10-es vagy a 20-as osztályon dolgoznak?
+- Kik azok a dolgozók, akik 1982.01.01 után léptek be a céghez?
+  -- Aktuális dátumformátumot lásd -> SYSDATE fv.
+- Kik azok a dolgozók, akiknek a jutaléka ismert? (vagyis nem NULL)
+
+Direkt szorzat
+
+- Kik azok a dolgozók, akiknek a fõnöke KING?
+- Kik azok a dolgozók, akik osztályának telephelye BOSTON vagy CHICAGO?
+
+Különbség
+
+- Kik azok a dolgozók, akik osztályának telephelye nem BOSTON vagy CHICAGO?
+
+Vetítés
+
+- Adjuk meg a dolgozók között elõforduló foglalkozások neveit.
+
+Unió
+
+- Adjuk meg azoknak a nevét, akiknek a fizetése > 2000 vagy a 30-as osztályon 
+  dolgoznak
+
+Összesítõ (Aggregátor) függvények
+
+- Mekkora a minimális/maximális fizetés a dolgozók között?
+- Kinek a legkisebb/legnagyobb a fizetése?
+- Mennyi a dolgozók összfizetése?
+- Mennyi a 20-as osztályon az átlagfizetés?
+- Adjuk meg, hogy hány különbözõ foglalkozás fordul elõ a dolgozók között. 
+
+Csoportképzés
+
+- Adjuk meg osztályonként az átlagfizetést (OAZON, ATL_FIZ).
+- Adjuk meg osztályonként a telephelyet és az átlagfizetést 
+  (OAZON, TELEPHELY, ATL_FIZ).
+- Adjuk meg, hogy az egyes osztályokon hány ember dolgozik.
+
+Csoportok szûrése
+
+- Adjuk meg azokra az osztályokra az átlagfizetést, ahol ez nagyobb mint 2000.
+
+
+Beépített függvények
+
+- Adjuk meg azon dolgozókat, akik nevének második betûje 'A'.
+- Adjuk meg azon dolgozókat, akik nevében van legalább két 'L' betû. 
+- Adjuk meg a dolgozók fizetéseinek négyzetgyökét és 3-mal vett maradékát. 
+- Adjuk meg, hogy hány napja dolgozik a cégnél ADAMS és milyen hónapban lépett be.
+
+
+Alkérdés (Subselect)  =ANY, <ALL, IN, EXISTS ...
+
+- Adjuk meg azon cikkek kódját és nevét, amelyeket valamelyik pécsi szállító szállít.
+
+- Adjuk meg, hogy hány ilyen cikk van
+
+- Adjuk meg azon cikkek kódját és nevét, amelyeket egyik pécsi szállító sem szállít.
+
+- Adjuk meg, hogy hány ilyen cikk van
+
+- Adjuk meg azon szállítók nevét, akiknek a státusza 10-nél nagyobb és 
+  budapesti projektbe szállítanak szék nevû cikket.
+
+- Adjuk meg azon projektek kódját, amelyekhez szállítanak kék cikket.
+
+- Adjuk meg azon projektek kódját és nevét, amelyekhez szállítanak kék cikket.
+
+- Adjuk meg azon projektek kódját és nevét, amelyekhez nem szállítanak kék cikket.
+
+- Adjuk meg azon cikkek kódját, amelyeket szállítanak valahova.
+  Adjuk meg, hogy hány ilyen cikk van.
+
+- Adjuk meg azon cikkek kódját és nevét, amelyeket sehova nem szállítanak.
+
+- Adjuk meg azon kék cikkek kódját, amelyeket szállítanak valahova.
+
+- Adjuk meg azon arany színû cikkek kódját, amelyeket sehova nem szállítanak.
+
+- Adjuk meg azon cikkek nevét, amelyeket minden projekthez szállítanak.
+
+Adjuk meg azon cikkek nevét, amelyeket valamelyik projekthez nem szállítanak.
+
+Adjuk meg azon cikkek kódját és nevét, amelyeket kevesebb mint 25 projekthez szállítanak.
+
+
+Adjuk meg azon zöld színû cikkek nevét, amelyeket minden projekthez szállítanak.
+Adjuk meg azon zöld színû cikkek nevét, amelyet valamelyik projekthez nem szállítanak.
+Adjuk meg azon projektek nevét, amelyekhez minden zöld színû cikket szállítanak.
+Adjuk meg azon szállítók nevét és telephelyét, akik valamelyik cikket 
+  (nem feltétlenül ugyanazt) minden projekthez szállítják.
+Adjuk meg azon szállítók nevét és telephelyét, akik valamelyik cikket 
+  (nem feltétlenül ugyanazt) minden pécsi projekthez szállítják.
+Adjuk meg azon szállítók nevét és telephelyét, akik valamelyik kék cikket 
+  (nem feltétlenül ugyanazt) minden projekthez szállítják.
+
+- Adjuk meg azon szállítók nevét, akik minden cikket szállítanak minden projekthez.
+
+- Adjuk meg azon szállítók nevét, akik minden kek cikket szállítanak minden projekthez.

@@ -1,0 +1,7 @@
+rendezes-rek:
+  - kurrens bemenetet végigolvasva
+  - fájlból olvassuk az adatokat
+
+taszkok ütemezése ("Kétszálú" az elõadásról)
+kocsma: kocsmáros select nélkül, részegek
+

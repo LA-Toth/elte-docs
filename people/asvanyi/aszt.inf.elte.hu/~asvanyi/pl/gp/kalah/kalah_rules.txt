@@ -1,0 +1,23 @@
+    Kalah is played on a board with two rows of six holes facing each other.
+Each player owns a row of six holes, plus a kalah to the right of the holes.
+In the initial state there are six stones in each hole and the two kalahs are
+empty, as follows:
+
+                 6   6   6   6   6   6
+             0                           0
+                 6   6   6   6   6   6
+
+    A player begins his move by picking up the stones of one of his holes.
+Proceeding counterclockwise around the board, he puts one of the picked-up
+stones in each hole and in his own kalah skipping the opponent's kalah, until
+no stones remain to be distributed. There are three possible outcomes. If the
+last stone lands on the kalah, the player has another move. If the last stone
+lands on an empty hole owned by the player, and the opponent's hole directly
+accross the board contains at least one stone, the player takes all the stones
+in the hole plus his last landed stone and puts them all in his kalah.
+Otherwise the player's turn ends, and his opponent moves.
+
+    If all the holes of a player becomes empty (even if it is not his turn to
+play), the stones remaining in the holes of the opponent are put into the
+opponent's kalah and the game ends. The winner of the game is the first
+player to get more than half of the stones in his kalah.

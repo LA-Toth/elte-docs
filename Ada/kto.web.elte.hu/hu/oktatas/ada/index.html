@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+</head>
+<body>
+<h1 id="programozási-nyelvek-ada">Programozási nyelvek (Ada)</h1>
+<p>A tárgy az őszi és a tavaszi félévben is meghirdetésre kerül a Programtervező informatikus alapképzés A és B szakirányán tanuló hallgatók számára. Heti beosztás: 2 óra előadás, 2 óra gyakorlat, 1 óra konzultáció.</p>
+<h2 id="sillabusz">Sillabusz</h2>
+<p>A tárgyat elvégző hallgatók mély ismeretekre tesznek szert a programozási nyelvek alapvető fogalmainak és a programnyelvi eszközöknek terén. A moduláris/procedurális imperatív programozási nyelvek fogalomrendszerét tanulmányozzuk, és két témakört kiemelten tárgyalunk: a generikus programozást, illetve a konkurens programozást. A fogalmak rendszerbe szervezett bemutatására és a nyelvi eszközök elsajátításához az Ada nyelvet használjuk, mely - kiváló állatorvosi lóként - minden számunkra érdekes fogalmat támogat. A tárgy elvégzése után a hallgatók képessé válnak arra, hogy Ada nyelven oldjanak meg programozási feladatokat, de az Ada nyelv szakértőivé nem válnak. A tárgy célja nem is az Ada nyelv megtanítása: ezt a nyelvet csak eszközként használjuk az általánosabb tudás megszerzéséhez.</p>
+<p>Fontosnak tartjuk, hogy a hallgatók megértsék a nyelvi fogalmakat, és hogy a problémamegoldás során <em>tudatosan</em> használják a tanult nyelvi elemeket. Nem csak azt várjuk el, hogy a hallgatók meg tudjanak oldani programozási feladatokat, hanem azt is, hogy a megoldáshoz megfelelő módszereket, eszközöket használjanak, és az eredmény <em>jó minőségű kód</em> legyen. Elvárás még, hogy a kommentek használatával, a kódolási konvenciók betartásával, a megfelelő tördelés alkalmazásával a hallgató megtanulja növelni a kód olvashatóságát, karbantarthatóságát. Az Ada nyelv megközelítésmódjának elsajátításával a jó programozási stílus kialakulását is elősegíti a hallgatókban a kurzus.</p>
+<p>Az előadásokon kötelező részt venni. A géptermi gyakorlatok a gyakorlatvezetővel segített önálló munkát tűzik ki célul. Emellett konzultációs lehetőséget is biztosítunk, minden gyakorlathoz heti egy óra terjedelemben. Felhívjuk minden hallgató figyelmét erre a lehetőségre, kérjük, éljenek vele!</p>
+<h2 id="tematika">Tematika</h2>
+<ul>
+<li>Kifejezések szintaktikus építőkockái. Tiszta és mellékhatásos kifejezések. Operátorok arítása, fixitása, precedenciája és asszociativitása, példák. Kifejezések kiértékelése. Lusta kiértékelés.</li>
+<li>Értékadás. Értékadás összetett típusokra. Korlátozott típusok.</li>
+<li>Sekély és mély másolás, illetve összehasonlítás.</li>
+<li>Memóriaszivárgás. Az Ada Controlled típusai.</li>
+<li>Strukturált és nem strukturált vezérlési szerkezetek. Az if-then-else probléma (avagy csellengő else).</li>
+<li>Programszerkezet. Programegységek felépítése. Programegységek fajtái, melyik mire való. Könyvtári egységek, hivatkozás egymásra. Egymásba ágyazás. Minősített nevek.</li>
+<li>Alprogramok, végrehajtási verem, aktivációs rekord. Blokkszerkezetesség. Closure.</li>
+<li>Alprogramok és operátorok túlterhelése, átdefiniálása.</li>
+<li>Függvény és eljárás fogalmi különbsége. Paraméterek alapértelmezett értéke. Alprogram paramétereinek lehetséges módjai. Formális és aktuális paraméter.</li>
+<li>Deklaráció és definíció. Hatókör, láthatóság, kiterjesztett láthatóság.</li>
+<li>Statikus és dinamikus hatóköri szabályok.</li>
+<li>Változók ábrázolása a memóriában. Élettartam.</li>
+<li>Deklarációk statikus és dinamikus kiértékelése. Blokk utasítás szerepe.</li>
+<li>Dinamikus memória. Allokáció, felszabadítás. Szemétgyűjtés. Aliasing.</li>
+<li>Típusosztályok.</li>
+<li>Típusszármaztatás. Primitív műveletek, öröklődésük. Típusekvivalencia. Típuskonverzió.</li>
+<li>Altípusképzés. Statikus és dinamikus típusellenőrzés.</li>
+<li>Átlátszatlan típus. Adatabsztrakció. Egységbezárás. Abstract State Machine. Abstract Data Type.</li>
+<li>Definit és indefinit típusok.</li>
+<li>Tömbök ábrázolása. Indexelés. Többdimenziós tömbök. Tömbszeletek. A tömbök attribútumai Adában.</li>
+<li>Rekord, diszkrimináns. Aggregátum. Unió típuskonstrukció (variáns rekord).</li>
+<li>Rekurzív alprogramok. Előrevetett deklarációk. Rekurzív típusdefiníciók (rekord és mutató).</li>
+<li>Felsorolási típusok. Mire használhatók? Attribútumaik Adában.</li>
+<li>A programozási nyelv szabályai: lexikális, szintaktikus, statikus szemantikai és dinamikus szemantikai szabályok.</li>
+<li>Fordítási egység. Előfordítás, fordítás, szerkesztés. Dinamikus szerkesztés.</li>
+<li>Paraméterátadás: érték szerint, cím szerint, eredmény szerint és érték-eredmény szerint. Aliasing.</li>
+<li>Generikus definíciók, mire jók. Példányosítás. Parametrikus polimorfizmus.</li>
+<li>Sablonszerződés.</li>
+<li>Az Ada sablonjainak lehetséges paraméterezései.</li>
+<li>Alprogrammal való paraméterezés lehetőségei.</li>
+<li>Kivételek szerepe egy programozási nyelvben. Fajtái. Saját kivétel definiálása és kiváltása.</li>
+<li>Kivételek terjedése, lekezelése. A végrehajtási verem.</li>
+<li>Taszkok és taszk típusok az Adában.</li>
+<li>Ütemezés. Időosztás, run-to-completion. Kontextusváltás. Busy waiting.</li>
+<li>Taszkok elindulása és megállása. Szülő egység.</li>
+<li>Változók elérése több szálból. Folyamatok interferenciája. Végrehajtási vermek és kivételek többszálú programban.</li>
+<li>Belépési pont. Randevú. Fiú és lány szerepek. Szinkron, aszimmetrikus, pont-pont kommunikáció.</li>
+<li>A select utasítás az Adában.</li>
+<li>Védett egységek az Adában.</li>
+<li>Termelő-fogyasztó feladat. Aszinkron kommunikáció.</li>
+<li>Szemafor és monitor fogalma. Szemantikájuk leírása Adában.</li>
+<li>Étkező filozófusok. Holtpont, livelock, kiéheztetés.</li>
+<li>Kölcsönös kizárás. Író-olvasó szinkronizáció.</li>
+</ul>
+<h2 id="követelmények">Követelmények</h2>
+<p>Mind a rendszerezett elméleti tudást, mind a gyakorlati készségeket mérjük a tárgyból. Az előbbi szokott több problémát okozni, ezért is kötelező az előadásokon részt venni.</p>
+<p>Az átlagos hallgatótól 150 munkaórányi (azaz 150 x 45 perc) befektetést várunk el (ez felel meg az 5 ECTS kreditnek, ami a tárgy elvégzéséért jár). Ezt a 150 munkaórát a következő bontásban javasolt a tanulási folyamatra fordítani.</p>
+<ul>
+<li>52 munkaóra a heti 2+2 tanórán, 13 héten át;</li>
+<li>52 munkaóra önálló tanulás (13 héten át heti 4, beleértve a konzultációt is);</li>
+<li>10-10 munkaóra a beadandók elkészítésére;</li>
+<li>10-10 munkaóra a félév közepén, illetve végén a zh-kra készülésre (ismétlés);</li>
+<li>3-3 munkaóra a félév közepén, illetve végén a zh-kon.</li>
+</ul>
+<h3 id="a-tárgy-teljesítésének-előfeltételei">A tárgy teljesítésének előfeltételei</h3>
+<ul>
+<li>Az előadás és a gyakorlat rendszeres látogatása legfeljebb 4-4 hiányzással.</li>
+<li>A nagybeadandó feladatok megfelelő, határidőre történő megoldása. A félév során két összetett beadandó feladat lesz. A megoldásokat a BE-AD rendszeren keresztül kell majd beküldeni (a <a href="https://bead.inf.elte.hu/"><code class="url">https://bead.inf.elte.hu/</code></a> címen), illetve az IP-08aPNY2E kurzus 1. csoportja és az IP-08bPNY2EG kurzus 1. csoportja a megoldásokat a nas2.inf.elte.hu/zh/ada mappába kell tegye. A leadással késni NEM lehet. A beadandókat beérkezési sorrendben nézik át a gyakorlatvezetők, és visszajeleznek az esetleges hibákról.</li>
+</ul>
+<h3 id="számonkérés">Számonkérés</h3>
+<p>A félév közepén és végén zárthelyit írunk, mely elméleti kérdéssort és programozási feladatot tartalmaz majd. Az utóbbihoz segédanyagként az Ada Reference Manual használható. (Semmilyen egyéb segédanyag nem!) Az első zártelyi központi témája a generikus programegység, a másodiké pedig a konkurens programozás.</p>
+<ul>
+<li><p>Ha valamelyik programozási feladat teljesítése sikertelen, a félév végén rendezett pótzh-n javítani kell. Akár két elégtelent is lehet a pótzh-n javítani, de ebben az esetben nem áll több idő rendelkezésre, mint azoknak, akik csak egy elégtelent kívánnak javítani. A pótzh-n szereplő feladatok az egész féléves anyagot számonkérhetik, még ha az első zh-t is javítja valaki. (Például a pótzh-n egy generikus programegység megvalósításához szükséges lehet dinamikus memóriakezelést használni.)</p></li>
+<li><p>Az elméleti kérdéssort szintén lehet javítani a pótzh-n. Az utolsó javítási lehetőség egy még későbbi időpontban, az elméleti utóvizsgán lesz.</p></li>
+</ul>
+<h3 id="jegy">Jegy</h3>
+<p>A tárgy kombinált számonkérésű, azaz egyetlen jegy zárja a tárgyat. Ezt a jegyet három (nem elégtelen) jegy átlagából határozzuk meg. Ez a három jegy - a félévközi zh programozási feladatának jegye, - a félév végi zh programozási feladatának jegye, valamint - az elméleti kérdéssorokra kapott jegy (a félév közepén és végén kitöltött kérdéssorok egybeszámíttatnak). Ha a három jegy közül a javítási kísérletek után is valamelyik elégtelen, a tárgyra kapott jegy is elégtelen.)</p>
+<h2 id="határidők-időpontok">Határidők, időpontok</h2>
+<ul>
+<li>Az első beadandó határideje:</li>
+<li>Visszajelzés az első beadandóról:</li>
+<li>Félévközi zh:</li>
+<li>A második beadandó határideje:</li>
+<li>Visszajelzés a második beadandóról:</li>
+<li>A félév végi zh:</li>
+<li>A pótzh:</li>
+</ul>
+<h2 id="irodalom">Irodalom</h2>
+<ul>
+<li><p>Nyékyné G. Judit (szerk.): <em>Programozási nyelvek.</em> Kiskapu Kft., Budapest, 2003.</p></li>
+<li><p>Nyékyné G. Judit (szerk): <em>Az Ada95 programozási nyelv.</em> ELTE Eötvös Kiadó, Budapest, 1998.</p></li>
+<li><p>Taft, S.T. és mások (szerk.): <em>Ada Reference Manual.</em> LNCS 8339, Springer, 2013. (<a href="http://www.adaic.org/resources/add_content/standards/12rm/RM-Final.pdf">pdf</a>, <a href="http://www.adaic.org/resources/add_content/standards/12rm/RM-12-Html.zip">zipped html</a>, <a href="http://www.adaic.org/resources/add_content/standards/12rm/html/RM-TTL.html">online</a> )</p></li>
+<li><p>Riehle, R.: <em>Ada Distilled.</em> AdaWorks, 2003. (<a href="http://www.adapower.com/adapower1/learn/adadistilled.pdf">pdf</a>)</p></li>
+</ul>
+<h2 id="segédanyagok-szlájdok">Segédanyagok, szlájdok</h2>
+<p>Az alábbi diasorok nagyrészt lefedik a félév során tárgyaltakat.</p>
+<ul>
+<li><a href="eloadas/01.pdf">Alaptípusok, deklarációk és utasítások</a> (<a href="eloadas/01.ppt">ppt</a>)</li>
+<li><a href="eloadas/02.pdf">Programszerkezet</a> (<a href="eloadas/02.ppt">ppt</a>)</li>
+<li><a href="eloadas/03.pdf">Típusrendszer</a> (<a href="eloadas/03.ppt">ppt</a>)</li>
+<li><a href="eloadas/04.pdf">Absztrakt adattípusok</a> (<a href="eloadas/04.ppt">ppt</a>)</li>
+<li><a href="eloadas/05.pdf">Generikus programozás</a> (<a href="eloadas/05.ppt">ppt</a>)</li>
+<li><a href="eloadas/06.pdf">Hatókör, kivételkezelés</a> (<a href="eloadas/06.ppt">ppt</a>)</li>
+<li><a href="eloadas/07.pdf">Paraméterátadás</a> (<a href="eloadas/07.ppt">ppt</a>)</li>
+<li><a href="eloadas/08.pdf">Dinamikus memória kezelése</a> (<a href="eloadas/08.ppt">ppt</a>)</li>
+<li><a href="eloadas/10.pdf">Konkurens programozás</a> (<a href="eloadas/10.ppt">ppt</a>)</li>
+<li><a href="eloadas/11.pdf">Szinkronizációs feladatok</a> (<a href="eloadas/11.ppt">ppt</a>)</li>
+<li><a href="eloadas/12.pdf">Védett egységek</a> (<a href="eloadas/12.ppt">ppt</a>)</li>
+<li><a href="eloadas/adautso2.pdf">Az utolsó két előadáson kivetített diák</a></li>
+</ul>
+<p>Az elmaradt előadás pótlására az alábbi videók szolgálnak</p>
+<ul>
+<li><a href="https://youtu.be/7WUqCSp-bME">Definíciók és deklarációk</a></li>
+<li><a href="https://youtu.be/43lHek32Bms">Kivételek</a></li>
+<li><a href="https://youtu.be/x9Y-xjdpvjM">Túlterhelés és felüldefiniálás</a></li>
+</ul>
+<p>Az alábbi diasor összefoglalja az eddig tanultakat a kifejezések témakörében:</p>
+<ul>
+<li><a href="eloadas/kifejezesek.pdf">Kifejezések</a></li>
+</ul>
+<p>A gyakorlatokhoz kidolgozott feladatok <a href="gyakorlat/">itt találhatók</a>.</p>
+</body>
+</html>

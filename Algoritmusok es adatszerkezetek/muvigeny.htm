@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Algoritmusok müveletigénye</TITLE>
+</HEAD>
+<BODY bgcolor="#F5F5DC">
+
+<B><FONT FACE="Times New Roman" SIZE=4><P ALIGN="CENTER">Algoritmusok műveletigénye</P>
+</B></FONT>
+<OL>
+
+<FONT FACE="Times New Roman"><LI> <a href="./ge/ge.htm">(M.o.)</a> 
+Legyen adott egy A[1..n,1..n]  nxn-es mátrix. Gauss-eliminációval alakítsuk felsőháromszög mátrixá. Számítsuk ki az algoritmus műveletigényét. Tegyük fel, hogy az algoritmus nem akad el, azaz menet közben a főátlóban nem kapunk nullát. Tekintsük egységnyi műveletigénynek a mátrix elemei közti szorzás-osztást (az ábrán bekarikázott részt), a többi művelet műveletigényétől tekintsünk el.</LI>
+</FONT><FONT SIZE=2><P ALIGN="CENTER"><IMG SRC="Image369.gif" WIDTH=323 HEIGHT=389></P>
+</FONT>
+<P>&nbsp;</P>
+<LI> <a href="./hamis/hamis.htm">(M.o.)</a>
+Adott a pénzérmék egy nem üres halmaza és a halmazban pontosan egy hamis pénzérme van. A hamis pénzérme tömege kisebb, mint a valódi pénzérme tömege. Van egy kétkarú mérlegünk. Keressük meg a hamis pénzérmét. Adottak az alá<FONT FACE="Times New Roman">bbi absztrakt műveletek:<BR>
+<BR>
+P,P1,P2: pénzérmék halmaza<BR>
+q: egy pénzérme<BR>
+<BR>
+- Empty(P): létrehoz egy új üres pénzérme halmazt, ha még nem létezik, különben kiüríti P-t<BR>
+- |P|: függvény visszaadja P elemszámát<BR>
+- Kivesz(P): függvény kivesz P-ből egy véletlenűl kiv</FONT>álasztott elemet és azt adja vissza pl.: q:=Kivesz(P)<BR>
+- Berak(P,q): berakja P-be q elemet<BR>
+- P1:=P2 : értékadás után P1 halmaz megegyezik P2-vel<BR>
+<IMG SRC="Image769.gif" WIDTH=341 HEIGHT=74><BR>
+- Kettéoszt(P,P1,P2): ha 2 | |P| , akkor P elemein<FONT FACE="Times New Roman">ek egyik felével P1, másik felével P2 lesz egyenlő<BR>
+<BR>
+a) Írjunk algoritmust, amely megoldja "elég hatékonyan" a feladatot. Becsüljük meg, hány "Mérés"-t végez (aszimptotikusan) n&gt;0 pénzérme esetén legrosszab esetben.<BR>
+<BR>
+b) Tegyük fel, hogy n&gt;0 3-nak pozitív e</FONT>g<FONT FACE="Times New Roman">ész kitevős hatványa. Adott továbbá a következő művelet: Háromfeléoszt(P,P1,P2,P3): értelemszerűen. Módosítsuk az algoritmust, hogy hatékonyabb legyen. Elemezzük a "Mérés"-ek számát. Tényleg hatékonyabb lett? </LI>
+</FONT>
+<LI> <a href="./matrixker/matrixker.htm">(M.o.)</a>
+Adott egy <I>M[1..n,1..m]</I> mátrix, amely az al<FONT FACE="Times New Roman">ábbi tulajdonsággal rendelkezik: minden oszlopa fentről lefelé és minden sora balról jobbra rendezett. Keressünk meg benne egy adott elemet, azaz írjunk egy keresési algoritmust (</FONT><I>n*m</I><FONT FACE="Times New Roman"> -nél hatékonyabbat) és elemezzük a műveletigényét (átlagos esetet nem kell). Elegendő az összehasonlítások számát vizsgálni. Egyszerűség kedvéért tekintsük 1 összehasonlításnak azt, amely eldönti, hogy két szám egyenlő vagy melyik kisebb és melyik nagyobb. Pl.:<BR>
+1  3  4  9<BR>
+2  4  5 17<BR>
+5  7 13 19<BR>
+6  9 14 20</LI>
+</FONT>
+<FONT FACE="Times New Roman"><LI> <a href="./backtrack/backtrack.htm">(M.o.)</a>
+Határozzuk meg a visszalépéses keresés műveletigényét legjobb és legrosszabb esetben (az átlagos eset nem kell vizsgálni). Az általánosított feladatot a következőképpen specializáljuk: egy M nxn-es mátrix minden sorába el kell helyezni egy elemet az 1..n oszlopindexű pozíció valamelyikére úgy, hogy </FONT>a<FONT FACE="Times New Roman"> "Feltétel" vizsgálat igaz értéket adjon. Tekintsük egységnyi műveletigénynek a "Feltétel" ellenőrzését, a többi művelet műveletigényétől tekintsünk el. A "Volt" vektorban tartjuk számon, hogy az adott menetben (még nem kellett innen visszalépni) mely osz</FONT>l<FONT FACE="Times New Roman">opindexű helyekre probáltuk már elhelyezni az elemet. Mind a sorindexeket, mind az oszlopindexeket 1..n-ig egyesével növelve probáljuk az elemeket elhelyezni. Továbbá tegyük fel, hogy az &amp;&amp; operátor a 2. feltételt csak akkor értékeli ki, ha az 1. feltétel</FONT> igaz.</LI>
+<FONT SIZE=2><P ALIGN="CENTER"><IMG SRC="Image615.gif" WIDTH=387 HEIGHT=315></P>
+<P ALIGN="CENTER"><IMG SRC="Image616.gif" WIDTH=214 HEIGHT=184><IMG SRC="Image617.gif" WIDTH=194 HEIGHT=157></P>
+</FONT><FONT FACE="Times New Roman"><LI>Hány "Feltétel" vizsgálatot végez az előző feladatbeli backtrack algoritmus<BR>
+a) egy 3x3 -as sakktáblán 3 királynő elhelyezése közben<BR>
+b) egy 4x4 -es sakktáblán 4 királynő elhelyezése közben</LI>
+</FONT>
+<FONT FACE="Times New Roman"><LI> <a href="./fib/fib.htm">(M.o.)</a>
+Elemezzük a Fibonacci számokat előállító alábbi algoritmusokat:</LI>
+</FONT><P>F(n)=1,1,2,3,5,8,… (n&gt;0 esetén):</P>
+
+<P>a) Rekurzív változat:</P>
+<FONT SIZE=2><P ALIGN="CENTER"><IMG SRC="Image623.gif" WIDTH=338 HEIGHT=159></P>
+</FONT><FONT FACE="Times New Roman"><P>-Határozzuk meg hány alkalommal hívódik meg a függvény!<BR>
+-Határozzuk meg a műveletigényt. Tekintsük az összehasonlítások és az összeadások műveletigényét egységnyinek, a többi művelet műveletigényét hagyjuk figyelmen kívűl.</P>
+</FONT>
+<P>b) Iteratív változat:</P>
+<FONT SIZE=2><P ALIGN="CENTER"><IMG SRC="Image624.gif" WIDTH=347 HEIGHT=244></P>
+</FONT><P>c) Implementáljuk mindkét algoritmust és készítsünk táblázatot, amelyben összehasonlítjuk a két változat futásidejére kapott értékeket.</P>
+
+<LI> <a href="./binom/binom.htm">(M.o.)</a>
+Elemezzük a binomiális együtthatók kiszámítására szolgáló alábbi algoritmusokat. Az algoritmusok az alábbi azonosság felhasználásával készültek:</LI>
+<P><IMG SRC="Image770.gif" WIDTH=454 HEIGHT=74></P>
+
+<OL TYPE="a">
+
+<LI>Rekurzív változat:</LI>
+<FONT SIZE=2><P ALIGN="CENTER"><IMG SRC="Image621.gif" WIDTH=365 HEIGHT=151></P>
+</FONT><LI>Iteratív változat: egy mátrixba felépítjük a Pascal-háromszög szükséges elemeit, majd a mátrix [n,k] indexü eleme lesz at eredmény.</LI>
+<FONT SIZE=2><P ALIGN="CENTER"><IMG SRC="Image622.gif" WIDTH=335 HEIGHT=462></P>
+</FONT><LI>Implementáljuk mindkét algoritmust és készítsünk táblázatot, amelyben összehasonlítjuk a két változat futásidejére kapott értékeket.</LI></OL>
+</OL>
+
+</BODY>
+</HTML>

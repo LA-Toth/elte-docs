@@ -1,0 +1,20 @@
+Programtervezo matematikus szak I/4 sáv 5. évf.
+Információkezelés III. gyakorlat 2005/2006 I. félév
+Gyakorlatvezetõ: Nikovits Tibor
+
+A gyakorlati jegy megszerzesenek követelmenyei:
+
+- A gyakorlatok látogatása
+  A gyakorlatoknak legalább a felén (7 alkalom) jelen kell lenni.
+- A félév során feladott beadandó feladatok megoldása
+  A feladatokat celszeru folyamatosan megoldani, de csak a félév
+  végén kell majd azokat levélben elküldeni.
+- A két zh valamelyikén legalább 2-es jegy elérése.
+  A gyakorlati jegyhez elegendõ az elsõ zh-t megírni, a másodikat
+  csak annak kell, aki az elsõ zh alapjan megajánlott jegyen
+  javítani szeretne. (Ez esetben a két zh átlaga alapján számitodik
+  a gyakorlati jegy.)
+
+
+Nikovits Tibor
+nikovits@ullman.inf.elte.hu

@@ -1,0 +1,29 @@
+Tisztelt hallgatók!
+
+Az elsõ zh eredményei, a beadandó feladatok értékelése és az ezek alapján
+ajánlott gyakorlati jegy a honalpon az alább szereplõ excel állományban található.
+
+A zh-n a ponthatárok a következõk voltak:
+
+ 0 -  6 = 1
+ 7 - 11 = 2
+12 - 16 = 3
+17 - 21 = 4
+22 -    = 5
+
+Aki részletesebben kiváncsi a zh-pontjaira az a csütörtöki gyakorlatokon 
+vagy a fogadóórámon kaphat választ a kérdéseire.
+A listában szereplõ gyakorlati jegyeket szintén csütörtökön a fogadóórámban vagy a 
+gyakorlatok ideje alatt lehet beiratni.
+Akinek nem felel meg a kapott gyakorlati jegy (vagy nem kapott jegyet), 
+azok számára lesz egy második zh. A második zh-t bárki megírhatja, ez még nem számít 
+gyakjegy uv-nak. Ez esetben a két zh átlaga alapján számítódik a gyakorlati jegy.
+Akinek a két zh után is 1-es a gyakjegye, az gyakjegy uv-val január elején 
+még szerezhet jegyet.
+
+A második zh jövõ szerdán (dec. 21-én) délután 17 órakor lesz az adatbázis laborban.
+
+Mindenkinek Kellemes Ünnepeket kívánok!!!
+
+Nikovits Tibor
+nikovits@inf.elte.hu

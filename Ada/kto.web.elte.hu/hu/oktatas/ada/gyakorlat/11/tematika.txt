@@ -1,0 +1,8 @@
+rendezes-rek:
+  - szekvenciális fájlba írunk
+  - több fájlt végigolvasunk
+
+direktfájlt használva megfordítjuk egy fájl tartalmát
+
+kocsma: a különbözõ select-ek és a kivételkezelés
+

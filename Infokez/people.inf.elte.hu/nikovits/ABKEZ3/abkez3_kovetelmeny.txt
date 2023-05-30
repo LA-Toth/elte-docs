@@ -1,0 +1,17 @@
+Programozó matematikus szak 3. évf.
+Adatbáziskezelés gyakorlat 2005/2006 I. félév
+Gyakorlatvezetõ: Nikovits Tibor
+
+ A gyakorlati jegy megszerzésének feltételei:
+
+- A gyakorlatokon való jelenlét (legalább 7 alkalommal). 
+  Ennek hiányában gyakjegy uv-val sem szerezheto meg a gyakorlati jegy.
+
+A gyakorlati jegyet a félév során megírandó két ZH érdemjegyébol alakítom ki, 
+úgy, hogy az elso ZH határozza meg az esetleges kerekítés irányát. 
+(pl. 1-es elso ZH majd 2-es második ZH esetén 1-es a gyakorlati jegy, 
+de 2-es elso ZH majd 1-es második ZH esetén 2-es a gyakorlati jegy) 
+Az esetleges 1-es gyakorlati jegyet gyakjegy uv-val és pótzh-val lehet kijavítani.
+
+
+

@@ -1,0 +1,161 @@
+SQLPLUS leiras
+
+
+Elinditasa:  sqlplus  majd egy oracle felhasznaloi nev es egy jelszo
+
+Kiadhatok SQL parancsok, SQLPLUS parancsok es PL/SQL blokkok
+
+A beirt parancsok egy pufferbe kerulnek, amelynek tartalma szerkesztheto. 
+Ha kiadunk egy ujabb SQL parancsot akkor az felulirja a puffer tartalmat. 
+Az SQLPLUS parancsok nem kerulnek be a pufferbe es nem is befolyasoljak annak 
+tartalmat. Sot ha mas modon paszirozunk be a pufferbe SQLPLUS parancsokat azok akkor 
+sem fognak vegrehajtodni.
+A pufferben egyszerre csak 1 SQL parancs lehet, amikor azt vegrehajtjuk. 
+A parancs utan nem lehet pontosvesszo a pufferben. Tobb SQL parancsot csak egy 
+parancsfile lefuttatasaval hajthatunk vegre. (START file) 
+Ilyenkor minden SQL parancs utan pontosvesszo van a fileban.
+
+Az SQL parancsokat akar tobb sorba is gepelhetjuk. A sor vegen csak ENTER-t kell adni.
+Egy SQL parancs begepelese utan (akar tobb soba gepelve) a kovetkezoket tehetjuk:
+pontosvesszot irunk                 ->       lefuttatja a parancsot.
+/  (slash) egy uj sorba               ->       lefuttatja a parancsot
+RUN                                        ->       listazza es lefuttatja a parancsot
+Egy ures sor majd ENTER      ->       a parancs bekerul a pufferbe futtatas nelkul
+Egy PL/SQL blokk begepelese utan egy ures sorba egy pontot gepelve a blokk bekerul a pufferbe.
+
+Az SQLPLUS parancsokat is gepelhetjuk tobb sorba. Ekkor azonban a sor vegen "-" -et
+kell begepelnunk. A parancs befejezese utan az az ENTER hatasara vegrehajtodik. 
+Nem kell utana pontosvesszo, de ha teszunk az sem baj.
+
+Az SQLPLUS kornyezet mukodeset befolyasoljak az un. sqlplus rendszervaltozok. 
+Ezeket a SET paranccsal lehet beallitani es a SHOW paranccsal lehet az ertekuket lekerdezni. 
+A SHOW ALL megmutatja az osszeset.
+
+A legfontosabb SQLPLUS parancsok a kovetkezok:
+
+Exit			kilepes az sqlplusbol
+Clear buffer		puffer torlese
+List			puffer tartalmanak listazasa
+Save filenev		puffer tartalmanak fileba mentese  ( -> filenev.sql )
+Get filenev		file betoltese a pufferbe  ( .sql )
+Run			pufferben levo SQL parancs futtatasa
+Edit			puffer szerkesztese      ( define _editor = vi )
+Define [user_valtozo] 	user_valtozo definialasa illetve lekerdezese
+Undefine  valtozo	megszunteti a definialt valtozot
+Set valtozo=ertek		rendszer_valtozo ertekenek beallitasa
+Show [valtozo | all]	rendszer_valtozo(k) ertekenek lekerdezese
+Start filenev		parancsfile futtatasa  ( .sql )
+Spool filenev		output filebairanyitasa   ( .lst )
+Host [op_r_parancs]	operacios rendszer hivas az sqlplus-bol valo kilepes nelkul
+Describe tnev		a tabla (view vagy synonym) oszlopait es tipusat listazza
+Copy	...                    Adatok masolasa tablak (sot adatbazisok) kozott
+
+Egy parancsfileban lehetnek SQL parancsok PL/SQL blokkok es SQLPLUS parancsok vegyesen. 
+Az SQL parancsok utan pontosvesszo all. Letrehozhatunk egy bejelentkezesi 
+parancsfilet (login.sql) es ennek tartalma automatikusan lefut miutan elinditottuk 
+az sqlplus-t. Letezik egy globalis parancsfile is ( glogin.sql ) amit az oracle 
+rendszergazda adhat meg es ami minden user eseten lefut.
+
+
+
+Parancs	Leiras
+
+@	Runs the specified command file. 
+
+@@	Runs a nested command file. 
+
+/	Executes the SQL command or PL/SQL block currently stored in the SQL buffer. 
+
+ACCEPT	Reads a line of input and stores it in a given user variable. 
+
+APPEND	Adds specified text to the end of the current line in the buffer. 
+
+BREAK	Specifies where and how formatting will change in a report, or lists the current break definition. 
+
+BTITLE	Places and formats a specified title at the bottom of each report page, or lists the current 
+        BTITLE definition. 
+
+CHANGE	Changes text on the current line in the buffer. 
+
+CLEAR	Resets or erases the current value or setting for the specified option, such as BREAKS or COLUMNS. 
+
+CLEAR BUFFER	Deletes all lines in the buffer
+
+COLUMN	Specifies display attributes for a given column. Or, lists the current display attributes 
+        for a single column or for all columns. 
+
+COMPUTE	Calculates and prints summary lines, using various standard computations, on subsets of 
+        selected rows. Or, lists all COMPUTE definitions. 
+
+CONNECT	Connects a given username to ORACLE. 
+
+COPY	Copies data from a query to a table in a local or remote database. 
+
+DEFINE	Specifies a user variable and assigns it a CHAR value. Or, lists the value and variable type 
+        of a single variable or all variables. 
+
+DEL	Deletes the current line of the buffer. 
+
+DESCRIBE  Lists the column definitions for the specified table, view, or synonym. 
+
+DISCONNECT  Commits pending changes to the database and logs the current username off ORACLE, 
+            but does not exit SQL*Plus. 
+
+EDIT    Invokes a host operating system text editor on the contents of the specified file or on 
+        the contents of the buffer. 
+
+EXECUTE	Executes a single PL/SQL statement. 
+
+EXIT	Commits all pending database changes, terminates SQL*Plus, and returns control to the operating system. 
+
+GET	Loads a host operating system file into the buffer. 
+
+HELP	Accesses the SQL*Plus help system. 
+
+HOST	Executes a host operating system command  without leaving SQL*Plus. 
+
+INPUT	Adds one or more new lines after the current line in the buffer. 
+
+LIST	Lists one or more lines of the buffer. 
+
+PAUSE	Displays an empty line followed by a line containing text, then waits for the user 
+        to press [Return]. Or, displays two empty lines and waits for the user's response. 
+
+PRINT	Lists the current value of a bind variable. 
+
+PROMPT	Sends the specified message or a blank line to the user's screen. 
+
+REMARK	Begins a comment in a command file. 
+
+RUN	Lists and executes the SQL command or PL/SQL block currently stored in the SQL buffer. 
+
+RUNFORM	Invokes a SQL*Forms application from within SQL*Plus. 
+
+SAVE	Saves the contents of the buffer in a host operating system file (a command file). 
+
+SET	Establishes an aspect of the SQL*Plus environment for your current session. 
+
+SHOW	Lists the value of a SQL*Plus system variable. 
+
+
+SPOOL	Stores query results in an operating system file and, optionally, sends the file to a 
+        default printer. Also lists the current spooling status. 
+
+SQLPLUS	Starts SQL*Plus from the operating system prompt. 
+
+START	Executes the contents of the specified command file. 
+
+TIMING	Records timing data for an elapsed period of time, lists the current timing area's 
+        title and timing data, or lists the number of active timing areas.  
+
+TTITLE	Places and formats a specified title at the top of each report page, or lists the current 
+        TTITLE definition. 
+
+UNDEFINE  Deletes a given user variable that you defined either explicitly (with the DEFINE command)
+          or implicitly (with an argument to the START command). 
+
+VARIABLE  Declares a bind variable which can be referenced in PL/SQL. 
+
+WHENEVER OSERROR  Exits SQL*Plus if an OS command generates an error. 
+
+WHENEVER SQLERROR  Exits SQL*Plus if a SQL command or PL/SQL block generates an error.  

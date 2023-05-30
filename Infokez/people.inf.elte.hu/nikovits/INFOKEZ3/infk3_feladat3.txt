@@ -1,0 +1,39 @@
+A honlapon szereplõ feladatokat kötelezõen meg kell csinálni a 
+gyakorlati jegy megszerzéséhez. NE KULDJÉTEK EL egyesével a megoldásokat, 
+hanem majd a félév végén egyetlen levélben fogom kérni az összeset.
+A megoldásokban a lekérdezéseket és a végeredményt is el kell küldeni.
+
+
+3. feladat
+
+(DDL és Adatbázis trigger)
+
+3/1
+Hozzatok létre egy DDL_LOG nevû táblát, aminek az alábbi a szerkezete:
+    ( tulajdonos VARCHAR2(30), 
+      obj_nev    VARCHAR2(30), 
+      obj_tipus  VARCHAR2(30), 
+      muvelet    VARCHAR2(400), 
+      idopont    DATE )
+
+Hozzatok letre egy triggert, ami bármelyik saját magatok által indított DDL mûvelet
+eredményét naplózza a fenti táblába. Pl. egy ALTER TABLE t1 ADD(o2 NUMBER);
+esetén ezeket írja be ->  <tulajdonos>, 'T1', 'TABLE', 'ALTER', <idõpont>
+
+TIPP: Application Developer's Guide 10. fej. Event Attribute Functions
+
+
+3/2
+Hozzatok létre egy NAPLO nevû táblát, aminek az alábbi a szerkezete:
+    ( datum   DATE,
+      felh    VARCHAR2(100),
+      gep     VARCHAR2(100),
+      ip      VARCHAR2(100),
+      osuser  VARCHAR2(100))
+Hozzatok létre egy triggert, ami a bejelentkezéseket naplózza a fenti táblába.
+Naplózzuk a felhasználó (Oracle-beli) azonosítóját, a kliens gép nevét és IP címét
+valamint a kliens gépen az operációs rendszerbeli azonosítót.
+Nektek persze most csak a saját bejelentkezéseitek naplózásához van jogotok,
+de a trigger nagyon hasonló lenne az általános esetben is.
+
+TIPP: nézzétek meg az SQL reference doksiban a SYS_CONTEXT függvényt

@@ -1,0 +1,44 @@
+A feladat egy kisebb alkalmazás létrehozása, amiben legalább 5 relációs tábla 
+szerepel.
+
+Létre kell hozni ERD diagrammot.
+Generálni kell belõle a DDT eszközzel adatbázistervet.
+A Design Editorban finomítgatni kell és létre kell hozni Server Modell Diagramot.
+A Design Editorban generálni kell belõle adatbázist (vagy scripteket és azokat futtatni kell)
+
+A designer által generált adatbázisban (illetve scriptekben) legyenek benne a következõk:
+
+Mindegyik táblát létrehozó utasításban legyen benne a táblatér neve és a fizikai
+  tárolási paraméterek (STORAGE).
+A táblák oszlopaira készüljenek megjegyzések (COMMENT), amelyek leírják az oszlopok jelentését.
+A táblák valamelyikének legyen egyedi kulcsa (unique) is az elsõdleges kulcs mellett.
+A táblák valamelyikére készüljön CHECK típusú megszorítás.
+A táblák mindegyikére készüljön (privát) szinonima is.
+Készüljön el legalább két nézet is.
+Készüljön egy szekvencia is, ami 10000-tõl kezdõdõen adja a sorszámokat.
+Az egyik tábla az egyedi azonosítóit a szekvenciából kapja, amennyiben nem adják
+  azt meg az insert utasításban. (Készüljön egy insert trigger, ami a szekvenciából
+  olvassa a következõ értéket és azt teszi be a táblába, ha az insert utasításban
+  nem adták meg az azonosítót.)
+Készüljön el egy függvény vagy procedúra.
+
+Készüljön el egy index cluster, és két tábla ezen a clusteren jöjjön létre,
+továbbá egy hash cluster, amin egy harmadik tábla van rajta.
+
+Az egyik táblára adjunk select jogot mindenkinek (PUBLIC), egy másik táblára
+adjunk select, insert, update jogot egy konkrét másik felhasználónak (pl. ORAUSER).
+
+
+A fentiekben generált scripteket futtassátok is le az adatbázisban, hogy kiderüljön,
+vajon hiba nélkül lefutnak-e. Az esetleges többszöri futtatáshoz célszerû egy
+olyan scriptet is írni (ezt már kézzel), ami kitörli az összes létrehozott objektumot.
+
+
+
+Létre kell hozni folyamat modellt.
+Létre kell hozni funkció modellt.
+A funkcióknak meg kell adni az egyedhasználatot (Tools/Mátrix Diagrammer).
+A funkciókból modult kell generálni az ADT eszközzel.
+A Design Editorban finomítgatni kell a modulokat.
+A Design Editorban generálni kell Forms alkalmazást.
+

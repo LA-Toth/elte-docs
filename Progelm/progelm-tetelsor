@@ -1,0 +1,98 @@
+1. objektumelvu programfejlesztes es szoftvertechnologia
+	simula 67 (merfoldko)
+	klasszikus ertelemben
+	mai ertelemben
+	adatszerkezet - adattipus
+	adattipus osztaly
+	oroklodes
+	parameterek szerepe
+2. szignatura, szigmaalgebra
+	szignatura (sortok, muveleti szimbolumokm konstans, valtozo)
+	term, strukturalis indukcio, egyenlet
+	algebrai specifikacio
+	homomorfizmus, absztrakt adattipus matematikai definicioja
+3. specifikacio morfizmus
+	specialis esetek
+	szignatura morfizmus
+	szignatura morfizmus kiterjesztese termekre
+	parameter "passzing"
+	adattipus osztalydiagram
+4. specifikacio elemzese
+	axioma -> tetel
+	termekbol torteno szarmaztatas
+	egyenletek szarmaztatasa
+	szarmaztatasi szabalyok:
+		axiomak
+		egyenloseg axioma
+		strukturalis indukcio
+5. interfesz spec. megvalositasa
+	interfesz lekepezesek
+	egzakt megvalositas
+	megvalositas definiocioja
+	specialis esetek
+	interfesz megvalositas morfizmusdiagramja
+6. reprezentacio, rep. elemzes
+	repr definicioja
+	rep. fv.-nyre vonatkozo elegseges feltetel
+	repr elemzes tetelei, tetelek bizonyitasa
+	invarians: absztrakt, konkret; kapcsolat koztuk
+7. kettos specifikacio
+	algebrai
+	pre-post
+	proceduralis
+	algebrai axiomak attranszformalasa;
+		pre-post
+		pre -> proc.
+	definialtuk a konkret specifikacio helyesseget az
+		absztrakt spec. szerint (szimulacio)
+	elo-, utofelteteles eset: (pref, postf) -> (preg, postg)
+8. Determinisztikus program
+	szintaxis
+	szemantika definicioja
+	valtozo, konstans, kifejezesek
+	program vegrehajtasa
+9. Determinisztikus program jelentese
+	strukturak jelentese
+	parcialis ertelemben
+	teljes helyessegi ertelemben
+	divergencia
+	virtualis allapot
+	specifikacio
+	specifikacio szerinti helyesseg
+		parcialis
+		helyesseg
+		befejezodes
+		eredmenyesseg
+10. Floyd modszer determinisztikus programok bizonyitasara
+	tranzakcio (L,T,s,f)
+	Q-diagram
+	tranzakcios diagrammal definialtuk a strukturak jelenteset
+	determinisztikus program jelentese Q-diagrammal
+	induktivitas
+	invariancia
+	konzisztencia
+	parcialis helyesseg bizonyitasanak modszere
+11. Floyd modszer determinisztikus programok teljes helyessegenek bizonyitasara
+	\fi-konvergencia
+	\fi-konvergencia bizonyitasa
+	runtime hibamentesseg definicioja, bizonyitasa
+	teljes helyesseg bizonyitasa
+12. Hoare modszer
+	hoare fele harmas
+	parcialis helyesseg
+	teljes helyesseg
+	hoare-fele bizonyitasi rendszer
+	axiomak
+	kovetkeztetesi szabalyok
+	PD (parcialis helyessegre szolgalo bizonyitasi rendszer)
+	megbizhatosag definicioja
+		axiomak, kovetkeztetesi szabaly, modszer
+	teljesseg definicioja
+13. A PD bizonyitasi rendszer megbizhatosaga parc helyessegi ertelemben
+14. Teljes helyesseg bizonyitasa es megbizhatosaga (TD)
+15. A hoare modszer teljessegi tetele
+	teljesseg
+	A TD rendszer teljessegi tetele
+
+
+VEEEEEEEEEEEEEGGGGGGGGGGGGGGGEEEEEEEEEEEEEEEEEE VAN.

@@ -1,0 +1,58 @@
+A honlapon szereplõ feladatokat kötelezõen meg kell csinálni a 
+gyakorlati jegy megszerzéséhez. NE KULDJÉTEK EL egyesével a megoldásokat, 
+hanem majd a félév végén egyetlen levélben fogom kérni az összeset.
+A megoldásokban a lekérdezéseket és a végeredményt is el kell küldeni.
+
+7. feladat
+
+Vegrehajtasi tervek megvaltoztatasa tippek (hint) segitsegevel
+
+A NIKOVITS felhasznalo tulajdonaban vannak a kovetkezo tablak:
+CIKK(ckod, cnev, szin, suly)
+SZALLITO(szkod, sznev, statusz, telephely)
+PROJEKT(pkod, pnev, helyszin)
+SZALLIT(szkod, ckod, pkod, mennyiseg, datum)
+A tablakhoz indexek is vannak letrehozva, ezek tulajdonsagait
+a katalogusbol nezhetitek meg, ha szuksegetek van ra.
+
+Adjuk meg a kovetkezo lekerdezeseket es a hozzajuk tartozo vegrehajtasi
+tervek fa strukturajat. Minden esetben lehet hinteket használni.
+
+Mennyi a piros cikkekre vonatkozo szallitasok osszmennyisege?
+Mennyi azon szállítások összmennyisége, ahol ckod=1 és szkod=2?
+Mennyi azon szállítások összmennyisége, ahol ckod=1 vagy szkod=2?
+
+
+
+-  Adjuk meg ugy valamelyik lekerdezest, hogy mindket tablara 
+   hasznaljon indexet a rendszer a vegrehajtas soran. 
+
+-  Adjuk meg ugy valamelyik lekerdezest, hogy csak az egyik tablara
+   hasznaljon indexet a rendszer. 
+
+-  Adjuk meg ugy valamelyik lekerdezest, hogy egyik tablara se 
+   hasznaljon indexet a rendszer. 
+
+-  Adjuk meg ugy valamelyik lekerdezest, hogy a ket tablat 
+   SORT-MERGE modszerrel kapcsolja ossze a rendszer.
+
+-  Adjuk meg ugy valamelyik lekerdezest, hogy a ket tablat 
+   NESTED-LOOPS modszerrel kapcsolja ossze a rendszer.
+
+-  Adjuk meg ugy valamelyik lekerdezest, hogy a ket tablat 
+   NESTED-LOOPS modszerrel kapcsolja ossze a rendszer és ne használjon indexet.
+
+-  Adjuk meg ugy valamelyik lekerdezest, hogy a vegrehajtasi tervben 
+   szerepeljen CONCATENATION muvelet.
+
+-  Adjuk meg ugy valamelyik lekerdezest, hogy a vegrehajtasi tervben 
+   szerepeljen AND-EQUAL muvelet.
+
+
+Mindegyik lekerdezes valtozatot es a hozza tartozo fa strukturat el kell kuldeni!
+Ne hozzatok letre sajat peldanyt a tablakbol, hanem hasznaljatok a NIKOVITS
+user tablait!
+
+
+
+

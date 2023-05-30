@@ -1,0 +1,63 @@
+A honlapon szereplõ feladatokat kötelezõen meg kell csinálni a 
+gyakorlati jegy megszerzéséhez. NE KULDJÉTEK EL egyesével a megoldásokat, 
+hanem majd a félév végén egyetlen levélben fogom kérni az összeset.
+A megoldásokban a lekérdezéseket és a végeredményt is el kell küldeni.
+
+
+2. feladat
+
+(Trigger)
+
+2/1
+Az ORAUSER nevu oracle felhasznalo tulajdonaban van egy DOLGOZO nevu
+tabla. Hozzatok letre a sajat sematokban egy azonos nevu es tartalmu tablat,
+valamint egy TRIGGER_LOG nevu tablat, aminek a kovetkezo a szerkezete:
+     (  idopont    DATE,
+        muvelet    VARCHAR2(20),
+        esemeny    VARCHAR2(80)   
+     )
+Hozzunk letre egy triggert, ami akkor aktivizalodik ha a dolgozo tabla
+fizetes oszlopat modositjak. A trigger a kovetkezo muveleteket vegezze el:
+
+Ha a dolgozo uj fizetese nagyobb lesz mint 4000 akkor errol tegyen egy 
+bejegyzest a trigger_log tablaba. Az esemeny oszlopba irja be a regi es az 
+uj fizetest is.
+
+Az elnok (foglalkozas = 'PRESIDENT') fizeteset ne engedje modositani. 
+(A modositas utan a fizetes maradjon a regi.) Errol is tegyen egy bejegyzest
+a trigger_log tablaba. Az esemeny oszlopba irja be, hogy a fizetes nem 
+valtozott.
+
+
+2/2
+Hozzatok letre egy TRIGGER_LOG2 nevu tablat is, aminek a szerkezete a kovetkezo:
+     ( idopont     DATE, 
+       muvelet     VARCHAR2(20), 
+       uj_osszfiz  NUMBER
+     )
+Hozzunk letre egy triggert, ami akkor aktivizalodik ha a dolgozo tablara
+valamilyen modosito muveletet (INSERT, DELETE, UPDATE) hajtanak vegre.
+A trigger irja be a trigger_log2 tablaba a modositas idopontjat, a muveletet
+es az uj osszfizetest. Ha az uj osszfizetes nagyobb lenne mint 40000, akkor
+a trigger utasitsa vissza a modosito muveletet, es hibauzenetkent kuldje vissza,
+hogy 'Tul nagy osszfizetes'. Ez esetben naploznia sem kell.
+
+
+2/3
+Hozzatok letre egy nezetet az alabbi utasitassal, ami az osztalyonkenti
+osszfizetest tartalmazza.
+   CREATE OR REPLACE VIEW dept_sal AS 
+   SELECT dname, SUM(sal) sumsal 
+   FROM dept, emp
+   WHERE emp.deptno = dept.deptno
+   GROUP BY dname;
+Hozzunk letre egy triggert, aminek segitsegevel lehetove valik a nezet 
+modositasa (csak UPDATE utasitassal) oly modon, hogy a trigger a modositast 
+visszavezeti az alaptablakra. Ha az osztaly neve (DNAME) valtozik, akkor 
+az valtozzon meg a DEPT tablaban, ha pedig az osszfizetes (SUMSAL) valtozik,
+akkor az adott osztaly osszes dolgozojanak fizetese egyforma mertekben valtozzon 
+meg, ugy hogy a valtoztatas utani osszfizetes a kivant legyen.
+
+
+Termeszetesen probaljatok is ki, hogy a triggerek megfeleloen mukodnek-e.
+Kuldjetek el a muveleteket es a naplotablak illetve a nezet tartalmat is.

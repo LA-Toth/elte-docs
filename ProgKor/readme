@@ -1,0 +1,36 @@
+    1.  progkor.zip  (nappali), progkore.zip (esti)
+    2.  progkor1.zip (nappali/esti)
+    3.  progkor2.zip (nappali/esti)
+    4.  progkor3.zip (nappali/esti)
+    5.  progkor4.zip (nappali/esti)
+    6.  progkor5.zip (nappali/esti)
+    7.  progkor6.zip (nappali/esti)
+    8.  progkor7.zip (nappali/esti)
+    9.  progkor8.zip (nappali/esti)
+
+  Az elso 3 fajlban a Unix anyagok vannak.
+  A progkor3.zip fajlban vegyesen Unix anyagok es a html anyagok,
+        a "PUZZLE" jatek nelkul.
+  A progkor4.zip fajlban a "PUZZLE" jatek talalhato, temakoronkent
+        2-2 keppel.
+  A fennmarado 4 fajlban a "PUZZLE" jatekbeli ELTE temakor tovabbi
+        kepei talalhatok.
+
+  Hogyan viheti el?
+
+    a) vagy bejelentkezik a pandora-ra, es a kov. parancsokkal a
+       sajat $HOME directoryjaba masolja a fajlokat:
+       
+        cd /public/h/teacher/csa/public_html/zip
+	cp progkor.zip progkor[1-8].zip ~ # nappali
+	cp progkore.zip progkor[1-8].zip ~ # esti
+
+    b) vagy a bongeszojebe beirja a kov. cimeket:
+
+         http://people.inf.elte.hu/csa/zip/progkor.zip   (nappali)
+         http://people.inf.elte.hu/csa/zip/progkore.zip  (esti)
+         http://people.inf.elte.hu/csa/zip/progkor1.zip
+         ...
+         http://people.inf.elte.hu/csa/zip/progkor8.zip
+    
+       es letolti a fajlokat.

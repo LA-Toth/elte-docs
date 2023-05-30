@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html>
+
+
+
+<head>
+
+<meta http-equiv="Content-Type"
+
+content="text/html; charset=windows-1250">
+
+<title>Multimédia</title>
+
+<script language="JavaScript">
+
+<!--
+
+function ujablak() {
+ html = window.open("","","resizable=1,scrollbars=1,screenx=50,screenY=50");
+}
+function updatewin(input_form) {
+html.document.open("text/html");
+html.document.write(input_form);
+html.document.close()
+}
+// -->
+
+</script>
+<base target="_blank">
+</head>
+
+
+
+<body link="#0000FF" bgcolor="#F4FEFF" background="../../images/bg1.gif">
+  <table border="0" cellpadding="5" cellspacing="0" width="100%" background="../../images/bg2.gif" bgcolor="#003366">
+    <tr>
+      <td align="center"><b><font color="#FFFFFF" face="Arial" size="3">Multimédia</font></b></td>
+    </tr>
+  </table>
+  <table border="0" width="100%" bgcolor="#F4FEFF" cellspacing="0" cellpadding="5">
+
+    <tr>
+
+      <td width="100%">
+
+
+<script language="JavaScript">
+<!--
+//-
+document.write('<h5><p align="Right"> Utolsó módosítás: ')
+document.write(document.lastModified)
+document.write('</p></h5>')
+// -->
+</script>
+
+
+<p>&nbsp;<font face="Arial" size="2">Azt már láttuk, hogy a multimédia egyik nagyon
+fontos elemét, a képet hogyan tudjuk beilleszteni az oldalainkba. A következõkben
+nézzük meg, hogy hangok, illetve mozgóképek elhelyezésére milyen lehetõségeink
+vannak a különbözõ böngészõkben.&nbsp; (már eddig is tapasztalhattuk,
+hogy a különbözõ böngészõk sok esetben kisebb-nagyobb eltérésekkel&nbsp;
+jelenítik meg oldalainkat. Ez a probléma a multimédia témakörben - ahogy látni
+fogjuk- halmozottan jelentkezik.)</font></p>
+
+
+
+<p><b><font face="Arial" size="3">Animált gifek</font><font face="Arial" size="2"><br>
+<br>
+</font>
+</b><font face="Arial" size="2">Ha valamilyen animációt szeretnénk az oldalunkon elhelyezni, a legegyszerûbb
+ha animált gif formátumot használunk. Az animált GIF gyakorlatilag egy több képkockát (frame) tartalmazó képformátum, ahol a különbözõ képek megjelenése között megadott idõ telik el. (ez az idõ
+a grafikai programok többségében beállítható)&nbsp;</font></p>
+<p><font face="Arial" size="2">Az animált gif formátumú képet a szokásos módon
+illeszthetjük be az oldalba.&nbsp;</font></p>
+<table border="1">
+  <tr>
+    <td><font face="Arial" size="2">&lt;img border=&quot;0&quot; src=&quot;htmlspeci.gif&quot;
+      width=&quot;400&quot; height=&quot;60&quot;&gt;</font></td>
+    <td><img border="0" src="arrow.gif" width="18" height="17"></td>
+    <td><img border="0" src="htmlspeci.gif" width="400" height="60"></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#F3DFB4"><img border="0" src="../figyelem.gif" width="53" height="47"></td>
+    <td bgcolor="#FFFFFF"><font face="Arial" size="2">A
+nagyméretû képek, hangok és animációk használatát kerüljétek, mert az oldal letöltését
+nagymértékben lelassítják.&nbsp;</font></td> 
+  </tr> 
+</table> 
+ 
+
+<hr>
+<p><b><font face="Arial" size="3">Hangok a weboldalon</font></b></p>
+<p><font face="Arial" size="2">Bár a HTML nyelv&nbsp; lehetõséget ad a háttérhangok
+használatára, jól gondoljuk meg, hogy valóban használni akarjuk-e, mivel a
+látogatók többségét inkább idegesíti, mint szórakoztatja ez a lehetõség.&nbsp;&nbsp;</font></p>
+<p><font face="Arial" size="2">Ha mégis a háttérhang használata mellett döntöttünk, akkor a <b>BGSOUND</b> taget kell használnunk az oldal
+HEAD részében.</font></p>
+<p><font face="Arial" size="2">A <b>BGSOUND</b> tag paraméterei:</font></p>
+<table border="1" cellpadding="3" width="600">
+  <tr>
+    <td width="86"><font face="Arial" size="2"><b>SRC</b></font></td>
+    <td width="492"><font face="Arial" size="2">A&nbsp; file neve (.wav, .au,
+      .mid kiterjesztésû lehet)</font></td>
+  </tr>
+  <tr>
+    <td width="86"><font face="Arial" size="2"><b>LOOP</b></font></td>
+    <td width="492"><font face="Arial" size="2">A lejátszások száma, vagy
+      pedig végtelen (&quot;infinite&quot;)<br>
+      </font></td>
+  </tr>
+  <tr>
+    <td width="588" colspan="2"><font face="Arial" size="2">Ha pl. kétszer
+      szeretnénk lejátszani, akkor a&nbsp;<b> loop=&quot;2&quot; </b>paramétert
+      használjuk.<br>
+      Ha a hangot folyamatosan ismétlõdve szeretnénk lejátszani a <b>loop=&quot;infinite&quot;</b>
+      paramétert használhatjuk.</font></td>
+  </tr>
+</table>
+<p><font face="Arial" size="2">A fenti megoldást csak az Internet
+Explorer böngészõ támogatja. A Netscape böngészõt használóknak más
+formátumban kell megadni a háttérhangot.&nbsp;</font></p>
+<p><b><font face="Arial" size="2">&lt;EMBED SRC=&quot;a hangfile neve&quot; AUTOSTART=TRUE HIDDEN=TRUE ></font></b></p>
+
+
+
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#F3DFB4"><img border="0" src="../figyelem.gif" width="53" height="47"></td>
+    <td bgcolor="#FFFFFF"><font face="Arial" size="2" color="#FF0000">Sajnos még ez sem garantálja,
+hogy valóban lejátszódik a hang, ugyanis ehhez az is szükséges, hogy a
+Netscape rendelkezzen a hang lejátszására alkalmas plugin-el</font></td>  
+  </tr>  
+</table>  
+  
+ 
+
+<p><font face="Arial" size="2">Ha folyamatos lejátszást szeretnénk, a fenti kódot
+ki kell egészíteni a <b>LOOP=TRUE</b> paraméterrel. Így tehát a kód a következõképpen
+néz ki:</font></p>
+<p><font face="Arial" size="2"><b>&lt;EMBED SRC=&quot;a hangfile neve&quot; AUTOSTART=TRUE HIDDEN=TRUE
+LOOP=TRUE></b></font></p>
+<p><font size="2" face="Arial"><b>Most próbáljuk ki a következõ kódrészletet,
+melynek <a href="pl1.htm">itt látható</a> az eredménye:<br>
+</b>
+(az oldal egy háttérképet, háttérhangot és egy animált gifet tartalmaz)</font></p>
+<p><font face="Arial" size="2">&lt;html><br>
+&lt;head><br>
+&lt;bgsound src="x_files.mid" loop="1"><br>
+<b><font color="#800000">Itt adjuk meg az Internet explorert használóknak a háttérhangot</font></b><br>
+&lt;/head><br>
+&lt;body background="xfilebac.gif"><br>
+&lt;EMBED SRC="x_files.mid" AUTOSTART=TRUE HIDDEN=TRUE ><br>
+<b><font color="#800000">Itt pedig ugyanezt a háttérhangot megadjuk a Netscape
+böngészõt&nbsp; használóknak&nbsp;<br>
+</font></b>&lt;p align="center">&lt;img src="xfiles.gif" width="152" height="114">&lt;/p><br>
+<font color="#800000"><b>Az xfiles.gif file egy animált gif file, amely az x
+akták sorozat fõcímét tartalmazza.</b></font><br>
+&lt;/body><br>
+&lt;/html>&nbsp;</font></p>
+
+
+
+<p><font face="Arial" size="2"><b>A kódot az alábbi ablakban módosíthatod:</b></font></p>
+
+
+
+<form name="u1">
+    <p><font face="Arial" size="2">
+ <textarea name="forras" rows="9" cols="82">&lt;html&gt;
+&lt;head&gt;
+&lt;bgsound src=&quot;x_files.mid&quot; loop=&quot;1&quot;&gt;
+&lt;/head&gt;
+&lt;body background=&quot;xfilebac.gif&quot;&gt;
+&lt;EMBED SRC=&quot;x_files.mid&quot; AUTOSTART=TRUE HIDDEN=TRUE &gt;
+&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;xfiles.gif&quot;
+width=&quot;152&quot; height=&quot;114&quot;&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</textarea></font></p>
+    <p><font face="Arial" size="2">
+<input type="button" value="Megnézem" onclick="ujablak(); updatewin(u1.forras.value)"> 
+<input type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+
+
+</td>
+
+
+    </tr>
+
+    <tr>
+
+      <td width="100%"><font face="Arial" size="2" color="#008000"><b>Feladat: Módosítsd
+        a fenti kódot úgy, hogy (elvileg) mindkét böngészõben folyamatosan hallható
+        legyen a háttérhang.</b></font>
+        <p><font face="Arial" size="2">A <b>bgsound</b> és az <b>embed</b> tag
+        együttes alkalmazása azonban sok esetben hibaüzenetet eredményez, így
+        az lenne a jó megoldás, ha az embed taget Netscape böngészõvel, a
+        bgsound taget az IE böngészõvel használnánk. A következõ kódrészlet
+        ebben segít nekünk.&nbsp;</font></p>
+        <p><font face="Arial" size="2">&lt;SCRIPT TYPE="text/javascript"><br>
+  &lt;!--&nbsp;<br>
+  var filename=&quot;<font color="#FF0000">ide jön a hangfile neve</font>&quot;;<br>
+  if (navigator.appName == "Microsoft Internet Explorer")<br>
+      document.writeln ('&lt;BGSOUND SRC="' + filename + '">');<br>
+  else if (navigator.appName == "Netscape")<br>
+      document.writeln ('&lt;EMBED SRC=&quot; ' + filename + '" AUTOSTART=TRUE </font>
+      <font face="Arial" size="2">HIDDEN=TRUE<b>
+        </b></font><font face="Arial" size="2">&gt;');<br>
+  // --><br>
+  &lt;/SCRIPT><br>
+  &lt;NOSCRIPT><br>
+  &lt;BGSOUND SRC=&quot;<font color="#FF0000">ide jön a hangfile neve</font>&quot;&gt;<br>
+  &lt;/NOSCRIPT&gt;</font></p>
+        <p><font face="Arial" size="2">A script leellenõrzi, hogy MS IE böngészõt
+        használunk-e, ha igen, akkor a megadott hangfilet a BGSOUND tag , ha
+        Netscape-t használunk, akkor pedig az EMBED segítségével illeszti be
+        a kódba.&nbsp;</font></p><p><b><font face="Arial" size="3">Videoclip beillesztése</font></b></p>
+        <p><font face="Arial" size="2">Video állományok beillesztésénél Netscape esetén szintén az Embed taget
+        használhatjuk, de az eredmény korántsem garantált. Intenet Explorer esetén&nbsp;a jól
+        ismert <b>IMG</b> taget kell használnunk a következõ paraméterekkel.&nbsp;</font></p>
+<table border="1" cellpadding="3" width="600">
+  <tr>
+    <td width="113"><font face="Arial" size="2"><b>DYNSRC</b></font></td>
+    <td width="465"><font face="Arial" size="2">A&nbsp; file neve (.mpg, .vrml,
+      .avi kiterjesztésû lehet)</font></td> 
+  </tr> 
+  <tr>
+    <td width="113"><font face="Arial" size="2"><b>LOOP</b></font></td>
+    <td width="465"><font face="Arial" size="2">A lejátszások száma (szám
+      vagy &quot;infinite&quot;)</font></td> 
+  </tr> 
+  <tr>
+    <td width="113"><font face="Arial" size="2"><b>LOOPDELAY</b></font></td>
+    <td width="465"><font face="Arial" size="2">Két lejátszás között ennyi
+      ezredmásodperc telik el (ha Internet Explorert használsz, ugyanis csak
+      ez támogatja, de annál sem mindig mûködik :-))</font></td> 
+  </tr> 
+  <tr>
+    <td width="113"><font face="Arial" size="2"><b>START</b></font></td>
+    <td width="465"><font face="Arial" size="2">azt határozhatjuk meg, hogy mikor induljon el a videoklip,
+      amikor az oldal betöltõdik (</font><font face="Arial" size="2"><b>fileopen),
+      </b>vagy<b>&nbsp;</b></font><font face="Arial" size="2"> amikor a kép fölé visszük az egeret
+      (<b>mouseover</b>)</font></td> 
+  </tr> 
+</table> 
+<form name="u2">
+    <p><font face="Arial" size="2">
+ <textarea name="forras" rows="8" cols="82">
+ &lt;html&gt;
+&lt;head&gt;
+&lt;/head&gt;
+&lt;body bgcolor="#BCD7EB"&gt;
+&lt;img dynsrc="csiz.mpeg" width="384" height="288" start="mouseover" loop="2" loopdelay="50000"&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</textarea></font></p>
+    <p><font face="Arial" size="2">
+<input type="button" value="Megnézem" onclick="ujablak(); updatewin(u2.forras.value)"> 
+<input type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+        <p>&nbsp;<font face="Arial" size="2">A fenti lehetõségekbõl látszik, hogy
+        a HTML multimédiás lehetõségei eléggé kezdetlegesek, illetve erõsen
+        böngészõfüggõk. Ezért az igazi multimédiás oldalak nem a HTML
+        lehetõségeit használják ki, hanem pl. a Flash lehetõségeit. Lássunk
+        erre is egy kisebb <a href="fatc-game-e.html">példát</a>. (Megtekintéséhez
+        a Flash
+        plugin szükséges)<br>
+        (a fenti játékkal megtanulhatjuk, hogy Mike Oldfield milyen algoritmus
+        szerint üti a csõharangokat :-))<br>
+        </font></p>
+        <p><font face="Arial" size="2">A Flash-el kapcsolatban további példákat,
+        leírásokat találtok a <a href="http://www.swf.hu/">http://www.swf.hu/</a>
+        címen.</font></p>
+        <p>&nbsp;</td>
+
+    </tr>
+
+
+  </table>
+
+
+
+<p>&nbsp;</p>
+
+</body>
+
+</html>
+

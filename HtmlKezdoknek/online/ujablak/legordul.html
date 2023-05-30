@@ -1,0 +1,211 @@
+<HTML>
+<HEAD>
+<TITLE>Legördülõ menü generátor</TITLE>
+<META HTTP-EQUIV="The JavaScript Source" CONTENT = "no-cache">
+<SCRIPT LANGUAGE="JavaScript">
+<!--  Begin
+function generate(form){
+var txt = '<!-- A kódot illeszd be a HTML oldalad Body részébe  -->\r\n\r\n'
++ '<BODY>\r\n\r\n'
++ '<!-- Eredeti script:  Ricocheting (ricocheting@hotmail.com)  -->\r\n'
++ '<!-- Web oldal:  http://free.prohosting.com/~ric  -->\r\n\r\n'
+
+if (document.jump.go[0].checked) {
+txt += "<form name=\"jump\">\n<select name=\"menu\" onChange=\"location=document.jump.menu.options[document.jump.menu.selectedIndex].value;\" value=\"OK\">\n";
+}
+if (document.jump.go[1].checked) {
+txt += "<form name=\"jump\">\n<select name=\"menu\">\n";
+var Button = "<input type=\"button\" onClick=\"location=document.jump.menu.options[document.jump.menu.selectedIndex].value;\" value=\"OK\">\n";
+}
+if (document.jump.go[2].checked) {
+txt += "<form name=\"jump\">\n<script>\nfunct" + 
+"ion jumpMenu(){\nlocation=document.jump.menu.options[document.jump.menu.selectedIndex].value;\n}\n" +
+"</sc" + "ript>\n<select name=\"menu\">\n";
+var Button = "<a href=\"Javascript:jumpMenu()\">"+
+"<IMG SRC=\""+document.jump.image.value+"\" border=0></a>\n";
+}
+for (jig = 5; jig <= 24; jig = jig + 2) {
+if (form[jig].value)
+{
+   txt += "<option";
+   if (form[jig+1].value)
+   { 
+   txt += " value=\""+form[jig+1].value+"\"";
+   }
+   else
+   {
+   txt += " value=\"#\"";
+   }
+   txt += ">"+form[jig].value+"</option>\n";
+}
+
+}
+
+if (document.jump.go[0].checked) {
+txt += "</select>\n</form>\n";
+}
+if (document.jump.go[1].checked) {
+txt += "</select>\n"+Button+"</form>\n";
+}
+if (document.jump.go[2].checked) {
+txt += "</select>\n"+Button+"</form>\n";
+  }
+document.mail.source.value=txt;
+}
+
+function View(text) {
+msg=open("","DisplayWindow","menubar=1,width=300,height=100");
+msg.document.write(text);
+}
+// End -->
+</SCRIPT>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff vlink=#0000ff background="bg2.gif">
+
+<P>
+<center>
+
+<BASEFONT SIZE=3>
+
+<hr>
+
+<center>
+<form name="jump">
+<table border="0" width="90%"><tr><td width=332>
+<div align="center">
+  <center>
+<table border="1" width="738" bgcolor="#ECF1FF"><tr>
+<td align="center" colspan=2 width="728">
+<font size=+2>Legördül&#337; menü generátor</font>
+</td></tr>
+<tr>
+<td colspan=2 width="728"> 
+<br>
+</td>
+</tr>
+<tr align="center">
+<td colspan=2 align=center width="728">
+<b>
+
+Válaszd ki a legördülõ menü tulajdonságait, és töltsd ki a hiányzó mezõket!</b></td>
+</tr>
+<tr>
+<td colspan=2 align=left width="728">
+<input type="radio" name="go" checked>&nbsp; A kiválasztott oldal azonnali betöltése<br>
+<input type="radio" name="go">&nbsp; Az <input type="button" value="OK"> gomb használata<br>
+<input type="radio" name="go">&nbsp; Kép használata gombként (a kép URL-ét
+add meg!)
+<input type="text" name="image" value="">
+</td>
+</tr>
+<tr align="center">
+<td colspan=2 width="728"></td>
+</tr>
+<tr align="center">
+<td colspan=2 align=center width="728">
+<b>Menüpontok:</b></td>
+</tr>
+<tr align="center">
+<td width=158>
+<strong>Szövege</strong></td>
+<td width=564>
+<strong>URL megadása</strong></td>
+</tr>
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text1" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url1" size="30" value="http://"></td>
+</tr>
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text2" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url2" size="30" value="http://"></td>
+</tr>		
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text3" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url3" size="30" value="http://"></td>
+</tr>
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text4" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url4" size="30"></td>
+</tr>
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text5" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url5" size="30"></td>
+</tr>
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text6" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url6" size="30"></td>
+</tr>
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text7" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url7" size="30"></td>
+</tr>
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text8" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url8" size="30"></td>
+</tr>
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text9" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url9" size="30"></td>
+</tr>
+<tr align="center">
+<td bgcolor="#E4E4E4" width="158">
+<input type="text" name="text10" size="20"></td>
+<td bgcolor="#E4E4E4" width="564">
+<input type="text" name="url10" size="30"></td>
+</tr>
+<tr>
+<td colspan="2" align="center" width="728">
+<input type="button" class="button" value="Kész" onClick="generate(this.form)">
+<input type="reset" class="button" value="Töröl">
+</td>
+</tr>
+</table>
+  </center>
+</div>
+</td>
+</tr>
+</table>
+<br><br>
+<font color="#FFFFFF">
+Forráskód:</font>
+</form>
+</center>
+
+<p>
+<center>
+<form name="mail" ">
+<input type=hidden name=scriptname value="Drop Down Menu Generator">
+<table bgcolor="dedfdf" border="2" cellpadding="4" width=400>
+<tr><td align=center>
+<input type="button" class="button" value="Megnézem az eredményt!" name="DOC" onClick="View(this.form.source.value);">
+<p>
+<textarea name="source" rows=12 cols=80></textarea><br>
+
+<font size="2" face="arial">Másold ki a kódot a HTML oldaladba!</font><br><br>
+</table>
+</form>
+</center>
+<!--content_stop-->
+
+
+</CENTER>
+</body>

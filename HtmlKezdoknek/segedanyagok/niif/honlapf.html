@@ -1,0 +1,527 @@
+<head>
+<title>Hogyan készítsünk saját honlapot a Weben?</title>
+</head>
+
+<body bgcolor="ffffee">
+
+<center>
+<a href="honlapk.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlapp.html">Következô fejezet</a>
+</center>
+
+<hr>
+
+<h2>Függelék</h2>
+
+<a name="html"></a>
+<h3>HTML leírók</h3>
+
+<b>A lapszerkezet</b>
+<ul>
+<li><b>&lt;html&gt; ... &lt/html&gt;</b> A lap HTML része. (Általában az elsô sortól az utolsóig.)
+<li><b>&lt;head&gt; ... &lt/head&gt;</b> Fejlécinformációk.
+<li><b>&lt;body&gt; ... &lt/body&gt;</b> A lap törzse. 
+<ul>
+<li><b>background=(file|url)</b> Háttérkép.
+<li><b>bgcolor=XXXXXX</b> Háttérszín.
+<li><b>text=XXXXXX</b> Szövegszín.
+<li><b>link=XXXXXX</b> Meg nem nézett link színe.
+<li><b>vlink=XXXXXX</b> Megnézett link színe.
+<li><b>alink=XXXXXX</b> Épp most kiválasztott link színe.
+</ul>
+<li><b>&lt;!-- ... --&gt;</b> Megjegyzés.
+</ul>
+
+<b>Keretek</b> 
+<ul>
+<li><b>&lt;frameset&gt; ... &lt/frameset&gt;</b> Keretleírás. 
+<ul>
+<li><b>rows="p1,p2,...,*"</b> Osztás vízszintes vonallal a megadott pixel(ek)nél.
+<li><b>cols="p1,p2,...,*"</b> Osztás függôleges vonallal a megadott pixel(ek)nél.
+</ul>
+<li><b>&lt;frame&gt;</b> Ablak a kereten belül. 
+<ul>
+<li><b>src=(file|url)</b> A lap forrása.
+<li><b>name=(file|url)</b> Az ablak neve.
+<li><b>marginheight=[pixel]</b> A margó magassága.
+<li><b>marginwidth=[pixel]</b> A margó szélessége.
+<li><b>scrolling=(yes|no|auto)</b> Az ablak görgethetô (mindig|soha|ha nagy).
+<li><b>noresize</b> Az ablak nem méretezhetô át.
+</ul>
+<li><b>&lt;noframes&gt; ... &lt/noframes&gt;</b> Kereteket nem kezelô böngészôknek szóló rész.
+</ul>
+
+<b>Fejlécelemek</b> 
+<ul>
+<li><b>&lt;title&gt; ... &lt/title&gt;</b> A fejlécben megjelenô szöveg.
+</ul>
+
+<b>Címsorok</b> 
+<ul>
+<li><b>&lt;h1&gt; ... &lt;/h1&gt;</b> Cím. További címjelek: h2, h3, h4, h5, h6. 
+<ul>
+<li><b>align=(left|center|right)</b> Elhelyezés.
+</ul>
+</ul>
+
+<b>Elhatárolók</b> 
+
+<ul>
+<li><b>&lt;p&gt; ... &lt;/p&gt;</b> Bekezdés. 
+<ul>
+<li><b>align=(left|center|right)</b> Elhelyezés.
+</ul>
+<li><b>&lt;br&gt;</b> Sordobás. 
+<li><b>&lt;nobr&gt; ... &lt;/nobr&gt;</b> Nem engedi megtörni a sort a lap szélén.
+<li><b>&lt;wbr&gt; ... &lt;/wbr&gt;</b> A szöveg újsor karakterei hatásosak.
+<li><b>&lt;hr&gt;</b> Határolóvonal. 
+<ul>
+<li><b>size=[pixel]</b> Vastagság.
+<li><b>align=(left|right|center)</b> Elhelyezés.
+<li><b>width=([pixel]|[%])</b> Hossz.
+</ul>
+</ul>
+
+<b>Táblázatok</b>
+
+<ul>
+<li><b>&lt;table&gt; ... &lt;/table&gt;</b> A táblázat.
+<ul>
+<li><b>border=[pixel]</b> Keretszélesség.
+<li><b>width=([pixel]|[%])</b> Táblázatszélesség.
+</ul>
+<li><b>&lt;caption&gt; ... &lt;/caption&gt;</b> Táblajegyzet.
+<ul>
+<li><b>align=(left|right|center)</b> Elhelyezés.
+</ul>
+<li><b>&lt;tr&gt; ... &lt;/tr&gt;</b> Sorváltás a táblázatban.
+<ul>
+<li><b>align=(left|right|center)</b> Elhelyezés.
+<li><b>valign=(top|middle|bottom|baseline)</b> Elhelyezés cellán belül.
+</ul>
+<li><b>&lt;th&gt; ... &lt;/th&gt;</b> Oszlopváltás a táblázatban kiemelt szöveggel.
+<ul>
+<li><b>align=(left|right|center)</b> Elhelyezés.
+<li><b>valign=(top|middle|bottom|baseline)</b> Elhelyezés cellán belül.
+<li><b>nowrap</b> Nem engedi a tördelést.
+<li><b>colspan=[columns]</b> Több oszlopnyi széles bejegyzés.
+<li><b>rowspan=[rows]</b> Több sornyi hosszú bejegyzés.
+<li><b>width=([pixel]|[%])</b> Cellaszélesség.
+</ul>
+<li><b>&lt;td&gt; ... &lt;/td&gt;</b> Oszlopváltás a táblázatban.
+<ul>
+<li><b>align=(left|right|center)</b> Elhelyezés.
+<li><b>valign=(top|middle|bottom|baseline)</b> Elhelyezés cellán belül.
+<li><b>nowrap</b> Nem engedi a tördelést.
+<li><b>colspan=[columns]</b> Több oszlopnyi széles bejegyzés.
+<li><b>rowspan=[rows]</b> Több sornyi hosszú bejegyzés.
+<li><b>width=([pixel]|[%])</b> Cellaszélesség.
+</ul>
+</ul>
+
+<b>Listák</b>
+
+<ul>
+<li><b>&lt;ol&gt; ... &lt;/ol&gt;</b> Számozott lista.
+<li><b>&lt;ul&gt; ... &lt;/ul&gt;</b> Számozatlan lista.
+<li><b>&lt;menu&gt; ... &lt;/menu&gt;</b> Menülista.
+<li><b>&lt;dir&gt; ... &lt;/dir&gt;</b> Könyvtárlista alak.
+<li><b>&lt;li&gt;</b> Listaelem.
+<ul>
+<li><b>type=[A|a|I|i|1]</b> Elemjelölô alakja (számozott listáknál).
+<li><b>type=[disc|circle|square]</b> Elemjelölô alakja (számozatlan listáknál).
+</ul>
+<li><b>&lt;dl&gt; ... &lt;/dl&gt;</b> Definíció.
+<ul>
+<li><b>&lt;dt&gt;</b> Definíció fejrésze.
+<li><b>&lt;dd&gt;</b> Definíció törzsrésze.
+</ul>
+</ul>
+
+<b>Tördelés</b>
+
+<ul>
+<li><b>&lt;pre&gt; ... &lt;/pre&gt;</b> Elôre tördelt szöveg.
+<ul>
+<li><b>width=[chars]</b> Szöveg szélessége betûben.
+</ul>
+</ul>
+
+<b>Kapcsolatok</b>
+
+<ul>
+<li><b>&lt;a&gt; ... &lt;/a&gt;</b> Kapcsolatjelzés.
+<ul>
+<li><b>href=(file|url)</b> Link.
+<li><b>name=</b> Címke.
+</ul>
+<li><b>&lt;img&gt;</b> Beépített kép jelzése.
+<ul>
+<li><b>src=(file|url)</b> A kép forrása.
+<li><b>href=(file|url)</b> Link.
+<li><b>align=(left|right|top|texttop|middle|absmiddle|baseline|bottom|absbottom)</b> Elhelyezés.
+<li><b>width=([pixel]|[%])</b> Képszélesség.
+<li><b>height=([pixel]|[%])</b> Képmagasság.
+<li><b>vspace=([pixel]|[%])</b> Kép környezetének szélessége.
+<li><b>hspace=([pixel]|[%])</b> Kép környezetének magassága.
+<li><b>border=[pixel]</b> Keretszélesség.
+<li><b>usemap=(file|url)</b> Linktérkép kapcsolat.
+<ul>
+<li><b>&lt;map&gt; ... &lt;/map&gt;</b> Linktérkép.
+<li><b>&lt;area&gt;</b> Tartomány.
+<ul>
+<li><b>shape=rect</b> Téglalap alakú tartomány.
+<li><b>coords="x1,y1,x2,y2"</b> Koordináták.
+<li><b>href=(file|url)</b> Link.
+<li><b>nohref</b> Inaktív terület.
+</ul>
+</ul>
+</ul>
+</ul>
+
+<b>Levelezési cím</b>
+
+<ul>
+<li><b>&lt;address&gt; ... &lt;/address&gt;</b> Levelezési cím.
+</ul>
+
+<b>Stílusok</b>
+
+<ul>
+
+<li><EM>Hangs&uacute;lyos:</EM> &lt;EM&gt;Hangs&uacute;lyos&lt;/EM&gt;
+<li><cite>Id&eacute;zet:</cite> &lt;CITE&gt;Id&eacute;zet&lt;/CITE&gt;
+<li><VAR>V&aacute;ltoz&oacute; neve:</VAR> &lt;VAR&gt;V&aacute;ltoz&oacute; neve&lt;/VAR&gt;
+<li><STRONG>Er&ocirc;sen hangs&uacute;lyos:</STRONG> &lt;STRONG&gt;Er&ocirc;sen hangs&uacute;lyos&lt;/STRONG&gt;
+<li><sub>Als&oacute; index:</sub> &lt;SUB&gt;Als&oacute; index&lt;/SUB&gt;
+<li><sup>Fels&ocirc; index:</sup> &lt;SUP&gt;Fels&ocirc; index&lt;/SUP&gt;
+<li><tt>Forr&aacute;sk&oacute;d:</tt> &lt;CODE&gt;Forr&aacute;sk&oacute;d&lt;/CODE&gt;
+<li><SAMP>P&eacute;lda:</SAMP> &lt;SAMP&gt;P&eacute;lda&lt;/SAMP&gt;
+<li><KBD>Beg&eacute;pelt sz&ouml;veg:</KBD> &lt;KBD&gt;Beg&eacute;pelt sz&ouml;veg&lt;/KBD&gt;
+<li><big>Nagy&iacute;tott ki&iacute;r&aacute;s:</big> <samp>&lt;BIG></samp>Nagy&iacute;tott ki&iacute;r&aacute;s<samp>&lt/BIG></samp>
+<li><small>Kicsiny&iacute;tett ki&iacute;r&aacute;s:</small> <samp>&lt;SMALL></samp>Kicsiny&iacute;tett ki&iacute;r&aacute;s<samp>&lt;/SMALL></samp>
+<li><FONT size=7>H&eacute;t</font>
+    <font size=6>egyre</font>
+    <font size=5>kisebb</font>
+    <font size=4>k&uuml;l&ouml;nb&ouml;z&ocirc;</font>
+    <font size=3>m&eacute;ret&ucirc;</font>
+    <font size=2>bet&ucirc;k&eacute;szlet</font>
+    <font size=1>v&aacute;laszthat&oacute;:</font><br>
+    <tt>&lt;FONT SIZE=</tt>[+|-]m&eacute;ret<tt>
+     COLOR="</tt>[RRGGBB]|[sz&iacute;n neve]<tt>"> ... &lt;/FONT&gt;</tt>.
+<li><BASEFONT size=-2>Alap&eacute;rtelmezett bet&ucirc;m&eacute;ret:</basefont> &lt;BASEFONT size=-2>m&eacute;ret&lt;/BASEFONT>
+</ul>
+
+<a name="spec"></a>
+<h3>Különleges betûk leírói</h3>
+
+<pre>
+&amp;quot;   &#34; idézôjel               &amp;macr;   &#175; felsô vonal            
+&amp;amp;    &#38; kereskedelmi "és"      &amp;deg;    &#176; fok                    
+&amp;lt;     &#60; kisebb, mint           &amp;plusmn; &#177; plusz-minusz jel            
+&amp;gt;     &#62; nagyobb, mint          &amp;sup2;   &#178; négyzet         
+&amp;nbsp;   &nbsp; nem vágható szóköz     &amp;sup3;   &#179; köb                      
+&amp;iexcl;  &#161; fordított felkiáltójel &amp;acute;  &#180; felsôvesszô              
+&amp;cent;   &#162; amerikai cent          &amp;micro;  &#181; mikro                     
+&amp;pound;  &#163; angol font             &amp;para;   &#182; bekezdéshatároló         
+&amp;curren; &#164; általános pénzjel      &amp;middot; &#183; kis középsô pont         
+&amp;yen;    &#165; japán yen              &amp;cedil;  &#184; "farkinca"               
+&amp;brvbar; &#166; függôleges vonal       &amp;sup1;   &#185; elsô hatvány             
+&amp;sect;   &#167; paragrafusjel          &amp;ordm;   &#186; hímnem                   
+&amp;uml;    &#168; kétpont (umlaut)       &amp;raquo;  &#187; belsô idézôjel (vég)   
+&amp;copy;   &#169; copyright              &amp;frac14; &#188; egynegyed                     
+&amp;ordf;   &#170; nônem jele             &amp;frac12; &#189; fél                           
+&amp;laquo;  &#171; belsô idézôjel (kezdô) &amp;frac34; &#190; háromnegyed                   
+&amp;not;    &#172; logikai nem            &amp;iquest; &#191; fordított kérdôjel            
+&amp;shy;    &#173; kötôjel                &amp;times;  &#215; szorzásjel                    
+&amp;reg;    &#174; kereskedelmi védjel    &amp;div;    &#247; osztásjel                     
+</pre>
+
+<a name="diacr"></a>
+<h3>Ékezetes betûk leírói</h3>
+
+<pre>
+&amp;AElig;  &AElig;    &amp;aelig;  &aelig;
+&amp;Aacute; &Aacute;    &amp;aacute; &aacute;
+&amp;Acirc;  &Acirc;    &amp;acirc;  &acirc;
+&amp;Agrave; &Agrave;    &amp;agrave; &agrave;
+&amp;Aring;  &Aring;    &amp;aring;  &aring;
+&amp;Atilde; &Atilde;    &amp;atilde; &atilde;
+&amp;Auml;   &Auml;    &amp;auml;   &auml;
+&amp;Ccedil; &Ccedil;    &amp;ccedil; &ccedil;
+&amp;ETH;    &ETH;    &amp;eth;    &eth;
+&amp;Eacute; &Eacute;    &amp;eacute; &eacute;
+&amp;Ecirc;  &Ecirc;    &amp;ecirc;  &ecirc;
+&amp;Egrave; &Egrave;    &amp;egrave; &egrave;
+&amp;Euml;   &Euml;    &amp;euml;   &euml;
+&amp;Iacute; &Iacute;    &amp;iacute; &iacute;
+&amp;Icirc;  &Icirc;    &amp;icirc;  &icirc;
+&amp;Igrave; &Igrave;    &amp;igrave; &igrave;
+&amp;Iuml;   &Iuml;    &amp;iuml;   &iuml;
+&amp;Ntilde; &Ntilde;    &amp;ntilde; &ntilde;
+&amp;Oacute; &Oacute;    &amp;oacute; &oacute;
+&amp;Ocirc;  &Ocirc;    &amp;ocirc;  &ocirc;
+&amp;Ograve; &Ograve;    &amp;ograve; &ograve;
+&amp;Oslash; &Oslash;    &amp;oslash; &oslash;
+&amp;Otilde; &Otilde;    &amp;otilde; &otilde;
+&amp;Ouml;   &Ouml;    &amp;ouml;   &ouml;
+              &amp;szlig;  &szlig;
+&amp;THORN;  &THORN;    &amp;thorn;  &thorn;
+&amp;Uacute; &Uacute;    &amp;uacute; &uacute;
+&amp;Ucirc;  &Ucirc;    &amp;ucirc;  &ucirc;
+&amp;Ugrave; &Ugrave;    &amp;ugrave; &ugrave;
+&amp;Uuml;   &Uuml;    &amp;uuml;   &uuml;
+&amp;Yacute; &Yacute;    &amp;yacute; &yacute;
+              &amp;yuml;   &yuml;
+</pre>
+
+<h4>Megjegyzés</h4>
+
+Ha kód szerint akarunk valamit beírni, úgy az &amp; jel után egy # jelet
+kell írnunk, majd a kódot decimálisan és ugyanúgy a ; jellel kell zárnunk, 
+mint más speciális jeleket.
+
+<a name="edit"></a>
+<h3>Szövegszerkesztôk UNIX alatt</h3>
+
+<h4>Pico</h4>
+
+Teljes képernyôs szövegszerkesztô, a kurzornyilak és a backspace
+(megfelelô terminálbeállítás esetén) használhatók. Egyéb 
+szerkesztôbillentyûk:
+<ul>
+<li>^X Kilépés mentéssel.
+<li>^C Kilépés mentés nélkül.
+<li>^R Másik állomány beemelése.
+<li>^W Keresés.
+<li>^Y Lapozás felfelé.
+<li>^V Lapozás lefelé.
+<li>^K Sortörlés.
+<li>^U Utoljára törölt sor visszahozása.
+<li>^O Mentés kilépés nélkül.
+<li>^6 Blokk kijelölés (utána ^K és ^U blokkáthelyezésre és duplikálásra
+használható)
+</ul>
+
+<h4>Joe</h4>
+
+Teljes képernyôs szövegszerkesztô, a kurzornyilak és a backspace
+(megfelelô terminálbeállítás esetén) használhatók. Egyéb 
+szerkesztôbillentyûk:
+
+<ul>
+<li>^KX Kilépés mentéssel.
+<li>^C Kilépés mentés nélkül.
+<li>^KR Másik állomány beemelése.
+<li>^KF Keresés.
+<li>^U Lapozás felfelé.
+<li>^V Lapozás lefelé.
+<li>^Y Sortörlés.
+<li>^- Utoljára törölt sor visszahozása.
+<li>^KD Mentés kilépés nélkül.
+<li>^KB ... ^KK Blokk kijelölés.
+<li>^KH Help. 
+</ul>
+
+<h4>Megjegyzés</h4>
+
+Számos egyéb szövegszerkesztô létezik még.
+
+<a name="rgb"></a>
+<h3>Színkódok</h3>
+<pre>
+                R G B                       R G B
+
+Fekete         #000000      Sötétszürke    #545454
+Kék            #0000A8      Halványkék     #5454FF
+Zöld           #00A800      Halványzöld    #54FF54
+Ciánkék        #00A8A8      Halványcián    #54FFFF
+Vörös          #A80000      Halványvörös   #FF5454
+Lila           #A800A8      Halványlila    #FF54FF
+Barna          #A85400      Sárga          #FFFF54
+Világosszürke  #A8A8A8      Fehér          #FFFFFF
+</pre>
+
+<h4>Megjegyzés</h4>
+
+A további színeket innen kiindulva könnyû kikeverni. Bizonyos megjelenítôk
+azonban nem képesek a 24bites színbontásra, ezek 16, 8 vagy 4 bitre alakítják
+át a kapott értékeket. Ügyeljünk arra, hogy egy ilyen konverzió nem tegye 
+olvashatatlanná lapunkat! (Nézzük meg egy 256 színû (VGA), vagy 
+szürkeárnyalatos (monoVGA) monitoron!)
+
+<a name="img"></a>
+<h3>Képmanipulátorok</h3>
+
+<h4>XV</h4>
+
+UNIX/X alatt futó program, eredetileg képnézegetônek készült. Indítása:
+<pre>
+xv &
+</pre>
+<b>FIGYELEM! Karakteres üzemmódban nem fut!</b>
+<p>
+<ul>
+
+<li><b>Kép betöltése</b><p>
+
+A <b>load</b> nyomógombot választva a megjelenô ablakban kell kiválasztanunk,
+vagy beírnunk a betöltendô kép nevét.<p>
+
+<li><b>Formátumkonverzió</b><p>
+
+Az XV a fôbb képformátumokat ismeri. A betöltött képet más formátumban
+a <b>Save</b> nyomógombot megnyomva lehet elmenteni. A megjelenô ablakban 
+a GIF,JPEG,... (változó feliratú) nyomógomb mögött található listával 
+módosíthatjuk a mentés formátumát. A program elvileg a kiterjesztést 
+automatikusan a helyesre állítja, ez azonban egy hiba miatt nincs mindig 
+így, ellenôrizni, esetleg javítani kell!<p>
+
+<li><b>Méretezés</b><p>
+
+Az <b>Image size</b> nyomógomb mögötti listában dupla, fél, stb. elôre 
+definiált méretet, vagy saját beállítást adhatunk meg. A képet ezek után
+még menteni kell!<p>
+
+<li><b>Vágás</b><p>
+
+Keretes képeket automatikusan körbeszab az <b>Autocrop</b>. Más esetben a
+képen a bal egérgomb egyszeri lenyomásával kezdhetünk téglalap alakú
+terület kijelölésébe. A gombot felengedve rögzül a terület, ezt azonban utólag
+a szélek elhúzásával még módosíthatjuk. A <b>Crop</b> mgnyomásával a vágás
+megtörténik, ezt az <b>Uncrop</b> még vissza tudja állítani.
+
+</ul>
+
+<h4>Photostyler</h4>
+
+Windows 3.x alatt futó program, kimondottan képek manipulálására. Indítása
+a megfelelô ikonra való kattintással történik.
+<p>
+<ul>
+
+<li><b>Kép betöltése</b><p>
+
+A <b>File</b> menü <b>Open</b> opcióját válasszuk ki, majd a megjelenô
+listából válasszuk ki a minket érdeklô képet.<p>
+
+<li><b>Formátumkonverzió</b><p>
+
+A betöltött képet a <b>File</b> menü <b>Save as</b> opciójával és a
+kívánt formátum kiválasztásával menthetjük el új formátumban.<p>
+
+<li><b>Méretezés</b><p>
+
+A betöltött képet a <b>Transform</b> menü <b>Resize</b> opciójával
+méretezhetjük át. A képet ezek után még menteni kell!<p>
+
+<li><b>Vágás</b><p>
+
+A lebegô ikontáblából válasszuk ki az ollót, majd a kivágandó képrészlet
+sarkától a bal egérgombot lenyomva folyamatosan húzzuk a kívánt terület
+kijelöléséig az egeret. A kijelölt területre duplán rákattintva a vágás
+megtörténik. Ezt a <b>Edit</b> menü <b>Undo</b> opciója tudja visszavonni.
+
+</ul>
+
+<h4>Graphic Workshop</h4>
+
+
+DOS alatt futó program, kimondottan képek manipulálására. Indítása:
+<pre>
+GWS.EXE
+</pre>
+<p>
+<ul>
+<li><b>Kép betöltése</b><p>
+
+A képernyõn látható listából a kurzornyilakkal keresünk rá a kívánt
+képre, majd ENTER.<p>
+
+<li><b>Formátumkonverzió</b><p>
+
+A kiválasztott képre <b>F2</b>-t ütve a megjelenõ ablakban választjuk ki új
+formátumot és ENTER.<p>
+
+<li><b>Méretezés</b><p>
+
+A kiválasztott képre <b>F8</b>-at ütve írhatjuk be a nagyítás illetve
+kicsinyítés mértékét százalékban, majd <b>F10</b>-re ezt véglegesítjük.
+A program ezután az általunk választott formátumban menti a képet.<p>
+
+<li><b>Vágás</b><p>
+
+A kiválasztott képre <b>F5</b>-öt ütve áttekintõ (fekete-fehér) kép jelenik
+meg. A kurzornyilakkal mozgathatjuk a vágás határait, a bal shifttel
+a bal oldali és felsõ, a jobb shifttel a jobb oldali és alsó
+határolóvonalat. <b>F10</b>-re ezt véglegesítjük. A program ezután az
+általunk választott formátumban menti a képet.<p>
+
+</ul>
+
+<h4>Megjegyzés</h4>
+
+Mindhárom program számos egyéb lehetôséggel rendelkezik, illetve más hasonló
+funkciójú programok is léteznek.
+
+<a name="gif"></a>
+<h3>GIF-manipulátorok</h3>
+
+<h4>Giftool</h4>
+
+A giftool váltottsoros letöltôdésû és áttetszô képeket állít elô.
+Használata:
+<ul>
+<pre>
+giftool [kapcsolók] [kép]
+giftool (-p|-c|-B) [kapcsolók] [képek]
+</pre>
+<p>
+<li>-B<p>Felülírja a bemeneti képet.<p>
+<li>-i<p>Váltottsoros képet állít elô.<p>
+<li>+i<p>Váltottsoros képbôl normál képet állít elô.<p>
+<li>-p<p>Információt ad a kép(ek)rôl.<p>
+<li>-c<p>Kiírja a képhez mellékelt megjegyzést.<p>
+<li>+c<p>Megjegyzést mellékel a képhez.<p>
+<li>-C<p>Törli a megjegyzést.<p>
+<li>-o<p>A kimeneti képállomány neve.<p>
+<li>-rgb name<p>Az áttetszôvé teendô szín neve.<p>
+<li>-rgb ##,##,##<p>Az áttetszôvé teendô szín RGB kódja.<p>
+<li>-###<p>Az áttetszôvé teendô szín sorszáma.<p>
+</ul>
+Példa:
+<ul>
+A könyvtár összes GIF képét váltottsorossá teszük:
+<pre>
+giftool -B -i *.gif
+</pre>
+</ul>
+
+<h4>Whirlgif</h4>
+
+A whirlgif animált képeket állít elô. Használata:
+<ul>
+<pre>
+whirlgif [-o kimenetikép] [-loop [számszor]] [-time #várakozás]
+         [-i listaállomány] kép1 [-time #várakozás] kép2 ...
+</pre>
+<li>-o<p>Az animált (kimeneti) kép neve.<p>
+<li>-loop<p>Az ismétlések száma (ha elmarad a szám, az végtelen ciklus).<p>
+<li>-time<p>Várakozási idô az egyes képek közt.<p>
+<li>-i<p>Az animáció fázisait tartalmazó lista neve.
+</ul>
+
+<hr>
+
+<center>
+<a href="honlapk.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlapp.html">Következô fejezet</a>
+</center>
+
+</body>

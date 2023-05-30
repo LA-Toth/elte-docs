@@ -1,0 +1,15 @@
+hello
+tizfaktor
+faktor
+lnko
+eukl
+nalattk
+newton
+
+Házi feladat:
+
+- Keressük meg a tökéletes számokat 1 és 10000 között.
+
+- Határozzuk meg pi közelítõ értékét az alábbi képlet alapján:
+  pi/2 = (2/1) * (2/3) * (4/3) * (4/5) * (6/5) * (6/7) ...
+

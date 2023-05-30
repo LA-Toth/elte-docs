@@ -1,0 +1,277 @@
+<head>
+<title>Hogyan készítsünk saját honlapot a Weben?</title>
+</head>
+
+<body bgcolor="ffffee">
+
+<center>
+<a href="honlap2.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap4.html">Következô fejezet</a>
+</center>
+
+<hr>
+
+<h2>Olvasnivalók</h2>
+
+Lehet tiszta lappal kezdeni a Hálózaton, de ha már egyszer valamit valamikor
+leírtunk, nem szívesen pötyögjük be újra. Azaz elôbb-utóbb elkövetkezik a
+
+<h3>Kész szövegek bevágása</h3>
+
+a lapba. A legegyszerûbb, ha van egy "primitív" szövegszerkesztôvel 
+elkészített, általában .txt jelzést viselô állományunk. Ha nincs benne
+ékezet (mert mondjuk angol nyelvû), akkor még jobb. Nincs más dolgunk, mint
+a szöveg elejére beírni: &lt;pre&gt; és a végére: &lt;/pre&gt;. Ezt a
+törzsbe beillesztjük és kész. Ugye milyen egyszerû?
+<p>
+Olcsó húsnak híg a leve: a <b>preformatted</b> (elôre tördelt)
+szövegek csúnyácskák és gyanúsan úgy néznek ki, mint egy program 
+forráslistája egy monitoron. Nem csoda, ezt a megoldást pont erre 
+találták ki! A böngészôprogramok ugyanis egyébként figyelmen kívül 
+hagyják az általunk beírt sorvégjeleket és tördelést, öntik a szöveget, 
+ahogy az az ablakba befér. Próbáljuk ki! Egy hosszabb .txt állományt 
+elôször zárjuk a <b>&lt;pre&gt;</b> és <b>&lt;/pre&gt;</b> jelek közé, 
+s nézzük meg:
+
+<pre>
+&lt;pre&gt;
+Hol az a dal,
+  Ami felkavar?
+Hol az a dal,
+  Ami vigasztal?
+Hol az a dal,
+  Ami egyszer észrevétlenül elveszett?
+&lt;/pre&gt;
+</pre>
+
+...majd töröljük ezt és gyönyörködjünk!
+<p>
+<tt>
+Hol az a dal,
+  Ami felkavar?
+Hol az a dal,
+  Ami vigasztal?
+Hol az a dal,
+  Ami egyszer észrevétlenül elveszett?
+</tt>
+<p>
+Ugye milyen szép? ;-) Jó, hogy láttuk, mert késôbb, ha valamiért 
+olvashatatlan betûfolyammá válik a lapunk, gyanakodhatunk arra, hogy valahol
+valamilyen HTML jelet elfelejtettünk!
+<p>
+Az elôre tördelt szövegekkel más baj is van: a böngészô nem mer hozzájuk 
+nyúlni, azaz, ha hosszabb a sor, mint amilyen széles az ablak, akkor nem
+látjuk az egészet -- tologathatjuk a görgetôsávot oda-vissza. Korlátozhatjuk
+persze a szélességét, de valaki bizonyosan annál is kisebb ablakot használ, 
+mint amit mi feltételezünk...
+<p>
+Ha viszont programok forráslistáját kell közölnünk, nehogy mást használjunk!
+Nincs annál reménytelenebb meló, mint egy precíz bekezdésekkel ellátott 
+forrásszöveget újraszerkeszteni! A böngészôk, hogy kihangsúlyozzák, itt 
+valami másról van szó, s nem közönséges szövegrôl, az elôre tördelt részeket 
+más, írógépszerû betûtípussal jelenítik meg.
+<p>
+Az ékezetekrôl még lesz szó, egyelôre csak annyit, hogy megvert a digitális
+mindenható minket többféle szabvánnyal is, ezek közül a <b>Latin-2</b> 
+megtûrt a weblapokon (éppen csak), minden más olvashatatlan! Van kiút,
+látni fogjuk.
+<p>
+Végezetül: nem lebecsülésként írtam az elején azt, hogy "primitív" 
+szövegszerkesztô! Ma ugyanis a WinWord is szövegszerkesztô programnak
+számít. "Primitív" az a szövegszerkesztô, amelyik bárhol olvasható,
+szerkesztôjelek nélküli, ún. <b>plain text</b> állományt állít elô.
+Azaz az állományban csak a szöveg van, semmi más. Nevezhetjük nyers
+szövegnek is.
+<p>
+Amennyiben nem nyers a szöveg, hanem már szépen tördelt valamelyik
+nagytudású programmal, akkor lépnek színre a
+
+<h3>Konverterek</h3>
+
+Annyiféle formátum van már, hogy az elképesztô! Reménytelen vállalkozás
+tehát univerzális átalakítót keresni vagy írni. Nem is érdemes. Léteznek
+eredményes kísérletek olyan állományformátumra, amely az összes elképzelhetô
+szerkesztési lehetôségre felkészült, ilyen például a <b>Rich Text Format</b> 
+(.rtf). 
+<p>
+Figyelem, ez a formátum közönséges halandó számára olvashatatlan! Olyan,
+mint egy lefordított program, csak itt a vastag betû, dôlt betû, ilyen betû,
+olyan betû van egységes "nyelvre" fordítva. A lényeg: ezt a formátumot a
+szövegszerkesztô programunknak ismernie illik! (A WinWord pl. ismeri.)
+<p>
+A már megszerkesztett szöveget tehát ebben a formátumban újra el kell
+mentenünk. Utána pedig keresni kell egy olyan programot, amelyik .rtf
+állományból .htm(l) állományt készít. Ilyen az <b>rtftohtm</b> nevû, FTP 
+archívumokból letölthetô shareware program. Használata egyszerû:
+<pre>
+rtftohtm valami.rtf
+</pre>
+A program elfogadhatóan dolgozik, amíg valami extra nem bukkan fel a 
+szövegben (pl. egy szöveggel körülöntött ábra), ezen biztosan elbukik majd.
+<p>
+Bevallom, ez nem is baj. A HTML leírások ugyanis csak támpontokat
+adnak a megjelenítésre és nem definiálják azt szigorúan. Azaz:
+<p>
+<b>A weblap megjelenése a böngészô beállításától is függ, semmi garancia
+nincs arra, hogy más is azt látja, amit mi!</b>
+<p>
+A weblapon nem lehet cél egy profi képesújság mérethelyes megvalósítása.
+Kész szövegeink tartalma a lényeg, a formát pedig igazítanunk kell a 
+lehetôségekhez, esetleg
+
+<h3>Kézzel szerkesztve</h3>
+
+Ha üres lappal indítunk, vagy ha már kész anyagot kell webre hangolni, akkor
+a megfelelô szerkesztési "utasításokat" magunk is elhelyezhetjük.
+<p>
+Láttuk már, hogy ezeket az "utasításokat" &lt; és &gt; jelek közé zártuk,
+ez minden esetben így van. Leírásukhoz kis- és nagybetû egyaránt megfelel,
+a kisbetû talán kényelmesebb, a nagybetû jobban látszik. Vannak jelek,
+amik párban állnak (zárni kell ôket), a bezáró egy / jellel többet 
+tartalmaz.
+<p>
+A szöveg bekezdéseinek elhatárolásához a <b>&lt;p&gt;</b> jelet használjuk. A
+bekezdéseken belül a szöveget a betûméret és az ablakszélesség 
+figyelembevételével szabadon tördeli a böngészôprogram, ám ennél a jelnél
+mindenképpen új sort kezd, a két bekezdés közt általában üres sort is hagy.
+<p>
+Ha szükséges, külön is kérhetjük az új sor kezdését (pl. párbeszédeknél) a
+<b>&lt;br&gt;</b> jelel. Ez üres sort nem hagy.
+<p>
+Ha a szövegben élesebb elhatárolást szeretnénk, úgy vonalat is húzhatunk a
+<b>&lt;hr&gt;</b> jelel.
+<p>
+Egy hosszabb szövegben valószínûleg fejezet és alfejezetcímek is 
+elôfordulnak, ezeket a <b>&lt;h1&gt;</b>, <b>&lt;h2&gt;</b>, ..., 
+<b>&lt;h6&gt;</b> jelekkel emelhetjük ki. Figyelem, ezt a jelzést 
+zárni kell! A <b>&lt;h1&gt;</b> párja a cím végén a <b>&lt;/h1&gt;</b>. 
+Az egyes a legnagyobb méretû betût adja, a hatos a legkisebbet. 
+Maga a szöveg a négyessel egyezô méretû, így az ötös és hatos 
+"címleírót" inkább speciális célra (pl. copyright jelzésére) használjuk.
+<p>
+Az amerikaiak balra igazítják a címeket, ha ez nem tetszik, a 
+<b>&lt;center&gt;</b> jellel kérhetjük a középreigazítást. Ezt a jelzést 
+is zárni kell! Összevonható, sôt illik is összevonni a címjelzôvel, ekkor 
+így alakul: <b>&lt;h1 align=center&gt;</b> és értelemszerûen elég csak így 
+zárni: <b>&lt;/h1&gt;</b>.
+<p>
+A szövegen belül <b>vastag</b> és <i>dôlt</i> betûs kiemeléssel élhetünk,
+erre a <b>&lt;b&gt;</b> és az <b>&lt;i&gt;</b> jelek szolgálnak és ezeket 
+is zárni kell. Ez a két jelzô azonban egyes vélemények szerint kerülendô, 
+ugyanis a HTML filozófiájának ellentmondanak: szigorú utasítást adnak, 
+fizikai leírók és nem "útmutatók". (Valóban, van olyan eset, hogy nincs 
+mód pl. dôlt betût írni.) Ezért helyettük más, a logikai jelentést jobban 
+leíró jeleket használhatunk. <strong>Megerôsíthetjük</strong> mondanivalónkat
+a <b>&lt;strong&gt;</b> jelzôvel, <em>hangsúlyt</em> adhatunk neki az 
+<b>&lt;em&gt;</b> jelzôvel, vagy <cite>idézhetünk</cite> is a 
+<b>&lt;cite&gt;</b> jelzôvel. Levélcímünket pedig illik 
+<b>&lt;address&gt;</b> jelzôk közé zárni -- azaz ez is bezárandó, mint 
+a többi.
+<p>
+Hát ez sok volt így egyszerre! Pedig van még... De inkább nézzük, Jakab
+lapja hogyan néz ki, feltéve, hogy szereti Koncz Zsuzsát hallgatni:
+<pre>
+&lt;html&gt;
+
+&lt;head&gt;
+&lt;title&gt;Jakab honlapja V2.0&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+Hello Mindenki!&lt;p&gt;
+
+Ez itt
+
+&lt;h1 align=center&gt;Jakab honlapja&lt;/h1&gt;
+
+Jakab vagyok, most tanulom a honlapkészítés rejtelmeit. 
+Hamarosan ez az oldal tele lesz minden széppel és jóval. 
+&lt;p&gt;
+A &lt;strong&gt;kedvencem&lt;/strong&gt; sorait idézem:
+&lt;p&gt;
+
+&lt;cite&gt;
+Ma már a szívünk helyén kompjuter dobol,&lt;br&gt;
+Kiszámított a szenvedély.&lt;br&gt;
+Egy új világ helyett csak látványt tervezünk.&lt;br&gt;
+A lelkünk hallgat, s csak a pénz beszél.
+&lt;/cite&gt;
+
+&lt;hr&gt;
+A levélcímem:&lt;br&gt;
+&lt;address&gt;
+jakab@www.honlapiskola.hu&lt;br&gt;
+&lt;/address&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre>
+
+<h3>Ékezetek</h3>
+
+A magyar nyelv ékezeteit <b>majdnem</b> szabályosan meg tudjuk adni a
+HTML karakterleíróival. A majdnem azt jelenti, hogy a készletben nincs
+hosszú ö és ü. Helyette <b>ô</b> és <b>û</b> használt, ezek azok a "kalapos" 
+betûk, amelyeket kis jóindulattal elfogadhatunk (a képernyô és a nyomtató 
+karakterkészleteinek magyarra cserélésével a kalapok helyett a rendes 
+hosszú ékezetek is megjeleníthetôk). A lélek nyugalma itt sem
+teljes, ugyanis a kalapos <b>ô</b> helyett a hullámvonalas is elterjedt --
+miért pont ebben lenne egység? (Halkan merem csak megjegyezni, hogy ha már
+szegény <b>û</b> kalapos, logikusabbnak tûnik az <b>ô</b>-re is kalapot 
+húzni...)
+<p>
+Minden további szószaporítás helyett itt a táblázat, amellyel akár 
+ékezetmentes billentyûzeten is leírhatjuk azt, hogy:
+<p>
+<tt>
+<b>
+&aacute;rv&iacute;zt&ucirc;r&ocirc; 
+t&uuml;k&ouml;rf&uacute;r&oacute;g&eacute;p
+<br>
+&Aacute;RV&Iacute;ZT&Ucirc;R&Ocirc; 
+T&Uuml;K&Ouml;RF&Uacute;R&Oacute;G&Eacute;P
+</b>
+</tt> 
+<p>
+Ezt a szöveget érdemes megjegyezni! Az összes magyar ékezetes magánhangzót
+tartalmazza.
+<p>
+Magyar ékezetes betûk HTML leírói:
+<ul>
+<table border=1>
+<td>&aacute;<td>&amp;aacute;<td>&Aacute;<td>&amp;Aacute;<tr>
+<td>&eacute;<td>&amp;eacute;<td>&Eacute;<td>&amp;Eacute;<tr>
+<td>&iacute;<td>&amp;iacute;<td>&Iacute;<td>&amp;Iacute;<tr>
+<td>&oacute;<td>&amp;oacute;<td>&Oacute;<td>&amp;Oacute;<tr>
+<td>&ouml;  <td>&amp;ouml;  <td>&Ouml;  <td>&amp;Ouml;  <tr>
+<td>&ocirc; <td>&amp;ocirc; <td>&Ocirc; <td>&amp;Ocirc; <tr>
+<td>&otilde;<td>&amp;otilde;<td>&Otilde;<td>&amp;Otilde;<tr>
+<td>&uacute;<td>&amp;uacute;<td>&Uacute;<td>&amp;Uacute;<tr>
+<td>&uuml;  <td>&amp;uuml;  <td>&Uuml;  <td>&amp;Uuml;  <tr>
+<td>&ucirc; <td>&amp;ucirc; <td>&Ucirc; <td>&amp;Ucirc; <tr>
+</table>
+</ul>
+
+Ékezetes szöveget így írni hosszú távon fárasztó, ezért érdemes valami 
+konvertálót beszerezni (pl. az rtftohtm is tudja ezt). Vagy írhatunk 
+<b>Latin-1</b> vagy <b>Latin-2</b> karaktereket közvetlenül is (ha 
+tudunk), bár ez nem "sportszerû" (pl. e-mailben elküldve egy ilyen 
+szöveg bizonytalan végeredmenyt ad, és a keresôprogramok sem mind 
+birkóznak meg vele).
+
+<hr>
+
+<center>
+<a href="honlap2.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap4.html">Következô fejezet</a>
+</center>
+
+</body>

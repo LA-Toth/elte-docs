@@ -1,0 +1,69 @@
+Cluster
+CREATE CLUSTER utasítással hozható létre. A klaszter lehet index klaszter vagy hash klaszter.
+A cluster is egy szegmens, és így megadhatók a tárolásával kapcsolatos paraméterek.
+TABLESPACE
+INITIAL, NEXT, MINEXTENTS, … stb.
+
+A klasztert elõször létre kell hozni, majd utána tehetjük fel rá a táblákat. Ekkor a tábláknak már nem adhatjuk meg a 
+tárolási paramétereit.
+
+SIZE
+Megadható, hogy az azonos klaszter kulcs értékkel rendelkezõ sorok számára mekkora helyet foglaljon le az oracle. 
+Megadása valójában csak akkor fontos, ha azt szeretnénk, hogy egy blokkban több különbözõ klaszter kulccsal 
+rendelkezõ sor is tárolódjon. Ha nem adjuk meg, vagy a mérete nagyobb a blokkméretnél, akkor az oracle minden 
+klaszter kulcsot különbözõ blokkba tesz. 
+
+CREATE CLUSTER personnel
+  ( department_number  NUMBER(2) ) 
+  SIZE 512 
+  STORAGE (INITIAL 100K NEXT 50K);
+
+Táblák feltevése a klaszterre.
+A következõ két utasítás az EMP és DEPT táblákat teszi fel a klaszterre.
+
+CREATE TABLE emp 
+  (empno  NUMBER  PRIMARY KEY, ... deptno    NUMBER(2)  NOT NULL ) 
+  CLUSTER personnel (deptno);
+
+CREATE TABLE dept 
+  (deptno  NUMBER(2),   dname   VARCHAR2(9),  loc     VARCHAR2(9))
+  CLUSTER personnel (deptno);
+
+Klaszter index létrehozása. Amíg nem hozunk létre indexet egy index klaszterhez, addig nem engedi a rendszer, 
+hogy sorokat szúrjunk be a táblákba. (Insert)
+
+CREATE INDEX idx_personnel ON CLUSTER personnel;
+
+Példák hash klaszterre
+
+HASHKEYS
+Ennek megadása kötelezõ hash klaszter esetén. Ettõl lesz a klaszter hash klaszter. Ha nem adjuk meg, az oracle 
+automatikusan index klasztert hoz létre. Ezzel adjuk meg a kosarak számát. A rendszer a megadott számnál nagyobb 
+következõ prímet választja a kosarak számául.
+
+Az alábbi például egy 503 (következõ prím) kosárból álló hash klasztert hoz létre. Az egyes kosarak mérete 512 
+byte lesz.
+
+CREATE CLUSTER personnel1
+( department_number  NUMBER )
+    SIZE 512  HASHKEYS 500 
+    STORAGE (INITIAL 100K  NEXT 50K);
+
+HASH IS
+Saját hash függvényt is megadhatunk. Az elõzõ példában, ahol ezt nem adtuk meg, az oracle a saját belsõ hash 
+függvényét használja.
+
+CREATE CLUSTER personnel2 
+    ( home_area_code  NUMBER,
+      home_prefix     NUMBER ) 
+    HASHKEYS 20
+    HASH IS MOD(home_area_code + home_prefix, 101);
+
+SINGLE TABLE
+Egyetlen táblát tartalmazó hash klaszter létrehozása. Ez arra jó, hogy egy olyan táblát tudjunk létrehozni, amelynek a 
+fizikai tárolása hash kulcs alapú.
+
+CREATE CLUSTER personnel3
+   (deptno NUMBER)
+   SIZE 512 SINGLE TABLE HASHKEYS 500;
+

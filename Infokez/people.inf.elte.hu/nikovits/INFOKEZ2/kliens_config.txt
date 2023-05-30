@@ -1,0 +1,57 @@
+  A kliens oldal konfiguralasa tavoli adatbazis eleresehez
+
+Ha a kliens programunk (pl. SQLPLUS) es az adatbazis szerver
+kulonbozo gepeken fut, akkor a kliens oldali programnak valamilyen
+modon azonositania kell azt az adatbazist, amelyikhez kapcsolodni
+szeretne. (Egy kliens program kulonbozo alkalmakkor mas-mas
+szerverhez is kapcsolodhat.)
+
+A kliens programnak a kovetkezo informaciokat kell ehhez ismernie:
+Halozati protokoll: (ez altalaban TCP/IP)
+A szerver cime:     (IP cim vagy gep neve, pl. medusa.inf.elte.hu)
+A szerveren futo adatbazis peldany azonositoja: (Egy szerveren
+   elvileg tobb adatbazis is futhat ezert kell az azonosito.
+   Ezt az azonositot szokas SID-nek nevezni.)
+A szerver gep fogado portja: (Altalaban 1521 vagy 1526.
+   Ezen a porton keresztul fogadja a kereseinket a szerver gepen
+   futo ugynevezett listener program.)
+
+A fenti informaciokat egy leiro allomanyban kell megadni a kliens
+gepen. A leiro allomany neve tnsnames.ora, es altalaban az
+$ORACLE_HOME/network/admin konyvtarban van. Az allomanyban
+tobb szerverhez valo kapcsolodas informacioi is szerepelnek,
+jol elkulonulo szekciokban. Minden egyes szekcio elejen van
+egy alias nev, ami az adott szekciot azonositja. (Ezt szokas
+database aliasnak vagy host stringnek is nevezni.) Amikor
+a kliens egy tavoli adatbazishoz szeretne kapcsolodni, akkor
+eleg ezt az aliast megadnia, es ebbol minden a kapcsolodashoz
+szukseges informacio ismert lesz. Peldaul a pandora gepen levo
+sqlplus kliens program segitsegevel a kovetkezo modon kapcsolodhatunk
+egy tavoli adatbazishoz:
+
+       sqlplus <user>/<password>@<alias>
+   (Illetve sqlplus <user>@<alias> eseten megkerdezi a jelszot.)
+
+Ha grafikus feluletu sqlplus programot inditunk el (pl. windows alol),
+akkor a harom input mezoben a fenti harom adatot (user, password,
+alias) kell megadnunk.
+
+Ha a kliens programmal egy ujabb adatbazishoz szeretnenk kapcsolodni,
+mindossze annyit kell tennunk, hogy a tnsnames.ora allomanyba
+beleirjuk az ujabb gepre vonatkozo adatokat az ott lathato formaban.
+Ez unix-os gepen egy szovegszerkesztovel teheto meg, windows alatt
+viszont vannak olyan grafikus segedprogramok, amelyek rakerdeznek
+az informaciokra, majd letrehozzak a megfelelo szekciot a leiro
+allomanyban. Ilyen segedprogram pl. az SQL*NET Easy Configuration,
+vagy a Net Configuration Assistant nevu program. Elvileg kezzel
+is bele lehet irni a leiro allomanyokba, de ekkor a segedprogramok
+eszre fogjak venni legkozelebb, hogy nem ok modositottak az allomanyt
+es valami hibauzenetet fognak adni.
+
+Ha a kliens program (sqlplus) is a szerver gepen fut, akkor
+csak azt kell megadni, hogy melyik adatbazishoz szeretne kapcsolodni.
+(Ha pl. tobb is fut a szerveren.) Ezt pedig az ORACLE_SID es az
+ORACLE_HOME unix shell valtozok beallitasaval adhatjuk meg.
+A fenti ket valtozo megvaltoztatasaval mas es mas adatbazis peldanyhoz
+(instanciahoz) tudunk kapcsolodni.
+

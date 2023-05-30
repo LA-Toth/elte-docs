@@ -1,0 +1,27 @@
+Tisztelt Hallgatók!
+
+A zh-t december 7-én csütörtökön írjuk meg az adatbázis-laborban,
+két csoportban ( két idõpontban) szorosan egymás után. Az elsõ csoport
+13.30-tól 15.30-ig, a második 15.30-tól 17.30-ig ír.
+Az idõpontok egyelõre még szabadon választhatók, amíg valamelyik 
+idõpontra be nem telik az általam meghatározott 40 fõs limit. 
+Az idõpontokra bármelyik gyakorlaton vagy a fogadóórámban fel lehet iratkozni.
+Azok, akik nem iratkoznak fel az általam vezetett lapra, csak a korábbi
+idõpontban (13.30) jöhetnek, mert így legfeljebb néhány ember majd visszajön 
+a késõbbi idõpontban, ha esetleg nem férnénk el!
+Ismét felhívom a figyelmet a PL/SQL nyelv átismétlésére, mert az elõzõ
+félévhez hasonlóan a zh feladatokat, lekérdezéseket PL/SQL programokba 
+ágyazottan fogom számonkérni (elsõsorban az egyértelmûbb output miatt).
+
+A zh hetében a gyakorlatok értelemszerûen nem lesznek megtartva. A hétfõi 
+gyakorlat idõpontjában konzultációt tartok az adatbázis-laborban, ahol
+a félév bármely anyagrészével kapcsolatos kérdésekre válaszolok.
+
+A beadandó feladatokat december 6-án 16 óráig kell levélben elküldeni a honlapomon 
+szereplõ címemre. A megoldásokat és eredményeket semmiféle csomagolási és tömörítési
+eljárással ne alakítsátok át, azokat egyszerû szöveges formátumban küldjétek el!
+Küldhetitek egyetlen állományba fûzve, vagy a 7 feladatnak megfelelõen 7 állományt
+csatolva.
+
+Mindenkinek jó készülést kívánok,
+Nikovits Tibor

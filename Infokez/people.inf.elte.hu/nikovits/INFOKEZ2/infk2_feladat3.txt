@@ -1,0 +1,36 @@
+A honlapon levo feladatokat kotelezoen meg kell csinalni a gyakorlati 
+jegy megszerzesehez. 
+NE KULDJETEK EL egyesevel a megoldasokat, hanem egy allomanyban 
+gyujtsetek oket es majd a felev folyaman fogom kerni oket.
+A megoldasokban a lekerdezeseket es a vegeredmenyt is el kell kuldeni.
+
+Az SQL utasitasokat gyujtsetek ossze, amivel az objektumokat letrehozzatok
+illetve amikkel az informaciokat osszegyujtitek a rendszerkatalogusokbol.
+
+3. feladat
+
+
+Hozzatok letre egy T1 es egy T2 nevu tablat, amelyekben a kovetkezo
+tipusu constraintek mind elofordulnak:
+PRIMARY KEY, UNIQUE, NOT NULL, FOREIGN KEY, CHECK.
+
+Probaljatok meg beszurni a tablakba olyan sorokat, amelyek rendre 
+megsertik az egyes constrainteket (es igy persze a beszuras nem is
+lesz sikeres). Tegyetek a tablakba olyan sorokat is, amelyek sikeresen
+bekerulnek, és nem sertenek egyetlen constraintet sem.
+
+Hozzatok letre egy EXCEPTIONS nevu tablat az utlexcpt.sql nevu script 
+alapjan, majd egy olyan constraintet, amelyet a tablaban levo sorok
+kozul nehany megsert. (Emiatt a constraint letrehozasa hibauzenetet
+kell, hogy eredmenyezzen.) Allapitsatok meg az EXCEPTIONS nevu tabla 
+segitsegevel, hogy mely sorok sertik meg az imenti constraintet. 
+
+Adatok lekerdezese a rendszerkatalogus tablakbol
+(DBA_CONSTRAINTS, DBA_CONS_COLUMNS)
+ 
+Valasszatok ki valakit es deritsetek ki, hogy o milyen Constrainteket
+definialt a ket tablajara. (constraint neve, tipusa, oszlopainak sorrendje,
+idegen kulcs mire hivatkozik)
+Mas felhasznalo hianyaban vizsgalhatjatok az ORAUSER T1 es T2 tablajat.
+
+

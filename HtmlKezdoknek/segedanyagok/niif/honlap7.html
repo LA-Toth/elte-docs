@@ -1,0 +1,231 @@
+<head>
+<title>Hogyan készítsünk saját honlapot a Weben?</title>
+</head>
+
+<body bgcolor="ffffee">
+
+<center>
+<a href="honlap6.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap8.html">Következô fejezet</a>
+</center>
+
+<hr>
+
+<h2>Extrák</h2>
+
+<a name="font"></a>
+<h3>Még szebb szövegek</h3>
+
+Ha valamit <b>nagyon</b> szeretnénk kiemelni, akkor két lehetôségünk is 
+van: megnövelhetjük (vagy csökkenthetjük) a betûk nagyságát, illetve 
+átszínezhetjük ôket. A kulcsszó a <b>font</b>.
+<p>
+Átméretezés:
+<pre>
+&lt;font size=+3&gt;Ez nagy.&lt;/font&gt;&ltfont size=-3&gt;Ez kicsi.&lt;/font&gt; 
+</pre>
+Színezés:
+<pre>
+&lt;font color=#FF0000&gt;Ez piros.&lt/font&gt;
+</pre>
+
+<a name="table"></a>
+<h3>Táblázatok</h3>
+
+Ha sok adatot akarunk táblázatokban közölni, akkor azt régebben elôre tördelt
+szövegként vágtuk be, most viszont van saját, igaz kicsit bonyolult 
+megadási módja:
+<p>
+A táblázat a <b>&lt;table&gt;</b> jellel kezdôdik és a 
+<b>&lt;/table&gt;</b> zárja. Ezen belül a sorokat a <b>&lt;tr&gt;</b>, az 
+oszlopokat a <b>&lt;td&gt;</b> határolja el egymástól. (Ha a táblázat
+oszlopneveit ki akarjuk emelni, akkor <b>&lt;td&gt;</b> helyett 
+<b>&lt;th&gt;</b> jelet használunk.) A táblázat szélességét a 
+<b>width=</b> módosítóval megváltoztathatjuk, <b>border=</b> megadásával 
+keretszélességet definiálunk, a táblázat celláin belül 
+pedig az <b>align=</b> segítségével jobbra <b>right</b>, balra 
+<b>left</b>, középre <b>middle</b>, föl <b>top</b> és le <b>bottom</b> 
+igazíthatjuk az adatot. Lássuk a helyi focieredményeket!
+<pre>
+&lt;table border=2&gt;
+&lt;tr&gt;&lt;th&gt;Hazai csapat      &lt;th&gt;Vendégcsapat    &lt;th&gt;Eredmény
+&lt;tr&gt;&lt;td&gt;Baltásasszonyfa FC&lt;td&gt;Redvestáka TC   &lt;td align=middle&gt;2 : 1
+&lt;tr&gt;&lt;td&gt;Rongyosi Falábúak &lt;td&gt;Szentkanalasi SC&lt;td align=middle&gt;0 : 0
+&lt;tr&gt;&lt;td&gt;Macskási Vasasok  &lt;td&gt;Akasztódombi SE &lt;td align=middle&gt;1 : 3 
+&lt;/table&gt;
+</pre>
+Nem erre találták ki, de két (vagy több) hasábos kiírást is táblázattal 
+oldunk meg. A szöveget <b>&lt;table&gt;</b> és <b>&lt;td&gt;</b> 
+jelekkel vezetjük be, majd a hasáb végén újabb <b>&lt;td&gt;</b> jelet 
+szúrunk be, végül <b>&lt;/table&gt;</b> jellel zárjuk. Az <b>align=</b> 
+legyen <b>top</b>.
+<p>
+Kép mellé ugyanígy írhatunk, csak akkor az egyik "cellában" a kép van, a 
+másikban a szöveg.
+
+<a name="frame"></a>
+<h3>Keretek</h3>
+
+A böngészô ablakát több részre oszthatjuk <b>frame</b>, azaz keret 
+definiálásával. Ekkor tulajdonképpen több különbözô HTML lapunk szorong egy 
+osztott ablakban. A megosztáshoz egy vezetôlapot kell készítenünk, amin a 
+felosztás szerepel, valamint itt helyezhetünk el üzenetet azok számára, 
+akik nem rendelkeznek kereteket kezelô böngészôvel. Egy példa:
+<pre>
+&lt;head&gt;
+&lt;title&gt;Jakab ablakai&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;frameset rows="*,120"&gt;
+&lt;frame name=fent src=alap.html&gt;
+&lt;frame name=lent src=menu.html&gt;
+&lt;/frameset&gt;
+
+&lt;noframe&gt;
+&lt;body&gt;
+Te sajnos nem látsz be az ablakaimon. Keress egy nagyobb verziójú "létrát"!
+&lt;/body&gt;
+&lt;/noframe&gt;
+</pre>
+
+Azt, hogy egy kattintás után melyik ablakban jelenjen meg az új lap, a 
+<b>target=</b> határozza meg. Ide kell beírni az ablak nevét, amit a 
+<b>name=</b> után írtunk.
+
+<pre>
+&lt;a target=alap href="elso.html"&gt;
+</pre>
+
+<a name="form"></a>
+<h3>Ûrlapok</h3>
+
+Egy HTML lapot nem csak passzívan megtekinteni lehet, hanem megfelelô 
+kiegészítésekkel szabályos kérdôívet, szavazólapot, vendégkönyvet, stb.  
+kaphatunk, amelybe aztán be is írhatunk. Egy ilyen lap nyomógombokat, 
+adatbeviteli mezôket, menüket tartalmazhat. A bevitt adatokat azonban a 
+HTML keretei közt <b>nem lehet feldolgozni</b>, ahhoz kiegészítôprogram 
+szükséges: vagy egy szerver oldali program, vagy egy Java alkalmazás. Ez 
+pedig már egy másik kurzus anyaga. 
+
+<a name="exec"></a>
+<h3>Scriptek</h3>
+
+Bár a scriptek sem tartoznak szorosan véve a HTML-hez, egy rövid és
+igen gyakran használt példa erejéig mégis kitérek rá. Számlálót ugyanis
+nagyon sokan szeretnének a lapjukra tenni.
+<p>
+Mi is egy script? Röviden és DOS akcentussal ;-) -- a script a UNIX ".bat"-ja.
+Csakhogy sokkal többet tud. Gyakorlatilag programnak minôsül. Lapunkról
+ilyen kis (vagy akár nagy) programok indítására van lehetôség!
+<p>
+A világ nem egyszerû, a scriptek meghívására is kétféle megoldást dolgoztak
+ki: egy elsôt és egy jót. ;-)
+<p>
+Az elsô ilyen megoldás a
+
+<h4>CGI</h4>
+
+azaz a <b>Common Gate Interface</b>. Ez egy "patkolás", amely beül a buta
+CERN httpd server és a külvilág közé, hogy a scriptre vonatkozó és a server
+által nem ismert utasításokat feldolgozza. Ez néhány kellemetlen jelenséggel
+jár. Az egyik, hogy a meghívott scriptek nem paraméterezhetôk. A másik, hogy
+a scripteknek külön <b>cgi-bin</b> könyvtárban kell gyülekezniük. A scripteket
+el kell látni "fejlécinformációval" is.
+<p>
+Mindezek ellenére a CGI nagy karriert futott be, így a fejlettebb serverekbe
+eleve beépítettek egy ehhez hasonló, de kellemesebb lehetôséget, ez a
+
+<h4>SSI</h4>
+
+azaz <b>Server Side Include</b>. Itt már a script hívása egyszerûbb és 
+kényelmesebb, s együtt maradhat az ôt hívó oldallal. Ez azért jó, mert 
+pl. a cgi-bin könyvtárra vagy kapunk írási jogot, vagy sem, de még ha 
+kapunk is, ott mások is "nyomulnak", közös lónak meg ugye... A saját 
+könyvtárunkban viszont nyugodtan fejleszthetünk.
+<p>
+A példát ez utóbbi serverhez írtam meg, mert mentes a CGI "sallangjaitól".
+
+<h4>Számláló (példa)</h4>
+
+Teendôink sorrendben:
+<p>
+Készítsük el <b>counter</b> néven az alábbi UNIX scriptet tetszésünk szerinti
+szövegszerkesztôvel a public_html könyvtárba:
+<pre>
+N=`cat ./counter.$1`
+expr $N + 1 > ./counter.$1
+</pre>
+Nagyon ügyeljünk minden egyes jelre, még a szóközökre is, mert a UNIX haragos
+öregúrként viselkedik, ha pontatlanok vagyunk!
+<p>
+A kész állományra adjunk végrehajtási jogot!
+<pre>
+chmod 755 counter
+</pre>
+Készítsük el az index.html "adatlapját"!
+<pre>
+echo 0 &gt; counter.index
+</pre>
+Erre adjunk általános írási jogot, hiszen a világon mindenki belátogathat
+a lapunkra, növelve a számláló állását!
+<pre>
+chmod 666 counter.index
+</pre>
+Végül helyezzük el az index.html-ben a számláló hívását (célszerû a legelsô 
+sorba a &lt;head&gt; elé):
+<pre>
+&lt;!--#exec cmd="./counter index"--&gt;
+</pre>
+Ezzel a számláló kész és mûködik is, csak épp nem látjuk a lapon az 
+eredményét. Ehhez egy újabb sort csempésszünk a lap törzsébe:
+<pre>
+Ezt a Jakab-féle lapot 
+&lt;!--#exec cmd="cat ./counter.index"--&gt; 
+boldogtalan elektronikus csavargó látta eddig.
+</pre>
+A szám valóban megjelenik a szövegben, mi több a forrásban is, így aki
+lapunk "kéziratát" olvasgatja, az sem sejtheti, milyen csodaprogrammal
+értük el ezt az eredményt. Más lapokon is bevethetô ugyanez a script,
+mivel eleve úgy íródott, hogy csak az index cserélendô le más névre a
+lapban a hívásnál. Persze az "adatlapokat" külön-külön el kell készíteni!
+És ez még csak a kezdet!...
+<p>
+<b>FIGYELEM! Ez a megoldás korszerûtlenebb servereken nem mûködik!</b>
+
+<h4>A server rendszerváltozói</h4>
+
+Több érdekes információt tartalmazó szabványos rendszerváltozót használnak
+a serverek, ezek közül emelek ki néhányat:
+<ul>
+<li>$LAST_MODIFIED<p>
+A lap utolsó módosítási dátumát tartalmazza. Ahol lényeges, hogy kövessük,
+mikor frissült utoljára a lap, az állandó dátumátírás helyett ennek a
+változónak a kiíratásával is elintézhetjük a kérdést:
+<pre>
+&lt;!--#exec cmd="echo $LAST_MODIFIED"--&gt;
+</pre><p>
+<li>$REMOTE_HOST<p>
+Ebben a változóban rejlik a lapunkat éppen meghívó kíváncsi "ügyfél"
+gépének neve (maga a felhasználó anonim marad). Sokan szívesen veszik,
+ha a lap "felismeri" ôket, így ezt is kiírathatjuk a fenti módon.<p>
+<li>$DATE_LOCAL<p>
+A mai dátum a helyi idôvel együtt. Ha valaki nagyon lassúnak találja
+a vonalat, ezt az adatot ismerve rádöbbenhet, hogy nem munkaidôben kellene
+próbálkoznia... ;-) (Nem árt, ha olykor eszünkbe jut, hogy az Interneten
+mindig máshol van éjszaka.)
+</ul>
+
+<hr>
+
+<center>
+<a href="honlap6.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap8.html">Következô fejezet</a>
+</center>
+
+</body>

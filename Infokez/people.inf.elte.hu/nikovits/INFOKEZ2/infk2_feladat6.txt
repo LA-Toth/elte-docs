@@ -1,0 +1,52 @@
+A honlapon levo feladatokat kotelezoen meg kell csinalni a gyakorlati 
+jegy megszerzesehez. 
+NE KULDJETEK EL egyesevel a megoldasokat, hanem egy allomanyban 
+gyujtsetek oket es majd a felev folyaman fogom kerni oket.
+A megoldasokban a lekerdezeseket es a vegeredmenyt is el kell kuldeni.
+
+
+6. feladat
+
+CLUSTER  (DBA_CLUSTERS, DBA_CLU_COLUMNS, DBA_TABLES, DBA_CLUSTER_HASH_EXPRESSIONS)
+
+Hozzunk letre egy DOLGOZO(dazon, nev, beosztas, fonoke, fizetes, oazon ... stb.) 
+es egy OSZTALY(oazon, nev, telephely ... stb.) nevu tablat. 
+A ket tablanak az osztaly azonositoja (oazon) lesz a kozos oszlopa. A ket tablat 
+egy CLUSTEREN hozzuk letre. (Elobb persze letre kell hozni a clustert is.)
+
+
+Adjunk meg egy olyan clustert az adatbazisban (ha van ilyen), amelyen meg nincs
+egy tabla sem. 
+
+Adjunk meg egy olyant, amelyiken legalabb 6 darab tabla van.
+
+Adjunk meg egy olyan clustert, amelynek a cluster kulcsa 3 oszlopbol all.
+(Vigyazat!!! Tobb tabla is lehet rajta)
+
+HASH CLUSTER
+Hány olyan hash cluster van az adatbázisban, amely nem az oracle alapértelmezés 
+szerinti hash függvényén alapul?
+
+Hozzunk letre egy hash clustert es rajta ket tablat, majd szurjunk be a 
+tablakba sorokat ugy, hogy a ket tablanak 2-2 sora ugyanabba a blokkba 
+keruljon. Ellenorizzuk is egy lekerdezessel, hogy a 4 sor valoban ugyanabban 
+a blokkban van-e. (A ROWID lekerdezesevel)
+
+TIPP: A sorok elhelyezeset befolyasolni tudjuk a HASH IS megadasaval.
+
+Hozzunk letre egy szekvenciat, amelyik az osztaly azonositokat fogja generalni
+a szamunkra. Minden osztaly azonosito a 10-nek tobbszorose legyen.
+
+Van-e olyan szekvencia az adatbazisban, amelynel a generalt szamok kozotti
+lepeskoz 5-tel egyenlo? (DBA_SEQUENCES)
+
+Vigyunk fel 3 uj osztalyt es osztalyonkent minimum 3 dolgozot a tablakba. 
+Az osztaly azonositokat a szekvencia segitsegevel allitsuk elo, es ezt tegyuk
+be a tablaba. (Vagyis ne kezzel irjuk be a 10, 20, 30 ... stb. azonositot.)
+
+A felvitel utan modositsuk a 10-es osztaly azonositojat a kovetkezo ervenyes (generalt)
+osztaly azonositora. (Itt is a szekvencia segitsegevel adjuk meg, hogy mi lesz a 
+kovetkezo azonosito.) A 10-es osztaly dolgozoinak az oazon erteket is modositsuk 
+az uj ertekre.
+
+

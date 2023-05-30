@@ -1,0 +1,167 @@
+Constraintek
+CREATE TABLE (VIEW) vagy ALTER TABLE (VIEW) utasításban adható meg, táblára, IOT-re vagy nézetre. Bizonyos adattípusokra nem adható meg constraint (pl. user defined). Vannak további megszorítások is a constraintekre vonatkozóan, ezek részletesen a dokumentációban vannak leírva. Szintaktikai megadási formája szerint a constraint lehet oszlop vagy tábla constraint. Az elõzõ az oszlop neve után adható meg, és csak az adott oszlopra vonatkozik, az utóbbi  pedig az oszlopok megadása között (után) lehet és több oszlopra vonatkozhat. 
+CREATE TABLE t (o1 number CONSTRAINT c_nev UNIQUE,
+                o2 DATE …);    illetve
+CREATE TABLE t (o1 number, o2 DATE, CONSTRAINT c_nev UNIQUE(o1));
+
+A constraintnek van egy neve, ami a katalógusban tárolódik. Ha nem adunk meg nevet az Oracle generál egyet.
+A nézetekre megadott constrainteket az oracle nem kényszeríti ki, azok csak deklaratív jellegûek. (Ezek csak Disable Novalidate módúak lehetnek, és pl. arra jók, hogy a FK által a hivatkozott táblát ne lehessen eldobni.)
+CREATE TABLE t1 (o1 int, o2 char(10));
+CREATE VIEW v1(o1 UNIQUE DISABLE NOVALIDATE, o2) 
+AS SELECT * FROM t1 WHERE o1 > 2;
+
+UNIQUE
+Automatikusan indexet hoz létre hozzá az ORACLE.
+Ha minden érintett oszlopban NULL szerepel, az nem sérti a constraintet, még akkor sem ha több ilyen sort szúrunk be. Egyéb kombinációban nem megengedett az ismétlõdés. Pl.
+CREATE TABLE const_t (o1 number, o2 char(10), o3 date, 
+       CONSTRAINT const_u UNIQUE(o1, o2));
+Az alábbi sort többször is beszúrhatjuk:
+   INSERT INTO const_t VALUES(NULL, NULL, SYSDATE);
+Az alábbit viszont csak egyszer, a második sértené a constraintet:
+   INSERT INTO const_t VALUES(1, NULL, SYSDATE);
+
+PRIMARY KEY
+Táblánként csak 1 adható meg. Az oszlopok egyikében sem szerepelhet NULL. Automatikusan indexet hoz létre hozzá az ORACLE. Minden más tekintetben olyan mint a unique.
+
+NULL | NOT NULL
+Csak oszlop constrainként adható meg.
+CREATE TABLE t1 (o1 INT CONSTRAINT o1_nn NOT NULL);   vagy
+ALTER TABLE const_t MODIFY (o3 CONSTRAINT o3_nn NOT NULL);
+
+Objektum attribútumára nem adható meg. Helyette használjuk a CHECK constraintet, lásd az alábbi példát.
+CREATE TYPE person_name AS OBJECT
+   (first_name VARCHAR2(30), last_name VARCHAR2(30));
+CREATE TABLE students (name person_name, age INTEGER,
+   CHECK (name.first_name IS NOT NULL AND name.last_name IS NOT NULL));
+
+FOREIGN KEY
+Egy másik tábla elsõdleges kulcsára (primary key) vagy egyedi (unique) oszlopaira hivatkozhat csak. Ha a hivatkozó oszlopok bármelyike NULL, akkor ez a sor már nem sérti a constraintet, még akkor sem, ha ugyanez a kombináció nem szerepel a hivatkozott táblában. Pl.
+CREATE TABLE ref_t (o1 number, o2 char(10), o3 varchar2(10), 
+   CONSTRAINT t_fk FOREIGN KEY (o1, o2) REFERENCES const_t(o1,o2) 
+   ON DELETE SET NULL);
+Az alábbi sor is beszúrható pedig ilyen kombináció nincs a szülõ táblában:
+   INSERT INTO ref_t VALUES(2, NULL, 'szoveg')
+Az alábbi viszont természetesen nem, mivel ez sérti a constraintet:
+   INSERT INTO ref_t VALUES(2, 'ABC', 'szoveg')
+
+Megadható, hogy a szülõ sor törlése esetén mi történjen a hivatkozó sorokkal (ON DELETE CASCADE | SET NULL). Ha nem adjuk meg egyiket sem, akkor a hivatkozott szülõ sorok nem törölhetõk. Módosítani semmiképpen nem lehet a hivatkozott sorokat.
+
+CHECK
+Megadható egy feltétel, amelyet a soroknak ki kell elégíteniük (TRUE vagy UNKNOWN kielégítõ). 
+A feltétel nem hivatkozhat más táblákra, nem tartalmazhat alkérdést, pszeudooszlopot, vagy hiányosan megadott dátum konstanst. Pl. az alábbi utasításban kötelezõ a dátumformátum megadása, pedig egy INSERT utasításban implicit konverzió miatt nem kellene a formátumot megadni.
+ALTER TABLE const_t ADD CONSTRAINT const_c 
+   CHECK(o3 > TO_DATE('2005-jan-01', 'YYYY-mon-dd'));
+
+A constraintek állapotával és ellenõrzési idejével kapcsolatos paraméterek: 
+
+DEFERRABLE | NOT DEFERRABLE
+Azt adja meg, hogy a constraint ellenõrzése kitolható-e a tranzakció végére. Az ilyen constraintek esetén a SET CONSTRAINT utasítással adható meg az ellenõrzés ideje:
+SET CONSTRAINT {c1 [, c2] …| ALL} {IMMEDIATE | DEFERRED};
+Ez késõbb nem változtatható meg, csak a constraint eldobásával és újbóli létrehozásával.
+
+INITIALLY IMMEDIATE | INITIALLY DEFERRED
+Megadja, hogy SET CONSTRAINT megadása nélkül a közvetlenül DML utasítás után, illetve a tranzakció végén ellenõrizzen-e.
+
+RELY | NORELY
+Megadja, hogy figyelembe vegyen-e egy nem ellenõrzött (NOVALIDATE) constraintet a lekérdezés átírásánál (query rewrite).
+
+USING INDEX … 
+Megadható, hogy melyik indexet használja a rendszer, illetve milyet hozzon létre a PK és U constraintek ellenõrzéséhez. Egy index akár több constraint ellenõrzéséhez is használható:
+CREATE TABLE promotions
+    ( promo_id         NUMBER(6)
+    , promo_name       VARCHAR2(20)
+    , promo_category   VARCHAR2(15)
+    , promo_cost       NUMBER(10,2)
+    , promo_begin_date DATE
+    , promo_end_date   DATE
+    , CONSTRAINT promo_id_u UNIQUE (promo_id, promo_cost)
+         USING INDEX (CREATE UNIQUE INDEX promo_ix1
+            ON promotions(promo_id, promo_cost))
+    , CONSTRAINT promo_id_u2 UNIQUE (promo_cost, promo_id) 
+         USING INDEX promo_ix1);
+
+ENABLE VALIDATE
+A constraintet minden további DML-nél ellenõrizni fogja, és a tábla jelenlegi adatait is ellenõrzi.
+
+ENABLE NOVALIDATE
+A tábla jelenlegi tartalmát nem ellenõrzi, de a jövõbeli DML-eket igen.
+
+DISABLE VALIDATE 
+A jövõben nem ellenõriz és eldobja az indexet. Csak speciális esetekben van értelme (pl. LOAD). 
+
+DISABLE NOVALIDATE
+Sem a meglevõ sem az új adatokat nem ellenõrzi. Majdnem olyan mintha eldobnánk a constraintet. De pl. ha ilyen állapotú idegen kulcs hivatkozik egy szülõ táblára, akkor az nem eldobható.
+
+EXCEPTIONS INTO <tábla>
+Egy constraint VALIDATE állapotba hozásakor megadható, hogy a már létezõ, a constraintet megsértõ sorok sorazonosítói mely táblába íródjanak be, hogy ezekkel a sorokkal valamit tenni tudjunk. Alapértelmezés szerint (ha nem adjuk meg a kulcsszót) az EXCEPTIONS nevû táblába íródnak be, aminek a létrehozására két készen adott script is létezik (utlexcpt.sql, utlexpt1.sql).
+
+Hozzuk létre az exceptions táblát az utlexcpt.sql scriptben szereplõ utasításnak megfelelõen.
+CREATE TABLE exceptions(row_id rowid, owner varchar2(30),
+   table_name varchar2(30), constraint varchar2(30));
+Szúrjunk be néhány sort, amelyek közül néhány megsérti az alább megadandó constraintet.
+INSERT INTO const_t VALUES(1, 'Egy', '2004-jan-02');
+INSERT INTO const_t VALUES(2, 'Ket', '2003-jan-02');
+INSERT INTO const_t VALUES(3, 'Har', '2005-jan-02');
+Az alábbi utasítást nem fogja végrehajtani, és hibaüzenetet kapunk, viszont feltölti az exceptions táblát a megfelelõ sorokkal.
+ALTER TABLE const_t ADD CONSTRAINT const_c 
+   CHECK(o3 > TO_DATE('2005-jan-01', 'YYYY-mon-dd'))
+   EXCEPTIONS INTO exceptions;
+Errõl az alábbi lekérdezéssel gyõzõdhetünk meg:
+SELECT * FROM const_t WHERE ROWID IN (SELECT ROW_ID FROM exceptions);
+  O1 O2         O3         
+---- ---------- -----------
+   4 Egy        2003-jan-02
+   1 Egy        2004-jan-02
+
+
+Constraintekre vonatkozó információk a katalógusban
+DBA_CONSTRAINTS, DBA_CONS_COLUMNS
+Érdemes a táblához és az oszlopokhoz tartozó commenteket megnézni, sokszor tömörebb és könnyebben használható információkat tartalmaznak, mint a dokumentáció.
+
+COMMENT ON TABLE t1 IS 'szöveg';
+COMMENT ON COLUMN t1.o1 IS 'szöveg';
+
+SELECT comments FROM dba_tab_comments 
+WHERE table_name='DBA_CONSTRAINTS' AND owner='SYS'
+
+COMMENTS
+------------------------------------
+Constraint definitions on all tables
+
+SELECT column_name, comments FROM dba_col_comments 
+WHERE table_name='DBA_CONSTRAINTS' AND owner='SYS' 
+
+COLUMN_NAME        COMMENTS
+------------------ ------------------------------------------------------------------
+OWNER              Owner of the table
+CONSTRAINT_NAME    Name associated with constraint definition
+CONSTRAINT_TYPE    Type of constraint definition
+TABLE_NAME         Name associated with table with constraint definition
+SEARCH_CONDITION   Text of search condition for table check
+R_OWNER            Owner of table used in referential constraint
+R_CONSTRAINT_NAME  Name of unique constraint definition for referenced table
+DELETE_RULE        The delete rule for a referential constraint
+STATUS             Enforcement status of constraint - ENABLED or DISABLED
+DEFERRABLE         Is the constraint deferrable - DEFERRABLE or NOT DEFERRABLE
+DEFERRED           Is the constraint deferred by default -  DEFERRED or IMMEDIATE
+VALIDATED          Was this constraint system validated? -  VALIDATED or NOT VALIDATED
+GENERATED          Was the constraint name system generated? -  GENERATED NAME or USER NAME
+BAD                Creating this constraint should give ORA-02436.  Rewrite it before 2000 AD.
+RELY               If set, this flag will be used in optimizer
+LAST_CHANGE        The date when this column was last enabled or disabled
+INDEX_OWNER        The owner of the index used by this constraint
+INDEX_NAME         The index used by this constraint
+INVALID
+VIEW_RELATED
+
+SELECT column_name, comments FROM dba_col_comments 
+WHERE table_name='DBA_CONS_COLUMNS' AND owner='SYS' 
+
+COLUMN_NAME        COMMENTS
+------------------ --------
+OWNER              Owner of the constraint definition
+CONSTRAINT_NAME    Name associated with the constraint definition
+TABLE_NAME         Name associated with table with constraint definition
+COLUMN_NAME        Name associated with column …
+POSITION           Original position of column or attribute in definition
+

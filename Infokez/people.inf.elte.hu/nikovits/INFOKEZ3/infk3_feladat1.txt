@@ -1,0 +1,60 @@
+A honlapon szereplõ feladatokat kötelezõen meg kell csinálni a 
+gyakorlati jegy megszerzéséhez. NE KULDJÉTEK EL egyesével a megoldásokat, 
+hanem majd a félév végén egyetlen levélben fogom kérni az összeset.
+A megoldásokban a lekérdezéseket és a végeredményt is el kell küldeni.
+
+
+1. feladat
+
+Az alábbi kérdésekre nem várok tényleges választ, azok csupán segítségül
+szolgálnak a jogosultságok es erõforrás korlátok közötti eligazodásban. 
+A kérdéssor végén vannak ténylegesen megoldando feladatok is.
+
+(jogosultsagok, eroforras korlatok)
+Milyen profile-ok vannak letrehozva az adatbazisban es azok mely eroforrasokra
+milyen korlatozasokat foganatositanak?
+(dba_profiles)
+
+Nezzuk meg milyen rendszer szintu jogosultsagok adhatok ki a GRANT utasitassal.
+(system_privilege_map)
+
+Nezzuk meg milyen objektum szintu jogosultsagok adhatok ki a GRANT utasitassal.
+(table_privilege_map)
+
+Milyen role-ok vannak letrehozva az adatbazisban, es melyik az amelyikhez
+jelszo szukseges? (dba_roles) 
+
+Milyen rendszer szintu jogokat kaptak az egyes role-ok es user-ek?
+(dba_sys_privs) 
+
+Milyen objektum szintu jogokat kaptak az egyes role-ok es user-ek?
+(dba_tab_privs) 
+
+Milyen role jogokat kaptak az egyes role-ok es user-ek? Mely role-ok vannak 
+tovabb engedelyezve mas role-ok es user-ek szamara? Melyek egy felhasznalo
+automatikusan megkapott (default) role-jai?
+(dba_role_privs)
+
+Az adott pillanatban rendelkezesre allo jogosultsagok korenek megvaltoztatasa
+a SET ROLE utasitassal tortenik.
+
+Mely role-ok vannak egy adott pillanatban engedelyezve a session szamara?
+(session_roles)
+
+Milyen rendszer szintu jogosultsagok vannak engedelyezve egy adott pillanatban
+a session szamara?  (session_privs)
+
+Ténylegesen megoldandó feladatok:
+
+Hány SQL ablakot (sessiont) tudtok egyszerre megnyitni?
+Mennyi a számotokra engedélyezett maximális kapcsolódási idõ?
+Hány sikertelen bejelentkezést enged az adatbáziskezelõ a számotokra? 
+
+Az alabbi feladat megoldasa utan adjuk meg a teljes utasitassorozatot,
+amelyre a megoldashoz szukseg volt.
+Az ORAUSER nevu oracle felhasznalo tulajdonaban van egy ROLE_PROBA nevu tabla.
+Vigyunk fel egy sort, amelyben a nev oszlopban mindenkinek a sajat neve szerepel,
+a muvelet oszlopban pedig az, hogy 'INSERT'. (A harmadik oszlopba ne tegyünk semmit.)
+Ezutan modositsuk az altalunk felvitt sort ugy, hogy a muvelet oszlop uj tartalma
+'UPDATE' legyen. (A szukseges role-hoz tartozo jelszo megegyezik a role nevevel.)
+

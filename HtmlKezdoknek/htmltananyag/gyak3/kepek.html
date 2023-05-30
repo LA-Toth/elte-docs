@@ -1,0 +1,659 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1250">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Kepek</title>
+</head>
+
+<body background="backg.gif" bgproperties="fixed">
+<script language="JavaScript">
+function ujablak() {
+ html = window.open("","","resizable=1,scrollbars=1,width=400,height=300,screenx=50,screenY=50");
+}
+function updatewin(input_form) {
+html.document.open("text/html");
+html.document.write(input_form);
+html.document.close()
+}
+</script>
+<script
+language="JavaScript"><!--
+//-
+document.write('<h5><p align="Right"> Utolsó módosítás: ')
+document.write(document.lastModified)
+document.write('</p></h5>')
+// --></script>
+
+<h1 align="center"><font face="Arial">Képek a HTML oldalon</font></h1>
+
+<h3><font face="Arial">Háttérkép</font></h3>
+
+<p><font face="Arial">Ahhoz, hogy az adott oldal
+háttérképpel rendelkezzen, a <b> &lt;BODY&gt;</b> részben el kell
+helyeznünk a <b> background=&quot;kep&quot;</b> paramétert, ahol a kép
+GIF, illetve JPG formátumú lehet! </font></p>
+
+<p><font face="Arial">Jelen esetben:</font></p>
+
+<p><strong><font face="Arial">&lt;BODY background=&quot;backg.gif&quot;&gt;</font></strong></p>
+
+<p><font face="Arial">Azt is beállíthatjuk, hogy a háttér
+a szöveg gördítésénél egy helyben maradjon, és csak a
+szöveg mozogjon a háttér felett. Ez a funkció viszont csak az
+Internet Explorer böngészõvel látható. </font></p>
+
+<p><font face="Arial">Használata: A <b> &lt;body&gt;</b> részbe a .<b>bgproperties=&quot;fixed&quot;</b>
+paramétert kell beillesztenünk</font></p>
+
+<p><font face="Arial">pl.</font></p>
+
+<p><strong><font face="Arial">&lt;body background=&quot;backg.gif&quot;
+bgproperties=&quot;fixed&quot;&gt;</font></strong></p>
+
+<p><font face="Arial">Nagyon fontos, hogy olyan háttérképet
+válasszunk, amelyen a szöveg olvasható marad. <br>
+(pl. a szöveg színe, illetve a linkek színe ne vegye fel a
+háttérkép színét, mert emiatt a szöveg, vagy link nem fog
+rendesen látszódni.)&nbsp;<br>
+</font></p>
+
+<table border="1" cellpadding="0" cellspacing="0" width="80%">
+  <tr>
+    <td background="bg2.jpg">&nbsp;
+      <p align="center"><b>Így olvashatatlan a szöveg</b></p>
+      <p>&nbsp;</td>
+    <td background="bg2.jpg">
+      <p align="center"><b><font color="#FFFFFF">&nbsp;Ez már jobb....</font></b></p>
+      <p align="center"><b><font color="#FFFFFF">De ezt is nagyon&nbsp; fárasztó
+      hosszú távon olvasni....</font></b></td>
+  </tr>
+  <tr>
+    <td background="bg.jpg">&nbsp;
+      <p align="center"><b>Ez kellemes háttér, és olvasható marad a szöveg....</b></p>
+      <p>&nbsp;</td>
+    <td background="bg.jpg">
+      <p align="center"><b><font color="#FFFF11">De ezt is el elehet rontani....</font></b></td>
+  </tr>
+  <tr>
+    <td background="cica.jpg">&nbsp;
+      <p align="center"><b>Hol olvasható hol nem, Hol olvasható hol nem,<br>
+      Hol olvasható hol nem,Hol olvasható hol nem,<br>
+      </b></td>
+    <td background="back1.jpg">
+      <b><font color="#FFFF11">&nbsp;&nbsp;&nbsp;</font></b>
+      <p align="center"><b><font color="#FFFFFF">Ez sem túl szerencsés....</font></b></p>
+      <p>&nbsp;</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#F3DFB4"><img border="0" src="../figyelem.gif" width="53" height="47"></td>
+    <td bgcolor="#FFFFFF"><font face="Arial" size="2" color="#FF0000">ha nem tudod elolvasni a szöveget, akkor jelöld ki az egérrel. A saját
+honlapod elkészítésénél ügyelj a színhatásra, az olvashatóságot nem
+szabad feláldozni egy szebb háttérkép érdekében...</font></td>
+  </tr>
+</table>
+
+
+
+<p><font face="Arial"> Erre megoldás lehet, ha megadjuk, hogy az
+adott oldal egészén milyen színû legyen a szöveg, és a
+link. <br>
+Ezt a következõképpen érhetjük el: a <strong>&lt;body&gt;</strong>
+részt egészítsük ki a következõ paraméterekkel:</font></p>
+
+<ul>
+    <li><font face="Arial"><b>text= </b> szín vagy színkód (a szöveg színét állítja
+        be)</font></li>
+    <li><font face="Arial"><b>link=</b> szín vagy színkód (a linkek színét állítja
+        be)</font></li>
+    <li><font face="Arial"><b>alink= </b> szín vagy színkód (az aktív linkek színét
+        állítja be)</font></li>
+    <li><font face="Arial"><b>vlink=</b> szín vagy színkód (a már meglátogatott linkek
+        színét állítja be)</font></li>
+</ul>
+
+<p><strong><font face="Arial">pl</font></strong><font face="Arial">. &lt;body
+bgcolor=&quot;#CAFFB0&quot; text=&quot;#AA3900&quot;
+link=&quot;#0000FF&quot; alink=&quot;#FF2020&quot;
+vlink=&quot;#800020&quot;&gt;</font></p>
+
+<hr>
+
+<h3><font face="Arial">Háttérszín beállítása</font></h3>
+
+<p><font face="Arial">Ha nem képet, hanem valamilyen színt
+szeretnénk oldalunk hátterének, akkor a bgcolor paramétert
+használhatjuk.</font></p>
+
+<p><font face="Arial">&lt;BODY bgcolor=&quot;színkód&quot; &gt; vagy &lt;BODY
+bgcolor=&quot;szín neve&quot; &gt;<br>
+pl.: &lt;BODY bgcolor=&quot;#ff0000&quot; &gt; vagy &lt;BODY
+bgcolor=&quot;red&quot; &gt;</font> </p>
+
+<hr>
+
+<h3><font face="Arial">Képek elhelyezése az oldalon &lt;IMG&gt;</font></h3>
+
+<p><font face="Arial">Képet az &lt;IMG&gt; paraméterrel
+helyezhetünk el az oldalon.</font></p>
+
+<p><strong><font face="Arial">Paraméterei:</font> </strong></p>
+
+<ul>
+    <li><font face="Arial"><b>src:</b> URL (vagyis a kép útvonalának megadása)</font> </li>
+    <li><font face="Arial"><b>width:</b> a kép szélessége pixelekben</font> </li>
+    <li><font face="Arial"><b>height:</b> a kép magassága pixelekben</font> </li>
+    <li><font face="Arial"><b>align:</b> a kép és a szöveg viszonyának megadása</font>
+        <ul>
+            <li><font face="Arial"><b>top:</b> a kép teteje a mellette lévõ
+                szöveg tetejével lesz egy vonalban</font> </li>
+            <li><font face="Arial"><b>middle:</b> a kép közepe lesz a szöveg
+                alapvonala</font> </li>
+            <li><font face="Arial"><b>bottom:</b> a kép alját a szöveg
+                alapvonalához illeszti (ez az alapértelmezett)</font> </li>
+            <li><font face="Arial"><b>left: </b>a képet a bal oldali margóhoz
+                igazítja</font> </li>
+            <li><font face="Arial"><b>right:</b>a képet a jobb oldali margóhoz
+                igazítja</font> </li>
+        </ul>
+    </li>
+    <li><font face="Arial"><b>border:</b> a kép köré rajzolandó keret
+        vastagságának megadása</font> </li>
+    <li><font face="Arial"><b>hspace:</b> a kép körül vízszintesen hagyandó
+        átlátszó sáv mérete pixelben</font> </li>
+    <li><font face="Arial"><b>vspace:</b> a kép körül föggõlegesen hagyandó
+        átlátszó sáv mérete pixelben</font> </li>
+    <li><font face="Arial"><strong>alt: </strong>leírás, jellemzõ szöveg a
+        képrõl. <br>
+        (Akkor jelenik meg, ha a böngészõ nem képes
+        megjeleníteni a képeket. <br>
+        Egyes böngészõkben akkor is látható, ha a kép
+        fölé visszük az egérkurzort)</font></li>
+</ul>
+
+<hr>
+
+<p><font face="Arial"><img src="infologo.gif" align="top" width="165" height="65">Tetõhöz
+igazítva</font></p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k1">
+    <p><font face="Arial"><textarea name="forras" rows="3" cols="38">     
+&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=top&gt;Tetõhöz igazítva
+</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k1.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><b><font face="Arial">&lt;IMG SRC=&quot;infologo.gif&quot;
+ALIGN=middle&gt;Középhez igazítva</font></b> </p>
+
+<p><font face="Arial"><img src="infologo.gif" align="middle" width="165" height="65">Középhez
+igazítva</font></p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k2">
+    <p><font face="Arial"><textarea name="forras" rows="3" cols="38">     
+&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=middle&gt;Középhez igazítva
+</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k2.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><b><font face="Arial">&lt;IMG SRC=&quot;infologo.gif&quot;
+ALIGN=bottom&gt;Talphoz igazítva</font></b> </p>
+
+<p><font face="Arial"><img src="infologo.gif" width="165" height="65">Talphoz
+igazítva</font></p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k3">
+    <p><font face="Arial"><textarea name="forras" rows="3" cols="41">     
+&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=bottom&gt;Talphoz igazítva
+</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k3.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><b><font face="Arial">&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=left&gt;Jól
+használható a balra igazítás arra, hogy egy kép mellé
+illesszünk egy hosszabb szöveget. Az a szövegrész, amelyik
+túllóg a képen, az az eredeti margóhoz ugrik vissza.</font></b> </p>
+
+<p><font face="Arial"><img src="infologo.gif" align="left" hspace="0" width="165"
+height="65">Jól használható a balra igazítás arra, hogy egy
+kép mellé illesszünk egy hosszabb szöveget. Az a
+szövegrész, amelyik túllóg a képen, az az eredeti margóhoz
+ugrik vissza.</font></p>
+
+<p><font face="Arial"><br clear="all">
+</font>
+</p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k4">
+    <p><font face="Arial"><textarea name="forras" rows="5" cols="52">     
+&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=left&gt;Jól használható a 
+balra igazítás arra,  hogy egy kép mellé illesszünk egy hosszabb szöveget. 
+Az a szövegrész, amelyik túllóg a  képen, az az eredeti margóhoz  ugrik vissza.
+</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k4.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><b><font face="Arial">&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=right&gt;A jobb
+oldalra igazított kép is az elõzõhöz hasonlóan viselkedik.
+Természetesen a szöveg továbbra is balra lesz igazítva.</font></b> </p>
+
+<p><font face="Arial"><img src="infologo.gif" align="right" hspace="0" width="165"
+height="65">A jobb oldalra igazított kép is az elõzõhöz
+hasonlóan viselkedik. Természetesen a szöveg továbbra is
+balra lesz igazítva.</font></p>
+
+<p><font face="Arial"><br clear="all">
+</font>
+</p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k5">
+    <p><font face="Arial"><textarea name="forras" rows="5" cols="45">     
+&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=right&gt;A jobb oldalra 
+igazított kép is az elozohöz hasonlóan viselkedik. Természetesen a 
+szöveg továbbra is balra lesz igazítva. </textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k5.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><b><font face="Arial">&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=left&gt;&lt;IMG
+SRC=&quot;infologo.gif&quot; ALIGN=right&gt;A két utóbbi
+lehetõség együttes alkalmazása is lehetséges.</font></b> </p>
+
+<p><font face="Arial"><img src="infologo.gif" align="left" hspace="0" width="165"
+height="65"><img src="infologo.gif" align="right" hspace="0"
+width="165" height="65">A két utóbbi lehetõség együttes
+alkalmazása is lehetséges.</font> </p>
+
+<p><font face="Arial"><br clear="all">
+</font>
+</p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k6">
+    <p><font face="Arial"><textarea name="forras" rows="5" cols="46">     
+&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=left&gt;
+&lt;IMG SRC=&quot;infologo.gif&quot; ALIGN=right&gt;
+A két utóbbi lehetõség együttes alkalmazása is lehetséges.
+</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k6.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><font face="Arial"><br>
+<b>&lt;a href=&quot;http://www.szikszi.hu/infosavaria/&quot;&gt;
+&lt;IMG SRC=&quot;infologo.gif&quot; </b><font color="#000000"
+size="3"><b>ALT=&quot;Info Savaria'99&quot;</b></font><font
+color="#000000" size="2"><b> </b></font><b>ALIGN=left
+width=&quot;180&quot; height=&quot;150&quot; border=&quot;5&quot;
+hspace=&quot;15&quot; vspace=&quot;5&quot; &gt; &lt;/a&gt;</b> <br>
+<a href="http://www.szikszi.hu/infosavaria/"><img
+src="infologo.gif" alt="Info Savaria'99" align="left" border="5"
+hspace="15" vspace="5" width="180" height="150"></a> Az INFO
+’9? konferencia rendezõi ez évtõl Szombathelyen is
+elindítják az informatika oktatással és érvényesülési
+ismeretekkel foglakozó konferencia sorozatot. A már nyolcadik
+éve Békéscsabán megrendezett INFO konferencia nagy sikere azt
+bizonyítja, hogy az informatika oktatással kapcsolatban lévõ
+tanárok illetve más szakemberek széles rétegének szüksége
+van azokra a tapasztalatcserékre, információkra,
+továbbképzésekre és egyéb programokra amiket az INFO
+konferencia nyújt. Nyilvánvaló viszont, hogy a békéscsabai
+INFO konferencia a nyugat-dunántúli tanárok, szakemberek
+többsége számára lényegében elérhetetlen az utazási
+távolságok miatt. Optimális megoldásként ez évtõl két
+alkalommal rendezünk INFO konferenciát:</font> </p>
+
+<p><font face="Arial">&nbsp;</font></p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k7">
+    <p><font face="Arial"><textarea name="forras" rows="6" cols="51">     
+&lt;a href=&quot;http://www.szikszi.hu/infosavaria/&quot;&gt;
+&lt;IMG SRC=&quot;infologo.gif&quot; ALT=&quot;Info Savaria'99&quot; ALIGN=left
+width=&quot;180&quot; height=&quot;150&quot; border=&quot;5&quot;
+hspace=&quot;15&quot; vspace=&quot;5&quot; &gt; &lt;/a&gt;
+</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k7.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><font face="Arial">Természetesen táblázatok használatával is megoldhatóak a
+különbözõ igazítások:</font></p>
+
+<p><font face="Arial"><strong><font size="2">&lt;</font></strong><font
+color="#000000" size="2"><strong>table
+border=&quot;0&quot; cellpadding=&quot;0&quot;
+cellspacing=&quot;0&quot; width=&quot;495&quot;&gt;<br>
+&lt;tr&gt;</strong></font></font></p>
+
+<blockquote>
+    <p><strong><font color="#000000" size="2" face="Arial">&lt;td
+    width=&quot;165&quot;&gt;<br>
+    &lt;img src=&quot;infologo.gif&quot; align=&quot;left&quot;
+    hspace=&quot;0&quot; width=&quot;165&quot;
+    height=&quot;65&quot;&gt;<br>
+    &lt;/td&gt;<br>
+    &lt;td align=&quot;center&quot; width=&quot;165&quot;&gt;<br>
+    &lt;strong&gt;INFO SAVARIA&lt;/strong&gt;<br>
+    &lt;/td&gt;<br>
+    &lt;td width=&quot;165&quot;&gt;<br>
+    &lt;img src=&quot;infologo.gif&quot; align=&quot;left&quot;
+    hspace=&quot;0&quot; width=&quot;165&quot;
+    height=&quot;65&quot;&gt;<br>
+    &lt;/td&gt;</font></strong></p>
+</blockquote>
+
+<p><strong><font color="#000000" size="2" face="Arial">&lt;/tr&gt;<br>
+&lt;tr&gt;</font></strong></p>
+
+<blockquote>
+    <p><strong><font color="#000000" size="2" face="Arial">&lt;td
+    width=&quot;165&quot;&gt;<br>
+    &lt;strong&gt;INFO SAVARIA&lt;/strong&gt;<br>
+    &lt;/td&gt;<br>
+    &lt;td width=&quot;165&quot;&gt;<br>
+    &lt;img src=&quot;infologo.gif&quot; align=&quot;left&quot;
+    hspace=&quot;0&quot; width=&quot;165&quot;
+    height=&quot;65&quot;&gt;<br>
+    &lt;/td&gt;<br>
+    &lt;td align=&quot;right&quot; width=&quot;165&quot;&gt;<br>
+    &lt;strong&gt;INFO SAVARIA&lt;/strong&gt;<br>
+    &lt;/td&gt;</font></strong></p>
+</blockquote>
+
+<p><strong><font color="#000000" size="2" face="Arial">&lt;/tr&gt;<br>
+&lt;tr&gt;</font></strong></p>
+
+<blockquote>
+    <p><strong><font color="#000000" size="2" face="Arial">&lt;td
+    align=&quot;center&quot; valign=&quot;bottom&quot;
+    width=&quot;165&quot;&gt;<br>
+    &lt;img src=&quot;infologo.gif&quot; width=&quot;124&quot;
+    height=&quot;49&quot;&gt;<br>
+    &lt;img src=&quot;infologo.gif&quot; width=&quot;124&quot;
+    height=&quot;49&quot;&gt;<br>
+    &lt;/td&gt;<br>
+    &lt;td align=&quot;center&quot; valign=&quot;bottom&quot;
+    width=&quot;165&quot;&gt;<br>
+    &lt;strong&gt;INFO SAVARIA&lt;/strong&gt;<br>
+    &lt;/td&gt;<br>
+    &lt;td align=&quot;center&quot; width=&quot;165&quot;&gt;<br>
+    &lt;img src=&quot;infologo.gif&quot; align=&quot;middle&quot;
+    width=&quot;140&quot; height=&quot;100&quot;&gt;<br>
+    &lt;/td&gt;</font></strong></p>
+</blockquote>
+
+<p><strong><font color="#000000" size="2" face="Arial">&lt;/tr&gt;<br>
+&lt;/table&gt;</font></strong></p>
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0" width="495">
+    <tr>
+        <td width="165"><font face="Arial"><img src="infologo.gif" align="left"
+        hspace="0" width="165" height="65"></font></td>
+        <td align="center" width="165"><strong><font face="Arial">INFO SAVARIA</font></strong></td>
+        <td width="165"><font face="Arial"><img src="infologo.gif" align="left"
+        hspace="0" width="165" height="65"></font></td>
+    </tr>
+    <tr>
+        <td width="165"><strong><font face="Arial">INFO SAVARIA</font></strong></td>
+        <td width="165"><font face="Arial"><img src="infologo.gif" align="left"
+        hspace="0" width="165" height="65"></font></td>
+        <td align="right" width="165"><strong><font face="Arial">INFO SAVARIA</font></strong></td>
+    </tr>
+    <tr>
+        <td align="center" valign="bottom" width="165"><font face="Arial"><img
+        src="infologo.gif" width="124" height="49"><img
+        src="infologo.gif" width="124" height="49"></font></td>
+        <td align="center" valign="bottom" width="165"><strong><font face="Arial">INFO
+        SAVARIA</font></strong></td>
+        <td align="center" width="165"><font face="Arial"><img src="infologo.gif"
+        align="middle" width="140" height="100"></font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="Arial"><br clear="all">
+</font>
+</p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k8">
+    <p><font face="Arial"><textarea name="forras" rows="25" cols="56">&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;495&quot;&gt;
+    &lt;tr&gt;
+        &lt;td width=&quot;165&quot;&gt;&lt;img src=&quot;infologo.gif&quot; align=&quot;left&quot;
+        hspace=&quot;0&quot; width=&quot;165&quot; height=&quot;65&quot;&gt;&lt;/td&gt;
+        &lt;td align=&quot;center&quot; width=&quot;165&quot;&gt;&lt;strong&gt;INFO SAVARIA&lt;/strong&gt;&lt;/td&gt;
+        &lt;td width=&quot;165&quot;&gt;&lt;img src=&quot;infologo.gif&quot; align=&quot;left&quot;
+        hspace=&quot;0&quot; width=&quot;165&quot; height=&quot;65&quot;&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td width=&quot;165&quot;&gt;&lt;strong&gt;INFO SAVARIA&lt;/strong&gt;&lt;/td&gt;
+        &lt;td width=&quot;165&quot;&gt;&lt;img src=&quot;infologo.gif&quot; align=&quot;left&quot;
+        hspace=&quot;0&quot; width=&quot;165&quot; height=&quot;65&quot;&gt;&lt;/td&gt;
+        &lt;td align=&quot;right&quot; width=&quot;165&quot;&gt;&lt;strong&gt;INFO SAVARIA&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td align=&quot;center&quot; valign=&quot;bottom&quot; width=&quot;165&quot;&gt;&lt;img
+        src=&quot;infologo.gif&quot; width=&quot;124&quot; height=&quot;49&quot;&gt;&lt;img
+        src=&quot;infologo.gif&quot; width=&quot;124&quot; height=&quot;49&quot;&gt;&lt;/td&gt;
+        &lt;td align=&quot;center&quot; valign=&quot;bottom&quot; width=&quot;165&quot;&gt;&lt;strong&gt;INFO
+        SAVARIA&lt;/strong&gt;&lt;/td&gt;
+        &lt;td align=&quot;center&quot; width=&quot;165&quot;&gt;&lt;img src=&quot;infologo.gif&quot;
+        align=&quot;middle&quot; width=&quot;140&quot; height=&quot;100&quot;&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k8.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><strong><font face="Arial">Probléma:</font></strong></p>
+
+<p><strong><font face="Arial">Sok esetben elõfordul, hogy például egy balra
+igazított kép melletti szöveg esetében be szeretném
+állítani, hogy a következõ sor már ne a kép mellé
+kerüljön, hanem a bal margóhoz igazítva.</font> </strong></p>
+
+<p><font face="Arial"><img src="infologo.gif" align="left" hspace="0" width="100"
+height="100">  Ez az 1.sor</font></p>
+
+<p><font face="Arial">Ennél a sornál pedig azt szeretném, hogy ne kerüljön a
+kép mellé.</font></p>
+
+<p><font face="Arial"><br clear="all">
+</font>
+</p>
+
+<p><font face="Arial">&nbsp;</font></p>
+
+<p><font face="Arial">Megoldás: <font color="#000000" size="3"><strong>&lt;br
+clear=&quot;left&quot;&gt; </strong>tag használata <br>
+Ekkor a sortörés utáni szöveg a bal oldali margónál lévõ
+kép aljához ugrik.</font></font></p>
+
+<p><font face="Arial">&nbsp;</font></p>
+
+<p><font face="Arial"><img src="infologo.gif" align="left" hspace="0" width="100"
+height="100">  Ez az 1.sor</font></p>
+
+<p><font face="Arial"><br clear="left">
+Ennél a sornál pedig azt szeretném, hogy ne kerüljön a kép
+mellé.</font></p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k9">
+    <p><font face="Arial"><textarea name="forras" rows="6" cols="54">&lt;img src=&quot;infologo.gif&quot; align=&quot;left&quot; hspace=&quot;0&quot; width=&quot;100&quot; height=&quot;100&quot;&gt; Ez az 1.sor
+&lt;br clear=&quot;left&quot;&gt;
+Ennél a sornál pedig azt szeretném, hogy ne kerüljön a kép mellé.</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k9.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><font face="Arial">Ugyanez természetesen a <font color="#000000" size="3"><strong>&lt;br
+clear=&quot;right&quot;&gt; </strong>tag használatával a jobb
+oldali margóhoz történõ igazításra is vonatkozik.<br>
+Abban az esetben, ha mindkét margóhoz igazítottunk egy-egy
+képet, akkor a <strong>&lt;br clear=&quot;all&quot;&gt; </strong>tag
+használatával a szöveg a legalsó kép aljához ugrik.</font></font></p>
+
+<p><font face="Arial">&nbsp;</font></p>
+
+<p align="right"><font face="Arial"><img src="infologo.gif" align="left" hspace="0"
+width="100" height="140"><img src="infologo.gif" align="right"
+hspace="0" width="60" height="70">Nézzük a következõ
+példát. Itt a <font color="#000000" size="3"><strong>&lt;br
+clear=&quot;right&quot;&gt; </strong>taget használtuk. <br>
+Így a következõ sor a jobb oldali margóhoz igazodik. </font></font></p>
+
+<p align="right"><font face="Arial"><br clear="right">
+<strong>Következõ sor</strong></font></p>
+
+<p><font face="Arial">&nbsp;</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p align="left"><font face="Arial"><img src="infologo.gif" align="left" hspace="0"
+width="100" height="140"><img src="infologo.gif" align="right"
+hspace="0" width="60" height="70">Ebben a példában a <font
+color="#000000" size="3"><strong>&lt;br clear=&quot;all&quot;&gt;
+</strong>taget használtuk. <br>
+Így a következõ sor a legalsó kép aljához ugrik.. </font></font></p>
+
+<p align="left"><font face="Arial"><br clear="all">
+<strong>Következõ sor</strong></font></p>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k10">
+    <p><font face="Arial"><textarea name="forras" rows="6" cols="53">&lt;img src=&quot;infologo.gif&quot; align=&quot;left&quot; hspace=&quot;0&quot;
+width=&quot;100&quot; height=&quot;140&quot;&gt;&lt;img src=&quot;infologo.gif&quot; align=&quot;right&quot;
+hspace=&quot;0&quot; width=&quot;60&quot; height=&quot;70&quot;&gt;Ebben a példában a &amp;lt;br clear=&amp;quot;all&amp;quot;&amp;gt;
+taget használtuk. Így a következõ sor a legalsó kép aljához ugrik.. 
+&lt;br clear=&quot;all&quot;&gt;Következõ sor</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k10.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<p><font face="Arial">&nbsp;</font></p>
+
+<hr>
+
+<h3><strong><font face="Arial">Átlátszó (transparent) képek</font></strong></h3>
+
+<p><font face="Arial">Érdemes megemlíteni, hogy GIF formátumú képek esetén
+lehetõség van arra, hogy a kép egy színét valamilyen
+segédprogrammal átlátszóvá tegyük. Ekkor az adott szín
+helyett az oldal háttere, vagy háttérszíne fog megjelenni.</font></p>
+
+<p><font face="Arial">pl. A bal oldali képet egy grafikai programmal úgy
+módosítottuk, hogy a fekete szín legyen a transparent
+(átlátszó) szín. <br>
+Az eredmény a jobb oldali képen látható.</font></p>
+
+<table border="0">
+    <tr>
+        <td><font face="Arial"><img src="redrose.gif"
+        width="166" height="114"></font></td>
+        <td align="center" width="50"><font face="Arial"><img
+        src="arrow.gif" width="18"
+        height="17"></font></td>
+        <td><font face="Arial"><img src="redrose2.gif"
+        width="166" height="114"></font></td>
+    </tr>
+</table>
+
+<p><font face="Arial">pl. egy olyan táblázatban, ahol a cellák háttérszínnel
+rendelkeznek a következõ hatás érhetõ el:</font></p>
+
+<table border="0">
+    <tr>
+        <td bgcolor="#000080"><font face="Arial"><img src="redrose2.gif" width="137"
+        height="94"></font></td>
+        <td bgcolor="#008000"><font face="Arial"><img src="redrose2.gif" width="137"
+        height="94"></font></td>
+        <td bgcolor="#008080"><font face="Arial"><img src="redrose2.gif" width="137"
+        height="94"></font></td>
+    </tr>
+</table>
+
+<p><strong><font face="Arial">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="k11">
+    <p><font face="Arial"><textarea name="forras" rows="15" cols="51">&lt;table border=&quot;0&quot;&gt;
+    &lt;tr&gt;
+        &lt;td bgcolor=&quot;#000080&quot;&gt;
+        &lt;img src=&quot;redrose2.gif&quot; width=&quot;137&quot;  height=&quot;94&quot;&gt;
+        &lt;/td&gt;
+        &lt;td bgcolor=&quot;#008000&quot;&gt;
+        &lt;img src=&quot;redrose2.gif&quot; width=&quot;137&quot; height=&quot;94&quot;&gt;
+        &lt;/td&gt;
+        &lt;td bgcolor=&quot;#008080&quot;&gt;
+         &lt;img src=&quot;redrose2.gif&quot; width=&quot;137&quot;  height=&quot;94&quot;&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</textarea></font></p>
+    <p><font face="Arial"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(k11.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+</body>
+</html>

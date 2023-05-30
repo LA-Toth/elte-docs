@@ -1,0 +1,6 @@
+Olvassunk be a billentyûzetrõl számokat, majd rendezetten írjuk ki azokat.
+A beolvasás végét az jelzi, ha nem sikerült számot olvasni.
+Elõre nem tudjuk, hogy hány szám lesz, ezért egy láncolt adatszerkezetben
+(fejelem nélküli egyszeresen láncolt listában) tároljuk a beolvasott
+számokat. Egy rendezõ eljárás segítségével rendezzük a listát. 
+

@@ -1,0 +1,964 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1250">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Framek</title>
+</head>
+
+<body link="#0000FF" bgcolor="#F4FEFF" background="../../images/bg1.gif">
+
+  <table border="0" cellpadding="5" cellspacing="0" width="100%" background="../../images/bg2.gif" bgcolor="#003366">
+    <tr>
+      <td align="center"><b><font color="#FFFFFF" face="Arial" size="3">Framek
+        használata</font></b></td>
+    </tr>
+  </table>
+
+  <table border="0" width="100%" bgcolor="#F4FEFF" cellspacing="0" cellpadding="5">
+    <tr>
+      <td width="100%" colspan="2">
+
+<script language="JavaScript"><!--
+
+function ujablak() {
+ html = window.open("","","resizable=1,scrollbars=1,screenx=50,screenY=50");
+}
+function updatewin(input_form) {
+html.document.open("text/html");
+html.document.write(input_form);
+html.document.close()
+}
+// --></script><script
+language="JavaScript"><!--
+//-
+document.write('<h5><p align="Right"> Utolsó módosítás: ')
+document.write(document.lastModified)
+document.write('</p></h5>')
+// --></script>
+
+<p><font face="Arial" size="2">A frame-ek segítségével a képernyõt felosztva egyszerre
+jeleníthetünk meg több html dokumentumot a képernyõn</font></p>
+
+<h4><font face="Arial" size="2">Használata:</font></h4>
+
+<p><font face="Arial" size="2">&lt;FRAMESET&gt;</font></p>
+
+<h4><font face="Arial" size="2">Paraméterek:</font></h4>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="20%"><font face="Arial" size="2">&lt;ROWS&gt; :</font></td>
+        <td width="80%"><font face="Arial" size="2">vesszõvel tagolt lista, amely a sorok
+        kialakítására szolgál a különbözõ szélesség
+        megadási módok felhasználásával</font></td>
+    </tr>
+    <tr>
+        <td width="20%"><font face="Arial" size="2">&lt;COLS&gt; :</font> </td>
+        <td width="80%"><font face="Arial" size="2">vesszõvel tagolt lista, amely az
+        oszlopok kialakítására szolgál a különbözõ
+        szélesség megadási módok felhasználásával</font></td>
+    </tr>
+</table>
+</div>
+
+<h4><font face="Arial" size="2">Méret megadási módok:</font></h4>
+
+<ul>
+    <li><font face="Arial" size="2">méret megadása százalékban <br>
+        pl. &lt;FRAMESET ROWS=&quot;25%,75%&quot;&gt;</font></li>
+</ul>
+
+<ul>
+    <li><font face="Arial" size="2">méret megadása képpontokban <br>
+        pl. &lt;FRAMESET ROWS=&quot;300,600&quot;&gt;</font></li>
+</ul>
+
+<ul>
+    <li><font face="Arial" size="2">a terület felosztása bizonyos arányban <br>
+        pl. a &lt;FRAMESET ROWS=&quot;1*,2*&quot;&gt; 1:2
+        arányban osztja fel a területet</font></li>
+</ul>
+
+<p><font face="Arial" size="2">(A különbözõ méretdefiniciók egymással is
+kombinálhatóak, ahogy azt a példákban látni fogjuk))</font></p>
+
+<p><font face="Arial" size="2">A &lt;FRAMESET&gt; elemen belül elhelyezett &lt;FRAME&gt;
+elemekkel definiálhatjuk a tényleges kerettartalmat.</font></p>
+
+<h4><font face="Arial" size="2">&lt;FRAME&gt; Paraméterei:</font></h4>
+
+<dir>
+    <li><font size="2"><strong><font face="Arial">NAME</font></strong><font face="Arial">: név <br>
+        Nevet adhatunk az adott frame-nek. (ahhoz kell, hogy
+        hivatkozhassunk a framere)</font></font></li>
+</dir>
+
+<dir>
+    <li><font size="2"><strong><font face="Arial">SRC</font></strong><font face="Arial">: a frame URL-je<br>
+        A területre betöltendõ dokumentum nevét (elérését)
+        adhatjuk meg</font></font></li>
+</dir>
+
+<dir>
+    <li><font size="2"><strong><font face="Arial">NORESIZE</font></strong><font face="Arial">: átméretezhetõség<br>
+        Hatására az aktuális területet határoló keret nem
+        mozdítható el</font></font></li>
+</dir>
+
+<dir>
+    <li><font size="2"><strong><font face="Arial">SCROLLING</font></strong><font face="Arial">: görgethetõség<br>
+        Ezzel adhatjuk meg, hogy a keret tartalma görgethetõ
+        legyen, vagy nem. <br>
+        <em>Értékei: <br>
+        </em>YES (kirakja a gördítõsávot) <br>
+        NO (nem rakja ki a görditõsávot) <br>
+        AUTO (csak akkor rakja ki a görditõsávot, ha
+        szükséges)</font></font></li>
+</dir>
+
+<dir>
+    <li><font size="2"><strong><font face="Arial">FRAMEBORDER</font></strong><font face="Arial">: határoló keret<br>
+        Azt határozza meg, hogy legyen-e látható keret a frame
+        körül. <br>
+        <em>Értékei:</em> 1 (van keret) 0 (nincs keret)</font></font></li>
+</dir>
+
+<dir>
+    <li><font size="2"><strong><font face="Arial">MARGINWIDTH</font></strong><font face="Arial">: margó szélesség<br>
+        Az adott frame tartalma és a keret közti vízszintes
+        távolság definiálására szolgál</font></font></li>
+</dir>
+
+<dir>
+    <li><font size="2"><strong><font face="Arial">MARGINHEIGHT</font></strong><font face="Arial">: margó magasság<br>
+        Az adott frame tartalma és a keret közti függõleges
+        távolság definiálására szolgál</font></font></li>
+</dir>
+
+<p><font face="Arial" size="2">Azon böngészõk számára, amelyek nem képesek a frameket
+megjeleníteni létezik egy <strong>&lt;NOFRAMES&gt;</strong>
+elem, amelyet a &lt;FRAMESET&gt; &lt;/FRAMESET&gt; elemek
+között kell elhelyezni. Az ebben leírt szöveget azon
+böngészõk jelenítik meg, amelyek nem ismerik a Frame
+definíciót.</font></p>
+
+<p><font face="Arial" size="2">pl.&lt;NOFRAMES&gt; A Te böngészõd nem képes a keretek
+megjelenítésére. Kérlek olvasd el a &lt;a
+href=&quot;szoveges.html&quot;&gt;szöveg&lt;/a&gt; változatát
+az oldalnak. &lt;/NOFRAMES&gt;</font></p>
+
+<p><strong><font face="Arial" size="2">Az 1. példában két vízszintes elhelyezkedésû
+framet definiálunk, amelyek egyenlõ arányban (50-50%) töltik
+ki az a böngészõ ablakot.</font></strong></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td><font size="2"><a href="frame1.html" target="_newwindow"><font face="Arial">1. példa</font></a>
+          <font face="Arial">
+        (frame1.html)</font></font><p><font face="Arial" size="2">&lt;html&gt;<br>
+        &lt;head&gt;<br>
+        &lt;title&gt;Framek (illusztracio 1)&lt;/title&gt;<br>
+        &lt;/head&gt;<br>
+        &lt;FRAMESET rows=&quot;50%,50%&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;demo.html&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;kepek.html&quot;&gt;<br>
+        &lt;/FRAMESET&gt;<br>
+        &lt;/html&gt;</font></p>
+        </td>
+        <td align="center" width="250"><strong><font face="Arial" size="2">Hatása</font></strong><div
+        align="center"><center><table border="0" cellpadding="0"
+        cellspacing="0" width="150" bgcolor="#008080">
+            <tr>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td colspan="2" width="34%" bgcolor="#00FF00"><strong><font face="Arial" size="2">demo</font></strong></td>
+                <td width="17%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%">&nbsp;</td>
+                <td width="16%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%">&nbsp;</td>
+                <td width="16%">&nbsp;</td>
+                <td colspan="2" width="34%"><strong><font face="Arial" size="2">kepek</font></strong></td>
+                <td width="17%"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%">&nbsp;</td>
+                <td width="16%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
+            </tr>
+        </table>
+        </center></div></td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="f1">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="10" cols="60">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Framek (illusztracio 1)&lt;/title&gt;
+&lt;/head&gt;
+&lt;FRAMESET rows=&quot;50%,50%&quot;&gt;
+&lt;FRAME SRC=&quot;demo.html&quot;&gt;
+&lt;FRAME SRC=&quot;kepek.html&quot;&gt;
+&lt;/FRAMESET&gt;
+&lt;/html&gt;
+
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(f1.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><strong><font face="Arial" size="2">Most ugyanezt függõlegesen elhelyezkedõ framek
+esetén is nézzük meg:</font></strong></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td><font size="2"><a href="frame2.html" target="_newwindow"><font face="Arial">2. példa</font></a>
+          <font face="Arial">
+        (frame2.html)</font></font><p><font face="Arial" size="2">&lt;html&gt;<br>
+        &lt;head&gt;<br>
+        &lt;title&gt;Framek (illusztracio 2)&lt;/title&gt;<br>
+        &lt;/head&gt;<br>
+        &lt;FRAMESET cols=&quot;50%,50%&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;demo.html&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;kepek.html&quot;&gt;<br>
+        &lt;/FRAMESET&gt;<br>
+        &lt;/html&gt;<br>
+          </font>
+        </p>
+        </td>
+        <td align="center" width="250"><strong><font face="Arial" size="2">Hatása</font></strong><div
+        align="center"><center><table border="0" cellpadding="0"
+        cellspacing="0" width="150" bgcolor="#008080">
+            <tr>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="16%" bgcolor="#00FF00"><strong><font face="Arial" size="2">d</font></strong></td>
+                <td width="17%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000"><strong><font face="Arial" size="2">k</font></strong></td>
+                <td width="17%" bgcolor="#008000"><font face="Arial" size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="16%" bgcolor="#00FF00"><strong><font face="Arial" size="2">e</font></strong></td>
+                <td width="17%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000"><strong><font face="Arial" size="2">e</font></strong></td>
+                <td width="17%" bgcolor="#008000"><font face="Arial" size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="16%" bgcolor="#00FF00"><strong><font face="Arial" size="2">m</font></strong></td>
+                <td width="17%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000"><strong><font face="Arial" size="2">p</font></strong></td>
+                <td width="17%" bgcolor="#008000"><font face="Arial" size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="16%" bgcolor="#00FF00"><strong><font face="Arial" size="2">o</font></strong></td>
+                <td width="17%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000"><strong><font face="Arial" size="2">e</font></strong></td>
+                <td width="17%" bgcolor="#008000"><font face="Arial" size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000"><strong><font face="Arial" size="2">k</font></strong></td>
+                <td width="17%" bgcolor="#008000"><font face="Arial" size="2">&nbsp;</font></td>
+            </tr>
+        </table>
+        </center></div></td>
+    </tr>
+</table>
+</div>
+
+<form name="f2">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="10" cols="60">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Framek (illusztracio 2)&lt;/title&gt;
+&lt;/head&gt;
+&lt;FRAMESET cols=&quot;50%,50%&quot;&gt;
+&lt;FRAME SRC=&quot;demo.html&quot;&gt;
+&lt;FRAME SRC=&quot;kepek.html&quot;&gt;
+&lt;/FRAMESET&gt;
+&lt;/html&gt;
+	
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(f2.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><strong><font face="Arial" size="2">A következõ példában három framet definálunk,
+melyek közül kettõnek abszolut módon adjuk meg a
+magasságát, a harmadik pedig a maradék helyet fogja
+betölteni.</font></strong></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td><font size="2"><a href="frame3.html" target="_newwindow"><font face="Arial">3.példa</font></a>
+          <font face="Arial">
+        (frame3.html)</font></font><p><font face="Arial" size="2">&lt;html&gt;<br>
+        &lt;head&gt;<br>
+        &lt;title&gt;Framek (illusztracio 3)&lt;/title&gt;<br>
+        &lt;/head&gt;<br>
+        &lt;FRAMESET rows=&quot;150,250,*&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;demo.html&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;kepek.html&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;proba.html&quot;&gt;<br>
+        &lt;/FRAMESET&gt;<br>
+        &lt;/html&gt;</font></p>
+        </td>
+        <td align="center" width="250"><strong><font face="Arial" size="2">Hatása</font></strong><div
+        align="center"><center><table border="0" cellpadding="0"
+        cellspacing="0" width="150" bgcolor="#008080">
+            <tr>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td colspan="2" width="34%" bgcolor="#00FF00"><strong><font face="Arial" size="2">demo</font></strong></td>
+                <td width="17%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td colspan="2" width="34%" bgcolor="#008000"><strong><font face="Arial" size="2">kepek</font></strong></td>
+                <td width="17%" bgcolor="#008000"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FFFF">&nbsp;</td>
+                <td width="16%" bgcolor="#00FFFF">&nbsp;</td>
+                <td colspan="2" width="34%" bgcolor="#00FFFF"><strong><font face="Arial" size="2">proba</font></strong></td>
+                <td width="17%" bgcolor="#00FFFF"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#00FFFF">&nbsp;</td>
+            </tr>
+        </table>
+        </center></div></td>
+    </tr>
+</table>
+</div>
+
+<form name="f3">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="10" cols="60">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Framek (illusztracio 3)&lt;/title&gt;
+&lt;/head&gt;
+&lt;FRAMESET rows=&quot;150,250,*&quot;&gt;
+&lt;FRAME SRC=&quot;demo.html&quot;&gt;
+&lt;FRAME SRC=&quot;kepek.html&quot;&gt;
+&lt;FRAME SRC=&quot;proba.html&quot;&gt;
+&lt;/FRAMESET&gt;
+&lt;/html&gt;
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(f3.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><strong><font face="Arial" size="2">Fejlesszük tovább a fenti példát úgy, hogy az
+elsõ frame tartalmát ne lehessen görgetni, a második frame
+méretét pedig ne lehessen megváltoztatni.</font></strong></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td><font size="2"><a href="frame4.html" target="_newwindow"><font face="Arial">4.példa</font></a>
+          <font face="Arial">
+        (frame4.html)</font></font><p><font face="Arial" size="2">&lt;html&gt;<br>
+        &lt;head&gt;<br>
+        &lt;title&gt;Framek (illusztracio 4)&lt;/title&gt;<br>
+        &lt;/head&gt;<br>
+        &lt;FRAMESET rows=&quot;150,250,*&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;demo.html&quot; scrolling=no&gt;<br>
+        &lt;FRAME SRC=&quot;kepek.html&quot; noresize&gt;<br>
+        &lt;FRAME SRC=&quot;proba.html&quot;&gt;<br>
+        &lt;/FRAMESET&gt;<br>
+        &lt;/html&gt;<br>
+          </font>
+        </p>
+        </td>
+        <td align="center" width="250"><strong><font face="Arial" size="2">Hatása</font></strong><div
+        align="center"><center><table border="0" cellpadding="0"
+        cellspacing="0" width="150" bgcolor="#008080">
+            <tr>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td colspan="2" width="34%" bgcolor="#00FF00"><strong><font face="Arial" size="2">demo</font></strong></td>
+                <td width="17%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#00FF00">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td colspan="2" width="34%" bgcolor="#008000"><strong><font face="Arial" size="2">kepek</font></strong></td>
+                <td width="17%" bgcolor="#008000"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="16%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+                <td width="17%" bgcolor="#008000">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FFFF">&nbsp;</td>
+                <td width="16%" bgcolor="#00FFFF">&nbsp;</td>
+                <td colspan="2" width="34%" bgcolor="#00FFFF"><strong><font face="Arial" size="2">proba</font></strong></td>
+                <td width="17%" bgcolor="#00FFFF"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#00FFFF">&nbsp;</td>
+            </tr>
+        </table>
+        </center></div></td>
+    </tr>
+</table>
+</div>
+
+<form name="f4">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="10" cols="60">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Framek (illusztracio 4)&lt;/title&gt;
+&lt;/head&gt;
+&lt;FRAMESET rows=&quot;150,250,*&quot;&gt;
+&lt;FRAME SRC=&quot;demo.html&quot; scrolling=no&gt;
+&lt;FRAME SRC=&quot;kepek.html&quot; noresize&gt;
+&lt;FRAME SRC=&quot;proba.html&quot;&gt;
+&lt;/FRAMESET&gt;
+&lt;/html&gt;
+	
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(f4.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><strong><font face="Arial" size="2">Természetesen egy frame tartalmazhat olyan oldalt is,
+amely maga is frame-ekbõl áll. Erre mutat példát a
+következõ oldal.</font></strong></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td><font size="2"><a href="frame5.html" target="_newwindow"><font face="Arial">5. példa</font></a>
+          <font face="Arial">
+        (frame5.html)</font></font><p><font face="Arial" size="2">&lt;html&gt;<br>
+        &lt;head&gt;<br>
+        &lt;title&gt;Framek (illusztracio 5)&lt;/title&gt;<br>
+        &lt;/head&gt;<br>
+        &lt;FRAMESET cols=&quot;40%,*&quot;
+        rows=&quot;150,*&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;demo.html&quot; &gt;<br>
+        &lt;FRAME SRC=&quot;kepek.html&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;proba.html&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;frame1.html&quot;&gt;<br>
+        &lt;/FRAMESET&gt;<br>
+        &lt;/html&gt;</font></p>
+        </td>
+        <td align="center" width="250"><strong><font face="Arial" size="2">Hatása</font></strong><div
+        align="center"><center><table border="0" cellpadding="0"
+        cellspacing="0" width="150" bgcolor="#008080">
+            <tr>
+                <td colspan="2" width="32%" bgcolor="#00FFFF"><strong><font face="Arial" size="2">demo</font></strong></td>
+                <td width="17%" bgcolor="#FFFF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td colspan="2" width="34%" bgcolor="#FFFF00"><strong><font face="Arial" size="2">kepek</font></strong></td>
+                <td width="17%" bgcolor="#FFFF00"><font face="Arial" size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FFFF">&nbsp;</td>
+                <td width="16%" bgcolor="#00FFFF">&nbsp;</td>
+                <td width="17%" bgcolor="#FFFF00">&nbsp;</td>
+                <td width="17%" bgcolor="#FFFF00">&nbsp;</td>
+                <td width="17%" bgcolor="#FFFF00">&nbsp;</td>
+                <td width="17%" bgcolor="#FFFF00">&nbsp;</td>
+            </tr>
+            <tr>
+                <td rowspan="4" width="16%" bgcolor="#00FF00"><strong><font face="Arial" size="2">p<br>
+                r<br>
+                o<br>
+                b<br>
+                a</font></strong></td>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#FF00FF"><strong><font face="Arial" size="2">f</font></strong></td>
+                <td colspan="3" width="51%" bgcolor="#FF00FF"><p
+                align="right"><strong><font face="Arial" size="2">demo</font></strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td rowspan="3" width="17%" bgcolor="#008080"><strong><font face="Arial" size="2">r<br>
+                a<br>
+                m<br>
+                e<br>
+                1</font></strong></td>
+                <td width="17%" bgcolor="#008080"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td colspan="3" width="51%" bgcolor="#008080"><p
+                align="right"><strong><font face="Arial" size="2">kepek</font></strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+            </tr>
+        </table>
+        </center></div></td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A fenti hatást úgy is elérhetjük, ha a frameket
+egymásba ágyazva definiáljuk.</font></strong></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td><font size="2"><a href="frame5_2.html" target="_newwindow"><font face="Arial">5.2
+        példa</font></a> <font face="Arial"> (frame5_2.html)</font></font><p><font face="Arial" size="2">&lt;html&gt;<br>
+        &lt;head&gt;<br>
+        &lt;title&gt;Framek (illusztracio 5.2)&lt;/title&gt;<br>
+        &lt;/head&gt;<br>
+        &lt;FRAMESET cols=&quot;40%,*&quot;
+        rows=&quot;150,*&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;demo.html&quot; &gt;<br>
+        &lt;FRAME SRC=&quot;kepek.html&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;proba.html&quot; &gt;<br>
+        &lt;FRAMESET rows=&quot;50%,50%&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;demo.html&quot;&gt;<br>
+        &lt;FRAME SRC=&quot;kepek.html&quot;&gt;<br>
+        &lt;/FRAMESET&gt;<br>
+        &lt;/FRAMESET&gt;<br>
+        &lt;/html&gt;</font></p>
+        </td>
+        <td align="center" width="250"><strong><font face="Arial" size="2">Hatása</font></strong><div
+        align="center"><center><table border="0" cellpadding="0"
+        cellspacing="0" width="150" bgcolor="#008080">
+            <tr>
+                <td colspan="2" width="32%" bgcolor="#00FFFF"><strong><font face="Arial" size="2">demo</font></strong></td>
+                <td width="17%" bgcolor="#FFFF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td colspan="2" width="34%" bgcolor="#FFFF00"><strong><font face="Arial" size="2">kepek</font></strong></td>
+                <td width="17%" bgcolor="#FFFF00"><font face="Arial" size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FFFF">&nbsp;</td>
+                <td width="16%" bgcolor="#00FFFF">&nbsp;</td>
+                <td width="17%" bgcolor="#FFFF00">&nbsp;</td>
+                <td width="17%" bgcolor="#FFFF00">&nbsp;</td>
+                <td width="17%" bgcolor="#FFFF00">&nbsp;</td>
+                <td width="17%" bgcolor="#FFFF00">&nbsp;</td>
+            </tr>
+            <tr>
+                <td rowspan="4" width="16%" bgcolor="#00FF00"><strong><font face="Arial" size="2">p<br>
+                r<br>
+                o<br>
+                b<br>
+                a</font></strong></td>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#FF00FF"><strong><font face="Arial" size="2">f</font></strong></td>
+                <td colspan="3" width="51%" bgcolor="#FF00FF"><p
+                align="right"><strong><font face="Arial" size="2">demo</font></strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td rowspan="3" width="17%" bgcolor="#008080"><strong><font face="Arial" size="2">r<br>
+                a<br>
+                m<br>
+                e<br>
+                1</font></strong></td>
+                <td width="17%" bgcolor="#008080"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00">&nbsp;</td>
+                <td colspan="3" width="51%" bgcolor="#008080"><p
+                align="right"><strong><font face="Arial" size="2">kepek</font></strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td width="16%" bgcolor="#00FF00"><font face="Arial" size="2">&nbsp;</font></td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+                <td width="17%" bgcolor="#008080">&nbsp;</td>
+            </tr>
+        </table>
+        </center></div></td>
+    </tr>
+</table>
+</div>
+
+<form name="f5">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="14" cols="60">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Framek (illusztracio 5.2)&lt;/title&gt;
+&lt;/head&gt;
+&lt;FRAMESET cols=&quot;40%,*&quot; rows=&quot;150,*&quot;&gt;
+&lt;FRAME SRC=&quot;demo.html&quot; &gt;
+&lt;FRAME SRC=&quot;kepek.html&quot;&gt;
+&lt;FRAME SRC=&quot;proba.html&quot; &gt;
+&lt;FRAMESET rows=&quot;50%,50%&quot;&gt;
+&lt;FRAME SRC=&quot;demo.html&quot;&gt;
+&lt;FRAME SRC=&quot;kepek.html&quot;&gt;
+&lt;/FRAMESET&gt;
+&lt;/FRAMESET&gt;
+&lt;/html&gt;
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(f5.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h2><strong><font face="Arial" size="2">Linkek a framekben</font></strong></h2>
+
+<p><strong><font face="Arial" size="2">Az alábbi példa azt mutatja be, hogy hogyan lehet
+meghatározni, hogy egy adott oldal melyik framebe töltõdjön
+be. A példában kialakítunk 5 db framet (nevük:
+menu1,menu2,elso,masodik,harmadik), majd a menu1 és menu2
+frameben elhelyezünk két darab menüt (1.html, 2.html). Azt
+szeretnénk, hogy a menübõl kiválasztott link az üres framek
+valamelyikében jelenjen meg.</font></strong></p>
+
+<p><strong><font face="Arial" size="2">Ehhez a linkeket a TARGET=&quot;frame neve&quot;
+paraméterrel kell kiegészítenünk a linkeket tartalmazó
+oldalakban.</font></strong></p>
+
+<p><font size="2"><a href="frame6.html" target="_newwindow"><font face="Arial">6.pelda
+</font> </a><font face="Arial">(frame6.html)</font></font></p>
+
+<p><font size="2" face="Arial">&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;title&gt;6. pelda&lt;/title&gt;<br>
+&lt;/head&gt;<br>
+&lt;frameset rows=&quot;50%,*&quot; cols=&quot;50%,*&quot;&gt;<br>
+&lt;frameset cols=&quot;50%,*&quot;&gt;<br>
+&lt;frame name=&quot;menu1&quot; src=&quot;1.html&quot;
+marginwidth=&quot;10&quot; marginheight=&quot;10&quot;
+scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;<br>
+&lt;frame name=&quot;menu2&quot; src=&quot;2.html&quot;
+marginwidth=&quot;10&quot; marginheight=&quot;10&quot;
+scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;<br>
+&lt;/frameset&gt;<br>
+&lt;frame name=&quot;elso&quot; src=&quot;ures.html&quot;
+marginwidth=&quot;10&quot; marginheight=&quot;10&quot;
+scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;<br>
+&lt;frame name=&quot;masodik&quot; src=&quot;ures.html&quot;
+marginwidth=&quot;10&quot; marginheight=&quot;10&quot;
+scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;<br>
+&lt;frame name=&quot;harmadik&quot; src=&quot;ures.html&quot;
+marginwidth=&quot;10&quot; marginheight=&quot;10&quot;
+scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;<br>
+&lt;/frameset&gt;<br>
+&lt;/html&gt;</font></p>
+
+<p><font face="Arial" size="2">&nbsp;</font></p>
+
+<p><font face="Arial" size="2">Az <a href="1.html" target="_newwindow">1. html</a> tartalma:</font></p>
+
+<p><font face="Arial" size="2">&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;meta http-equiv=&quot;Content-Type&quot;
+content=&quot;text/html; charset=windows-1250&quot;&gt;<br>
+&lt;title&gt;Menü1&lt;/title&gt;<br>
+&lt;/head&gt;<br>
+&lt;body bgcolor=&quot;#FFFFFF&quot;&gt;<br>
+&lt;h2&gt;Menü1&lt;/h2&gt;<br>
+&lt;p&gt;&lt;a href=&quot;demo.html&quot;<strong>
+target=&quot;elso&quot;</strong>&gt;Demo az elso
+frameben.&lt;/a&gt;&lt;/p&gt;<br>
+&lt;p&gt;&lt;a href=&quot;demo.html&quot; <strong>target=&quot;masodik&quot;</strong>&gt;Demo
+a második frameben.&lt;/a&gt;&lt;/p&gt;<br>
+&lt;p&gt;&lt;a href=&quot;demo.html&quot; <strong>target=&quot;harmadik&quot;</strong>&gt;Demo
+a harmadik frameben.&lt;/a&gt;&lt;/p&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</font></p>
+
+<p><font face="Arial" size="2">A<a href="2.html" target="_newwindow"> 2.html</a> tartalma:</font></p>
+
+<p><font face="Arial" size="2">&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;meta http-equiv=&quot;Content-Type&quot;
+content=&quot;text/html; charset=windows-1250&quot;&gt;<br>
+&lt;title&gt;Menü2&lt;/title&gt;<br>
+&lt;/head&gt;<br>
+&lt;body bgcolor=&quot;#FFFFFF&quot;&gt;<br>
+&lt;h2&gt;Menü2&lt;/h2&gt;<br>
+&lt;p&gt;&lt;a href=&quot;kepek.html&quot; <strong>target=&quot;elso&quot;</strong>&gt;Képek
+az elso frameben.&lt;/a&gt;&lt;/p&gt;<br>
+&lt;p&gt;&lt;a href=&quot;kepek.html&quot; <strong>target=&quot;masodik</strong>&quot;&gt;Képek
+a második frameben.&lt;/a&gt;&lt;/p&gt;<br>
+&lt;p&gt;&lt;a href=&quot;kepek.html&quot;<strong>
+target=&quot;harmadik&quot;</strong>&gt;Képek a harmadik
+frameben.&lt;/a&gt;&lt;/p&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</font></p>
+
+<p><strong><font size="2" face="Arial">A TARGET paraméter nem csak az
+általunk definiált framenév lehet, használhatjuk még a
+_self, _parent, _top illetve _blank opciókat.</font></strong></p>
+
+<p><font size="2"><strong><font face="Arial">target=&quot;_self&quot;:</font></strong> <font face="Arial"> az adott frame
+helyére töltõdik az oldal.(alapértelmezett)</font></font> </p>
+
+<p><font size="2"><strong><font face="Arial">target=&quot;_parent&quot;: </font> </strong><font face="Arial">az adott frame
+fölé, a szülõframebe töltõdik az oldal.</font></font> </p>
+
+<p><font size="2"><strong><font face="Arial">target=&quot;_top&quot;: </font> </strong><font face="Arial">legfölülre.töltõdik
+az oldal</font></font></p>
+
+<p><font size="2"><strong><font face="Arial">target=&quot;_blank&quot;:</font></strong> <font face="Arial"> egy új böngészõablakba
+töltõdik az oldal</font></font></p>
+
+<p><font face="Arial" size="2">&nbsp;</font></p>
+
+<form name="f6">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="16" cols="80">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;6. pelda&lt;/title&gt;
+&lt;/head&gt;
+&lt;frameset rows=&quot;50%,*&quot; cols=&quot;50%,*&quot;&gt;
+&lt;frameset cols=&quot;50%,*&quot;&gt;
+&lt;frame name=&quot;menu1&quot; src=&quot;1.html&quot; marginwidth=&quot;10&quot; marginheight=&quot;10&quot; scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;
+&lt;frame name=&quot;menu2&quot; src=&quot;2.html&quot; marginwidth=&quot;10&quot; marginheight=&quot;10&quot; scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;
+&lt;/frameset&gt;
+&lt;frame name=&quot;elso&quot; src=&quot;ures.html&quot; marginwidth=&quot;10&quot; marginheight=&quot;10&quot; scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;
+&lt;frame name=&quot;masodik&quot; src=&quot;ures.html&quot; marginwidth=&quot;10&quot; marginheight=&quot;10&quot; scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;
+&lt;frame name=&quot;harmadik&quot; src=&quot;ures.html&quot; marginwidth=&quot;10&quot; marginheight=&quot;10&quot; scrolling=&quot;auto&quot; frameborder=&quot;1&quot;&gt;
+&lt;/frameset&gt;
+&lt;/html&gt;
+	
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(f6.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font size="2" face="Arial">Anchorok</font></h3>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="100%"><font size="2" face="Arial">Gyakorta látunk olyan
+        megoldásokat, ahol a link egy oldal valamelyik részére
+        mutat. (ez az oldal természetesen lehet egy másik
+        frameben is.) Ezt a lehetõséget az <em>anchorok</em>
+        biztosítják nekünk. Ez annyit jelent, hogy az oldal
+        egy részét névvel látjuk el, majd erre a névre
+        hivatkozhatunk más oldalakról is.</font><p><strong><font
+        size="2" face="Arial">Formátuma:</font> </strong></p>
+        <div align="left"><table border="1" cellpadding="0"
+        cellspacing="0">
+            <tr>
+                <td width="100%"><font size="2" face="Arial">&lt;A
+                name=&quot;azonosito&quot;&gt; ..... &lt;/A&gt;</font></td>
+            </tr>
+        </table>
+        </div><p><font size="2" face="Arial">Ekkor az oldal ezen részére a
+        &lt;a href=&quot;#azonosito&quot;&gt; ... &lt;/a&gt;
+        linkkel hivatkozhatunk. (az azonosítónak egyedinek kell
+        lennie a dokumentumon belül)</font></p>
+        <p><font size="2" face="Arial">Ha a hivatkozás egy másik HTML
+        dokumentum egy részére mutat, akkor az anchor
+        azonosítója elõtt az oldal nevét (ill.
+        elérhetõségét) is fel kell tüntetni. </font></p>
+        <p><strong><font size="2" face="Arial">Formátuma</font></strong></p>
+        <div align="left"><table border="1" cellpadding="0"
+        cellspacing="0">
+            <tr>
+                <td width="100%"><font size="2" face="Arial">&lt;a
+                href=&quot;masik_html_oldal#azonosito&quot;&gt;
+                ... &lt;/a&gt; </font></td>
+            </tr>
+        </table>
+        </div><p><font face="Arial" size="2">pl. Nézzük a linkek oldal egy <a href="linkek.html" target="_blank">részletét</a>. Az oldal tetején kiválaszthatjuk, hogy a
+        dokumentum mely részére kívánunk ugrani. pl. A Java linkre kattintva a
+          Javaval foglalkozó részhez ugorhatunk. Ehhez annnyit kellett
+        tenni, hogy a Java címsort ellátjuk
+        egy anchorral, amelynek a neve legyen pl. java.</font></p>
+        <div align="left"><table border="1" cellpadding="0"
+        cellspacing="0">
+            <tr>
+                <td width="100%"><em><font size="2" face="Arial">&lt;a
+                name=&quot;java&quot;&gt;Java&lt;/a&gt;
+                </font></em>
+                </td>
+            </tr>
+        </table>
+        </div><p><font size="2" face="Arial">Így a dokumentum ezen részére
+        már hivatkozhatunk. Ezt meg is tesszük a dokumentum
+        elején, a következõképpen:</font></p>
+        <div align="left"><table border="1" cellpadding="0"
+        cellspacing="0">
+            <tr>
+                <td width="100%"><em><font size="2" face="Arial">&lt;a
+                href=&quot;#java&quot;&gt;JAVA&lt;/a&gt;</font></em></td>
+            </tr>
+        </table>
+        </div><p><font size="2" face="Arial">Beépített anchorokat is
+        használhatunk:</font></p>
+        <div align="left"><table border="1" cellpadding="8"
+        cellspacing="0">
+            <tr>
+                <td width="50%"><font size="2" face="Arial">#top</font></td>
+                <td width="50%"><font face="Arial" size="2">az oldal tetejére ugrik</font></td>
+            </tr>
+            <tr>
+                <td width="50%"><font size="2" face="Arial">#bottom</font></td>
+                <td width="50%"><font face="Arial" size="2">az oldal aljára ugrik</font></td>
+            </tr>
+        </table>
+        </div><p><font face="Arial" size="2">Ha az egyik oldalban egy másik frameben lévõ
+        oldal egy bizonyos részére szeretnénk linket rakni,
+        akkor azt is megtehetjük, ha használjuk a <em>target </em>paramétert.</font></p>
+        <p><font face="Arial" size="2">Tegyük fel hogy az oldalunkban <em>A
+        legjobb barátom: Péter </em>szövegre egy linket
+        szeretnénk elhelyezni a <em>tartalom</em> frameben
+        található <em>baratok.html</em> oldal egy részére,
+        amelyet a <em>Peter</em> anchorral láttunk el. Ezt a
+        következõ sorral tehetjük meg.</font></p>
+        <div align="left"><table border="1" cellpadding="0"
+        cellspacing="0">
+            <tr>
+                <td width="100%"><em><font size="2" face="Arial">&lt;a
+                href=&quot;baratok.html#Peter&quot; target=&quot;tartalom&quot;&gt;A
+                legjobb barátom: Péter&lt;/a&gt;</font></em></td>
+            </tr>
+        </table>
+        </div></td>
+    </tr>
+</table>
+</div>
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#F3DFB4"><img border="0" src="../figyelem.gif" width="53" height="47"></td>
+    <td bgcolor="#FFFFFF"><font color="#FF0000" face="Arial" size="2">Ha a
+      tartalom nevû framebe nincs betöltve oldal, az pl. a Netscape böngészõ
+      egyes verzióinak gondot okoz. Úgy kell létrehozni a frameszerkezetet,
+      hogy minden framebe kerüljön oldal, akkor is, ha az teljesen üres.</font></td>
+  </tr>
+</table>
+
+
+<p><font face="Arial" size="2">&nbsp;</font></p>
+        <p>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="50%">&nbsp;</td>
+      <td width="50%" align="right">&nbsp;</td>
+    </tr>
+  </table>
+
+<p>&nbsp;</p>
+</body>
+</html>

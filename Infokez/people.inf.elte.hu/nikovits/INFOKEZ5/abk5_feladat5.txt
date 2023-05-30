@@ -1,0 +1,44 @@
+A honlapon szereplõ feladatokat kötelezõen meg kell csinálni a 
+gyakorlati jegy megszerzéséhez. NE KULDJÉTEK EL egyesével a megoldásokat, 
+hanem majd a félév végén egyetlen levélben fogom kérni az összeset.
+A megoldásokban a lekérdezéseket és a végeredményt is el kell küldeni.
+
+5. feladat
+
+Vegrehajtasi tervek megvaltoztatasa tippek (hint) segitsegevel
+
+A NIKOVITS felhasznalo tulajdonaban vannak a kovetkezo tablak:
+CIKK(ckod, cnev, szin, suly)
+SZALLITO(szkod, sznev, statusz, telephely)
+PROJEKT(pkod, pnev, helyszin)
+SZALLIT(szkod, ckod, pkod, mennyiseg, datum)
+A tablakhoz indexek is vannak letrehozva, ezek tulajdonsagait
+a katalogusbol nezhetitek meg, ha szuksegetek van ra.
+
+Adjuk meg a kovetkezo lekerdezest es a hozza tartozo vegrehajtasi
+terv(ek) fa strukturajat:
+Mennyi a piros cikkekre vonatkozo szallitasok osszmennyisege?
+
+
+-  Adjuk meg ugy a lekerdezest (hint-ek is hasznalhatok), hogy mindket tablara 
+   hasznaljon indexet a rendszer a vegrehajtas soran. 
+
+-  Adjuk meg ugy a lekerdezest (hint-ek is hasznalhatok), hogy csak az egyik tablara
+   hasznaljon indexet a rendszer. 
+
+-  Adjuk meg ugy a lekerdezest (hint-ek is hasznalhatok), hogy egyik tablara se 
+   hasznaljon indexet a rendszer. 
+
+-  Adjuk meg ugy a lekerdezest (hint-ek is hasznalhatok), hogy a ket tablat 
+   SORT-MERGE modszerrel kapcsolja ossze a rendszer.
+
+-  Adjuk meg ugy a lekerdezest (hint-ek is hasznalhatok), hogy a ket tablat 
+   NESTED-LOOPS modszerrel kapcsolja ossze a rendszer.
+
+Mindegyik lekerdezes valtozatot es a hozza tartozo fa strukturat el kell kuldeni!
+Ne hozzatok letre sajat peldanyt a tablakbol, hanem hasznaljatok a NIKOVITS
+user tablait!
+
+
+
+

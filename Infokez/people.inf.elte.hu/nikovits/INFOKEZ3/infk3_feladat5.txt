@@ -1,0 +1,47 @@
+A honlapon szereplõ feladatokat kötelezõen meg kell csinálni a 
+gyakorlati jegy megszerzéséhez. NE KULDJÉTEK EL egyesével a megoldásokat, 
+hanem majd a félév végén egyetlen levélben fogom kérni az összeset.
+A megoldásokban a lekérdezéseket és a végeredményt is el kell küldeni.
+
+5. feladat
+
+Tranzakciok, konkurrencia, zarolasok
+
+Nyissunk meg egyszerre ket SQLPLUS ablakot, tiltsuk le az automatikus
+commit-ot (SET AUTOCOMMIT OFF) es vegezzunk el mindenfele olvaso es modosito
+muveleteket a ket ablakbol felvaltva. (Ehhez hozzunk letre es toltsunk fol 
+nehany sorral egy egyszeru proba tablat, amit modositgatunk.)
+Az aktiv tranzakciok futasa kozben adjuk meg a rendszerkatalogusok alapjan a 
+kovetkezo informaciokat.
+
+Melyek az aktiv tranzakciok, mikor indultak el, es ki futtatja azokat?
+
+Milyen utasitast futtatnak eppen az egyes tranzakciok?
+
+Melyik tranzakcio melyik rollback szegmenst hasznalja?
+
+Adjunk meg ket utasitassorozatot a ket ablakban ugy, hogy az egyik ablak
+a kovetkezo hibauzenetet kapja:
+"ORA-08177: Cannot serialize access for this transaction"
+
+Melyik session milyen tipusu (sor->TX, tabla->TM) es milyen modu zarolast tart
+fenn eppen? (RS->2, RX->3, S->4, SRX->5, X->6)
+
+Melyik session var epp egy zarolasra, illetve melyik zarolasra var epp valaki?
+Milyen regen tartja fenn a rendszer a zarolasokat, illetve milyen regen var
+valaki egy zarolasra?
+
+Mely objektumokat (tablakat) tartja zarolas alatt valamelyik session 
+jelen pillanatban?
+
+Deritsuk ki (megfelelo manualis lock-olo utasitasok segitsegevel), hogy a 
+Row Exclusive (RX) modu zarolast milyen modu zarolasokkal egyidejuleg 
+engedelyezi a rendszer, es mely modu zarolasok eseten kell varnia a 
+kesobbi kerelmezonek.
+
+Módosítsátok meg a 2. feladatsorban szereplõ 2/2-es triggert úgy, hogy a 
+trigger akkor is naplózzon, ha túl nagy összfizetés miatt visszautasítja 
+a módosító mûveletet.
+
+Tipp: lásd -> autonóm tranzakció 
+

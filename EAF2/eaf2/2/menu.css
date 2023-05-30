@@ -1,0 +1,11 @@
+BODY {font-family: times-newroman; background-color: #20B2AE;}
+font-color:#F7F3D1; link-color:#00EFE4; vlink-color:#F7C473; alink-color:#00F7A6;}
+FONT.fontos {font-family: times-newroman; color: #00a0af; font-style:bold}
+H1{text-align:left; color: #20b2aa; font-size: 14pt; font-style:italic}
+H2 {text-align:left; color: #00a0af; font-size: 13pt;}
+H3 {text-align:left; color: #00a090; font-size: 12pt;}
+HR {color: #20b2aa;}
+A:link {color: blue}
+A:active {background: #a9a9a9; text-decoration:none; font-weight:bold;}
+A:visited {font-weight:bold; text-decoration:none; font-family: "Helvetica", Times, serif; color: #fffaf0}
+A:hover {color: blue; background: #fffaf0; text-decoration:none; font-weight:bold;}

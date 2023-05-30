@@ -1,0 +1,40 @@
+<HEAD><TITLE>HTML gyakorlás</TITLE>
+<SCRIPT language="JavaScript">
+function updatewin() {
+html.document.open("text/html");
+html.document.write(document.lap.forras.value);
+html.document.close()
+}
+function ujablak() {
+ html = window.open("","","resizable=1,scrollbars=1,screenX=50,screenY=50,menubar");
+}
+function biztos()
+{return confirm("Biztos, hogy töröljem a munkádat?")}
+
+function closeIt() {
+close(); }
+
+</SCRIPT>
+</HEAD>
+<BODY background="../images/bg1.gif">
+<table background="../images/bg2.gif" border="0">
+  <tr>
+    <td width="100%">
+<b><font color="#FFFFFF" face="Arial" size="2">Az alábbi ablakba tetszõleges HTML kódot beirhatsz, majd a hatását a másik ablakban leellenõrízheted.</font></b>
+    </td>
+  </tr>
+</table>
+<FORM name=lap onreset="return biztos()">
+<TEXTAREA rows=20 cols=60 name=forras><HTML>
+<HEAD>
+<TITLE>
+</TITLE>
+</HEAD>
+<BODY>
+</BODY>
+</HTML></TEXTAREA><BR>
+<INPUT type=button value="Megnézem" onClick="ujablak(),updatewin()">
+<INPUT type=reset  value="Eredeti visszaállítása">
+<input type=button value="Bezárás" onClick="closeIt()">
+
+</FORM></BODY>/FORM></BODY>

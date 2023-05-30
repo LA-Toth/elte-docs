@@ -1,0 +1,87 @@
+--
+-- Az Oracle néhány alapvetõ adattípusa
+--
+
+
+-- SZÁMOK --------------------------------------------------------------------
+REM number(x,y)  -- max. x jegyû szám, ebbõl y tizedesjegy. (pozitív/negatív)
+REM number(x)    -- max. x jegyû szám,  0   tizedesjeggyel. (pozitív/negatív)
+REM int = integer = number(38)
+REM positive és natural          -- csak PL/SQL-ben van.
+
+
+
+-- STRINGEK ------------------------------------------------------------------
+REM varchar2(17) -- String. Meg kell adni a maximális hosszát.
+-- Túl hosszú string értékül adása hibát eredményez.
+
+REM char(15)     -- Fix hosszúságú string.
+-- Túl hosszú ==> HIBA
+-- Túl rövid  ==> kiegészíti szóközökkel.
+
+-- A karakter literálok char() típusúak. Char() típus esetén
+-- összehasonlításkor eltekint a sorvégi szóközöktõl.    Pl: 'str'  = 'str  '
+-- Stringen belül megkülönbözteti a kis- és nagybetûket. Pl: 'str' != 'STR'
+-- Varchar2() esetén számít a sorvégi szóköz is.
+
+
+
+-- DÁTUM ÉS IDÕ --------------------------------------------------------------
+REM date        -- dátum, és idõ (másodperc pontossággal van tárolva)
+-- Közvetlenül bejelentkezés után:
+--  SQL> LIST
+ --  1* alter session set NLS_DATE_FORMAT='YYYY-MON-DD'
+ --  Magyarázat: Az automatikusan lefutó script utolsó utasítása a pufferben maradt
+
+-- Te is megváltoztathatod (max 38 karakter hosszú dátum fog kiíródni):
+ALTER SESSION SET NLS_DATE_FORMAT='YYYY-MM-DD (fmDay) HH24:MI.SS';
+ALTER SESSION SET NLS_DATE_LANGUAGE='hungarian';
+SELECT sysdate FROM dual;
+
+-- Dátumformátumok lásd dokumentáció
+
+
+-- Dátumaritmetika:
+-- Tfh. d, d1, d2 egy-egy date típusú objektum (pl. egy-egy tábla oszlopa).
+REM d+1                    -- d-hez képest holnap ilyenkor
+REM d-2                    -- d-hez képest tegnap elõtt ilyenkor
+REM sysdate+7              -- egy hét múlva ilyenkor
+REM d+1/24                 -- d-hez képest egy óra múlva
+REM d2-d1                  -- d1 és d2 közt eltelt idõ napokban
+REM (d2-d1)*24*60*60       -- d1 és d2 közt eltelt idõ másodpercekben
+REM months_between(d2,d1)  -- d1 és d2 közt eltelt idõ hónapokban
+-- Az utóbbi három esetben pozitív illetve negatív eredményt is kaphatunk.
+-- d2 > d1  =>  (+)
+-- d2 < d1  =>  (-)
+
+-- További dátumfüggvények lásd dokumentáció
+
+
+
+-- konverzió -----------------------------------------------------------------
+REM to_date('2030-OCT-28')         -- NLS_DATE_FORMAT alapján konvertálja
+REM to_date('2030-12','YYYY-MM')   -- formátum megadása  =>  2030-12-01 0:00.00
+-- Amit nem adunk meg, az default érték lesz.
+-- Default dátum: folyó év, folyó hó, elseje, éjfél
+REM to_date(2462803,'J')           -- Julianus naptár 2462803-adik napja, éjfél
+REM to_char(datum)                 -- NLS_DATE_FORMAT alapján állítja elõ
+REM to_char(datum, 'HH24:MI.SS')   -- formátum alapján állítja elõ a stringet
+REM to_char(127.14)                -- szám   -> string
+REM to_number('135.00167')         -- string -> szám
+REM to_number('abc')               -- ORA-01722: invalid number
+
+
+-- Nincs boolean típus  (PL/SQL-ben van: TRUE, FALSE, NULL)
+
+-- Bármilyen típusú oszlopban lehet NULL (kitöltetlen cella).
+-- Két NULL soha sem egyenlõ, és soha sem különbözik egymástól.
+-- Annak vizsgálata, hogy valami NULL-e:
+REM  x IS NULL
+REM  x IS NOT NULL
+
+-- pl.
+SELECT *
+FROM   dolgozo
+WHERE  jutalek IS NOT NULL;
+
+

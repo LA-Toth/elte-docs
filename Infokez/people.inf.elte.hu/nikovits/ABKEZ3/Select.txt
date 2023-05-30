@@ -1,0 +1,94 @@
+-- A SELECT utasítás
+
+-- A SELECT-FROM kötelezõ, a többi opcionális.
+
+SELECT   oszlopok (oszlop aliasoknál AS lehet)
+FROM     táblák   (tábla  aliasoknál AS tilos)
+WHERE    feltétel a sorokra
+GROUP BY oszlopok
+HAVING   feltétel a csoportokra
+
+UNION     SELECT ... FROM ...              --|
+UNION ALL SELECT ... FROM ...              --| Oracle
+INTERSECT SELECT ... FROM ...              --| halmazmûveletek
+MINUS     SELECT ... FROM ...              --|
+
+ORDER BY oszlopok
+;
+
+-- A feltételek és a FROM tartalmazhat újabb SELECT-eket.
+-- Az oszlopok helyén kifejezések is állhatnak.
+
+
+
+Sor függvények használata (részletesen lásd dokumentáció)
+
+Sorfüggvényeket szinte minden helyen használhatunk a SELECT utasításban,
+ahova egyéb kifejezés írható.
+
+-- Most jól jön a DUAL tábla
+SELECT abs(-4-6)*(10+1)/50 "Eredmeny:"    FROM dual;
+SELECT sysdate             "A mai datum"  FROM dual;
+
+-- Igaz-e egy logikai kifejezés
+-- 'X'-et ad, ha igaz, "no rows selected", ha hamis az állítás.
+SELECT * FROM dual
+WHERE  trunc(abs(-1.9)) = length('ww') - cos(0);
+
+
+
+A WHERE után megadható feltételek
+
+felt1 AND felt2            -- logikai ÉS
+felt1 OR  felt2            -- logikai VAGY
+NOT felt                   -- logikai NEM
+ertek BETWEEN e1 AND e2    -- igaz, ha ertek   "eleme"   [e1..e2]
+ert NOT BETWEEN e1 AND e2  -- igaz, ha ert   "nem eleme" [e1..e2]
+EXISTS( lekérdezés )       -- igaz, ha a 'lekérdezés' eredménye nem üres
+oszlop IS NOT NULL         -- igaz, ha az 'oszlop'-ban lévõ érték nem NULL
+oszlop IS NULL             -- igaz, ha az 'oszlop'-ban lévõ érték NULL
+oszlop =  NULL             -- eldönthetetlen (unknown, 3-értékû logika).
+oszlop != NULL             -- eldönthetetlen (unknown, 3-értékû logika).
+sor IN (Halmaz)            -- igaz, ha sor   "eleme"   halmaz  (  = ANY )
+sor NOT IN (Halmaz)        -- igaz, ha sor "nem eleme" halmaz  ( != ALL )
+-- A halmaz lehet elemek felsorolása, vagy egy SELECT.
+
+-- Például a következõ lekérdezések mind "igazak":
+ -- A halmazjelek a szokásos {} helyett ().
+ SELECT * FROM dual WHERE   1   in (1);
+ SELECT * FROM dual WHERE   1   in (1, 2, 3, 4);
+ SELECT * FROM dual WHERE (1,1) in ((1,1));
+ SELECT * FROM dual WHERE (1,1) in ((1,1), (2,2), (3,3), (4,4));
+ SELECT * FROM dual WHERE   1   in (SELECT n      FROM t);
+ SELECT * FROM dual WHERE (1,0) in (SELECT n,prim FROM t);
+ -- A számok helyén állhatnak egyéb konstansok és kifejezések is.
+ SELECT * FROM dual WHERE  'a'  in ('a','aa','aaa','aaaa');
+ SELECT * FROM dual WHERE  0+1  in (cos(0), 2, 3, 4);
+
+-- Ha NULL is van a halmazban, váratlan eredményeket kaphatunk!
+ -- A WHERE csak "igaz" esetén teljesül.
+ SELECT * FROM dual WHERE  1     in   (1,null)            /*  igaz     Jo */;
+ SELECT * FROM dual WHERE  1     in   (0,null)            /* Unknown   Jo */;
+ SELECT * FROM dual WHERE  1   not in (1,null)            /*  hamis    Jo */;
+ SELECT * FROM dual WHERE  1   not in (0,null)            /* Unknown  BAJ */;
+ SELECT * FROM dual WHERE null   in   (0,1,2,null)        /* Unknown  BAJ */;
+ -- Csak a "not in"-nel van baj, mert ha NULL is van a halmazban,
+ -- mindenképp "no rows selected"-et kapunk, azaz azt hisszük,
+ -- hogy benne van, holott lehet, hogy nincs benne (l. fent a 4. sorban).
+
+oszlop <= ANY (egyoszlopos lekérdezés)  -- Valamelyikre teljesülnie kell
+oszlop != ANY (egyoszlopos lekérdezés)  -- Valamelyikre teljesülnie kell
+oszlop >  ALL (egyoszlopos lekérdezés)  -- Mindegyikre  teljesülnie kell
+oszlop <      (  1x1-es    lekérdezés)  -- 1x1-es: egy értéknek tekintendõ
+ ...
+-- Üres lekérdezés esetén ANY automatikusan hamis, ALL automatikusan igaz.
+-- Az egyoszlopos lekérdezés helyett fel is sorolhatjuk az elemeket,
+-- mint IN-nél.
+-- Az ANY és az ALL elhagyható, de ekkor elvárja,
+-- hogy az egyoszlopos lekérdezés egy soros is legyen. Ha ezt nem tartjuk be:
+-- ORA-01427: single-row subquery returns more than one row
+
+
+
+
+

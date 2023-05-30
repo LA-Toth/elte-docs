@@ -1,0 +1,305 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+<meta http-equiv="Content-Language" content="hu">
+<title>Teszt 6</title>
+<script LANGUAGE="JavaScript" src="teszt6.js" type="text/javascript">
+</script>
+</head>
+
+<body bgcolor="#F7FFFF" background="bg1.gif" >
+
+<div align="center">
+  <center>
+  <table border="0" cellpadding="2" cellspacing="0" width="100%" background="bg2.gif">
+    <tr>
+      <td width="100%" align="center"><b><font color="#FFFFFF" size="3" face="Arial">Teszt
+        6: Kliens oldali térképek, meta-elemek</font></b></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<h3 align="center">&nbsp;</h3>
+<form  name="teszt">
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">1.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial"><font FACE="Arial">Melyek
+        igaz állítások&nbsp; (1 pont)</font></font></b></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a1"></font></td>
+      <td ><font FACE="Arial" size="2">Bármely &lt;IMG..&gt; által megjelenített
+        kép mögött lehet térképet értelmezni</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a1"></font></td>
+      <td ><font FACE="Arial" size="2">Mind szöveges, mind képet tartalmazó
+        terület mögé lehet térképet értelmezni a HTML nyelvben</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a1"></font></td>
+      <td ><font FACE="Arial" size="2">Speciális formátumú (nem gif) rajz mögé
+        lehet térképet értelmezni</font></td>
+    </tr>
+  </table>
+  <br>
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">2.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><b><font FACE="Arial" color="#FFFFFF" size="2">Milyen
+        alakú területhez lehet hivatkozást rendelni?&nbsp; (1 pont)</font></b></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a2"></font></td>
+      <td ><font FACE="Arial" size="2">téglalap, háromszög, sokszög</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a2"></font></td>
+      <td ><font FACE="Arial" size="2">téglalap, sokszögvonal</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a2"></font></td>
+      <td ><font FACE="Arial" size="2">sokszögvonal</font></td>
+    </tr>
+  </table>
+  <br>
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">3.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial"><font FACE="Arial">Az
+        &lt;AREA ..&gt;tag-ben a megadott koordináták száma:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (2 pont)</font></font></b></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a3"></font></td>
+      <td ><font FACE="Arial" size="2">Mindig páratlan</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a3"></font></td>
+      <td ><font FACE="Arial" size="2">Mindig páros</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a3"></font></td>
+      <td ><font FACE="Arial" size="2">négyszög/sokszögvonal esetén páros,
+        körnél páratlan (3)</font></td>
+    </tr>
+  </table>
+  <br>
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">4.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial"><font FACE="Arial">Melyik
+        a helyes sorrend:&nbsp;&nbsp; (3 pont)</font></font></b></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a4"></font></td>
+      <td ><font FACE="Arial"><font size="2">&lt;IMG USEMAP=&#8221;#térkép_neve&#8221;&gt;<br>
+        &#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;<br>
+        &lt;MAP NAME=&#8221; térkép_neve&#8221;&gt;<br>
+        &lt;AREA HREF=URL-1 SHAPE&#8230;..&gt;<br>
+        &lt;AREA HREF=URL-2 SHAPE&#8230;..&gt;<br>
+        &#8230;&#8230;&#8230;&#8230;<br>
+        &lt;/MAP&gt;</font></font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a4"></font></td>
+      <td ><font FACE="Arial"><font size="2">&lt;IMG USEMAP=&#8221;#térkép_neve&#8221;&gt;<br>
+        &#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;<br>
+        &lt;AREA NAME=&#8221; térkép_neve&#8221; HREF=URL-1 SHAPE&#8230;..&gt;<br>
+        &lt;AREA NAME=&#8221; térkép_neve&#8221; HREF=URL-2 SHAPE&#8230;..&gt;<br>
+        </font>&#8230;&#8230;&#8230;&#8230;</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a4"></font></td>
+      <td ><font FACE="Arial"><font size="2">&lt;MAP NAME=&#8221; térkép_neve&#8221;&gt;<br>
+        &lt;IMG USEMAP=&#8221;#térkép_neve&#8221;&gt;<br>
+        &lt;AREA HREF=URL-1 SHAPE&#8230;..&gt;<br>
+        &lt;AREA HREF=URL-2 SHAPE&#8230;..&gt;<br>
+        &#8230;&#8230;&#8230;&#8230;<br>
+        &lt;/MAP&gt;</font></font></td>
+    </tr>
+  </table>
+  <br>
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">5.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial"><font FACE="Arial">A
+        következő sorral megadott kép alatt a képközéppontja körül egy
+        100-as sugarú körben egy hivatkozást szeretnénk elhelyezni a
+        http://www.w3.com helyre. Melyik a jó megoldás?</font></font></b>
+        <p><font FACE="Arial" color="#FFFFFF" size="2"><b>&lt;IMG
+        src=&quot;gomb.gif&quot; border=&quot;0&quot; width=&quot;400&quot;
+        height=&quot;300&quot;
+        usemap=&quot;#terkep&quot;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (3 pont)</b></font></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a5"></font></td>
+      <td ><font FACE="Arial"><font size="2">&lt;MAP
+        NAME=&#8221;terkep&#8221;&gt;<br>
+        &lt;AREA SRC=&quot;http://www.w3.com&#8221; SHAPE=&#8221;circle&#8221;
+        size=&#8221;100&#8221;&gt;<br>
+        &lt;/MAP&gt;</font></font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a5"></font></td>
+      <td ><font FACE="Arial"><font size="2">&lt;MAP
+        NAME=&#8221;terkep&#8221;&gt;<br>
+        &lt;AREA SRC=&quot;http://www.w3.com&#8221; SHAPE=&#8221;circle&#8221;
+        COORDS=&#8221;100, 200, 150&#8221;&gt;<br>
+        &lt;/MAP&gt;</font></font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a5"></font></td>
+      <td ><font FACE="Arial"><font size="2">&lt;MAP
+        NAME=&#8221;terkep&#8221;&gt;<br>
+        &lt;AREA HREF=&quot;http://www.w3.com&#8221; SHAPE=&#8221;circle&#8221;
+        COORDS=&#8221;200, 150, 100&#8221;&gt;<br>
+        &lt;/MAP&gt;</font></font></td>
+    </tr>
+  </table>
+  <br>
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">6.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial"><font FACE="Arial">Melyik
+        meta elem helyes?&nbsp;&nbsp; (1 pont)</font></font></b></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a6"></font></td>
+      <td ><font FACE="Arial" size="2">&lt;META
+        NAME=&#8221;&#8230;&#8230;&#8221;&gt; &lt;/META&gt;</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a6"></font></td>
+      <td ><font FACE="Arial" size="2">&lt;META
+        NAME=&#8221;&#8230;&#8230;.&#8221; CONTENT=&#8221;&#8230;.,
+        &#8230;.&#8221;&gt;</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a6"></font></td>
+      <td ><font FACE="Arial" size="2">&lt;META
+        NAME=&#8221;&#8230;&#8230;.&#8221; CONTENT=&#8221;HTTP-EQUIV&#8221;&gt;</font></td>
+    </tr>
+  </table>
+  <br>
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">7.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial"><font FACE="Arial">A
+        meta elemen belül elhelyezett LANG paraméter:&nbsp;&nbsp; (1 pont)</font></font></b></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a7"></font></td>
+      <td ><font FACE="Arial" size="2">az elem maximális hosszát adja meg</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a7"></font></td>
+      <td ><font FACE="Arial" size="2">a dokumentum angol nyelvűségre utal</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a7"></font></td>
+      <td ><font FACE="Arial" size="2">a használt nyelvek megadására ad módot</font></td>
+    </tr>
+  </table>
+      <br>
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">8.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial"><font FACE="Arial">Ha
+        a HTML, CSS és PERL témák keresésénél akarjuk a dokumentumunkra
+        felhívni keresőprogramok figyelmét, akkor a következők közül
+        melyik a jó megoldás?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2 pont)</font></font></b></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a8"></font></td>
+      <td ><font FACE="Arial"><font size="2">&lt;META
+        NAME=&#8221;keywords&#8221; CONTENT=&#8221;HTML, CSS, PERL&#8221;&gt;</font></font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a8"></font></td>
+      <td ><font face="Arial" size="2">&lt;META KEYWORDS=&#8221;HTML, CSS,
+        PERL&#8221;&gt;</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a8"></font></td>
+      <td ><font size="2" FACE="Arial">&lt;META CONTENT=&#8221;HTML, CSS,
+        PERL&#8221;&gt;</font></td>
+    </tr>
+  </table>
+
+      <br>
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">9.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial"><font FACE="Arial">Ha
+        szeretném elérni, hogy a magyarul írt ékezetes betűket a használt
+        böngésző meg tudja jeleníteni, akkor milyen módon érhetem ezt
+        el:&nbsp;&nbsp; (2 pont)</font></font></b></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a9"></font></td>
+      <td ><font FACE="Arial" size="2">&lt;META
+        HTTP-EQUIV=&#8221;Content-Type&#8221; LANG=&#8221;HU&#8221;&gt;</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a9"></font></td>
+      <td ><font FACE="Arial" size="2">&lt;META NAME=&#8221;description&#8221;
+        CONTENT=&#8221;HU&#8221;&gt;</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a9"></font></td>
+      <td ><font FACE="Arial" size="2">&lt;META
+        HTTP-EQUIV=&quot;Content-Type&quot; CONTENT=&quot;text/html;
+        charset=iso-8859-2&quot;&gt;</font></td>
+    </tr>
+  </table>
+      <br>
+  <table border="1"  cellspacing="0" width="90%" bgcolor="#F7FFFF" >
+    <tr>
+      <td background="bg2.gif" ><b><font color="#FFFFFF" size="2" face="Arial">10.
+        &nbsp;</font></b></td>
+      <td background="bg2.gif" ><font FACE="Arial"><font size="2" color="#FFFFFF"><b>A
+        következő sornak mi lesz a hatása?</b></font>
+        <p><font size="2" color="#FFFFFF"><b>&lt;META
+        HTTP-EQUIV=&quot;Refresh&quot;
+        content=&quot;5;url=http://vww.inf.elte.hu/&quot;&gt;&nbsp;&nbsp;&nbsp;
+        (2 pont)</b></font></font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">a, <input type="radio" value="a" name="a10"></font></td>
+      <td ><font FACE="Arial" size="2">semmi; ez csak információ a keresőprogramok
+        számára</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">b, <input type="radio" value="b" name="a10"></font></td>
+      <td ><font FACE="Arial" size="2">kiírja az utolsó frissítés dátumát</font></td>
+    </tr>
+    <tr>
+      <td width="40" ><font face="Arial" size="2">c, <input type="radio" value="c" name="a10"></font></td>
+      <td ><font FACE="Arial" size="2">5 másodperc múlva betölti a megadott
+        url-ről a dokumentumot</font></td>
+    </tr>
+  </table>
+
+      <br>
+  <input type="submit" value="Kiértékel" OnClick="checkit(); ujablak(); result(maxque,szum,erdemjegy);" name="B1"><input type="reset" value="Töröl" name="B2">
+  <p>&nbsp;</p>
+</form>
+
+</body>
+
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html>
+
+
+
+<head>
+
+<meta http-equiv="Content-Type"
+
+content="text/html; charset=windows-1250">
+
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+<title>Kliens oldali terkep</title>
+
+<script language="JavaScript">
+
+<!--
+
+function ujablak() {
+ html = window.open("","","resizable=1,scrollbars=1,screenx=50,screenY=50");
+}
+function updatewin(input_form) {
+html.document.open("text/html");
+html.document.write(input_form);
+html.document.close()
+}
+// -->
+
+</script>
+</head>
+
+
+
+<body link="#0000FF" bgcolor="#F4FEFF" background="../../images/bg1.gif">
+
+
+
+  <table border="0" cellpadding="5" cellspacing="0" width="100%" background="../../images/bg2.gif" bgcolor="#003366">
+
+    <tr>
+
+      <td align="center"><b><font color="#FFFFFF" face="Arial" size="3">Kliens
+
+        oldali térképek készítése</font></b></td>
+
+    </tr>
+
+  </table>
+
+
+
+  <table border="0" width="100%" bgcolor="#F4FEFF" cellspacing="0" cellpadding="5">
+
+    <tr>
+
+      <td width="100%" colspan="2">
+
+
+
+<h2>&nbsp;</h2>
+
+
+
+<p><font face="Arial" size="2">Gyakran találkozhatunk a weben olyan megoldással,
+hogy egy bizonyos kép részei linkként viselkednek.&nbsp;</font></p>
+
+
+
+<p><font face="Arial" size="2">Mint ahogy azt itt is láthatjuk, az egyes televíziók
+logói linkként viselkednek. A kívánt hatást nem úgy értük el, hogy 3 képet
+egymás mellé tettünk, és külön-külön linket definiáltunk rá, hanem egy
+összefüggõ kép bizonyos területeit jelöltük meg.</font></p>
+
+
+
+<p><map name="FPMap1">
+<area href="http://www.rtlklub.hu/" target="_blank" shape="rect" coords="129, 9, 255, 60">
+<area href="http://www.spektrumtv.hu/" target="_blank" shape="circle" coords="326, 31, 31">
+<area href="http://www.tv2.hu/" target="_blank" shape="polygon" coords="23, 54, 87, 55, 102, 41, 103, 26, 93, 13, 25, 11, 7, 26, 8, 37, 25, 57, 24, 57"></map><img border="0" src="5.gif" usemap="#FPMap1" width="376" height="69"></p>
+
+
+
+<p><font face="Arial" size="2">A kliens oldali térképek (Image Map)
+
+létrehozása a különbözõ szerkesztõprogramokkal elég egyszerû (lásd <em><a href="../../segedanyagok/frontpage/frontpage2.html">Frontpage HTML szerkesztõ program</a></em>
+
+<a href="../../segedanyagok/frontpage/frontpage2.html">
+
+leírása)</a>. Most
+
+nézzük meg, hogy a szerkesztõprogramok nélkül, pusztán HTML
+
+kódokkal hogyan hozhatunk létre ilyen térképeket:</font></p>
+
+
+
+<p><font face="Arial" size="2">A Bevezetõ tag: <strong>&lt;MAP&gt;</strong></font>
+<font face="Arial" size="2">Paraméter: <strong>NAME= </strong>a térkép neve (ezzel a
+
+névvel fogunk a térképre hivatkozni az IMG paraméteren
+
+belül)</font></p>
+
+
+
+<p><font face="Arial" size="2">Magát a térképdefiníciót az <strong>AREA</strong> tagek
+
+között kell megadnunk.</font></p>
+
+
+
+<p><strong><font face="Arial" size="2">Paraméterei:</font></strong></p>
+
+<div align="left">
+
+
+
+<table border="0" cellpadding="10" cellspacing="0" width="90%">
+
+    <tr>
+
+        <td valign="top" width="50%"><font face="Arial" size="2"><strong>SHAPE= </strong>alak</font></td>
+
+        <td width="50%"><font face="Arial" size="2">A lehetséges alakok:</font><p><font face="Arial" size="2"><strong>rect</strong>:
+
+        téglalap alakú terület<br>
+
+        <strong>circle</strong>: köralakú terület<br>
+
+        <strong>poly</strong>: sokszöggel leírható terület</font></p>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td valign="top"><font face="Arial" size="2"><strong>COORDS= </strong>koordináták</font></td>
+
+        <td><font face="Arial" size="2">A terület méretét (határoló pontjainak
+
+        koordinátáját) állíthatjuk be. A kordinátarendszer
+
+        (0,0) pontja a kép bal felsõ sarka lesz. <br>
+
+        Az értékeket egy listával adhatjuk meg, ahol a
+
+        listaelemeket vesszõ választja el. Természetesen a
+
+        különbözõ alakok esetében más más jellemzõket
+
+        adunk meg ebben a listában.</font><p><font face="Arial" size="2">RECT: a téglalap bal
+
+        felsõ, illetve jobb alsó koordinátái<br>
+
+        pl. SHAPE=RECT COORDS=&quot;15,30,150,300&quot;</font></p>
+
+        <p><font face="Arial" size="2">CIRCLE: középpont koordinátái, és a sugár<br>
+
+        pl. SHAPE=CIRCLE COORDS=&quot;50,50,25&quot;</font></p>
+
+        <p><font face="Arial" size="2">POLY: A határoló pontok koordinátái<br>
+
+        pl. SHAPE=POLY COORDS=&quot;50,70,150,240,370,120&quot;</font></p>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td valign="top"><font face="Arial" size="2"><strong>HREF= </strong>URL</font></td>
+
+        <td><font face="Arial" size="2">Az adott területhez rendelt link URL-je.</font></td>
+
+    </tr>
+
+    <tr>
+
+        <td valign="top"><strong><font face="Arial" size="2">NOHREF</font></strong></td>
+
+        <td><font face="Arial" size="2">Ha a területhez nem tartozik hivatkozás, akkor
+
+        ezzel a taggel jelölhetjük</font></td>
+
+    </tr>
+
+</table>
+
+</div>
+
+
+
+<p><font face="Arial" size="2">&nbsp;Nézzük, hogy az alábbi ábrához hogyan lehet kliens oldali
+
+képet szerkeszteni.</font></p>
+
+
+
+<p><img border="0" src="imagemap2.gif" width="400" height="200"></p>
+
+
+
+<p><font face="Arial" size="2">A képet egy tetszõleges grafikai program segítségével
+
+elkészíthetjük. Megkönnyíti a helyzetünket, ha a program
+
+képes arra, hogy az egér aktuális koordinátájának
+
+pozícióját le lehet kérdezni.(segítségképpen bejelöltem a képen, hogy
+melyik pontnak mi&nbsp; a koordinátája. A koordinátarendszer 0,0 pontja a kép
+bal felsõ sarka. Az x koordináta balról jobbra, az y koordináta fentrõl
+lefele növekszik.)</font></p>
+
+
+
+<p><font face="Arial" size="2"><map name="FPMap0">
+
+<area href="http://www.internetto.hu/" shape="rect" coords="4, 5, 151, 95">
+
+<area href="http://www.netlap.hu/" shape="circle" coords="175, 143, 53">
+
+<area href="http://www.index.hu/" shape="polygon" coords="251, 106, 344, 11, 387, 165"></map><img src="imagemap.gif" border="0" width="400" height="200" usemap="#FPMap0"></font> </p>
+
+
+
+<h3><font face="Arial" size="2">A hozzátartozó kód:</font></h3>
+
+
+
+<p><font face="Arial" size="2">&lt;IMG src=&quot;imagemap.gif&quot;
+
+border=&quot;0&quot; width=&quot;400&quot; height=&quot;200&quot;
+
+usemap=&quot;#terkep&quot;&gt;<br>
+
+&lt;MAP NAME=&quot;terkep&quot;&gt;<br>
+
+&lt;AREA HREF=&quot;http://www.internetto.hu/&quot;
+
+ALT=&quot;Internetto&quot; SHAPE=&quot;RECT&quot;
+
+COORDS=&quot;4,5,151,95&quot;&gt;<br>
+
+&lt;AREA HREF=&quot;http://www.netlap.hu/&quot;
+
+ALT=&quot;Netlap&quot; SHAPE=&quot;CIRCLE&quot;
+
+COORDS=&quot;175,143,53&quot;&gt;<br>
+
+&lt;AREA HREF=&quot;http://www.index.hu/&quot;
+
+ALT=&quot;Index&quot; SHAPE=&quot;POLY&quot; COORDS=&quot;251,
+
+106, 344, 11, 387, 165&quot;&gt;<br>
+
+&lt;/MAP&gt;</font></p>
+
+
+
+<form name="u1">
+    <p><font face="Arial" size="2">
+ <textarea name="forras" rows="9" cols="82">&lt;IMG src=&quot;imagemap.gif&quot; border=&quot;0&quot; width=&quot;400&quot; height=&quot;200&quot; usemap=&quot;#terkep&quot;&gt; 
+&lt;MAP NAME=&quot;terkep&quot;&gt;
+&lt;AREA HREF=&quot;http://www.internetto.hu/&quot; ALT=&quot;Internetto&quot; SHAPE=&quot;RECT&quot; COORDS=&quot;4,5,151,95&quot;&gt; 
+&lt;AREA HREF=&quot;http://www.netlap.hu/&quot; ALT=&quot;Netlap&quot; SHAPE=&quot;CIRCLE&quot; COORDS=&quot;175,143,53&quot;&gt;
+&lt;AREA HREF=&quot;http://www.index.hu/&quot; ALT=&quot;Index&quot; SHAPE=&quot;POLY&quot; COORDS=&quot;251,106, 344, 11, 387, 165&quot;&gt;
+&lt;/MAP&gt;
+</textarea></font></p>
+    <p><font face="Arial" size="2">
+<input type="button" value="Megnézem" onclick="ujablak(); updatewin(u1.forras.value)"> 
+<input type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+
+
+<h3><font face="Arial" size="2">A magyarázat:</font></h3>
+
+
+
+<p><font face="Arial" size="2">&lt;IMG src=&quot;imagemap.gif&quot;
+
+border=&quot;0&quot; width=&quot;400&quot; height=&quot;200&quot;
+
+usemap=&quot;#terkep&quot;&gt;<br>
+<font color="#800000"><b>Beillesztjük a képet, ami 400 képpont széles és
+200 képpont magas. A usemap paraméterrel jelezzük, hogy a képhez tartozik
+egy kliens oldali térkép, amelynek az a neve, hogy <i>terkep</i>. A # jelet ne
+felejtsük el az elejére kitenni.</b></font><br>
+<br>
+
+&lt;MAP NAME=&quot;terkep&quot;&gt;<br>
+<font color="#800000"><b>Itt adjuk meg a térkép definicióját.</b></font><br>
+
+<br>
+
+&lt;AREA HREF=&quot;http://www.internetto.hu/&quot;
+
+ALT=&quot;Internetto&quot; SHAPE=&quot;RECT&quot;
+
+COORDS=&quot;4,5,151,95&quot;&gt;<br>
+<font color="#800000"><b>Az elsõ terület amit megadunk egy téglalap lesz
+(SHAPE=&quot;RECT&quot;) Téglalap esetén a jellemzõ koordináta a bal felsõ,
+és a jobb alsó koordináta, ami jelen esetben a (4,5) és (151,95) koordináta.
+A href paraméterben meg kell adnunk a területhez tartozó URL-t.</b></font><br>
+
+<br>
+
+&lt;AREA HREF=&quot;http://www.netlap.hu/&quot;
+
+ALT=&quot;Netlap&quot; SHAPE=&quot;CIRCLE&quot;
+
+COORDS=&quot;175,143,53&quot;&gt;<font color="#800000"><b><br>
+A második terület a kör lesz. (SHAPE=&quot;CIRCLE&quot;) A kör jellemzõ
+koordinátái a kör középpontja (175,143) és a sugara (53).</b></font><br>
+
+<br>
+
+&lt;AREA HREF=&quot;http://www.index.hu/&quot;
+
+ALT=&quot;Index&quot; SHAPE=&quot;POLY&quot; COORDS=&quot;251,
+
+106, 344, 11, 387, 165&quot;&gt;<br>
+
+<font color="#800000"><b>A harmadik területet egy sokszögvonal segítségével
+tudjuk megadni. (SHAPE=&quot;POLY&quot;) Az egyes pontok koordinátáit írjuk
+egymás után. (251,106,344,11,387,165)&nbsp;&nbsp; A kezdõponot nem kell mégegyszer
+megadnunk.</b></font><br>
+<br>
+
+&lt;/MAP&gt;<br>
+<font color="#800000"><b>Lezárjuk a térkép definiciós részét.&nbsp;</b></font></font></p>
+
+
+
+<hr>
+
+
+
+<p><strong><font face="Arial" size="2">Feladat:</font></strong></p>
+
+
+
+<p><font face="Arial" size="2">Készítsd el a következõ képhez tartozó térképet, ahol
+
+Te adhatod meg a területekhez tartozó linkeket.</font></p>
+
+
+
+<p><font face="Arial" size="2"><img src="feladat.gif" width="300" height="200"></font></p>
+
+
+
+<p><strong><font face="Arial" size="2">A megfelelõ koordináták:</font></strong></p>
+
+
+
+<p><font face="Arial" size="2">Téglalap: (6,10),(125,106)</font> </p>
+
+
+
+<p><font face="Arial" size="2">Kör: (214,120), sugár: 50</font> </p>
+
+
+
+<p><font face="Arial" size="2">Sokszög: (26,149),(106,130),(129,181),(24,186)</font></p>
+
+
+<form name="u2">
+    <p><font face="Arial" size="2">
+ <textarea name="forras" rows="9" cols="82">
+&lt;IMG src=&quot;feladat.gif&quot; border=&quot;0&quot; width=&quot;300&quot; height=&quot;200&quot; &gt;
+</textarea>
+</font></p>
+    <p><font face="Arial" size="2">
+<input type="button" value="Megnézem" onclick="ujablak(); updatewin(u2.forras.value)"> 
+<input type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+
+</td>
+
+
+    </tr>
+
+    <tr>
+
+      <td width="50%">&nbsp;</td>
+
+      <td width="50%" align="right">&nbsp;</td>
+
+    </tr>
+
+  </table>
+
+
+
+<p>&nbsp;</p>
+
+</body>
+
+</html>
+

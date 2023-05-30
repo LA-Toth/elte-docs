@@ -1,0 +1,519 @@
+
+          Automat†k Çs form†lis nyelvek feladatsor, prog.mat.II.           
+          ======================================================
+
+A BNF Çs egyÇb kîrnyezetfÅggetlen szintaxisle°r¢ m¢dszerek
+----------------------------------------------------------
+
+1. írjuk †t az al†bbi BNF nyelvtant ekvivalens m¢don kiterjesztett bnf-fel 
+es szitaxisgr†ffal is. Haszn†ljuk ki a tîmîr°tÇsi lehetãsÇgeket.
+
+<kifejezÇs> ::= <elãjel> <tag> | 
+                <elãjel> <tag> <addit°v-oper†tor> <kifejezÇs0>
+<kifejezÇs0> ::= <tag> | <tag> <addit°v-oper†tor> <kifejezÇs0>
+<tag> ::= <tÇnyezã> | <tÇnyezã> <multiplikat°v-oper†tor> <tag>
+<tÇnyezã> ::= <azonos°t¢> | <sz†m> | '(' <kifejezÇs> ')'
+<elãjel> ::= | '+' | '-'
+<addit°v-oper†tor> ::= '+' | '-'
+<multiplikat°v-oper†tor> ::= '*' | '/'
+<azonos°t¢> ::= <alfabetikus-jel> <azonos°t¢-vÇg>
+<azonos°t¢-vÇg> ::= | <alfanumerikus-jel> <azonos°t¢-vÇg>
+<alfanumerikus-jel> ::= <alfabetikus-jel> | <numerikus-jel> | '_'
+<alfabetikus-jel> ::= <kisbet˚> | <nagybet˚>
+<kisbet˚> ::= 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' 
+              | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' 
+              | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'
+<nagybet˚> ::= 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' 
+               | 'J' | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' 
+               | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z'
+<numerikus-jel> ::= '0' | <pozit°v-numerikus-jel> 
+<pozit°v-numerikus-jel> ::= '1' | '2' | '3' | '4' | '5' 
+                            | '6' | '7' | '8' |'9'
+<sz†m> ::= '0' | <pozit°v-numerikus-jel> <sz†m-vÇg>
+<sz†m-vÇg> ::= | <numerikus-jel> <sz†m-vÇg>
+
+2. írjuk †t az al†bbi, kiterjesztett BNF-fel le°rt szab†lyokat
+alap BNF-re.
+
+<program> ::= <utas°t†s>
+<utas°t†s> ::= | <if-utas°t†s> | <while-utas°t†s> | <ÇrtÇkad†s> 
+               | <input-output-utas°t†s> | <block-utas°t†s>
+<if-utas°t†s> ::= 'if' <feltÇtel> 'then' <utas°t†s> ['else' <utas°t†s>]
+<while-utas°t†s> ::= 'while' <feltÇtel> 'do' <utas°t†s>
+<ÇrtÇkad†s> ::= <azonos°t¢> ':=' <kifejezÇs>
+<input-output-utas°t†s> ::= ('read' | 'write') <azonos°t¢> {',' <azonos°t¢>}
+<block-utas°t†s> ::= 'begin' <utas°t†s> {';' <utas°t†s>} 'end'
+<feltÇtel> ::= ['not'] <rel†ci¢> { ('and' | 'or') <rel†ci¢> }
+<rel†ci¢> ::= <kifejezÇs> ( '>' | '<' | '=' | '\=' | '>=' | '=<' ) <kifejezÇs>
+              | '(' <feltÇtel> ')'
+
+3. Az 1. Çs 2. feladatok egy egyszer˚, csak egÇsz sz†mokkal dolgoz¢ 
+programoz†si nyelv szintaxis†t defini†lj†k. írjunk meg nÇh†ny programot 
+ezen a nyelven, mint pÇld†ul a legnagyobb kîzîs oszt¢, vagy az 
+N-edik Fibonacci sz†m programja.
+
+------------------------------------------------------------------------------
+
+Nyelvek Çs grammatik†k
+----------------------
+
+MegjegyzÇs:
+-----------
+    Az al†bbi nyelvtanokban altal†ban S a kezdãszimb¢lum. 
+    A nyelvtani jeleket †ltal†ban nagybet˚kkel, 
+    a termin†lisokat pedig kisbet˚kkel vagy sz†mjegyekkel 
+    vagy aposztr¢fok kîzÇ tett karaktarekkel jelîljÅk, 
+    kivÇtel az 'epszilon', amely az Åres sz¢ jele.
+    A nyelvtanokb¢l ezÇrt gyakran csak a szab†lyhalmazokat fogjuk megadni.
+    A gondolkodtat¢bb (rÇsz)feladatokat csillaggal jelîljÅk.
+
+1. feladat
+    Melyik nyelveket gener†lj†k az al†bbi nyelvtanok? 
+    Bizony°tsuk is a sejtÇseket.
+
+G = < { a,b } , { S } , P , S >
+P = { S --> Sab | Sba | 'epszilon' }
+
+G = ( {@,1} , {S,A} , P , S )
+P = { S --> @A ,
+      A --> A1 | AA | 'epszilon' }
+
+G = < { a,b } , { S } , P , S >
+P = { S --> aSa | bSb | 'epszilon' }
+
+G = ( {1,2} , {S,A,B} , P , S )
+P = { S --> ASA | BSB | 'epszilon' ,
+      AB --> BA ,   BA --> AB ,
+      A --> 1 ,   B --> 2            }
+
+G = < { a } , { 1,2 } , P , 1 >
+P = { 1 --> 12 | 22 ,
+      2 --> 12 | a }
+
+G = ( {a,b} , {S,X,Y} , P , S )
+P = { S --> aY ,   Y --> Sb ,
+      S --> aX ,   X --> b   }
+ 
+G = < { a,b } , { S } , P , S >
+P = { S --> aSb | SS | 'epszilon' }
+
+G = (  {@,.} , {S,A} , P , S )
+P = { S --> A | A.S ,
+      A --> AA | @ }
+
+G : S --> ASC | AC 
+    AC --> CA 
+    A --> 1 | 2 
+    C --> 3 | 4  
+
+G = ( { 1,2,3 } , { S,A,B,C } , P , S )
+P = { S --> SC | ASB | AB | SS ,
+      AC --> CA , BC --> CB ,
+      A --> 1 , B --> 2 , C --> 3   }
+
+G : S --> BZJ
+    Z --> 'epszilon' | XZY
+    XY --> YaX 
+    Xa --> aX ,  XJ --> J
+    aY --> Ya ,  BY --> B
+    B --> 'epszilon',  J --> 'epszilon'
+ 
+G = ( { 9 } , { S,Z,I,J,A,B } , P , S )
+P = {  S -> IZJ | IJ | 9
+       Z -> AZB | AB
+       AB -> B9A
+       9B -> B9
+       A9 -> 9A
+       IB -> I9
+       AJ -> 9J
+       I -> 9
+       J -> 9 }
+
+2. FELADAT
+        KÇsz°tsen grammatik†kat az al†bbi nyelvekhez. 
+        Bizony°tsa is a sejtÇseket.
+
+        A) L = { u 'eleme' {a,b,c}*   | u-ban nincs  'aa' , 'bb' es 'cc'
+                                        rÇssz¢ sem. }
+
+        B) L = { u 'eleme' {a,b,c}*   | u1 = a  Çs  u-ban nincs 'cc' rÇssz¢ 
+                                        Çs nem vÇgzãdik c bet˚vel }
+
+        C) L = { U 'eleme' { A,B,C,D }   | U = XY  Çs  |X| =|Y|  Çs
+                        X 'eleme' { A,B }*    Çs  Y 'eleme' { C,D }*   }
+
+        D) L = { u 'eleme' {a,b}*  | u-ban nincs 2 a bet˚ egym†s ut†n ,
+                 a b bet˚k viszont p†ros hossz£ rÇsszavakat alkotnak.}
+
+                   -1                 *
+        E) L = { xx  | x 'eleme' {a,b}  } 
+           -- Ez a p†ros hossz£ tÅkîrszavak nyelve.
+
+                           *
+F) L =  { u 'eleme' { a,b }  |  l (u) = l (u) Çs a kîzvetlenÅl egym†s ut†n
+                                 a       b
+         †ll¢ 'a' bet˚k sz†ma 3-mal, a kîzvetlenÅl egym†s ut†n †ll¢ 
+         'b' bet˚k sz†ma 2-vel oszthat¢ }
+
+G) L = { A konstans bin†ris egÇszekbãl a +,- m˚veletekkel Çs a  (,) 
+     z†r¢jelekkel le°rhat¢ kifejezÇsek ( midkÇt jel szerepelhet
+     elãjelkÇnt Çs oper†torkÇnt is, de ilyen: 1+-10 nem lehet,
+     Çs  ilyen sem: 1+(1) de ezek: 1+(-10) , 1+1 , (1+1) szab†lyosak. )  }
+
+                              *                                         *
+H) L = { u 'eleme' { a,b,c,d } | u = xy , l(x) = l(y), x 'eleme' { a,b } ,
+                                            *
+                           y 'eleme' { c,d }  }
+
+HH) L = {  u 'eleme' L(G)  |  u -ban  nincs sem '[['  sem ']]'  sem '(('
+                              sem '))' rÇssz¢  }
+    ahol: G = < { [,],(,) } , { S } , P , S >
+          P = { S --> SS | (S) | [S] | 'epszilon' }
+
+3. FELADAT
+        KêSZíTSEN HOSSZÈSµGNEMCSôKKENTä GRAMMATIKµKAT AZ ALµBBI NYELVEKHEZ:
+
+                   N N N N
+        I.  L = { a b a b  |  N >= 1 }
+                                       *
+        II. L = { u eleme { a,b,c,d,e }   |  l (u) = l (u) = l (u) + l (u) }
+                                              a       b       c       d
+                     2
+                    N
+        III. L = { a   | N >= 1 }
+                                        *
+        IV.  L =  { xx | x eleme { a,b } }
+        
+                      M  N
+        V.   L = { (xa y)  |  M >= 1  Çs  N >= 1 }
+
+                                                                 
+4. feladat 
+    Bizony°tsa be: ha L1 , L2  i. t°pus£ ( i 'eleme' {0,1,2,3} ) => 
+                L1 L2 , L1 + L2 , L1*  is az.
+    ( Adjon algoritmusokat, amelyeket felhaszn†lva L1  Çs L2 i. t°pus£
+    grammatik†j†b¢l L1 L2 , L1 + L2 , L1*  i. t°pus£ grammatik†ja
+    megadhat¢.) 
+
+5. feladat
+	Bizony°tsa be, hogy a h†rmas t°pus£ nyelvek halmaza z†rt a metszet,
+	komplementerkÇpzÇs (T* -ra), kÅlînbsÇg Çs szimmetrikus differencia 
+	m˚veleteire.
+
+
+6. feladat
+                         *
+    L = { u 'eleme' {a,b} | l (u) = l (u) }
+                             a       b
+
+Bizony°tsuk be, hogy az al†bbi nyelvtanok mindegyike 
+a fenti nyelvet gener†lja.
+
+G1 : S --> ASb | 'epszilon'
+     Ab --> bA 
+     A --> a
+
+G2 : S --> aSb | bSa | SS | 'epszilon'
+
+G3 : S --> aSbS | bSaS | 'epszilon'
+
+G4* : S --> 'epszilon' | aB | bA
+      A --> aS | bAA
+      B --> bS | aBB
+
+-----------------------------------------------------------------------------
+
+Szigor£ t°pusok
+---------------
+
+1. feladatcsoport: h†rmas-e a szigor£ t°pus? (Ha nem, akkor mennyi?)
+
+        ADJA MEG AZ ALµBBI NYELVEK MYHILL-NERODE JELLEMZêSêT !
+        ( HA AZ { Lp  | p eleme T  } NYELVOSZTµLY VêGES, ADJA MEG A
+          REPREZENTµNSAIT, HA NEM, BIZONYíTSA BE, HOGY VêGTELEN ! )
+
+        DôNTSE EL ENNEK SEGíTSêGêVEL, HOGY MELYEK HµRMAS TíPUSÈAK !
+
+        AMELYEK HµRMAS TíPUSÈAK, AZOKRA ADJA MEG A MYHILL-NERODE JELLEMZêSBäL
+        AD‡D‡ AUTOMATµT IS !
+
+        AMELYEK NEM AZOK, AZOKRA BIZONYíTSA BE A "KIS" BAAR-HILLEL LEMMA
+        SEGíTSêGêVEL IS, HOGY NEM AZOK !
+
+        1.L(G) JELLEMZêSE , HA
+          G = ( {a,b} , {S,X,Y} , P , S )
+          P = { S --> aY ,   Y --> Sb ,
+                S --> aX ,   Y --> b   }
+
+        2. L = { u eleme {a,b}*  | u-BAN NINCS 2 a BETÎ EGYMµS UTµN ,
+                A b BETÎK VISZONT PµROS HOSSZÈ RêSSZAVAKAT ALKOTNAK.}
+
+        3. L = { xx | x eleme {a,b}*  }
+
+        4. L = { xx | x eleme {a,b}*  }
+
+        5. L = { u eleme {a,b,c}*   | u-BAN NINCS  'aa' , 'bb' êS 'cc'
+                                        RêSSZ‡ SEM. }
+
+        6. L = { u eleme {a,b,c}*   | u(1) = a  êS  u-BAN NINCS 'cc' RêSSZ‡  
+                                                êS NEM VêGZäDIK c BETÎVEL }
+
+        7. L(G) JELLEMZêSE , HA 
+          G = (  {@,.} , {S,A} , P , S )
+          P = { S --> A | A.S ,
+                A --> AA | @ }
+
+                   2
+                  N
+        8. L = { a    |   N >= 1 }
+
+        9. L(G) JELEMZêSE , HA
+          G = ( {@,1} , {S,A} , P , S )
+          P = { S --> @A ,
+                A --> A1 | AA | 'epszilon' }
+
+        10. L(G) JELLEMZêSE , HA
+          G = ( {1,2} , {S,A,B} , P , S )
+          P = { S --> ASA | BSB | 'epszilon' ,
+                AB --> BA ,   BA --> AB ,
+                A --> 1 ,   B --> 2            }
+
+
+2.FELADAT
+        ADOTT AZ ALµBBI NYELVTAN:
+        G = ( { 1,2,3,4 } , { S,A,C } , P , S )
+        P = {   S --> ASC | AC ,
+                 AC --> CA ,
+                 A --> 1 | 2 ,
+                 C --> 3 | 4   }
+        MI AZ L(G) NYELV SZIGORÈ  TíPUSA ?
+
+           ( A szigor£ t°pus az a legmagasabb nyelvoszt†ly, 
+             amelybe az illetã nyelv beleesik. )
+
+3.FELADAT
+        G1 = < { (,),[,] } , { S } , S , P1 >
+        P1 = { S -> SS | [S] | (S) | 'epszilon' }
+
+        L2 = { x eleme L(G1) | x -BEN NINCS SEM '[[', SEM ']]',
+                                      SEM  '((',  SEM  '))' RêSSZ‡ }
+
+        A, ADJUNK MEG OLYAN  G2  GRAMMATIKµT, AMELYRE L2 = L(G2)
+
+        B, HATµROZZUK MEG L2 SZIGORÈ TíPUSµT!
+
+4.feladat
+        L = { u eleme {a,b,c,d}*   | u = xy  Çs  |x| =|z|  Çs
+                        x eleme { a,b }*    Çs  y eleme { c,d }*   }
+        Mi az L szigor£ t°pusa ?
+
+5.FELADAT
+        ADOTT AZ ALµBBI NYELVTAN:
+        G = ( { 1,2,3 } , { S,A,B,C } , P , S )
+        P = {   S --> SC | ASB | AB | SS ,
+                AC --> CA , BC --> CB ,
+                A --> 1 , B --> 2 , C --> 3   }
+        MI AZ L(G) NYELV SZIGORÈ TíPUSA ?
+
+
+6. feladat
+    Le°rhat¢k-e 2-es tipus£ nyelvtan seg°tsÇgÇvel az al†bbi nyelvek?
+    ( SzÅksÇg esetÇn az Ogden lemma is felhaszn†lhat¢. )
+
+             i i k i
+a)    L = { a b c d   |  j>0 }
+
+             i j k l
+a*)   L = { a b c d   |  j = 0  vagy  i = k = l }
+
+            i j
+b)   L = { a b  |  i <> j }
+
+             j                   *
+c)   L = { uc u | u eleme { a,b }  Çs j>0 }
+
+               j                        *
+c*)   L = { u c v  | u ,v  eleme { a,b }  Çs  ( j = 0 vagy u  = v ) }
+                          *
+d)   L = { u eleme { a,b }  |  L (u) <> L (u) }
+                                a        b
+           i j k
+e)  L = { a b c  | 0 < i < j < k }
+
+            i j k
+e*)  L = { a b c  | i <> j  Çs  j <> k  Çs  k <> i }
+
+
+7. feladat
+    VÇgezze el az "Nyelvek Çs grammatik†k" c. feladatsor 1-3. feladataiban 
+    szereplã nyelvek szigor£ t°pusainak meghat†roz†s†t!
+
+8. feladat
+	Bizony°tsa be, hogy a kettes t°pus£ nyelvek halmaza nem z†rt a metszet,
+	komplementerkÇpzÇs (T* -ra), kÅlînbsÇg Çs szimmetrikus differencia 
+	m˚veleteire.
+
+-----------------------------------------------------------------------------
+
+Automat†k Çs 3-as t°pus£ nyelvek
+--------------------------------
+
+FELADAT
+        AZ ALµBBI 3-AS TíPUSÈ NYELVTANOKHOZ:
+
+        G = < { 0,1,2,# } , { S,J,K,L,M } , S , P >
+        P = {  S -> 0S | J | 1K | 2K | #
+                J -> #L | K
+                K -> #
+                L -> 1M | 0L | 'epszilon'
+                M -> 1L | 0M | 'epszilon'  }
+
+        G = ( { 1,2,3 } , { S,A,B,C } , P , S )
+        P = {   S --> 1S | A ,
+                 A --> B | 3C ,
+                 B --> 2B | C | 3 | 'epszilon' ,
+                 C --> 2B | 2 | 3C | 'epszilon'   }
+
+        G = ( { 1,2,3 } , { A,B,C } , P , B )
+        P = {   A --> 1A | 2B | C | 1 ,
+                 B --> 1A | C | 2 ,
+                 C --> 1A | 2B | 3C | 3   }
+
+        G = ( { 0,1 } , { S,A,B } , P , S )
+        P = {  S --> 0S | 1S | 0A | 1A ,
+                A --> 0A | 1B | 'epszilon' ,
+                B --> 0A | 1B | 0 | 1   }
+
+        AZ ISMERT ALGORITMUST ALKALMAZVA:
+        - ADJON VELE EKVIVALENS NEM DETERMINISZTIKUS AUTOMATµT!
+        - ADJON AZZAL EKVIVALENS DETERMINISZTIKUS AUTOMATµT!
+        - HA EZ UT‡BBI REDUKµLHAT‡, AKKOR REDUKµLJA!
+        - íRJA VISSZA A REDUKµLTNAK MEGFELELä GRAMMATIKµT!
+
+-----------------------------------------------------------------------------
+
+KîrnyezetfÅggetlen nyelvtanok transzform†ci¢i
+---------------------------------------------
+
+1.FELADAT
+        ADJON MEG AZ ALµBBI 2-ES TíPUSÈ NYELVTANNAL EKVIVALENS OLYAN 2-ES
+        TíPUSÈ GRAMMATIKµT , AMELY EGYES TíPUSÈ IS! 
+        (Alkalmazzuk az epszilon-mentes°tÇs algoritmus†t!)
+
+        G = ( { 1 } , { S,A,B } , P , S )
+        P = {   S --> A1B | 'epszilon' ,
+                A --> BS | 1BS ,
+                B --> 1A | 'epszilon'   }
+
+2.feladat
+   G = < { 1 } , { S,A,B,C,D } , P , S >
+   p = { S --> A | 1 ,
+      A --> S | BC | 'epszilon' ,
+      C --> CD ,
+      D --> 1      }
+
+   Alkamazza a fenti nyelvtanra a kîvekezã algoritmust:
+    1, epszilon-mentes°tÇs,
+    2, x --> y -mentes°tÇs,
+    3, redukci¢.
+
+3. feladat
+    Reduk†lja az al†bbi nyelvtant:
+    G = < { 1 } , { S,X,Y,Z } , P , S >
+    P = {  S --> X1 | 1 ,
+           X --> YZ ,
+           Y --> 1      }
+
+    Mi tîrtÇnik, ha a redukci¢ 2 lÇpÇsÇt felcserÇljÅk? MiÇrt?
+
+4. feladat
+    Hozza Chomsky fÇle norm†lform†ra az al†bbi nyelvtanokat! 
+    (Algoritmikusan)
+
+a) G = < { a,b } , { S } , P , S >
+   P = { S --> aSb | SS | 'epszilon' }
+
+b) G = < { a,b } , { S } , P , S >
+   P = { S --> aSa | bSb | 'epszilon' }
+
+c) G = < { a,b } , { S } , P , S >
+   P = { S --> Sab | Sba | 'epszilon' }
+
+d) G = < { 1,2 } , { S,A,B } , P , S >
+   P = { S --> ABS | ASB | SAB | 'epszilon' ,
+         A --> 11 | 2 ,   
+         B --> 1 | 22 }
+
+5. feladat
+    Hozza Greibach fÇle norm†lform†ra az al†bbi nyelvtanokat:
+
+a) G = < { a,b } , { 1,2,3 } , P , 1 >
+   P = { 1 --> 23 ,
+         2 --> 31 | b ,
+         3 --> 12 | a }
+
+b) G = < { a } , { 1,2 } , P , 1 >
+   P = { 1 --> 12 | 22 ,
+         2 --> 12 | a }
+
+c) 4/a
+
+d) 4/c
+
+-----------------------------------------------------------------------------
+
+Automat†k anal°zise Çs szintÇzise
+---------------------------------
+
+9.FELADAT
+        ALKALMAZZA AZ AUTOMATµK SZINTêZISêNEK M‡DSZERêT AZ ALµBBI NYELVEKRE:
+        
+                    *
+        L0 =  a(a+1)
+         
+                                    *
+        L1 =  x((_+'epszilon')(x+1))
+        
+                          *
+        L2 =  a(a+b+ca+cb)
+        
+                      *
+        L3 =  (1+x+x.) x
+        
+                     *
+        L4 =  (ab+ba)
+
+        ALKALMAZZA AZ AUTOMATµK ANALíZISêNEK M‡DSZERêT A KAPOTT AUTOMATµKRA !
+
+------------------------------------------------------------------------------
+
+Veremautomat†k (1-vermek)
+-------------------------
+
+1. KÇsz°tsÅnk veremautomat†t az al†bbi nyelvekhez:
+
+                         *
+a) L =  { u eleme { a,b }  |  l (u) = l (u) }
+                               a       b
+                         *
+b) L =  { u eleme { a,b }  |  l (u) = l (u) Çs a kîzvetlenÅl egym†s ut†n
+                               a       b
+         †ll¢ 'a' bet˚k sz†ma 3-mal, a kîzvetlenÅl egym†s ut†n †ll¢ 'b' 
+         bet˚k sz†ma 2-vel oszthat¢ }
+
+c) L = { A konstans bin†ris egÇszekbãl a +,- m˚veletekkel Çs a  (,) 
+     z†r¢jelekkel le°rhat¢ kifejezÇsek ( midkÇt jel szerepelhet
+     elãjelkÇnt Çs oper†torkÇnt is, de ilyen: 1+-10 nem lehet,
+     Çs  ilyen sem: 1+(1) de ezek: 1+(-10) , 1+1 , (1+1) szab†lyosak. )  }
+
+                            *                                       *
+d) L = { u eleme { a,b,c,d } | u = xy , l(x) = l(y), x eleme { a,b } ,
+                                              *
+                               y eleme { c,d }  }
+
+e) L = {  u eleme L(G)  |  u -ban  nincs sem '[['  sem ']]'  sem '(('
+                                         sem '))' rÇssz¢  }
+    ahol: G = < { [,],(,) } , { S } , P , S >
+          P = { S --> SS | (S) | [S] | 'epszilon' }
+
+-----------------------------------------------------------------------------

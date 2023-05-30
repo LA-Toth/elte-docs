@@ -1,0 +1,191 @@
+<head>
+<title>Hogyan készítsünk saját honlapot a Weben?</title>
+</head>
+
+<body bgcolor="ffffee">
+
+<center>
+<a href="honlap0.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap2.html">Következô fejezet</a>
+</center>
+
+<hr>
+
+<h2>Mi kell a honlaphoz?</h2>
+
+Elôször is egy
+
+<h3>Gép</h3>
+
+Ha nekifogunk a honlap készítésének, elôször is keresnünk kell egy
+gépet, amin majd dolgozni fogunk. A lap építéséhez megfelel egy
+"mezei" PC is, kipróbálásához már egy Linuxos vagy Windowsos Netscape,
+vagy hasonló böngészôprogram szükséges. Amennyiben a lapunkat ôrzô géppel
+csak rövid ideig tudunk dolgozni, pl. azért, mert telefonon át tartjuk 
+rendszeresen a kapcsolatot, akkor érdemesebb az otthoni gépen megírni
+és kipróbálni a lapo(ka)t, majd a kész változatot felküldeni. Ahhoz
+ugyanis, hogy mások is megtekinthessék a lapunkat
+
+<h3>Internet kapcsolat</h3>
+
+szükséges. Ezt minden guru <b>host</b> néven emlegeti, ez annyit tesz,
+mint házigazda, s valóban, nála lakik majd a lapunk. Ennek a gépnek az
+Interneten ismert címe, sôt szinte mindig neve is van. Képzeletbeli
+hostunk hallgasson a
+<pre>
+www.honlapiskola.hu
+</pre>
+névre! Ez a gép tehát rajta van a Neten, méghozzá a nap mind a huszonnégy
+órájában. Kerüljük el a korlátozott nyitvatartással üzemelô hostokat,
+mert a Net az egész bolygót magában foglalja és mindig ébren van. Szerény
+lapunkat pedig Tokiótól Washingtonig bárhonnan meglátogathatják, mert
+nincsenek távolságok ebben a furcsa világban.
+<p>
+Ahhoz, hogy dolgozni tudjunk, be kell jutnunk a hostra. Számos host
+biztosít anonim, nyilvános hozzáférést, bizonyos szolgáltatások használatára.
+Ezzel akár az Internet bármely szegletébe is elvitorlázhatunk, saját lap
+alapításához azonban nem elég. Kell egy
+
+<h3>Account</h3>
+
+is, amit postafióknak, hozzáférésnek is próbálnak fordítani, de nem egészen
+találó. Lényegében arról van szó, hogy a host személyesen ismerjen minket
+és biztosítson számunkra egy zugot, ahová virtuális ingóságainkkal 
+beköltözhetünk.
+<p>
+Az account megszerzésének rejtelmei és számos fondorlata romantikus 
+kalandregény témája lehetne, mi most úgy teszünk, mint a matematikusok:
+<i>"Vegyünk egy accountot!"</i> ;-) Az accounttal együtt jár egy 
+<b>user-név</b> és egy <b>password</b> is. (A password mindig legyen
+nehezen kitalálható és legalább havonta változtassuk! Az ördög és a
+hackerek sosem alszanak!)
+<p>
+Tegyük fel, nekünk a Jakab név jutott. Jelentkezzünk be! Valami hasonlót
+látunk majd:
+<pre>
+Welcome at www.honlapiskola.hu
+
+login: jakab
+password: ********
+</pre>
+Ha ezek után a gép morc módon ki nem dobott minket, akkor valóban van élô
+accountunk. Ide akár levelet is kaphatunk, jegyezzük is meg a címünket:
+<pre>
+jakab@www.honlapiskola.hu
+</pre>
+Kérjünk meg egy ismerôst, aki nem erre a gépre kapott accountot, hogy 
+küldjön a címünkre levelet! Ha megkapjuk, a host Internet elérése
+rendben van. Ezenkívül futnia kell egy
+
+<h3>httpd</h3>
+
+programnak is. Ezt a host korlátlan ura és parancsolója, a <b>root</b>
+(rendszergazda) helyezi üzembe (azaz mi ezzel ne próbálkozzunk) és ha nem 
+értünk igazán a host <b>operációs rendszeréhez</b>, akkor a legegyszerûbb 
+ellenôrzési mód a host kezdôlapjának hívása. Az általunk használt 
+böngészôbe írjuk be új címként:
+<pre>
+http://www.honlapiskola.hu
+</pre>
+Ha erre megjelenik valami szépséges oldal, nyert ügyünk van (majdnem).
+Ha nem, akkor érdeklôdjünk a hoston más userektôl, végsô esetben a
+roottól, valaki csak fogja tudni, miért nem mûködik... Lehet, hogy a httpd
+program nem fut, de az is lehet, hogy nincs kezdôlap (az elég szomorú)
+vagy más címen van (nem "www" a host neve vagy nem a szokásos "index.html"
+a kezdôlap címe).
+<p>
+Ideje csinálni valamit, ha már bejelentkeztünk! Kezdjük az elsô kapavágással.
+Hozzuk létre azt a helyet, ahova a lap kerül! Ez
+
+<h3>A public_html könyvtár</h3>
+
+vagy directory, vagy folder, kinek hogy tetszik. Egy parancs az egész:
+<pre>
+mkdir public_html
+</pre>
+Ellenôrizni kell az
+
+<h3>Elérési jogok</h3>
+
+néven ismert szörnyûséget. Arról van szó, hogy a sokak által használt
+és a hálózatba kapcsolt gépeken ésszerûen korlátozva van, ki mit írhat 
+és olvashat, nehogy vicces kedvû t-boyok mások féltve ôrzött állományaiba
+kotorjanak bele.
+<p>
+Mit is szeretnénk a lapunkkal? Azt, hogy mindenki olvassa, aki csak erre
+jár. Azt viszont nem szeretnénk, ha át is írnák, nem azért veszôdünk vele.
+Tehát írni csak mi írhatjuk. Adjuk ki ezt a UNIX parancsot:
+<pre>
+ls -al
+</pre>
+Válaszként valami ilyet kell kapnunk:
+<pre>
+total 17
+drwxr-xr-x   4 jakab    users        1024 Aug 11 00:02 ./
+drwxr-xr-x   8 jakab    users        1024 Jul 24 15:26 ../
+drwx------   4 jakab    users          47 Aug 11 00:04 mail/
+drwxr-xr-x   4 jakab    users           3 Aug 11 00:05 public_html/
+[...]
+</pre>
+A lényeg az, hogy a három darab <b>r</b> és <b>x</b> ott legyen elszórva. 
+Ha ez nincs így, akkor újabb parancsot kell adnunk:
+<pre>
+chmod 755 public_html
+</pre>
+Az index.html -- és minden "normális" állomány -- más értéket kap (nem 
+tartalmaz x-eket): 
+<pre>
+chmod 644 index.html
+</pre>
+Ha nem vagyunk biztosak a dolgunkban, akkor is kiadhatjuk, baj nem 
+származik belôle. Ha viszont nincs helyesen beállítva, akkor bár ott van
+a lap vagy a kép, mégis láthatatlan marad. A beágyazott kép helyett egy 
+kérdôjel, vagy valami egyéb jelzés jelenik meg.
+<p>
+Megjegyzem, azért bátorkodom itt mindig a UNIX operációs rendszert emlegetni,
+mert a hostok döntô többsége ezzel, vagy ennek valamely elfajzott rokonával
+üzemel, alapszinten tehát érteniük kell a "szóból"... ;-) <i>(Már megint ez a 
+jel! Mi ez? <b>Smiley</b>. Lesz még...)</b>
+<p>
+Kész a "telek", kezdhetjük építeni a házat. Elôször is lépjünk be a 
+"telekre":
+<pre>
+cd public_html
+</pre>
+Ha bent vagyunk, akkor a ház bejárata
+
+<h3>Az index.html</h3>
+
+állomány. Egyelôre legyen benne csak annyi, hogy <b>Under construction!</b>,
+azaz magyarul <b>Fejlesztés alatt!</b>
+<p>
+Lássuk!
+<pre>
+echo "Under construction!" > index.html
+</pre>
+Nocsak, már kész is az elsô lapunk. Nana! Inkább a nulladik. Ellenôrizzük
+a hozzáférési jogot (ls -al) és ha megvan a megfelelô számú r és x, akkor
+
+<h3>A lap címe</h3>
+
+az Interneten:
+<pre>
+http://www.honlapiskola.hu/~jakab
+</pre>
+
+Akár meg is nézhetjük.
+
+<hr>
+
+<center>
+<a href="honlap0.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap2.html">Következô fejezet</a>
+</center>
+
+</body>

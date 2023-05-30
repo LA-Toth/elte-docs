@@ -1,0 +1,136 @@
+A kulonbozo nemzeti nyelvek tamogatasat az Oracle az NLS (National Language Support) 
+valtozok beallitasaval teszi lehetove.
+
+A valtozok beallitasa tortenhet tobb szinten. (Minden valtozonak van default erteke)
+     Az inicializacios parameterek kozott a parameterfájlban. 
+     Kornyezeti valtozo beallitasaval a kliens gep operacios rendszer szintjen
+     SQL-ben az ALTER SESSION utasitassal
+     Fuggvenyek belsejeben, parameterkent megadva
+
+Nem minden valtozot lehet mind a negy szinten beallitani.
+
+Az NLS_LANG (csak kornyezeti valtozo szinten, WINDOWS-ban a Registry-ben allithato) 
+harom komponensbol all.
+   NLS_LANG = language_territory.charset
+
+Nyelv (language) komponens meghatarozza az uzenetek nyelvet, a napok es honapok neveit.
+
+Terület (territory) meghatarozza a datum formatumot es a tizedest jelolo karaktert.
+
+Karakterkeszlet (charset) a kliens oldali karakterkeszletet hatarozza meg. 
+(Az adatbazis karakterkeszlete az adatbazis letrehozasakor eldol.) 
+
+
+NLS_LANGUAGE 
+(hatasa ugyanaz, mint az NLS_LANG elso komponensenek.) Beallithato mindharom szinten. 
+A rendszer a kulonbozo nyelvu uzeneteit MSB kiterjesztesu binaris 
+allomanyokban tarolja, altalaban az rdbms/mesg nevu konyvtarban. Pl. orahu.msb
+
+  ALTER SESSION SET NLS_LANGUAGE = FRENCH;
+  select to_char(sysdate, 'month dd, day') from dual;
+
+NLS_TERRITORY 
+(hatasa ugyanaz, mint az NLS_LANG masodik komponensenek.)
+Ez hatarozza meg a datum formatumot, hogy melyik lesz a het elso napja ... stb.
+
+  select to_char(sysdate, 'D') from dual;     
+  ALTER SESSION SET NLS_TERRITORY = AMERICA;  -- vasarnappal kezdodik a het
+  ALTER SESSION SET NLS_TERRITORY = HUNGARY;  -- nalunk a hetfo a het elso napja
+
+
+Tovabbi parameterek (teljes lista a dokumentacioban):
+
+NLS_CURRENCY       local currency 'L' formatum maszk (pl. $)
+
+  ALTER SESSION SET NLS_CURRENCY = '$';
+  select to_char(sal, '99999L') from emp;
+
+NLS_DATE_FORMAT    datum formatuma
+
+  ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
+  select sysdate from dual;
+  insert into t(datum) values('2005-04-15');
+
+NLS_DATE_LANGUAGE  honap es nap neve
+
+  ALTER SESSION SET NLS_DATE_LANGUAGE = HUNGARIAN;
+
+NLS_ISO_CURRENCY   ISO currency 'C' formatum maszk (pl. HUF)
+
+  ALTER SESSION SET NLS_ISO_CURRENCY = HUNGARY;
+  select to_char(sal, '99999C') from emp;
+
+NLS_NUMERIC_CHARACTERS  Tizedes jel es group szeparator 'D' es 'G' formatum maszk
+
+  ALTER SESSION SET NLS_NUMERIC_CHARACTERS = ',.';
+  select to_char(sal, '99G999D99') from emp;
+
+NLS_SORT   A rendezes e szerint fog tortenni
+
+  select * from nevek order by 1;   
+  ALTER SESSION SET NLS_SORT = HUNGARIAN;   --  Albert, Ádám, Bubu
+  ALTER SESSION SET NLS_SORT = BINARY;      --  Albert, Bubu, Ádám
+
+NLS_COMP  (ANSI | BINARY ) Az osszehasonlitasok e szerint fognak tortenni
+ANSI eseten az aktualis nyelv (NLS_LANGUAGE) alapjan
+
+  select * from nevek where nev > 'B';   
+  ALTER SESSION SET NLS_COMP = ANSI;       -- Bubu  
+  ALTER SESSION SET NLS_COMP = BINARY;     -- Ádám, Bubu
+
+
+NLS_LIST_SEPARATOR
+Listak elemeinek elvalaszto karaktere, csak kornyezeti valtozokent allithato be.
+
+NLS_TIMESTAMP_FORMAT
+
+  ALTER SESSION SET NLS_TIMESTAMP_FORMAT = 'YYYY-MM-DD HH:MI:SS.FF';
+  select to_timestamp(sysdate) from dual;
+
+NLS_TIMESTAMP_TZ_FORMAT
+
+  ALTER SESSION SET NLS_TIMESTAMP_TZ_FORMAT = 'YYYY-MM-DD HH:MI:SS.FF TZH:TZM';
+  select current_timestamp from dual;
+  select to_timestamp_tz(current_date) from dual;
+
+
+NLS parameterek hasznalata SQL fuggvenyekben 
+
+Minden SQL fuggvenyben, amelynek erteke az aktualis NLS beallitasoktol fugg, megadhato 
+egy kulon parameterkent a megfelelo NLS beallitas is. Igy olyan kodot lehet irni a 
+programokba, amelyik fuggetlen a kornyezeti beallitastol.
+Pl.     
+  SELECT ename FROM emp WHERE hiredate > '1-MAY-1991' 
+
+helyett az alabbit hasznaljuk:
+
+  SELECT ename FROM emp WHERE hiredate > 
+  TO_DATE('1-MAY-1991', 'DD-MON-YYYY', 'NLS_DATE_LANGUAGE=AMERICAN')
+
+A fenti modon csak bizonyos NLS parameterek adhatok meg, nem az osszes. Ha a 
+TO_CHAR, TO_NUMBER, vagy a TO_DATE fuggvenyben hasznaljuk valamelyik NLS 
+parametert akkor formatum maszkot is kotelezo megadni.
+
+
+Az NLSSORT függvény
+
+SELECT oszlop FROM tab1 WHERE oszlop > 'B'
+A fenti lekerdezes az 'Á' betûvel kezdõdõeket is visszaadja, mert azok binaris 
+reprezentalasa kesobb kovetkezik a 'B'-nel. helyette hasznaljuk az alabbit:
+
+  SELECT oszlop FROM tab1 WHERE NLSSORT(oszlop) > NLSSORT('B');
+
+Indexet is letrehozhatunk a fuggveny segitsegevel:
+  
+  CREATE INDEX i ON t1(NLSSORT(nev, 'NLS_SORT=HUNGARIAN'));
+
+
+A fenti NLS parameterek aktualis es lehetseges ertekeit az alabbi nezetekbol
+lehet megnezni.
+
+NLS_SESSION_PARAMETERS 
+NLS_INSTANCE_PARAMETERS  (csak a tenylegesen beallitottaknak nem NULL az erteke)
+NLS_DATABASE_PARAMETERS
+V$NLS_VALID_VALUES 
+
+

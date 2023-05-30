@@ -1,0 +1,249 @@
+
+SELECT * FROM emp; 
+SELECT ename FROM emp; (projekció)
+SELECT ename FROM emp WHERE ename=’JONES’; (szelekció)
+------------------------------------------------------
+SELECT STATEMENT
+  TABLE ACCESS FULL EMP
+
+SELECT DISTINCT deptno FROM emp;  (distinct)
+--------------------------------------------
+SELECT STATEMENT
+  SORT UNIQUE
+    TABLE ACCESS FULL EMP
+
+10.2 ------
+SELECT STATEMENT 
+  HASH  UNIQUE   
+    TABLE ACCESS  FULL  EMP
+
+SELECT ename FROM emp ORDER BY deptno; (order)
+----------------------------------------------
+SELECT STATEMENT
+  SORT ORDER BY
+    TABLE ACCESS FULL EMP
+
+SELECT deptno, AVG(sal) FROM emp GROUP BY deptno; (group)
+---------------------------------------------------------
+SELECT STATEMENT
+  SORT GROUP BY
+    TABLE ACCESS FULL EMP
+
+10.2 ------
+SELECT STATEMENT
+  HASH  GROUP BY
+    TABLE ACCESS  FULL  EMP
+
+SELECT deptno, AVG(sal) FROM emp GROUP BY deptno
+HAVING SUM(sal) > 3000; (having)
+-------------------------------------------------
+SELECT STATEMENT
+  FILTER
+    SORT GROUP BY
+      TABLE ACCESS FULL EMP
+
+10.2 ------
+SELECT STATEMENT
+  FILTER      
+    HASH  GROUP BY    
+      TABLE ACCESS  FULL  EMP
+
+
+SELECT ename, dname FROM emp, dept 
+WHERE emp.deptno=dept.deptno; (join)
+--------------------------------------------------
+SELECT STATEMENT
+  MERGE JOIN
+    SORT JOIN
+      TABLE ACCESS FULL DEPT
+    SORT JOIN
+      TABLE ACCESS FULL EMP
+
+10.2 ------
+SELECT STATEMENT      
+  HASH JOIN      
+    TABLE ACCESS  FULL  DEPT
+    TABLE ACCESS  FULL  EMP 
+
+
+SELECT deptno FROM emp  UNION  SELECT deptno FROM dept; 
+------------------------------------------------------
+SELECT STATEMENT
+   SORT UNIQUE
+     UNION-ALL
+       TABLE ACCESS FULL EMP
+       TABLE ACCESS FULL DEPT
+
+SELECT deptno FROM emp  UNION  ALL SELECT deptno FROM dept; 
+------------------------------------------------------
+SELECT STATEMENT
+  UNION-ALL
+    TABLE ACCESS FULL EMP
+    TABLE ACCESS FULL DEPT
+
+
+SELECT deptno FROM emp  MINUS  SELECT deptno FROM dept; 
+----------------------------------------------------------
+SELECT STATEMENT
+  MINUS
+    SORT UNIQUE
+      TABLE ACCESS FULL EMP
+    SORT UNIQUE
+      TABLE ACCESS FULL DEPT
+
+
+SELECT ename FROM emp WHERE deptno IN
+   (SELECT deptno FROM dept WHERE loc='DALLAS') (IN)
+-----------------------------------------------
+SELECT STATEMENT
+   MERGE JOIN
+     SORT JOIN
+       TABLE ACCESS FULL EMP
+     SORT JOIN
+       VIEW  VW_NSO_1
+         SORT UNIQUE
+           TABLE ACCESS FULL DEPT
+
+10.2 -------
+SELECT STATEMENT   
+  HASH JOIN  SEMI  
+    TABLE ACCESS  FULL  EMP 
+    TABLE ACCESS  FULL  DEPT
+
+
+SELECT ename FROM emp WHERE deptno NOT IN
+   (SELECT deptno FROM dept WHERE loc='DALLAS') (NOT IN)
+
+A fenti lekérdezés terve megegyezik az alábbi NOT EXIST-es lekérdezés tervével
+A NOT IN esetén a 10.2 terve azonos a 9.2-ével
+
+SELECT ename FROM emp WHERE NOT EXISTS
+     (SELECT * FROM dept WHERE loc='DALLAS'
+      AND emp.deptno=dept.deptno)
+-------------------------------------------
+SELECT STATEMENT
+  FILTER
+    TABLE ACCESS FULL EMP
+    TABLE ACCESS FULL DEPT
+
+10.2 ----- NOT EXISTS esetén már más tervet preferál a 10.2
+SELECT STATEMENT      
+  HASH JOIN  ANTI    
+    TABLE ACCESS  FULL  EMP 
+    TABLE ACCESS  FULL  DEPT
+
+
+Végrehajtási tervek indexek használatával
+create index ename on emp(ename)
+create unique index empno on emp(empno)
+
+SELECT * FROM emp WHERE ename = ’KING’; (index)
+---------------------------------------
+  SELECT STATEMENT
+    TABLE ACCESS BY INDEX ROWID EMP
+      INDEX RANGE SCAN ENAME
+
+SELECT ename FROM emp WHERE ename = ’KING’; (csak_index)
+---------------------------------------
+  SELECT STATEMENT
+    INDEX RANGE SCAN ENAME
+
+A fenti tervbõl látható, hogy ha nem muszáj akkor nem is használja a táblát, csak az indexet.
+
+SELECT * FROM emp WHERE empno = 7900; (unique_index)
+----------------------------------------------------
+  SELECT STATEMENT
+    TABLE ACCESS BY INDEX ROWID EMP
+      INDEX UNIQUE SCAN EMPNO
+
+A fenti tervbõl látható, hogy ha lehetséges, célszerû megadni a UNIQUE kulcsszót az index 
+létrehozásakor. 
+
+
+SELECT * FROM emp WHERE ename='KING' OR ename='JONES';
+-----------------------------------------------------
+SELECT STATEMENT
+  CONCATENATION
+    TABLE ACCESS BY INDEX ROWID EMP
+      INDEX RANGE SCAN ENAME
+    TABLE ACCESS BY INDEX ROWID EMP
+      INDEX RANGE SCAN ENAME
+
+10.2 -------
+SELECT STATEMENT 
+  INLIST ITERATOR 
+    TABLE ACCESS  BY INDEX ROWID  EMP
+      INDEX  RANGE SCAN  ENAME
+
+SELECT * FROM emp WHERE ename='KING' OR ename IS NULL;
+-----------------------------------------------------
+  SELECT STATEMENT
+    TABLE ACCESS FULL EMP
+
+
+Bonyolultabb lekérdezések végrehajtási terve
+
+Adjuk meg azoknak az osztalyoknak az azonositojat, nevet es az osztalyon dolgozok 
+atlagfizeteset, amely osztalyoknak nincs olyan dolgozoja, aki a 3-as fizetesi 
+kategoriaba esik. (Deptno, Dname, Atlag_fizetes) semaban
+
+SELECT dept.deptno, dname, avg(sal)
+FROM emp, dept
+WHERE emp.deptno=dept.deptno
+AND NOT EXISTS
+  (SELECT * FROM emp emp2, salgrade
+   WHERE emp2.deptno=dept.deptno
+   AND sal BETWEEN losal AND hisal
+   AND grade=3)
+GROUP BY dept.deptno, dname;
+
+Ha semmilyen index nincs a táblákra, akkor a terv az alábbi
+----------------------------------------
+SELECT STATEMENT
+   SORT GROUP BY
+     FILTER
+       MERGE JOIN
+         SORT JOIN
+           TABLE ACCESS FULL DEPT
+         SORT JOIN
+           TABLE ACCESS FULL EMP
+       NESTED LOOPS
+         TABLE ACCESS FULL SALGRADE
+         TABLE ACCESS FULL EMP
+
+10.2 -------
+SELECT STATEMENT      
+  HASH  GROUP BY    
+    HASH JOIN      
+      HASH JOIN  ANTI    
+        TABLE ACCESS  FULL  DEPT  
+        VIEW    VW_SQ_1  
+          NESTED LOOPS      
+            TABLE ACCESS  FULL  SALGRADE 
+            TABLE ACCESS  FULL  EMP  
+      TABLE ACCESS  FULL  EMP  
+
+
+Ha van index az EMP és DEPT táblák deptno oszlopára és a SALGRADE tábla grade 
+oszlopára, akkor a terv az alábbi
+-------------------------------------------------
+SELECT STATEMENT
+  SORT  GROUP BY
+    FILTER
+      NESTED LOOPS
+        TABLE ACCESS  FULL  DEPT
+        TABLE ACCESS  BY INDEX ROWID  EMP
+          INDEX  RANGE SCAN  EMP_DEPTNO_I
+      NESTED LOOPS
+        TABLE ACCESS  BY INDEX ROWID  SALGRADE
+          INDEX  RANGE SCAN  SALGRADE_I
+        TABLE ACCESS  BY INDEX ROWID  EMP
+          INDEX  RANGE SCAN  EMP_DEPTNO_I
+
+Kérdés: hogyan tudja a legutolsó sorban az indexet használni? Mit keres az indexben?
+
+A FILTER mûvelet az elsõ sorhalmazt szûri meg a második sorhalmaz alapján. 
+Az utóbbi tervnél látható, hogy a második sorhalmazt folyamatosan állítja elõ az 
+elsõ sorhalmazbeli sor alapján
+
+

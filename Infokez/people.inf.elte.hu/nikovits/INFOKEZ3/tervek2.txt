@@ -1,0 +1,229 @@
+
+Más táblákra vonatkozó lekérdezések
+
+Cikk
+Projekt
+Szallito
+Szallit
+
+A tervekben néhol a PLAN_TABLE.position oszlop értéke is szerepel, hogy 
+lássuk az azonos szinten levõ mûveleteket milyen sorrendben végzi.
+
+
+-- Nem használ indexet, nem alakítja át a kifejezést
+select sum(suly) from cikk where ckod+1=2
+-----------------------------------------
+SELECT STATEMENT      
+  SORT  AGGREGATE    
+    TABLE ACCESS  FULL  CIKK  
+
+-- Itt egyszerûsít, és használ indexet
+select sum(suly) from cikk where ckod=floor(sqrt(44*23))
+--------------------------------------------------------
+SELECT STATEMENT      
+  SORT  AGGREGATE    
+    TABLE ACCESS  BY INDEX ROWID  CIKK  
+      INDEX  UNIQUE SCAN  C_CKOD  
+
+
+
+-- Meddig látja célszerûnek az index használatát a költség alapú 
+-- optimalizáló? Ennél pl. nem használ indexet 
+select sum(suly) from cikk where ckod < 300
+-------------------------------------------
+SELECT STATEMENT      
+  SORT  AGGREGATE    
+    TABLE ACCESS  FULL  CIKK  
+
+-- Ennél még használ indexet
+select sum(suly) from cikk where ckod < 10
+------------------------------------------
+SELECT STATEMENT      
+  SORT  AGGREGATE    
+    TABLE ACCESS  BY INDEX ROWID  CIKK  
+      INDEX  RANGE SCAN  C_CKOD  
+
+
+
+-- Adjuk meg azokat a szállitó, projekt párokat, ahol a szallitó
+-- telephelye megegyezik a projekt helyszínével és a szállító által
+-- ehhez a projekthez szállított cikkek összmennyisége > 5000
+SELECT szallito.szkod, projekt.pkod, telephely
+FROM szallito, szallit, projekt
+WHERE szallit.szkod=szallito.szkod
+AND szallit.pkod=projekt.pkod
+AND telephely=helyszin
+GROUP BY szallito.szkod, projekt.pkod, telephely
+HAVING SUM(mennyiseg) > 5000;
+---------------------------------------------------------------
+SELECT STATEMENT
+  FILTER      
+    SORT  GROUP BY    
+      NESTED LOOPS      
+        NESTED LOOPS      
+          TABLE ACCESS  FULL  PROJEKT  
+          TABLE ACCESS  BY INDEX ROWID  SZALLIT  
+            INDEX  RANGE SCAN  SZT_PKOD  
+        TABLE ACCESS  BY INDEX ROWID  SZALLITO  
+          INDEX  UNIQUE SCAN  SZO_SZKOD  
+
+
+
+-- Mint az elõzõ feladat, csak most a piros cikkekre vonatkozó 
+-- mennyiségeket adjuk össze
+SELECT szallito.szkod, projekt.pkod, telephely
+FROM szallito, szallit, projekt, cikk
+WHERE szallit.szkod=szallito.szkod
+AND szallit.pkod=projekt.pkod
+AND szallit.ckod=cikk.ckod
+AND szin='piros'
+AND telephely=helyszin
+GROUP BY szallito.szkod, projekt.pkod, telephely
+HAVING SUM(mennyiseg) > 500;
+----------------------------------------------------------------
+SELECT STATEMENT
+  FILTER      1
+    SORT  GROUP BY    1
+      NESTED LOOPS      1
+        TABLE ACCESS  BY INDEX ROWID  SZALLITO  2
+          INDEX  UNIQUE SCAN  SZO_SZKOD  1
+        NESTED LOOPS      1
+          TABLE ACCESS  BY INDEX ROWID  PROJEKT  2
+            INDEX  UNIQUE SCAN  P_PKOD  1
+          NESTED LOOPS      1
+            TABLE ACCESS  BY INDEX ROWID  CIKK  1
+              INDEX  RANGE SCAN  SZIN  1
+            TABLE ACCESS  BY INDEX ROWID  SZALLIT  2
+              INDEX  RANGE SCAN  SZT_CKOD  1
+
+
+-- Adjuk meg a piros cikkekre vonatkozó összes szállítások összmennyiségét
+
+... A lekérdezést most nem adom meg, mert ez a beadandó feladat.
+----------------------------------------------
+SELECT STATEMENT
+  SORT  AGGREGATE    1
+    NESTED LOOPS      1
+      TABLE ACCESS  BY INDEX ROWID  CIKK  1
+        INDEX  RANGE SCAN  SZIN  1
+      TABLE ACCESS  BY INDEX ROWID  SZALLIT  2
+        INDEX  RANGE SCAN  SZT_CKOD  1
+
+Adjunk olyan hintet, hogy ne használjon indexet, ill. csak 1 indexet használjon.
+...
+
+
+-- Adjunk olyan hintet, hogy SORT-MERGE JOIN-t végezzen
+...
+----------------------------------------------
+SELECT STATEMENT      9
+  SORT  AGGREGATE    1
+    MERGE JOIN      1
+      SORT  JOIN    1
+        TABLE ACCESS  BY INDEX ROWID  CIKK  1
+          INDEX  RANGE SCAN  SZIN  1
+      SORT  JOIN    2
+        TABLE ACCESS  FULL  SZALLIT  1
+
+
+Ha a nem piros cikkekre vonatkozó összmennyiséget kérdezzük le, az sokkal
+tovább fog futni, mert a köztes eredmény mérete nagyobb, és ezt rendeznie kell. 
+
+
+-- Most egy clusterre került a cikk és szállít tábla
+-- Adjuk meg a szállított piros cikkek összmennyiségét
+...
+-----------------------------------------------------------
+SELECT STATEMENT
+  SORT  AGGREGATE    1
+    NESTED LOOPS      1
+      TABLE ACCESS  BY INDEX ROWID  CIKK_IND_CL  1
+        INDEX  RANGE SCAN  SZIN_1  1
+      TABLE ACCESS  CLUSTER  SZALLIT_IND_CL  2
+
+-- 10.2-es verzió terve
+SELECT STATEMENT
+  SORT AGGREGATE
+    NESTED LOOPS
+      TABLE ACCESS FULL CIKK_IND_CL
+      TABLE ACCESS CLUSTER SZALLIT_IND_CL
+        INDEX UNIQUE SCAN CKOD_I
+
+
+-- Most egy hash clusterre került a cikk és szállít tábla
+-- Adjuk meg a szállított piros cikkek összmennyiségét
+...
+-------------------------------------------------------------
+SELECT STATEMENT
+  SORT  AGGREGATE    1
+    NESTED LOOPS      1
+      TABLE ACCESS  BY INDEX ROWID  CIKK_HASH_CL  1
+        INDEX  RANGE SCAN  SZIN_2  1
+      TABLE ACCESS  HASH  SZALLIT_HASH_CL  2
+
+-- 10.2-es verzió terve
+ SELECT STATEMENT
+   SORT AGGREGATE
+     NESTED LOOPS
+       TABLE ACCESS FULL CIKK_HASH_CL
+       TABLE ACCESS HASH SZALLIT_HASH_CL
+
+-- Join nélkül is hash módszerrel olvassa a szallit táblát
+select * from szallit_hash_cl where ckod=1
+------------------------------------------
+SELECT STATEMENT
+  TABLE ACCESS HASH SZALLIT_HASH_CL
+
+
+
+Példa arra, amikor két indexet használ egy táblához
+
+select sum(mennyiseg) from szallit where ckod=1 and szkod=2 
+-----------------------------------------------------------
+SELECT STATEMENT
+  SORT AGGREGATE
+    TABLE ACCESS BY INDEX ROWID SZALLIT
+      AND-EQUAL
+        INDEX RANGE SCAN CKOD
+        INDEX RANGE SCAN SZKOD
+
+
+A két index által visszaadott sorazonosítókat más módszerrel is össze tudja
+fésülni. Az alábbi tervhez nem kell bitmap indexnek lennie.
+
+select sum(mennyiseg) from szallit where ckod=1 and szkod=2
+-----------------------------------------------------------
+SELECT STATEMENT
+  SORT AGGREGATE
+    TABLE ACCESS BY INDEX ROWID SZALLIT
+      BITMAP CONVERSION TO ROWIDS
+        BITMAP AND
+          BITMAP CONVERSION FROM ROWIDS
+            INDEX RANGE SCAN CKOD
+          BITMAP CONVERSION FROM ROWIDS
+            INDEX RANGE SCAN SZKOD
+
+
+Példa arra, hogy a azonos tervek még különbözõ futási idõt adhatnak.
+
+select sum(mennyiseg) from cikk,szallit where cikk.ckod < 999;
+--------------------------------------------------------------
+SELECT STATEMENT
+  SORT  AGGREGATE    1
+    NESTED LOOPS      1
+      TABLE ACCESS  FULL  SZALLIT  1
+      TABLE ACCESS  FULL  CIKK  2
+
+Ha ckod > 999-et adunk meg akkor sokkal gyorsabb lesz, pedig a terv ugyanaz.
+
+-- A fenti rendezés (SORT AGGREGATE) még mindig sokkal olcsóbb, mint az alábbi, ami 
+-- nagyon sokáig fut (SORT ORDER BY).
+select * from cikk,szallit order by cikk.ckod
+------------------------------------------------
+ SELECT STATEMENT
+   SORT ORDER BY
+     NESTED LOOPS
+       TABLE ACCESS FULL SZALLIT
+       TABLE ACCESS FULL CIKK
+
+

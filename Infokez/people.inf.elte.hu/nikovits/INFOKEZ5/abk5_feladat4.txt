@@ -1,0 +1,33 @@
+A honlapon szereplõ feladatokat kötelezõen meg kell csinálni a 
+gyakorlati jegy megszerzéséhez. NE KULDJÉTEK EL egyesével a megoldásokat, 
+hanem majd a félév végén egyetlen levélben fogom kérni az összeset.
+A megoldásokban a lekérdezéseket és a végeredményt is el kell küldeni.
+
+4. feladat
+
+Vegrehajtasi tervek eloallitasa, ertelmezese
+
+
+Az ORAUSER felhasznalo EMP, DEPT es SALGRADE (fizetesi kategoriak) tablaibol 
+hozzatok letre sajat peldanyokat, ezekre vonatkozoan adjatok meg az alabbi
+lekerdezest, majd deritsetek ki a vegrehajtasi tervek fa strukturajat.
+A fa csomopontjaiban az ott elvegzett muveletet es azt az objektumot kell 
+megadni, amin a muveletet az adatbaziskezelo vegzi.
+
+
+A lekerdezes:
+Adjuk meg azoknak az osztalyoknak a neveit, amelyeknek van olyan dolgozoja,
+aki az 1-es fizetesi kategoriaba esik.
+
+
+Adjuk meg, hogy milyen vegrehajtasi tervet keszit a rendszer. 
+
+Hozzunk letre indexet valamelyik tablahoz, majd adjuk meg a rendszer altal
+letrehozott uj vegrehajtasi tervet. Olyan indexet hozzunk letre, amit
+a lekerdezesben hasznalni tud a rendszer.
+
+Az EMP es a DEPT tablat most ugy hozzuk letre (pl. EMP2 es DEPT2 neven), hogy 
+azok egy clusteren legyenek es adjuk meg az ehhez letrehozott vegrehajtasi tervet. 
+
+Mindegyik esetben a fa strukturat kerem elkuldeni valamilyen konnyen olvashato
+formaban (pl. minden szint megfeleloen beljebb tabulalva).

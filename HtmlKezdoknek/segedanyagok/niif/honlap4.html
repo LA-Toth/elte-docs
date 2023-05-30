@@ -1,0 +1,228 @@
+<head>
+<title>Hogyan készítsünk saját honlapot a Weben?</title>
+</head>
+
+<body bgcolor="ffffee">
+
+<center>
+<a href="honlap3.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap5.html">Következô fejezet</a>
+</center>
+
+<hr>
+
+<h2>Képek</h2>
+
+<i>Egy kép felér ezer szóval</i>, tartja a mondás. Ilyen az agyunk, jobban 
+szereti látni a dolgokat. Tudták ezt a HTML kidolgozói is, így lehetôségünk 
+van "feldobni" a lapunkat valamilyen vizuális sokkhatással. ;-) Egy weblap 
+kép nélkül (ma már) elég szegényesen hat.
+
+<h3>Képformátumok</h3>
+
+Képformátumból is akad pár tucat, szerencsére itt látszik a kiút. A két
+legelterjedtebb (és mellesleg elég tömör) tárolási szabvány az elfogadott
+a HTML világában: a <b>GIF</b> és a <b>JP(E)G</b>. (A UNIX miatt az 
+<b>xbm</b> is, de ez lényegtelen.) 
+<p>
+A <b>GIF</b> az "öregebb". Annyit érdemes tudni róla, hogy a tömörítô eljárása
+veszteségmentes, azaz a képben nem jelennek meg hibák a konverzió során.
+Ebbôl persze következik, hogy tömörségének határai vannak. Mégsem ez a 
+legnagyobb baj, hanem az, hogy csak 256 színt tud. Ezt ugyan nagyobb
+palettából választhatja ki, de egyszerre akkor is csak ennyi szín lehet
+fent -- s ez kevés lehet egy finom színátmenetnél... Ábrákhoz, rajzokhoz
+viszont kitûnô.
+<p>
+A <b>JPEG</b> kimondottan fényképekhez van idomítva. Nagyon tömör, annyira, 
+hogy csal: nem egészen ugyanazt a képet tárolja, mint amit megadtunk neki. Az
+emberi szem ugyanis toleráns és becsapható. Bizonyos hibákat egyszerûen
+nem lát meg, ezeket tehát büntetlenül el lehet követni. A JPEG cserébe
+kis méretet és 24 bites valósághû színvisszaadást biztosít. Jobbat, mint
+amit a legtöbb monitor valaha is tudni fog... (Rossz paraméterezéssel 
+persze el lehet rontani szemmel láthatóan is a képet.) A JPEG 
+nem jó a rajzokhoz, ott csúnyán hibázik és ehhez képest keveset karcsúsít
+az állomány méretén (esetleg még növeli is azt).
+<p>
+A trükkös <b>animated GIF</b> az a fajta móka, amikor az állókép megmozdul. 
+A GIF89 tudja ezt, több képet egymásba fonva öt-tíz fázisú "animáció" 
+hozható létre, egyszeri lefutással, vagy végtelen ciklusban (utóbbitól 
+némelyik böngészô összeomlik egy idô után). 
+<p>
+Van <b>interlaced GIF</b> is, ez azt jelenti, hogy a kép elôször csak úgy 
+nagyjából jelenik meg, aztán finomodik. Ha épp sietünk, a durva "vázlatból" 
+is eldönthetjük, érdemes-e várnunk a képre -- s ez jó!
+<p>
+Érdekes és gyakran használt lehetôség a <b>transparent GIF</b>, azaz a 
+háttérszín átlátszóvá tétele. Ha a semleges, egyszínû hátteret átlátszóvá 
+alakítjuk, a kép még inkább része lesz a lapnak, a keret nem árulkodik 
+bántón.
+<p>
+Az ismertetett lehetôségeket különféle segédprogramok (pl. whirlgif)
+képesek megvalósítani. (Lásd a függeléket!)
+<p>
+Ha már kiválasztottuk a képe(ke)t, két lényeges dolog tisztázandó:
+
+<h3>A méret és az elhelyezés</h3>
+
+Könyörögve kérek mindenkit: böhöm nagy képet <b>NE</b> tegyen fel huszasával 
+a lapjára, mert nincs az a birka, aki türelemmel ki bírná várni! Azaz:
+mértékletesség!
+<p>
+A kép sem tárolás, sem megjelenés szempontjából ne legyen túl nagy. Egy
+irgalmatlan <i>"borzalom x rettenet"</i> méretû kép egyszerûen nem fér el az 
+ablakban -- akkor meg mit érünk vele? A legtöbb megjelenítô legfeljebb
+640x600 pixel nagyságú (azaz nagyjából az SVGA monitor méretének 
+megfelelô, annál kicsit keskenyebb) ablakkal dolgozik, aki meg Windows alatt 
+nézi, amit néz, az még ennél is kevesebbet lát.
+<p>
+A képet "meg kell komponálni", azaz el kell beszélgetnünk önmagunkkal,
+hogy kell-e ez a kép egyáltalán, és ha kell, ekkorában kell-e, mert esetleg
+kisebben is jó. Nem könnyû döntés, a kicsinyítés ugyanis (sajnos) 
+minôségromlással jár. A kép minôsége lehetôleg haladja meg a Junoszty
+ipari szabvány ;-) követelményeit -- mi tudjuk, mi van a képen, de
+hátha más nem! Lehet, hogy vágni kell a képbôl, lehet, hogy egy kicsit
+világosítani, vagy sötétíteni, azaz akad vele munka. Ezt számos programmal
+el lehet végezni, a függelékben az XV (UNIX), a PhotoStyler (Windows) és 
+a <b>Graphic Workshop</b> (DOS) programokat ismertetem röviden.
+<p>
+A kész képet el kell helyezni a lapon valahogy és valahova. Természetesen
+csak a törzsben. Figyelem! A kép <b>nem része</b> a dokumentumnak, nem
+belerakjuk, csak jelezzük, hogy ott lesz. Az elhelyezés a böngészô feladata.
+Van ennek egy kellemetlen következménye: ha el akarunk "lopni" egy oldalt
+(miért ne tennénk, hiszen ezt szabad, ha a gazdája nem tiltja), akkor annak 
+képeit külön-külön még le kell szedegetni... A Netscape-ben ezt a jobb 
+egérgombbal a képre kattintva tehetjük meg. Léteznek ügyes segédprogramok,
+amelyek már képesek minden elemet együtt elmenteni. Mások anyagait azonban 
+nem tulajdoníthatjuk el, azaz egy nekünk tetszô lapot ne tegyünk ki 
+sajátunkként, mert nem illik.
+<p>
+A lapon a képet az <b>&lt;img src="valami.gif"&gt;</b> leíróval jelezzük. 
+Ez persze csak a legegyszerûbb eset, itt a képállomány ugyanott van, ahol a 
+lap (mert lehet más könyvtárban, de más gépen is!) és semmilyen egyéb igényünk
+nincs.
+<p>
+Pedig lehetne! Tehetjük a képet balra (alapértelmezés) vagy jobbra. 
+Igazíthatjuk a szöveget a felsô széléhez, az aljához, vagy középre.
+Ez lényeges, ugyanis a kép <b>egy szövegsor magas</b> a böngészô
+logikája szerint. A kép mellé több sort írni tehát elsô nekifutásra
+nem lehet! (Azért van rá megoldás.)
+<p>
+Az elhelyezésre vonatkozó utasítást az <b>img</b> után elhelyezett 
+<b>align=</b> mögé írjuk, mint az angolok: jobbra <b>right</b>, balra 
+<b>left</b>, föl <b>top</b>, le <b>bottom</b>, középre <b>middle</b>. 
+Jakab képe így válik a lap részévé:
+<pre>
+Ez a csúnya ember &lt;img align=bottom src="jakabarc.jpg"&gt; vagyok én.
+</pre>
+Adhatunk a képnek más méretet is, mint amekkora valójában, ezt vagy pixelben
+(akkor mindig ugyanakkora lesz), vagy százalékban (az ablak méretétôl függ)
+adjuk meg. Jakabnak igen nagy az arca ;-), úgyhogy javítunk egy picit:
+<pre>
+Ez a csúnya ember &lt;img align=bottom src="jakabarc.jpg" 
+width=20% height=20%&gt;vagyok én.
+</pre>
+Adhatunk a képnek vékony vagy vastag keretet a <b>border=</b> beszúrásával. A
+keret méretét pixelben adjuk meg, a 10 már szép széles.
+<p>
+Vannak, akik az információs szupersztrádán gyalogriksán közlekednek,
+grafikus felület nélkül. Ôk a legszebb képünkbôl is csak ennyit látnak:
+<pre>
+[IMAGE]
+</pre>
+No, ez nem sok. Hogy ôk se maradjanak ki semmibôl és legalább külön
+letölthessék a képet (erre módjuk van), ha "egyenesben" nem láthatják, 
+az elôbbi kiírást módosíthatjuk az <b>alt=</b> beszúrásával. Az egyenlôségjel 
+mögé <b>rövid</b> magyarázatot írunk:
+<pre>
+&lt;img src="cindycra.jpg" alt="Cindy Crawford in action..."&gt;
+</pre>
+Holtbiztos, hogy letöltik!... ;-)
+<p>
+A képekkel való játék ezzel persze még nem merült ki. Egy fontos és a lap
+kinézetét döntôen befolyásoló tényezô
+
+<h3>A háttérkép (background)</h3>
+
+Itt a kép nem valahova kerül a lapon, hanem a lap "papírja" lesz, erre
+írunk majd. Olyan, mint egy tapéta, csak nincs neki vége.
+<p>
+Gondoljuk meg, ez mivel jár! A háttérbe álmodott kép (bizony) nem lehet
+túl éles vagy kontrasztdús. Nem ütheti agyon ugyanis a lapon a szöveget.
+A böngészôk betûi túl könnyen olvashatalanná válnak... Legyen a kép
+vagy sötét és írjunk rá fehér vagy pasztellszín betûkkel, vagy legyen
+világos, amin a sötét "tinta" mutat. Kísérletezni kell. 
+<p>
+A háttérkép témája alapvetôen kétféle lehet: vagy egy elmosódott 
+hangulatfestô fénykép, vagy valami imétlôdô ákom-bákom (pl. buborékok,
+kockás füzetlap, márvány-utánzat). A böngészô veszi ezt a képet és
+annyiszor teszi egymás mellé és alá, ahányszor a lapon lévô egyéb
+anyag (képek, szöveg) megköveteli. Ez fényképnél lehet kínos. Ugyanis
+(megint csak) nem tudjuk, hogy az aki olvassa a lapunkat, mekkora ablakot
+használ és mekkora betûket (ha kisebbet, mint mi, lehet, hogy nem is
+tudja a kép miatt elolvasni!). Az általunk feltett fénykép vagy csak 
+félig-negyedéig látszik, vagy kétszer-háromszor is ott van... Nehéz
+igazán jó hátteret kitalálni! Egy tipp: keressünk olyan képet, amelynek
+szélei illeszkednek. Azaz a képet önmagához illesztve nem üti a szemünket
+a határolóvonal. Mindez a probléma a tapéta jellegû kisképeknél nem 
+jelentkezik.
+<p>
+Ha merünk vállalkozni rá, így tehetünk hátteret a lapunk mögé:
+<pre>
+&lt;body background="teglak.gif" text=ffffff link=aaffff vlink=88ffff 
+alink=00ffff&gt;
+</pre>
+A kép ez esetben is a lapunk mellett lapul ugyanabban a könyvtárban, de
+lehet ez másképp is.
+<p>
+Igen, adós vagyok több magyarázattal is. A <b>text=</b> a szöveg színe, a 
+<b>link=</b> a kapcsolódási pontoké (ezt majd hamar megmagyarázom, mindjárt 
+a következô fejezetben), ha még nem néztük meg, a <b>vlink=</b>, ha már 
+megnéztük és az <b>alink=</b>, amikor épp rákattintunk. A színek megadása 
+a vörös-zöld-kék (<b>RGB</b>) sorrendben hexadecimális kétjegyû számokkal 
+lehetséges. (A függelékben egy kis táblázat segít ezeknek a kódoknak a 
+hétköznapi színekkel való összepárosításában.) Háttere egy lapnak egy 
+lehet, ezért került a törzs kezdôsorába, a <b>body</b> kibôvítéseként 
+ez a pár jelzô. A háttér lehet egyszínû is, ezt a <b>bgcolor=</b> adja 
+meg ugyanitt, szintén RGB kódban. Ez szerepelhet a <b>background=</b> 
+helyett, de mellette is! Utóbbi esetben (fôleg, ha a kép nagy) a megadott 
+háttérszín megjelenik, majd a kép megérkezésekor a képpel felülíródik.
+<p>
+Végül, mert sajnos idetartozik, néhány szó
+
+<h3>Az átviteli sebességrôl...</h3>
+
+Nincs az a vonal, ami elôbb-utóbb el ne dugulna a forgalomtól. Ekkor pedig
+egy nagy képet letölteni idegölô dolog. A fejezet elején említett mondás
+megfordul: ezer szó felér egy képpel, ráadásul gyorsabban átjön a hálózaton.
+<p>
+Kíméljük egymást! Legyen csak annyi képünk, amennyi feltétlenül szükséges
+(azért a lapunk egyéni arculatát nem kell agyoncsapni!) és ezek legalább
+tárméretben kicsik legyenek! Ha más megoldás nincs, szedjük több lapra szét 
+az eredetit. Egy lapra 40-60 kbyte-nál több kép csak igen-igen indokolt 
+esetben kerüljön! Számítsunk arra is, hogy (fôleg a tapasztalt barangolók)
+kikapcsolják a képek letöltését -- azaz a lap megtervezésekor fordítsunk
+gondot arra, hogy képek nélkül is mutasson valahogy. Számos eset van, amikor
+ez megoldhatatlan, de amikor van mód rá, legalább akkor tegyük meg. Vagy 
+az <b>alt=</b> segítségével mellékeljünk magyarázatot a képekhez, vagy 
+készítsünk önálló "<b>text only</b>" verziót is a sávszélességben "szegények"
+számára (ez gyakori megoldás).
+<p>
+Ha valamilyen okból sok kép kell a lapra, akkor is van mód a 
+takarékosságra. Ne magát a képeket tegyük fel, hanem kicsiny 
+<b>ikonokat</b>, s ezek mögé pakoljuk be az egész estét betöltô 
+plakátképeinket. Ennek mikéntjérôl (is) szól a következô fejezet.
+
+<hr>
+
+<center>
+<a href="honlap3.html">Elôzô fejezet</a> 
+|
+<a href="honlap.html">Tartalom</a> 
+|
+<a href="honlap5.html">Következô fejezet</a>
+</center>
+
+</body>

@@ -1,0 +1,5342 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1250">
+<meta name=ProgId content=PowerPoint.Slide>
+<meta name=Generator content="Microsoft PowerPoint 9">
+<link id=Main-File rel=Main-File href="../fiztortr.htm">
+<link rel=Preview href=preview.wmf>
+<meta name=Robots content=NoIndex>
+<script src=script.js></script><script><!--
+
+if( !(IsWin("PPTOtl")||IsWin("PPTNav")||IsWin("PPTOtlNav")) )
+{
+	obj = document.all.item("Main-File")
+	parent.location.href=obj.href
+}
+
+var gOtlHiliteClr="#FFFFFF",gOtlNormalClr="#000000",gOtlActiveClr="#FFFF00",gSelected="",gTxtState=false,gChildEntryTable=new Array()
+
+function Load()
+{
+	if( IsWin("PPTOtl" ) ){ LoadOtl(); parent.gOtlLoaded=true; return }
+	if( IsWin("PPTNav" ) ){ LoadNav("NavObj",UpdNav); parent.gNavLoaded=true; return }
+	if( IsWin("PPTOtlNav" ) ){ LoadNav("OtlNavObj",UpdOtlNav); parent.gOtlNavLoaded=true; return }
+}
+function Upd(){ if( IsWin("PPTNav") ) LoadNav("NavObj",UpdNav) }
+function LoadNav( oId,UpdFunc )
+{
+	document.ondragstart=CancelDrag
+	document.onselectstart=CancelDrag
+	document.body.style.margin=2
+	UpdFunc()
+	obj=document.all.item(oId)
+	obj.style.display="block"
+	obj.style.visibility="visible"
+	document.bgColor="threedface"
+}
+function LoadOtl()
+{
+	document.ondragstart=CancelDrag
+	document.onselectstart=CancelDrag
+	OtlObj.style.display="block"
+	OtlObj.style.visibility="visible"
+	if( gOtlActiveClr == "" ) gOtlActiveClr=document.linkColor
+	if( gOtlHiliteClr == "" ) gOtlHiliteClr=document.fgColor
+	if( gOtlNormalClr == "" )
+		gOtlNormalClr=document.bgColor
+	else
+		document.bgColor=gOtlNormalClr  
+
+	InitArray()
+
+	if( ObjExists( parent.gCurSld ) ) {
+		ChangeState( parent.gCurSld,gOtlNormalClr,gOtlHiliteClr )
+		gSelected=parent.gCurSld
+	}
+	else gSelected = -1
+
+	UpdOtl()
+}
+function UpdOtl(){ UpdIdx(parent.gCurSld) }
+function UpdIdx( idx )
+{
+	if( gSelected != idx ) {
+		if( gSelected > 0 )
+			ChangeState( gSelected,gOtlHiliteClr,gOtlNormalClr )
+
+		if( ObjExists( idx ) ) {
+			gSelected = idx
+			ChangeState( gSelected,gOtlNormalClr,gOtlHiliteClr )
+		}
+		else gSelected = -1
+	}
+
+	if( gTxtState != parent.gOtlTxtExp ) {
+		state = "block"
+		if( !parent.gOtlTxtExp )
+			state="none"
+
+		for(ii=0; ii<gChildEntryTable.length; ii++) {
+			obj=gChildEntryTable[ii];
+			if( obj.id == null ) continue;
+
+			if( obj.id.indexOf("PPTC") >= 0 )
+				obj.style.display=state;
+		} 
+		gTxtState=parent.gOtlTxtExp
+		if( ObjExists( gSelected ) )
+			ChangeState( gSelected,gOtlNormalClr,gOtlHiliteClr )
+	}
+}
+function InitArray()
+{
+	count=0
+	for(ii=0; ii<document.all.tags("DIV").length; ii++) {
+		obj=document.all.tags("DIV").item(ii)
+		if( obj.id == null ) continue
+
+		if( obj.id.indexOf("PPTC") >= 0 ) {   
+			gChildEntryTable[count++]=obj
+			obj.children.tags("TABLE").item(0).style.borderColor=gOtlNormalClr
+		}
+	}
+}
+function ChangeState( idx,fgColor,bgColor )
+{
+	obj=document.all.item("PPTL"+idx)
+	obj.style.color=fgColor
+
+	obj=document.all.item("PPTP"+idx)
+	obj.style.backgroundColor=bgColor
+
+	obj=document.all.item("PPTB"+idx)
+	if( obj )
+		obj.style.borderLeftColor=obj.style.borderBottomColor=bgColor
+}
+function ChgClr( o,clr ){ if( o.id != "PPTL"+gSelected ) o.style.color=clr }
+function Over( obj ){ ChgClr(obj,gOtlActiveClr) }
+function Out( obj ){ ChgClr(obj,gOtlHiliteClr) }
+function ObjExists( ii ) { obj=document.all("PPTP"+ii ); return( obj ) }
+function GoToSld( href ){ UpdIdx(parent.GetSldNum(href)); parent.GoToSld( href ) }
+function CancelDrag(){ window.event.cancelBubble=true;window.event.returnValue=false}
+
+function UpdNav()
+{
+	txt = "<center>";
+	if( parent.GetHrefObj( parent.gCurSld ).mOrigVis == 1 )
+		txt += "Dia " + parent.GetCurSldNum() + " / " + parent.GetNumSlds()
+	else
+		txt += "Rejtett dia"
+	txt += "</center>";
+	nav_text.innerHTML = txt;
+
+	if( !parent.HasPrevSld() )
+		gBtnArr["nb_prev"].Enabled(0)
+	else
+		gBtnArr["nb_prev"].Enabled(1)
+
+	if( !parent.HasNextSld() )
+		gBtnArr["nb_next"].Enabled(0)
+	else
+		gBtnArr["nb_next"].Enabled(1)
+	gBtnArr["nb_nts"].SetEnabled()
+	gBtnArr["nb_nts"].SetFlag( parent.gHasNts )
+
+	gBtnArr["nb_sldshw"].Enabled(1)
+	gBtnArr["nb_voice"].Enabled(1)
+}
+
+function UpdOtlNav()
+{
+	gBtnArr["nb_otl"].SetEnabled();
+
+	if( parent.gOtlOpen )
+		gBtnArr["nb_otlTxt"].Enabled( true );
+	else
+		document.all.item("nb_otlTxtBorder").style.visibility = "hidden";
+}
+
+
+
+//-->
+</script>
+<style>
+<!--.PTxt
+	{position:relative;
+	width:100%;
+	margin-top:5px;
+	padding-left:5px;
+	font-weight:bold;}
+.CTxt
+	{position:relative;
+	width:100%;
+	padding-left:10px;}
+.CBorder
+	{position:relative;
+	width:100%;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	padding-bottom:5px;}
+a
+	{color:white;
+	text-decoration:none;}
+.button
+	{position:absolute;
+	width:32px;
+	height:20px;
+	border-style:solid;
+	border-width:1px;
+	border-color:threedface;}
+-->
+</style>
+</head>
+
+<body onload="Load()">
+
+<div id=NavObj onload="Load()" onmouseover="BtnOnOver()"
+onmousedown="BtnOnDown()" onmouseout="BtnOnOut()" onmouseup="BtnOnUp()"
+onkeypress="_KPH()" style='display:none;visibility:hidden'>
+
+<table style='position:absolute;width:70px;visibility:hidden' align=left
+ cellpadding=0 cellspacing=0>
+ <td nowrap>
+ <div id="nb_ntsElem" align=center style='position:relative;padding:3px;
+ font-family:Arial;color:buttontext;font-size:9pt'><img src="notes_flag.gif"
+ border=0 id="notes_flag" style='display:none'><span style="mso-spacerun:
+ yes">  </span>Jegyzetek</div>
+ <div title="Jegyzetek megjelenítése/elrejtése" id="nb_nts" style='position:
+ absolute;top:0%;left:0%;width:100%;height:100%'></div>
+ </td>
+</table>
+
+<table style='position:relative' align=right cellpadding=0 cellspacing=0>
+ <td>
+ <div id="nb_sldshwBorder" style='position:absolute;left:-20px;width:20px;
+ height:20px'>
+ <div style='position:absolute;clip:rect(0px, 18px, 18px, 0px)'><img
+ src=buttons.gif id="nb_sldshw" title="Diavetítés teljes képernyőn"
+ style='position:relative;left:-254px'></div>
+ </div>
+ </td>
+ <td>
+ <div id="nb_voiceBorder" style='display:none;position:absolute;left:-40px;
+ width:20px;height:20px'>
+ <div style='position:absolute;clip:rect(0px, 18px, 18px, 0px)'><img
+ src=buttons.gif id="nb_voice" title="Kísérőszöveg lejátszása/szüneteltetése"
+ style='position:relative;left:-290px'></div>
+ </div>
+ </td>
+</table>
+
+<table style='position:relative' align=center cellpadding=0 cellspacing=0>
+ <td nowrap>
+ <div id="nb_prevBorder" class=button style='left:-30px'>
+ <div style='position:absolute;clip:rect(0px, 30px, 18px, 0px)'><img
+ src=buttons.gif id="nb_prev" title="Előző dia" style='position:relative;
+ left:0px'></div>
+ </div>
+ <span id="nav_text" style='position:relative;top:3px;width:100px;font-family:
+ Arial;color:buttontext;font-size:9pt'></span>
+ <div id="nb_nextBorder" class=button>
+ <div style='position:absolute;clip:rect(0px, 30px, 18px, 0px)'><img
+ src=buttons.gif id="nb_next" title="Következő dia" style='position:relative;
+ left:-90px'></div>
+ </div>
+ </td>
+</table>
+
+</div>
+
+<div id=OtlNavObj onload="Load()" onmouseover="BtnOnOver()"
+onmousedown="BtnOnDown()" onmouseout="BtnOnOut()" onmouseup="BtnOnUp()"
+onkeypress="_KPH()" style='display:none;visibility:hidden'>
+
+<table style='position:relative;width:70px' align=left cellpadding=0
+ cellspacing=0>
+ <td nowrap>
+ <div id="nb_otlElem" align=center style='position:relative;padding:3px;
+ font-family:Arial;color:buttontext;font-size:9pt'>Vázlat</div>
+ <div title="Vázlat megjelenítése/elrejtése" id="nb_otl" style='position:absolute;
+ top:0%;left:0%;width:100%;height:100%'></div>
+ </td>
+</table>
+
+<table style='position:relative' align=center cellpadding=0 cellspacing=0>
+ <td>
+ <div style='position:absolute;left:-18px;width:24px;height:20px;border-style:
+ solid;border-width:1px;border-color:threedface' id="nb_otlTxtBorder">
+ <div style='position:absolute;clip:rect(0px, 22px, 18px, 0px)'><img
+ src=buttons.gif id="nb_otlTxt" title="Vázlat összecsukása/kibontása"
+ style='position:relative;left:-157px'></div>
+ </div>
+ </td>
+</table>
+
+</div>
+
+<div id=OtlObj style='display:none;visibility:hidden'>
+
+<table width="100%" style='font-family:Arial;font-size:9pt'>
+ <tr>
+  <td>
+  <div id=PPTP1 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0046.htm');" onmouseover="Over(this)"
+  id=PPTL1 onmouseout="Out(this)">A fizika rövid története</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP2 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0045.htm');" onmouseover="Over(this)"
+  id=PPTL2 onmouseout="Out(this)">Szegedi Péter</a></font></div>
+  <div id=PPTC2 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB2 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Tudománytörténet és Tudományfilozófia
+    Tanszék<br>
+    6.59-es szoba<br>
+    372-2900 vagy 6670-es m.<br>
+    pszegedi@caesar.elte.hu és hps.elte.hu</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP3 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0044.htm');" onmouseover="Over(this)"
+  id=PPTL3 onmouseout="Out(this)">Tematika:</a></font></div>
+  <div id=PPTC3 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB3 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>1. A tudománytörténet-írás története (Bacontól
+    napjainkig).</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>2. Fizika és természetfilozófia (Thalésztől
+    Oerstedig).</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>3. Fizika és misztika (Püthagorasztól
+    Sommerfeldig).</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>4. Fizika és matematika (Püthagorasztól
+    Newtonig).</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP4 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0047.htm');" onmouseover="Over(this)"
+  id=PPTL4 onmouseout="Out(this)">&quot;5.&quot;</a></font></div>
+  <div id=PPTC4 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB4 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>5. Fizika és csillagászat (Ptolemaiosztól
+    Newtonig).</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>6. A kísérlet és elmélet kölcsönható fejlődése a
+    fizikában (a középkortól napjainkig).</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>7. Fizika és vallás (Galileitől napjainkig).</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>8. A mechanisztikus paradigma (Demokritosztól a
+    francia felvilágosodásig).</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP5 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0048.htm');" onmouseover="Over(this)"
+  id=PPTL5 onmouseout="Out(this)">&quot;9.&quot;</a></font></div>
+  <div id=PPTC5 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB5 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>9. A klasszikus mechanikai világkép felbomlása.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>10. A kvantumelmélet kifejlődése.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>11. Fizika és gyakorlat (az elektromosságtól az
+    elektronikáig).</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>12. Fizika és világkép (relativitáselmélet és
+    kozmológia).</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP6 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0040.htm');" onmouseover="Over(this)"
+  id=PPTL6 onmouseout="Out(this)">A tudománytörténet-írás története</a></font></div>
+  <div id=PPTC6 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB6 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>A legkorábbiak: a filozófusok (Arisztotelész)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>XVII. sz. eleje: F. Bacon igénye a
+    tudománytörténetre a társadalmi haladással kapcsolatban</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>XVIII. sz. diszciplináris doxográfiák (fil.,
+    mat., csill.): az eredmények kronológiája a felfedezők feltüntetésével</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP7 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0039.htm');" onmouseover="Over(this)"
+  id=PPTL7 onmouseout="Out(this)">&quot;XIX.&quot;</a></font></div>
+  <div id=PPTC7 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB7 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>XIX. sz. közepe: &#9;retrospektív<br>
+    &#9;&#9;&#9;&#9;probléma-központú<br>
+    &#9;&#9;&#9;&#9;kulturhistoriografikus</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Pozitivista: Comte - adatgyűjtés,
+    kauzális-mechanikus magyarázat, lineáris predikciók<br>
+    &#9;&#9;Spencer - darwinizmus: harc, differenciálódás, tökéletesedés<br>
+    &#9;&#9;Mill - a felfedezés és igazolás módszere az indukció,
+    kumulativitás</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP8 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0038.htm');" onmouseover="Over(this)"
+  id=PPTL8 onmouseout="Out(this)">&quot;XX.&quot;</a></font></div>
+  <div id=PPTC8 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB8 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>XX. sz.: Duhem - konceptuális fejlődés<br>
+    &#9;&#9;Mach - pszichikai adaptáció<br>
+    &#9;&#9;30-as évek: marxizmus - externalizmus-internalizmus vita<br>
+    &#9;&#9;&#9;&#9;amerikai tudomány-szociológia - intézményesülés
+    (Merton)<br>
+    &#9;&#9;&#9;&#9;tudásszociológia (Mannheim)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Tudományfilozófiai szempontok:<br>
+    &#9;Popper<br>
+    &#9;Kuhn<br>
+    &#9;Lakatos</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP9 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0061.htm');" onmouseover="Over(this)"
+  id=PPTL9 onmouseout="Out(this)">Mi a fizika?<br>
+  <br>
+  Fizikai ismeretek a görögség előtt</a></font></div>
+  <div id=PPTC9 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB9 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;1 1/2 millió év&#9;tűz<br>
+    i.e. 30000&#9;&#9;íj (lant)<br>
+    i.e. 7000&#9;&#9;tűzgyújtás<br>
+    i.e. 5000&#9;&#9;emelő (mérleg)<br>
+    i.e. 3500 Ázsia&#9;kerék<br>
+    &#9;&#9;&#9;&#9;fujtató (sípok)<br>
+    &#9;&#9;&#9;&#9;fúvócső (orgona)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP10 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0037.htm');" onmouseover="Over(this)"
+  id=PPTL10 onmouseout="Out(this)">Fizika és természetfilozófia</a></font></div>
+  <div id=PPTC10 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB10 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Ión természetfilozófia<br>
+    milétosziak<br>
+    &#9;Thalész (i.e. 624-546)<br>
+    &#9;&#9;klepszidra,
+    magasságmérés, mágnesesség<br>
+    &#9;Anaximandrosz (610-546)<br>
+    &#9;&#9;napóra,
+    apeiron<br>
+    &#9;Anaximenész (585-525)<br>
+    epheszoszi<br>
+    &#9;Hérakleitosz (540-480)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP11 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0065.htm');" onmouseover="Over(this)"
+  id=PPTL11 onmouseout="Out(this)">&quot;René Descartes (1596-1650&quot;</a></font></div>
+  <div id=PPTC11 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB11 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>René Descartes (1596-1650)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Isaac Newton (1643-1727)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Philosophiae Naturalis</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Principia Mathematica</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>(1687)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Hans Christian &Oslash;rsted</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>&#9;&#9;&#9;(1777-1851)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Az elektromos és mágneses</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>jelenségek közötti kapcsolat</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Michael Faraday (1791-1867)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP12 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0070.htm');" onmouseover="Over(this)"
+  id=PPTL12 onmouseout="Out(this)">&quot;Julius Robert Mayer (1814...&quot;</a></font></div>
+  <div id=PPTC12 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB12 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Julius Robert Mayer (1814-1878)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Az energia</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>“Az erők okok: ennek megfelelően velük
+    kapcso-latban teljes mértékben alkalmazhatjuk a causa aequat effectum (az
+    ok egyenlő az okozattal) elvet. Ha a c oknak e okozata van, akkor c = e; ha
+    történetesen e egy második f okozatnak az oka, akkor e = f, és így tovább: c
+    = e = f … = c. Az okok és okozatok láncolatában egyetlen tag vagy egy tag
+    egyetlen része sem tűnhet el, ahogyan ez világosan következik az egyenlet
+    természetéből. Minden ok eme első tulajdonságát elpusztíthatatlanságuknak
+    nevezzük.” (1842)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP13 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0036.htm');" onmouseover="Over(this)"
+  id=PPTL13 onmouseout="Out(this)">Fizika és misztika</a></font></div>
+  <div id=PPTC13 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB13 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Püthagorasz (582-497)<span style="mso-spacerun:
+    yes">      </span>A szent tetraktüsz</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP14 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0033.htm');" onmouseover="Over(this)"
+  id=PPTL14 onmouseout="Out(this)">&quot;Platón (427-347)&quot;</a></font></div>
+  <div id=PPTC14 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB14 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Platón (427-347)<br>
+    &#9;szabályos testek</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP15 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0023.htm');" onmouseover="Over(this)"
+  id=PPTL15 onmouseout="Out(this)">&quot;Johannes Kepler&quot;</a></font></div>
+  <div id=PPTC15 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB15 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Johannes Kepler &#9;(1571-1630)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP16 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0054.htm');" onmouseover="Over(this)"
+  id=PPTL16 onmouseout="Out(this)">&quot;- Astronomia Nova (1609&quot;</a></font></div>
+  <div id=PPTC16 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB16 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;- Astronomia Nova (1609)<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    - Harmonice
+    Mundi (1619)<br>
+    - Tabulae Rudolphinae (1627)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP17 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0064.htm');" onmouseover="Over(this)"
+  id=PPTL17 onmouseout="Out(this)">&quot;Johann Jacob Balmer (1825...&quot;</a></font></div>
+  <div id=PPTC17 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB17 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Johann Jacob Balmer (1825-1898)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>a H-atom színképvonalainak összefüggése (1885)
+    -<br>
+    1/&#955; = R(1/2<sup>2</sup> - 1/n<sup>2</sup>), n = 3, 4, 5,
+    ...</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP18 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0063.htm');" onmouseover="Over(this)"
+  id=PPTL18 onmouseout="Out(this)">&quot;Johannes Robert Rydberg (1854...&quot;</a></font></div>
+  <div id=PPTC18 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB18 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Johannes Robert Rydberg (1854-1919)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Recherches sur la constitution des spectres
+    d'émission des éléments chimiques (1890)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>hullámszám, Rydberg-állandó, termekkel<span
+    style="mso-spacerun: yes">  </span>minden színképvonal leírható -<br>
+    &#957; = R(1/n<sup>2</sup>
+    - 1/m<sup>2</sup>), &#957; = R[1/(n-a)<sup>2</sup> - 1/(m-b)<sup>2</sup>]</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Arnold Johannes Wilhelm Sommerfeld (1868-1951)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP19 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0060.htm');" onmouseover="Over(this)"
+  id=PPTL19 onmouseout="Out(this)">Fizika és matematika</a></font></div>
+  <div id=PPTC19 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB19 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Püthagorasz</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Négyszög és háromszög számok</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP20 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0059.htm');" onmouseover="Over(this)"
+  id=PPTL20 onmouseout="Out(this)">&quot;A Püthagorasz-tétel bizonyítása&quot;</a></font></div>
+  <div id=PPTC20 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB20 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>A Püthagorasz-tétel bizonyítása</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>három-, négy- és ötszögszámok</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP21 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0016.htm');" onmouseover="Over(this)"
+  id=PPTL21 onmouseout="Out(this)">&quot;Galileo Galilei (1564-1642&quot;</a></font></div>
+  <div id=PPTC21 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB21 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;Galileo Galilei (1564-1642)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2><br>
+    szabadesés - gyorsuló mozgás:<br>
+    <br>
+    „I.
+    tétel, I. propozíció</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;A nyugalomból induló, egyenletesen gyorsuló
+    test tetszőleges utat ugyanannyi idő alatt tesz meg, mintha olyan
+    egyenletes sebességgel mozogna ugyanezen úton, melynek értéke fele az
+    említett egyenletesen gyorsuló mozgásban szerzett végső és legnagyobb sebességértéknek.</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP22 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0053.htm');" onmouseover="Over(this)"
+  id=PPTL22 onmouseout="Out(this)">&quot;Jelölje az AB szakasz azt...&quot;</a></font></div>
+  <div id=PPTC22 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB22 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;Jelölje az AB szakasz azt az időt, amely
+    alatt egy test CD utat tesz meg úgy, hogy C-ből, nyugalmi helyzetből indult
+    és egyenletesen gyorsul; jelölje az AB-re merő-leges EB szakasz az AB
+    időin-tervallum során szerzett végső, legnagyobb sebességet; kössük össze az
+    A és E pontokat; osszuk fel AB-t ekvidisztáns pontokkal, amelyeken
+    keresztül párhuzamo-sokat húzunk a BE szakasszal; az így kapott szakaszok a
+    sebes-ség növekvő értékeit jelképezik, az A pillanattól kezdve. ...”</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP23 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0052.htm');" onmouseover="Over(this)"
+  id=PPTL23 onmouseout="Out(this)">&quot;”II.&quot;</a></font></div>
+  <div id=PPTC23 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB23 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>”II. tétel, II. propozíció</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;Nyugalomból induló, egyenle-tesen gyorsuló
+    eső test által tetszőleges idők alatt befutott utak úgy aránylanak
+    egymás-hoz, mint az időtartamok ará-nyának négyzete, azaz mint az
+    időintervallumok négyzeteinek hányadosa.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;Jelölje az idő múlását az A pil-lanattól
+    kezdve az AB félegye-nes, amelyen jelöljünk ki két időintervallumot, AD-t
+    és AE-t. jelölje HI azt az egyenest, amely mentén a H-ból, nyugalmi
+    állapotból indulva egyenletes …”</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP24 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0014.htm');" onmouseover="Over(this)"
+  id=PPTL24 onmouseout="Out(this)">&quot;”I. korollárium&quot;</a></font></div>
+  <div id=PPTC24 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB24 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>”I. korollárium</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Jelöljön AD, DE, EF, FG a mozgás kezdetétől
+    szá-mított, csatlakozó, egymással egyenlő időinterval-lumokat, amelyek
+    alatt a test rendre a HL, LM, MN, NI utakat futja be; az előző tétel miatt
+    nyilvánvaló, hogy ezek az utak úgy aránylanak egymáshoz, mint az eggyel
+    kezdődő páratlan számok, azaz egy, há-rom, öt, hét; ez felel meg ugyanis az
+    olyan szakasz-sorozat négyzetei különbségének, ahol a sorozat nö-vekvő, és
+    bármely két szomszédos szakasz különbsé-ge egyenlő a legrövidebbel, a
+    sorozat első tagjával; más szóval az utak úgy aránylanak egymáshoz, mint az
+    eggyel kezdődő természetes számok négyzeteinek különbségei. Amikor tehát a
+    sebességfokok a termé-szetes számok szerint növekednek egyenlő idők alatt,
+    az ugyanezen idők alatt megtett utak növekedései úgy aránylanak egymáshoz,
+    mint az eggyel kezdődő páratlan számok.”</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP25 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0072.htm');" onmouseover="Over(this)"
+  id=PPTL25 onmouseout="Out(this)">&quot;René Descartes (1596-1650&quot;</a></font></div>
+  <div id=PPTC25 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB25 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>René Descartes (1596-1650)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Isaac Newton (1643-1727)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP26 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0073.htm');" onmouseover="Over(this)"
+  id=PPTL26 onmouseout="Out(this)">Fizika és csillagászat</a></font></div>
+  <div id=PPTC26 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB26 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>A bolygópályák kutatása</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP27 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0074.htm');" onmouseover="Over(this)"
+  id=PPTL27 onmouseout="Out(this)">&quot;Eratoszthenész<br>
+  (i. e.&quot;</a></font></div>
+  <div id=PPTC27 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB27 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Eratoszthenész<br>
+    (i. e. 275-194)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Ptolemaiosz (i. sz. 87-145): Almagest</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP28 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0058.htm');" onmouseover="Over(this)"
+  id=PPTL28 onmouseout="Out(this)">Dia 28</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP29 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0057.htm');" onmouseover="Over(this)"
+  id=PPTL29 onmouseout="Out(this)">Dia 29</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP30 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0056.htm');" onmouseover="Over(this)"
+  id=PPTL30 onmouseout="Out(this)">&quot;Nicolaus Cusanus (1401-1464&quot;</a></font></div>
+  <div id=PPTC30 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB30 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Nicolaus Cusanus (1401-1464)<br>
+    a világ határtalanságáról, a Föld nem középponti jellegéről, mozgásáról</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Nikolausz Kopernikusz (1473-1543)<br>
+    Az égi pályák körforgásairól (1543, betiltva 1616-ban)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP31 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0029.htm');" onmouseover="Over(this)"
+  id=PPTL31 onmouseout="Out(this)">Dia 31</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP32 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0022.htm');" onmouseover="Over(this)"
+  id=PPTL32 onmouseout="Out(this)">&quot;Tycho de Brahe&quot;</a></font></div>
+  <div id=PPTC32 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB32 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Tycho de Brahe &#9;(1546-1601)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP33 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0021.htm');" onmouseover="Over(this)"
+  id=PPTL33 onmouseout="Out(this)">Dia 33</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP34 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0075.htm');" onmouseover="Over(this)"
+  id=PPTL34 onmouseout="Out(this)">Dia 34</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP35 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0024.htm');" onmouseover="Over(this)"
+  id=PPTL35 onmouseout="Out(this)">Dia 35</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP36 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0055.htm');" onmouseover="Over(this)"
+  id=PPTL36 onmouseout="Out(this)">Dia 36</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP37 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0025.htm');" onmouseover="Over(this)"
+  id=PPTL37 onmouseout="Out(this)">&quot;Johannes Kepler (1571-1630&quot;</a></font></div>
+  <div id=PPTC37 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB37 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Johannes Kepler (1571-1630)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Isaac Newton (1643-1727)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP38 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0082.htm');" onmouseover="Over(this)"
+  id=PPTL38 onmouseout="Out(this)">A kísérlet és az elmélet kölcsönható
+  fejlődése a fizikában</a></font></div>
+  <div id=PPTC38 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB38 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Az arab fizika (VI-XII. sz.)<br>
+    - asztrolábium<br>
+    &#9;(VI. sz.)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP39 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0081.htm');" onmouseover="Over(this)"
+  id=PPTL39 onmouseout="Out(this)">Dia 39</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP40 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0080.htm');" onmouseover="Over(this)"
+  id=PPTL40 onmouseout="Out(this)">&quot;- fordítások arabra (IX&quot;</a></font></div>
+  <div id=PPTC40 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB40 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;- fordítások arabra (IX. sz.)<br>
+    - Al-Hazen (Abu Ali Haisz[th]ama &#9;&#9;&#9;&#9;&#9;&#9;965-1039)<br>
+    &#9;optika (1270 latinra, 1572 nyomt.)<br>
+    &#9;&#9;látáselmélet, fényterjedés, &#9;&#9;&#9;camera obscura, tükrök,
+    &#9;&#9;&#9;&#9;lencsék, visszaverődés, törés, &#9;&#9;légköri
+    jelenségek<br>
+    &#9;szabadesés két mozgásra bontva<br>
+    - a mágnes újrafelfedezése a hajózásban (XII. sz. kínaiak, arabok,
+    európaiak)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP41 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0079.htm');" onmouseover="Over(this)"
+  id=PPTL41 onmouseout="Out(this)">&quot;- fizikakönyv (1122):...&quot;</a></font></div>
+  <div id=PPTC41 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB41 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>- fizikakönyv (1122): szilárd, folyékony (és
+    légnemű) anyagokra vonatkozó adatok - pl. fajsúlyok; kapillaritás;
+    sebességfogalom stb.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>A középkori európai fizika (XII. sz.-)<br>
+    - Petrus Peregrinus: Epistola
+    de magnete (1269, 1558): mágnesezés, pólusok stb.<br>
+    &#9;&#9;&#9;&#9;Optikáról (1272): a fényút megfordíthatósága,
+    parabolatükör fókusza, szivárvány</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP42 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0078.htm');" onmouseover="Over(this)"
+  id=PPTL42 onmouseout="Out(this)">&quot;- Albertus Magnus (1200...&quot;</a></font></div>
+  <div id=PPTC42 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB42 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>- Albertus Magnus (1200-1280)<br>
+    &#9;az arisztotelianizmus &#9;&#9;&#9;&#9;&#9;&#9;&#9;propagandistája</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>- Roger Bacon (1220-1292)<br>
+    &#9;a kísérletezés &#9;- mint a tudás alapja &#9;&#9;&#9;&#9;-
+    propagandistája<br>
+    &#9;tükrök (gömbtükör fókusza)<br>
+    &#9;lencsék (tudományos célra)<br>
+    &#9;szférikus aberráció, szivárvány</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>- a szemüveg tömeges elterjedése</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP43 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0077.htm');" onmouseover="Over(this)"
+  id=PPTL43 onmouseout="Out(this)">&quot;- a gyorsulás fogalma:&quot;</a></font></div>
+  <div id=PPTC43 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB43 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>- a gyorsulás fogalma: pl. Thomas Bradwardine
+    (1290-1349): De proportionibus velocitatum in motibus (1328), Merton
+    College</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>- Jean Buridan (1300-1358): impetus</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>- Szakszóniai Albert (1316-1390): hely- és
+    helyzetváltoztató, egyenletes és változó mozgás; súlypont; szabadesés;
+    aerosztatika</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP44 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0076.htm');" onmouseover="Over(this)"
+  id=PPTL44 onmouseout="Out(this)">&quot;- egyenletesen változó mozgás,&quot;</a></font></div>
+  <div id=PPTC44 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB44 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>- egyenletesen változó mozgás, szögsebesség</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>- mechanikus órák (1335-től)<br>
+    &#9;súly, gátlómű, majd óra- (később &#9;&#9;negyedóra) ütés</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>A reneszánsz fizika</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>A mechanika</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP45 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0020.htm');" onmouseover="Over(this)"
+  id=PPTL45 onmouseout="Out(this)">&quot;Leonardo da Vinci (1452...&quot;</a></font></div>
+  <div id=PPTC45 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB45 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Leonardo da Vinci (1452-1519)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP46 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0107.htm');" onmouseover="Over(this)"
+  id=PPTL46 onmouseout="Out(this)">Dia 46</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP47 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0106.htm');" onmouseover="Over(this)"
+  id=PPTL47 onmouseout="Out(this)">Dia 47</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP48 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0105.htm');" onmouseover="Over(this)"
+  id=PPTL48 onmouseout="Out(this)">&quot;Gépszerkesztés<br>
+  - repülő szerkezetek (...&quot;</a></font></div>
+  <div id=PPTC48 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB48 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Gépszerkesztés<br>
+    - repülő szerkezetek (helikopter,<br>
+    &#9;&#9;&#9;&#9;&#9;ejtőernyő)<br>
+    - erőátvitel (kardántengely, lánc)<br>
+    - tömegközéppont-számítások</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>A mechanika törvényei<br>
+    - tehetetlenség<br>
+    - hatás-ellenhatás<br>
+    - szabadesés<br>
+    - vízszintes hajítás</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP49 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0104.htm');" onmouseover="Over(this)"
+  id=PPTL49 onmouseout="Out(this)">&quot;Niccolo Fontana Tartaglia (1499&quot;</a></font></div>
+  <div id=PPTC49 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB49 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Niccolo Fontana Tartaglia (1499-<br>
+    &#9;&#9;&#9;&#9;&#9;&#9;1557)<br>
+    - a ballisztika megalapítója</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Giovanni Battista Benedetti (1530-<br>
+    &#9;&#9;&#9;&#9;&#9;&#9;1590)<br>
+    - mechanika (a testek vákuumban<br>
+    &#9;&#9;azonos sebességgel esnek,<br>
+    &#9;centrális erő, tehetetlenségi elv)<br>
+    - hidrosztatika (közlekedőedények,<br>
+    &#9;&#9;hidrosztatikai paradoxon)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP50 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0103.htm');" onmouseover="Over(this)"
+  id=PPTL50 onmouseout="Out(this)">&quot;Simon Stevin (1548-1620&quot;</a></font></div>
+  <div id=PPTC50 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB50 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Simon Stevin (1548-1620)<br>
+    - Sztatika és
+    hidrosztatika (1586)<br>
+    &#9;erőháromszög, hidrosztatikai<br>
+    &#9;&#9;&#9;&#9;&#9;paradoxon<br>
+    &#9;&#9;&#9;&#9;<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    &#9;&#9;&#9;&#9;- golyóejtegetés</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP51 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0019.htm');" onmouseover="Over(this)"
+  id=PPTL51 onmouseout="Out(this)">&quot;Galileo&quot;</a></font></div>
+  <div id=PPTC51 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB51 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Galileo &#9;&#9;Galilei &#9;(1564-1642)<br>
+    - kinematika</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>ingamozgás</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP52 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0051.htm');" onmouseover="Over(this)"
+  id=PPTL52 onmouseout="Out(this)">Dia 52</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP53 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0013.htm');" onmouseover="Over(this)"
+  id=PPTL53 onmouseout="Out(this)">&quot;a lejtő&quot;</a></font></div>
+  <div id=PPTC53 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB53 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a lejtő</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP54 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0009.htm');" onmouseover="Over(this)"
+  id=PPTL54 onmouseout="Out(this)">&quot;Christiaan Huygens (1629-1695&quot;</a></font></div>
+  <div id=PPTC54 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB54 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Christiaan Huygens (1629-1695)<br>
+    <br>
+    - Horologium
+    (1658)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP55 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0008.htm');" onmouseover="Over(this)"
+  id=PPTL55 onmouseout="Out(this)">&quot;- rugalmas ütközés (1669&quot;</a></font></div>
+  <div id=PPTC55 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB55 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>- rugalmas ütközés (1669)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>”I. Feltevés: A mozgásban lévő test akadály
+    hiányában változatlanul ugyanazzal a sebességgel és egyenes vonalban
+    folytatja mozgását.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>II. Feltevés: A szilárd test ütközésének okától
+    függetlenül az ütközés után a következő helyzetet kapjuk:<br>
+    &#9;Ha két egyforma sebességgel egymás felé mozgó egyforma test egyesen
+    ütközik, akkor mindegyikük ugyanazzal a sebességgel pattan vissza, mint
+    amekkorával ütközött.</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP56 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0007.htm');" onmouseover="Over(this)"
+  id=PPTL56 onmouseout="Out(this)">&quot;Az ütközést akkor nevezzük egyenesnek&quot;</a></font></div>
+  <div id=PPTC56 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB56 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;&#9;Az ütközést akkor nevezzük egyenesnek,
+    ha maga a mozgás és az ütközés a testek súlypontját magában foglaló egyenes
+    mentén történik.<br>
+    &#9;III. Feltevés: A testek mozgását, valamint
+    egyforma vagy különböző sebességüket más testekhez kell viszonyítani,
+    amelyeket nyugvónak tekintünk, és nem vesszük figyelembe, hogy akárcsak
+    azok, ezek a testek is részt vehetnek valamilyen más, közös mozgásban.
+    Ezért két ütköző test, még abban az esetben is, ha mindketten együtt részt
+    vesznek egy más egyenletes mozgásban is, annak a személynek számára, aki
+    szintén részt vesz a közös mozgásban, úgy hat egymásra, mintha ez a közös
+    mozgás nem létezne.</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP57 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0050.htm');" onmouseover="Over(this)"
+  id=PPTL57 onmouseout="Out(this)">&quot;Ha például egy egyenletesen mozgó...&quot;</a></font></div>
+  <div id=PPTC57 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB57 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;Ha például egy egyenletesen mozgó hajó utasa
+    ütköztet két - megintcsak az utashoz képest - egyenlő sebességű egyforma
+    golyót, akkor ezek a golyók az utashoz és a hajóhoz képest egyenlő
+    sebességgel pattannak vissza, teljesen úgy, mintha az utas ezeket a
+    golyókat egy álló hajón vagy a parton ütköztette volna.</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP58 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0006.htm');" onmouseover="Over(this)"
+  id=PPTL58 onmouseout="Out(this)">&quot;- tehetetlenség,&quot;</a></font></div>
+  <div id=PPTC58 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB58 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;- tehetetlenség, ekvivalencia-elv,<br>
+    &#9;mozgásmennyiség megmaradása,<br>
+    &#9;eleven erő<br>
+    - Horologium
+    Oscillatorum (1673)<br>
+    &#9;centrifugális erő<br>
+    <br>
+    „Tételek
+    a centrifugális erőről</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>I.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;&#9;Ha két egyformán mozgó test nem egyforma
+    köröket tesz meg azonos idő alatt, akkor a centrifugális erő a</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP59 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0005.htm');" onmouseover="Over(this)"
+  id=PPTL59 onmouseout="Out(this)">&quot;nagyobb körön úgy aránylik a...&quot;</a></font></div>
+  <div id=PPTC59 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB59 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;nagyobb körön úgy aránylik a kisebbhez, mint
+    a körök vagy az átmérőik.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>II.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;Ha két egyformán mozgó test egyforma
+    sebességgel mozog nem egyforma körökön, akkor centrifugális erőik
+    fordítottan arányosak az átmérőkkel. …”</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>- Discours de la cause de la<br>
+    &#9;&#9;&#9;&#9;pesanteur
+    (1690)<br>
+    &#9;gravitációs erő</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP60 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0004.htm');" onmouseover="Over(this)"
+  id=PPTL60 onmouseout="Out(this)">&quot;Robert Hooke&quot;</a></font></div>
+  <div id=PPTC60 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB60 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Robert Hooke<br>
+    &#9;(1635-1703)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP61 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0098.htm');" onmouseover="Over(this)"
+  id=PPTL61 onmouseout="Out(this)">&quot;Hőtan&quot;</a></font></div>
+  <div id=PPTC61 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB61 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=3><font size=2>Hőtan</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>Galileo Galilei (1564-1642)</font></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1><font size=2><span style="mso-spacerun:
+    yes"> </span>léghőmérő, &#9;&#9;&#9;szivattyú</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP62 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0097.htm');" onmouseover="Over(this)"
+  id=PPTL62 onmouseout="Out(this)">&quot;Evangelista Torricelli (1608-1647&quot;</a></font></div>
+  <div id=PPTC62 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB62 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Evangelista Torricelli (1608-1647)<br>
+    légköri
+    nyomás</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;„Az elemi levegő óceánjának fenekén, a
+    levegőbe merítve élünk, amelynek kísérletileg kétségkívül sú-lya van,
+    mégpedig olyan nagy súlya, hogy a legsű-rűbb levegő a föld felszínénél
+    körülbelül a víz súlyá-nak egy négyszázad részét nyomja. Egyes szerzők megfigyelték
+    szürkület után, hogy a páratelt és lát-ható levegő egészen ötven vagy
+    ötvennégy mérföld magasra emelkedik fölöttünk, de én nem hiszem, hogy ilyen
+    sok lenne, mert be tudom bizonyítani, hogy a vákuumnak sokkal nagyobb
+    ellenállást kelle-ne tanúsítania, mint amennyit valójában mutat, ha-csak
+    nem azzal érvelünk, hogy a súly, amelyet Gali-</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP63 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0096.htm');" onmouseover="Over(this)"
+  id=PPTL63 onmouseout="Out(this)">&quot;lei a levegőre vonatkozóan
+  meghatározott&quot;</a></font></div>
+  <div id=PPTC63 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB63 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;lei a levegőre vonatkozóan meghatározott,
+    csak a légkör legalacsonyabb részére vo-natkozik, ahol az emberek és
+    állatok élnek, de a magas hegyek csúcsain a levegő tisztább kezd lenni és
+    sokkal kevesebbet nyom, mint a víz súlyának négyszázad része. Sok olyan
+    üvegedényt készítettünk, mint az ábrán látható két könyök hosszú A és B
+    csövek. Ezeket megtöltöttük hi-gannyal, a nyitott végüket lezártuk az
+    ujjunkkal, és belefordítottuk őket egy edénybe, amelyben C higany volt;
+    ekkor láttuk, hogy üres tér keletkezik, és semmi sem történik az edényben,
+    ahol ez a tér létrejött; A és D között a cső mindig telítve maradt egy
+    egész egynegyed könyök meg egy hüvelyk magasságig.</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP64 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0095.htm');" onmouseover="Over(this)"
+  id=PPTL64 onmouseout="Out(this)">&quot;Blaise Pascal (1623-1662&quot;</a></font></div>
+  <div id=PPTC64 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB64 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Blaise Pascal (1623-1662)<br>
+    a légnyomás
+    magasságfüggése</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;”És a másik csővel és ugyanannak a higanynak
+    egy részével mindezekkel az urakkal megmásztam a Puy-de-Dôme-ot, amely
+    körülbelül ötszáz öllel magasabb, mint a Minimes, ahol is ugyanúgy, ahogy
+    Minimes-nél megcsináltuk ugyanazt a kísérletet, és azt találtuk, hogy a
+    csőben csak huszonhárom hüvelyk és két vonal higany maradt, míg Minimes-nél
+    ugyanabban a csőben huszonhat hüvelyk három és fél vonal magas volt; és így
+    ezekben a kísérletekben a higanymagasságok közti különbség három hüvelyk
+    másfél vonal volt: ez az eredmény</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP65 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0094.htm');" onmouseover="Over(this)"
+  id=PPTL65 onmouseout="Out(this)">&quot;olyan csodálattal töltött el bennünket&quot;</a></font></div>
+  <div id=PPTC65 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB65 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;olyan csodálattal töltött el bennünket, és
+    annyi-ra meglepődtünk, hogy saját megnyugtatá-sunkra meg akartuk
+    is-mételni. Ezért kipró-báltam ugyanazt a dol-got még ötször, nagy
+    pontossággal, a hegy-tető különböző pontja-in …”</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Otto von Guericke (1602-1681)<br>
+    légszivattyús kísérletek</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP66 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0093.htm');" onmouseover="Over(this)"
+  id=PPTL66 onmouseout="Out(this)">&quot;Robert Boyle&quot;</a></font></div>
+  <div id=PPTC66 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB66 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Robert Boyle<br>
+    &#9;(1627-1691)<br>
+    nyomás-térfogat</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP67 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0092.htm');" onmouseover="Over(this)"
+  id=PPTL67 onmouseout="Out(this)">&quot;Fénytan&quot;</a></font></div>
+  <div id=PPTC67 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB67 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Fénytan</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Johannes Kepler (1571-1630)<br>
+    a látás
+    elmélete (1604)<br>
+    távcső (1611) - gyűjtő obj., gyűjtő ok. </font><font
+    face=Symbol size=2>&macr;</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font face="Times New Roman" size=2>Hans Lippershey
+    (1570-1619)<br>
+    távcső (1608)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Galileo Galilei (1564-1642)<br>
+    távcső
+    (1609) - gyűjtő obj., szóró ok. </font><font face=Symbol size=2>­</font><font
+    face="Times New Roman" size=2><br>
+    kis objektumokra (1610)<br>
+    összetett mikroszkóp tökéletesítése (1624)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP68 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0091.htm');" onmouseover="Over(this)"
+  id=PPTL68 onmouseout="Out(this)">&quot;Willebrord van Roijen Snell&quot;</a></font></div>
+  <div id=PPTC68 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB68 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Willebrord van Roijen Snell<br>
+    &#9;&#9;&#9;(1581-1626)<br>
+    törési
+    törvény (1621)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP69 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0090.htm');" onmouseover="Over(this)"
+  id=PPTL69 onmouseout="Out(this)">&quot;René Descartes (1596-1650&quot;</a></font></div>
+  <div id=PPTC69 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB69 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>René Descartes (1596-1650)<br>
+    La
+    Dioptrique&#9;<span style="mso-spacerun: yes">   </span>Les Méteores
+    (1637)<br>
+    törési törvény&#9;&#9;&#9;szivárvány</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP70 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0089.htm');" onmouseover="Over(this)"
+  id=PPTL70 onmouseout="Out(this)">&quot;Pierre de Fermat (1601...&quot;</a></font></div>
+  <div id=PPTC70 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB70 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Pierre de Fermat (1601-1665)<br>
+    a
+    legrövidebb idő elve (1660)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Francesco Maria Grimaldi (1618-1663)<br>
+    fényelhajlás
+    (1663)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>„I. tétel.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;A fény nem csak egyenesen, töréssel és
+    visszaverődéssel terjed, hanem még egy negyedik módon is - elhajlással.</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP71 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0088.htm');" onmouseover="Over(this)"
+  id=PPTL71 onmouseout="Out(this)">&quot;Első kísérlet&quot;</a></font></div>
+  <div id=PPTC71 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB71 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Első kísérlet</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;Egy ablak zsaluján egy nagyon kis AB lyukat
+    csinálunk, és rajta keresztül a nagyon tiszta égboltról a napsugarat a
+    szobába, amely egyébként zárva van, úgyhogy sötét. Ez a fény egy ACDB
+    kúpban fog szóródni, és akkor válik láthatóvá, ha a levegő tele van</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;porral, vagy valamennyi füstöt</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;engedünk bele. …”</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP72 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0086.htm');" onmouseover="Over(this)"
+  id=PPTL72 onmouseout="Out(this)">&quot;Robert Hooke (1635-1703&quot;</a></font></div>
+  <div id=PPTC72 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB72 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Robert Hooke (1635-1703)<br>
+    Gregor-távcső
+    (1664) - tükrös<br>
+    Micrographia (1665)<br>
+    diffrakció (1672) - hullámelmélet</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Antonie van Leeuwenhoek (1632-1723)<br>
+    mikroszkóp
+    (1674) - egylencsés,<br>
+    &#9;&#9;&#9;&#9;&#9;&#9;rövid fókuszú</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP73 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0085.htm');" onmouseover="Over(this)"
+  id=PPTL73 onmouseout="Out(this)">&quot;Ole Christensen R&oslash;mer (1644...&quot;</a></font></div>
+  <div id=PPTC73 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB73 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Ole Christensen R&oslash;mer (1644-1710)<br>
+    fénysebesség
+    (1676) - 225.000 km/s</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP74 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0084.htm');" onmouseover="Over(this)"
+  id=PPTL74 onmouseout="Out(this)">&quot;Christian Huygens (1629-1695&quot;</a></font></div>
+  <div id=PPTC74 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB74 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Christian Huygens (1629-1695)<br>
+    saját
+    távcső (1655-9) - Saturnus: Titán, gyűrű<br>
+    Traité de la
+    Lumi&egrave;re (1678-1690) - a fény &#9;&#9;&#9;&#9;hullámelmélete,
+    Huygens-elv</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP75 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0083.htm');" onmouseover="Over(this)"
+  id=PPTL75 onmouseout="Out(this)">Dia 75</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP76 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0108.htm');" onmouseover="Over(this)"
+  id=PPTL76 onmouseout="Out(this)">Fizika és vallás</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP77 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0027.htm');" onmouseover="Over(this)"
+  id=PPTL77 onmouseout="Out(this)">&quot;és más csillagok;&quot;</a></font></div>
+  <div id=PPTC77 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB77 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;és más csillagok; mindezeket az égi testeket
+    vilá-goknak tartom, számukat határtalannak, s együtt-véve a végtelen térben
+    egy végtelen egyetemes természetet, a végtelen világegyetemet alkotják,
+    amely kettős értelemben végtelen: egyrészt a nagyság, másrészt a világok
+    száma szempontjából – s ezzel közvetve mindenesetre ellentmondtam a vallás
+    tanításának.”</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>“... az oszthatatlan nem különbözik az
+    oszthatótól, a legegyszer&ucirc;bb nem a végtelentől, a középpont nem a kerülettől.
+    Minthogy tehát a végtelen mindaz, ami lehet, azért mozdulatlan; minthogy</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP78 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0109.htm');" onmouseover="Over(this)"
+  id=PPTL78 onmouseout="Out(this)">&quot;benne minden megkülönbözetlen,&quot;</a></font></div>
+  <div id=PPTC78 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB78 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;benne minden megkülönbözetlen, azért egy; s
+    minthogy megvan benne<span style="mso-spacerun: yes">  </span>mindaz a
+    nagyság és tö-kéletesség, ami általában lehetséges, azért a leg-nagyobb és
+    legjobb mérhetetlenség. Ha a pont nem különbözik a testtől, a középpont nem
+    a ke-rülettől, a véges nem a végtelentől, a legnagyobb nem a legkisebbtől,
+    akkor bizonyossággal állít-hatjuk, hogy a világegyetem csupa <span
+    style="mso-spacerun: yes"> </span>&#9;középpont, vagy hogy a világegyetem
+    középpontja mindenütt van, és hogy a kerület nincs valamelyik részen,
+    amennyiben ez különböző a középponttól; a kerü-let inkább mindenütt van, de
+    tőle különböző kö-zéppont nincs. Így hát nemcsak nem lehetetlen,</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP79 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0026.htm');" onmouseover="Over(this)"
+  id=PPTL79 onmouseout="Out(this)">&quot;de szükségképpeni,&quot;</a></font></div>
+  <div id=PPTC79 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB79 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;de szükségképpeni, hogy a legjobb, a
+    legna-gyobb, a fölfoghatatlan minden, mindenütt és mindenben van, mert,
+    mint egyszerű és oszthatat-lan, minden, mindenütt és mindenben lehet.”</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Galilei</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Newton</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP80 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0034.htm');" onmouseover="Over(this)"
+  id=PPTL80 onmouseout="Out(this)">A mechanisztikus paradigma</a></font></div>
+  <div id=PPTC80 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB80 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Az ókori atomizmus</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Empedoklész (i.e. 483-427)<br>
+    &#9;4 őselem
+    mechanikus egyesülése a&#9;&#9;&#9;viszály és a szeretet révén</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Anaxagorasz (500-428)<br>
+    &#9;a dolgok
+    magvai minőségileg végtelenek</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Leukipposz (470- )</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Demokritosz (460-370)<br>
+    &#9;atom és űr,
+    alak-sorrend, helyzet<br>
+    &#9;szükségszerűség, érzékelés</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Epikurosz (i.e. 341-270)<br>
+    &#9;clinamen</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP81 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0110.htm');" onmouseover="Over(this)"
+  id=PPTL81 onmouseout="Out(this)">&quot;Descartes filozófiája&quot;</a></font></div>
+  <div id=PPTC81 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB81 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Descartes filozófiája<br>
+    &#9;&#9;&#9;és a kartéziánus fizika<br>
+    &#9;a
+    mechanisztikus világkép<br>
+    &#9;&#9;atomizmus<br>
+    &#9;&#9;determinizmus<br>
+    &#9;&#9;a mozgás megmaradása</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Isaac Newton (1643-1727)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Newton elődei:<br>
+    René Descartes
+    (1596-1650) - mozgó anyag, &#9;&#9;mechanikai kölcsönhatás<br>
+    Pierre Gassendi (1592-1655) - atomizmus<br>
+    Robert Boyle (1627-1691) - kémia</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP82 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0002.htm');" onmouseover="Over(this)"
+  id=PPTL82 onmouseout="Out(this)">&quot;1665-tól:&quot;</a></font></div>
+  <div id=PPTC82 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB82 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>1665-tól:<br>
+    - fénytan: fehér fény -
+    színes fény,<br>
+    &#9;&#9;tükrös távcső, Newton-gyűrűk<br>
+    - mechanika: a mozgástörvények,<br>
+    &#9;&#9;az inverz négyzetes erőtörvény<br>
+    - matematika: binomiális tétel,<br>
+    &#9;&#9;differenciálszámítás</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Philosophiae Naturalis Principia Mathematica (1687)<br>
+    -
+    erő<br>
+    - Newton-törvények<br>
+    - bolygómozgás<br>
+    - általános tömegvonzás<br>
+    - a mű hatása<br>
+    - Newton teológiai nézetei</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP83 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0117.htm');" onmouseover="Over(this)"
+  id=PPTL83 onmouseout="Out(this)">&quot;A matematikai módszerek átalakulása&quot;</a></font></div>
+  <div id=PPTC83 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB83 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>A matematikai módszerek átalakulása</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Geometria </font><font face=Symbol size=2>®</font><font
+    face="Times New Roman" size=2> algebra, analízis (Descartes, Newton)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Leonhard Euler (1707-1783)<br>
+    <span style="mso-spacerun: yes">   </span>Introductio
+    in analysin infinitorum (1748)<br>
+    <span style="mso-spacerun: yes">   </span>Institutiones
+    calculi differentialis (1755)<br>
+    <span style="mso-spacerun: yes">   </span>Institutiones
+    calculi integralis (1768-70)<br>
+    lineáris differenciálegyenletek elmélete<br>
+    <span style="mso-spacerun: yes">    </span>Lettres
+    &agrave; une princesse d'Allemagne (1768-72)<br>
+    mechanika, optika, akusztika, fizikai csillagászat</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Jean Le Rond d'Alembert (1717-1783)<br>
+    <span style="mso-spacerun: yes">    </span>Traité
+    de dynamique (1743)<br>
+    <span style="mso-spacerun: yes">    </span>Traité
+    de l'équilibre et du mouvement des fluides
+    &#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;(1744)<br>
+    <span style="mso-spacerun: yes">    </span>Réflexions
+    sur la cause générale des vents (1747)<br>
+    <span style="mso-spacerun: yes">    </span>Recherches
+    sur les cordes vibrantes (1747)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP84 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0116.htm');" onmouseover="Over(this)"
+  id=PPTL84 onmouseout="Out(this)">&quot;Recherches sur la précession des...&quot;</a></font></div>
+  <div id=PPTC84 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB84 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Recherches sur la précession des équinoxes et
+    sur la nutation de l'axe de la terre (1749)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Encyclopédie (1751)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Essai d'une nouvelle théorie de la résistance
+    des fluides &#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;(1752)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Recherches sur différents points importants du
+    syst&egrave;me du monde (1754-56)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>„analitikus” = „mechanikus”<br>
+    &#9;az ész hatékonysága<br>
+    &#9;a fizikai probléma redukálása matematikai feladattá</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP85 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0114.htm');" onmouseover="Over(this)"
+  id=PPTL85 onmouseout="Out(this)">&quot;Résztudományok kialakulása&quot;</a></font></div>
+  <div id=PPTC85 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB85 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Résztudományok kialakulása</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Hidrodinamika<br>
+    Daniel Bernoulli
+    (1700-1782)<br>
+    <span style="mso-spacerun: yes">    </span>Exercitationes
+    quaedam Mathematicae<br>
+    &#9;&#9;&#9;&#9;&#9;&#9;&#9;(1723-1724)<br>
+    <span style="mso-spacerun: yes">    </span>Hydrodynamica
+    (1738)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP86 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0113.htm');" onmouseover="Over(this)"
+  id=PPTL86 onmouseout="Out(this)">&quot;Égi mechanika<br>
+  Pierre-Simon,&quot;</a></font></div>
+  <div id=PPTC86 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB86 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Égi mechanika<br>
+    Pierre-Simon, marquis de
+    Laplace &#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;(1749–1827)<br>
+    <span style="mso-spacerun: yes">    </span>Exposition
+    du systéme du monde (1796)<br>
+    a Naprendszer stabilitása, kialakulása<br>
+    <span style="mso-spacerun: yes">    </span>Traité
+    de mécanique céleste (1798-1827)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP87 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0112.htm');" onmouseover="Over(this)"
+  id=PPTL87 onmouseout="Out(this)">&quot;A mechanika „elvei”&quot;</a></font></div>
+  <div id=PPTC87 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB87 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>A mechanika „elvei”</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>D’Alembert-elv<br>
+    <span style="mso-spacerun: yes">    </span>F
+    = ma </font><font face=Symbol size=2>®</font><font face="H-Times New Roman"
+    size=2> F – ma = 0</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Pierre de Fermat (1601–1665)<br>
+    <span style="mso-spacerun: yes">    </span>a legrövidebb idő elve (1660)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>A legkisebb hatás elve<br>
+    <span style="mso-spacerun: yes">    </span>Leibniz<br>
+    <span style="mso-spacerun: yes">    </span>Pierre-Louis Moreau de
+    Maupertuis (1698–1759)<br>
+    <span style="mso-spacerun: yes">    </span>Essai
+    de cosmologie (1750)<br>
+    “a világegyetemben lévő összes változásban ha
+    &#9;felösszegezzük a testek tömegének, a megtett útnak és a sebességnek a
+    szorzatát, akkor az a lehető legkevesebb lesz”</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP88 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0111.htm');" onmouseover="Over(this)"
+  id=PPTL88 onmouseout="Out(this)">&quot;Joseph-Louis Lagrange (1736...&quot;</a></font></div>
+  <div id=PPTC88 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB88 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2><span style="mso-spacerun: yes">    </span>Joseph-Louis
+    Lagrange (1736–1813)<br>
+    <span style="mso-spacerun: yes">    </span>Mécanique
+    analytique (1788)<br>
+    <span style="mso-spacerun: yes">    </span>L = T
+    - V<br>
+    William Rowan Hamilton (1805–1865)<br>
+    <span style="mso-spacerun: yes">    </span>H
+    = T + V</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP89 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0118.htm');" onmouseover="Over(this)"
+  id=PPTL89 onmouseout="Out(this)"><span style="mso-spacerun: yes"> </span>A
+  klasszikus mechanikai világkép felbomlása</a></font></div>
+  <div id=PPTC89 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB89 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Az elektromos és mágneses jelenségek
+    tudományának fejlődése a Maxwell-egyenletekig</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Elektromos és mágneses alapjelenségek</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Petrus Peregrinus de Maricourt (1260-as évek
+    vége)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP90 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0129.htm');" onmouseover="Over(this)"
+  id=PPTL90 onmouseout="Out(this)">&quot;William Gilbert (vagy Gylberde...&quot;</a></font></div>
+  <div id=PPTC90 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB90 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>William Gilbert (vagy Gylberde 1544-1603)<br>
+    De
+    Magnete, Magneticisque Corporibus, et de Magno Magnete Tellure (1600)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>600 mágneses (és dörzselektromos) kísérlet</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>elektromos vonzás, erő fogalma</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>a Föld mint mágnes (iránytű magyarázata)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>az elektromosság és mágnesesség
+    &#9;&#9;&#9;&#9;&#9;különbsége: a közeg szerepe</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>folyadék-modell (humor)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP91 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0128.htm');" onmouseover="Over(this)"
+  id=PPTL91 onmouseout="Out(this)">&quot;Az elektromos jelenségek stabil
+  létrehozása&quot;</a></font></div>
+  <div id=PPTC91 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB91 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Az elektromos jelenségek stabil
+    létrehozása<br>
+    <span style="mso-spacerun: yes"> </span>Otto von
+    Guericke (1602-1686)<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    Francis
+    Hau(w)ksbee<br>
+    &#9;&#9;(1670?-1713)<br>
+    <span
+    style="mso-spacerun: yes">    </span>folyadékmodell<br>
+    &#9;&#9;&#9;(fluvium)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP92 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0127.htm');" onmouseover="Over(this)"
+  id=PPTL92 onmouseout="Out(this)">&quot;Az elektromosság vizsgálata<br>
+  Stephen
+  Gray...&quot;</a></font></div>
+  <div id=PPTC92 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB92 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Az elektromosság vizsgálata<br>
+    Stephen
+    Gray (1666-1736)<br>
+    &#9;„Ennek megfelelően 1729. július 2-án délelőtt
+    tízkor el-végeztünk egy kísérletet. Körülbelül négy lábra a galéria végétől
+    volt egy zsinór keresztben, amelynek a végeit a galéria két oldalán
+    szögekkel rögzítettük; a zsinór közép-ső része selyem volt, a többi a két
+    végén spárga. A 80&frac12; láb hosszú vezetéket, amelyre az elefántcsont
+    golyót füg-gesztettük, és amely az elektromosságot a csőből hozzá-vezette,
+    ráfektettük a keresztben lévő selyemzsinórra, úgyhogy a golyó körülbelül 9
+    lábnyira alatta függött. A vezeték másik végét egy hurokkal
+    felfüggesztettük az üvegrúdra, a rézlemezt pedig a golyó alatt tartottuk
+    egy darab fehér papíron; amikor a csövet dörzsöltük, a golyó vonzotta a rézlemezt
+    és egy darabig fenn is tartotta.”</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP93 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0126.htm');" onmouseover="Over(this)"
+  id=PPTL93 onmouseout="Out(this)">&quot;Charles François de Cisternay DuFay...&quot;</a></font></div>
+  <div id=PPTC93 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB93 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;Charles François de Cisternay DuFay
+    (1698-1739)<br>
+    <span style="mso-spacerun: yes">   </span>kétféle
+    elektromosság - kétfolyadék modell (effluvium)<br>
+    Pieter van
+    Musschenbroek<br>
+    &#9;&#9;&#9;(1692-1761)<br>
+    <span style="mso-spacerun: yes"> </span><span
+    style="mso-spacerun: yes">  </span>leydeni palack<br>
+    E(wald) Georg
+    von Kleist<br>
+    &#9;&#9;&#9;(1700-1748)<br>
+    Benjamin Franklin<br>
+    &#9;&#9;&#9;(1706-1790)<br>
+    <span style="mso-spacerun: yes">  </span>síkkondenzátor<br>
+    <span style="mso-spacerun: yes">  </span>villámhárító<br>
+    <span style="mso-spacerun: yes">  </span>egyfolyadék-modell (±)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP94 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0125.htm');" onmouseover="Over(this)"
+  id=PPTL94 onmouseout="Out(this)">&quot;Charles-Augustine de Coulomb (...&quot;</a></font></div>
+  <div id=PPTC94 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB94 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2><span style="mso-spacerun: yes">   </span>Charles-Augustine
+    de Coulomb (1736-1806)<br>
+    <span style="mso-spacerun: yes">  </span>torziós
+    mérleg </font><font face=Symbol size=2>®</font><font
+    face="H-Times New Roman" size=2><br>
+    &#9;Coulomb-törvény<br>
+    &#9;mágneses pólusok<br>
+    Siméon-Denis
+    Poisson<br>
+    &#9;&#9;(1781-1840)<br>
+    <span style="mso-spacerun: yes">  </span>az
+    elektrosztatikai<br>
+    <span style="mso-spacerun: yes">  </span>potenciál matematikai<br>
+    &#9;&#9;&#9;elmélete<br>
+    <span style="mso-spacerun: yes">  </span>magnetosztatika<br>
+    George
+    Green<br>
+    &#9;&#9;(1793-1841)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP95 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0124.htm');" onmouseover="Over(this)"
+  id=PPTL95 onmouseout="Out(this)">&quot;Az elektromos áram vizsgálata<br>
+  Luigi...&quot;</a></font></div>
+  <div id=PPTC95 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB95 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Az elektromos áram vizsgálata<br>
+    Luigi
+    Galvani (1737-1798) - állati elektromosság</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP96 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0123.htm');" onmouseover="Over(this)"
+  id=PPTL96 onmouseout="Out(this)">&quot;Alessandro Volta&quot;</a></font></div>
+  <div id=PPTC96 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB96 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Alessandro Volta<br>
+    &#9;(1745-1827)<br>
+    Volta-oszlopok</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>William Nicholson<br>
+    &#9;(1753-1815)<br>
+    vízbontás</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Humphry Davy<br>
+    &#9;(1778-1829)<br>
+    fémsók
+    bontása<br>
+    a vezetők<br>
+    &#9;ellenállása</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP97 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0122.htm');" onmouseover="Over(this)"
+  id=PPTL97 onmouseout="Out(this)">&quot;Georg Simon Ohm&quot;</a></font></div>
+  <div id=PPTC97 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB97 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2><span style="mso-spacerun: yes">   </span>Georg
+    Simon Ohm</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;&#9;&#9;(1789-1854)<br>
+    &#9;áramköri
+    törvény<br>
+    Gustav Robert<br>
+    Kirchhoff (1824-1887)<br>
+    &#9;csomóponti
+    törvény</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP98 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0121.htm');" onmouseover="Over(this)"
+  id=PPTL98 onmouseout="Out(this)">&quot;Az elektromos és mágneses jelenségek...&quot;</a></font></div>
+  <div id=PPTC98 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB98 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Az elektromos és mágneses jelenségek közötti
+    kapcsolat</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2><span style="mso-spacerun: yes">   </span>Hans
+    Christian &Oslash;rsted (1777-1851)<br>
+    André-Marie Amp&egrave;re (1775-1836)<br>
+    <span style="mso-spacerun: yes">  </span>áramok
+    közötti<br>
+    &#9;&#9;erőhatások<br>
+    <span style="mso-spacerun: yes">  </span>alapfogalmak<br>
+    Jean-Baptist
+    Biot<br>
+    &#9;(1774-1862)<br>
+    Félix Savart<br>
+    &#9;(1791-1841)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP99 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0120.htm');" onmouseover="Over(this)"
+  id=PPTL99 onmouseout="Out(this)">&quot;Michael Faraday (1791-1867&quot;</a></font></div>
+  <div id=PPTC99 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB99 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Michael Faraday (1791-1867)<br>
+    20 év alatt
+    több ezer kísérlet főleg az &#9;&#9;&#9;&#9;&#9;&#9;elektromágnesség
+    területén<br>
+    elektromos áramok és mágneses tér &#9;kapcsolata
+    &#9;&#9;&#9;&#9;&#9;forgómozgások esetén<br>
+    indukció (1831), elektromotoros erő stb.</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;fogalomalkotás (pl. erővonal)<br>
+    elektrolízis (ionok, töltésmegmaradás stb.)<br>
+    fénypolarizáció (1845), kémia stb.</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP100 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0119.htm');" onmouseover="Over(this)"
+  id=PPTL100 onmouseout="Out(this)">&quot;Heinrich Friedrich Emil Lenz (...&quot;</a></font></div>
+  <div id=PPTC100 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB100 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Heinrich Friedrich Emil Lenz (1804-1865)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>James Clerk Maxwell (1831-1879)<br>
+    axiomatikus elektrodinamikai elmélet<br>
+    (1)
+    a Coulomb-erőnek megfelelő elektromos</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;tér elektromos töltésből származik<br>
+    – div D
+    = </font><font face=Symbol size=2>r</font><font face="H-Times New Roman"
+    size=2>;<br>
+    (2) nincsenek elszigetelt mágneses pólusok, a mágnes pólusai között a
+    Coulomb-erő hat<br>
+    – div B = 0;<br>
+    (3) változó mágneses terek elektromos tereket hoznak létre<br>
+    – rot E
+    = – </font><font face=Symbol size=2>¶</font><font face="H-Times New Roman"
+    size=2>B/</font><font face=Symbol size=2>¶</font><font
+    face="H-Times New Roman" size=2>t;<br>
+    (4) változó elektromos terek és áramok mágneses tereket hoznak létre<br>
+    – rot H
+    = </font><font face=Symbol size=2>¶</font><font face="H-Times New Roman"
+    size=2>D/</font><font face=Symbol size=2>¶</font><font
+    face="H-Times New Roman" size=2>t + J.</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP101 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0143.htm');" onmouseover="Over(this)"
+  id=PPTL101 onmouseout="Out(this)">&quot;A hőtan fejlődése az energiamegma...&quot;</a></font></div>
+  <div id=PPTC101 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB101 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>A hőtan fejlődése az energiamegma-radás
+    törvényének felfedezéséig</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>A gőz erejének hasznosítása<br>
+    Denis Papin
+    (1647-1712)<br>
+    &#9;Papin-fazék (1679)<br>
+    &#9;a forrás légnyomásfüggése<br>
+    &#9;&#9;&#9;&#9;(1680)<br>
+    &#9;zárt termodinamikai<br>
+    &#9;&#9;folyamatot végző<br>
+    &#9;&#9;gőzgép
+    leírása,<br>
+    &#9;&#9;megépítése (1707)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP102 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0142.htm');" onmouseover="Over(this)"
+  id=PPTL102 onmouseout="Out(this)">&quot;Thomas Savery (1650-1715&quot;</a></font></div>
+  <div id=PPTC102 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB102 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Thomas Savery (1650-1715)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;az első eladott gőzgép</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;&#9;&#9;&#9;&#9;(1698)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP103 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0141.htm');" onmouseover="Over(this)"
+  id=PPTL103 onmouseout="Out(this)">&quot;Thomas Newcomen (1663-1729&quot;</a></font></div>
+  <div id=PPTC103 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB103 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Thomas Newcomen (1663-1729)<br>
+    gőzgép
+    (1705-1712)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP104 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0140.htm');" onmouseover="Over(this)"
+  id=PPTL104 onmouseout="Out(this)">&quot;James Watt (1736-1819&quot;</a></font></div>
+  <div id=PPTC104 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB104 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>James Watt (1736-1819)<br>
+    szeparált
+    kondenzátor (1765)<br>
+    bolygókerék, centrifugális szabályzó stb.
+    &#9;&#9;&#9;&#9;&#9;&#9;&#9;(1790-ig)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP105 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0139.htm');" onmouseover="Over(this)"
+  id=PPTL105 onmouseout="Out(this)">&quot;A hőmérséklet mérése<br>
+  Gabriel
+  Danielle...&quot;</a></font></div>
+  <div id=PPTC105 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB105 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>A hőmérséklet mérése<br>
+    Gabriel Danielle
+    Fahrenheit (1686-1736)<br>
+    &#9;higanyos hőmérő (1700-1730),
+    skála<br>
+    René-Antoine de Réaumur (1683-1757)<br>
+    &#9;alkoholos hőmérő,<br>
+    &#9;&#9;skála (1730)<br>
+    Anders
+    Celsius<br>
+    (1701-1744)<br>
+    &#9;skála (1742)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP106 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0138.htm');" onmouseover="Over(this)"
+  id=PPTL106 onmouseout="Out(this)">&quot;A hő<br>
+  Joseph Black (...&quot;</a></font></div>
+  <div id=PPTC106 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB106 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>A hő<br>
+    Joseph Black (1728-1799)<br>
+    &#9;látens
+    hő, fajhő, hőmennyiség, kalorimetria, &#9;&#9;&#9;&#9;&#9;&#9;kalorikum
+    (1757-1763)<br>
+    Benjamin Thompson (1753-1814)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP107 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0137.htm');" onmouseover="Over(this)"
+  id=PPTL107 onmouseout="Out(this)">&quot;“Alig szükséges hozzátennem,&quot;</a></font></div>
+  <div id=PPTC107 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB107 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;“Alig szükséges hozzátennem, hogy akármi,
+    amit bármely elszigetelt test, vagy testek rendszere korlátozás nélkül
+    képes szolgál-tatni, az nem lehet anyagi szubsztancia: és számomra
+    rendkívül nehéznek, ha nem le-hetetlennek t&ucirc;nik, bármely más
+    gondolatot kialakítani arról, amit létre lehet hozni és to-vábbítani, azon
+    a módon ahogy a Hőt létre-hoztuk és továbbítottuk ezekben a Kísérle-tekben,
+    mint hogy ez MOZGÁS.” (előadás 1798-ban)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP108 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0136.htm');" onmouseover="Over(this)"
+  id=PPTL108 onmouseout="Out(this)">&quot;Joseph Louis Gay-Lussac (...&quot;</a></font></div>
+  <div id=PPTC108 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB108 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Joseph Louis Gay-Lussac (1778-1850)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>gázok hőtágulása (1802)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>léghajón 7 km magasra - a levegő hőmérsékletét,
+    nyomását és<br>
+    összetételét mérve (1804)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>gázok térfogati arányai (1808-<br>
+    1809)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>út az egyesített gáztörvény felé<br>
+    (1826)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>John Dalton (1766-1844)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a gázok parciális nyomásának<br>
+    problémája (Dalton-törvény,<br>
+    1801) </font><font
+    face=Symbol size=2>®</font><font face="H-Times New Roman" size=2>
+    atomhipotézis (1803-<br>
+    1810)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP109 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0135.htm');" onmouseover="Over(this)"
+  id=PPTL109 onmouseout="Out(this)">&quot;Elméleti hőtan&quot;</a></font></div>
+  <div id=PPTC109 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB109 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=3><font size=2>Elméleti hőtan</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=3><font size=2>Jean Baptiste Joseph Fourier (1768-1830)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>Théorie analytique de la chaleur (1822)</font></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1><font size=2>a hővezetés differenciálegyenlete</font></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1><font size=2>Fourier-sor</font></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1><font size=2><br>
+    Fourier-integrál</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP110 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0134.htm');" onmouseover="Over(this)"
+  id=PPTL110 onmouseout="Out(this)">&quot;Nicolas Leonard Sadi Carnot (...&quot;</a></font></div>
+  <div id=PPTC110 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB110 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=3><font size=2>Nicolas Leonard Sadi Carnot (1796-1832)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>Réflexions sur la puissance motrice du feu et
+    sur les machines propres &agrave; développer cette puissance (1824)</font></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1><font size=2>reverzibilis körfolyamat kalorikus mechanikai
+    modellje </font><font face=Symbol size=2>®</font><font
+    face="Times New Roman" size=2> hatásfok</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=3><font size=2>Benoit Pierre Emil Clapeyron (1799-1864)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>Carnot-féle körfolyamatok: fordítva,
+    matematikailag, diagrammokon (1834)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>ideális gázok állapotegyenlete</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>a folyadékkal egyensúlyban lévő gőz egyenlete</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP111 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0133.htm');" onmouseover="Over(this)"
+  id=PPTL111 onmouseout="Out(this)">&quot;Az energia&quot;</a></font></div>
+  <div id=PPTC111 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB111 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=3><font size=2>Az energia</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=3><font size=2>Julius Robert &#9;&#9;&#9;Mayer</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=3><font size=2>James Prescott Joule (1818-1889)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>On the Producti-on of Heat by Voltaic
+    Electri-city (1840)</font></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1><font size=2>az áram hőhatása (I<sup>2</sup>R)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>a hő mechanikai egyenértéke (1843)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP112 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0131.htm');" onmouseover="Over(this)"
+  id=PPTL112 onmouseout="Out(this)">&quot;Hermann Ludwig Ferdinand von&quot;</a></font></div>
+  <div id=PPTC112 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB112 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=3><font size=2>Hermann Ludwig Ferdinand von
+    &#9;&#9;&#9;&#9;Helmholtz (1821-1894)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>&#9;a fiziológiai hő is csak fizikai energiából
+    származhat</font></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1><font size=2>„Azzal a feltevéssel kezdjük, hogy akármilyen
+    természeti testek bármilyen kombinációjával is lehetetlen semmiből
+    folyamatosan erőt előállítani. E tétel révén Carnot és Clapeyron
+    elméletileg levezettek egy sor törvényt, amelyek egy részét a kísérlet
+    bebizonyította, más részét még nem ellenőrizték … . Jelen tanulmány célja
+    ezt az elvet ugyanúgy érvényesíteni a fizika összes ágában …” (előadás
+    1847-ből)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP113 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0144.htm');" onmouseover="Over(this)"
+  id=PPTL113 onmouseout="Out(this)">&quot;Az újkori atomizmus fejlődése&quot;</a></font></div>
+  <div id=PPTC113 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB113 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Az újkori atomizmus fejlődése</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Az anyag szerkezete</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>A fény problémája</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP114 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0196.htm');" onmouseover="Over(this)"
+  id=PPTL114 onmouseout="Out(this)">A kvantumelmélet kifejlődése</a></font></div>
+  <div id=PPTC114 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB114 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Hőmérsékleti sugárzás és színképelemzés</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2><span style="mso-spacerun: yes"> </span>William
+    Hyde Wollaston (1766-1828), Johann Wilhelm Ritter (1776-1810) et al.</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>ultraibolya, infravörös sugárzás (1801)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>fekete vonalak a színképben (1802)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Joseph Fraunhofer (1787-1826)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a sötét vonalak<br>
+    „hullámhossza”<br>
+    (1814-1815)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP115 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0195.htm');" onmouseover="Over(this)"
+  id=PPTL115 onmouseout="Out(this)">&quot;diffrakciós rácsok (1821)&quot;</a></font></div>
+  <div id=PPTC115 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB115 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>diffrakciós rácsok (1821)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP116 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0194.htm');" onmouseover="Over(this)"
+  id=PPTL116 onmouseout="Out(this)">&quot;Jean-Bernard-Léon Foucault (...&quot;</a></font></div>
+  <div id=PPTC116 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB116 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Jean-Bernard-Léon Foucault (1819-1868)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>az elnyelési és kibocsátási vonalak közötti
+    kapcsolat (1849)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Kirchhoff és Robert Wilhelm Bunsen (1811-1899)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a színképelemzés<br>
+    módszerének<br>
+    kidolgozása<br>
+    (1859) </font><font
+    face=Symbol size=2>®</font><font face="Times New Roman" size=2> új elemek,
+    a<br>
+    Fraunhofer-vonalak<br>
+    természete, a Nap<br>
+    atmoszférával körülvett<br>
+    folyadék (1860-1861)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP117 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0193.htm');" onmouseover="Over(this)"
+  id=PPTL117 onmouseout="Out(this)">&quot;hőmérsékleti sugárzás&quot;</a></font></div>
+  <div id=PPTC117 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB117 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>hőmérsékleti sugárzás</font></td>
+   </tr>
+   <tr>
+    <td colspan=4></td>
+    <td colspan=1><font size=2>az abszolút fekete test fogalma:<br>
+    Gustav
+    Robert Kirchhoff: Monatsbericht der Akademie der Wissenchaften zu Berlin,
+    December 1859</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>„ … az ugyanolyan hullámhosszal rendelkező
+    sugarakra egy adott hőmérsékleten az emisszió és az abszorpció aránya
+    minden testnél ugyanaz.”</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=2><font size=2>E<sub>&#955;T</sub>/A<sub>&#955;T</sub> =
+    &#966;(&#955;, T), A<sub>&#955;T</sub> = 1</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP118 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0191.htm');" onmouseover="Over(this)"
+  id=PPTL118 onmouseout="Out(this)">&quot;Joseph Stefan (1835-1893&quot;</a></font></div>
+  <div id=PPTC118 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB118 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Joseph Stefan (1835-1893)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>E ~ T<sup>4</sup> (1879),</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2><span style="mso-spacerun: yes"> </span>Albert
+    Abraham Michelson (1852-1931)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>a vonalak finomstruktúrája (1881)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>az eszközökért Nobel-díj (1907)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Johann Jacob Balmer (1825-1898)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Johannes Robert Rydberg (1854-1919)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Heinrich Gustav Johannes Kayser (1853-1940)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>színképvonalak, sorozatok (1883-)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Karl David T. Runge (1856-1927)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Friedrich Paschen (1865-1947)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP119 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0187.htm');" onmouseover="Over(this)"
+  id=PPTL119 onmouseout="Out(this)">&quot;Wilhelm Wien (1861-1928&quot;</a></font></div>
+  <div id=PPTC119 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB119 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Wilhelm Wien (1861-1928)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>eltolódási törvény (1893) -<br>
+    &#9;&#9;&#9;&#9;&#955;<sub>m</sub>T
+    = 0.2898 cm°K</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Nobel-díj (1911)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP120 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0186.htm');" onmouseover="Over(this)"
+  id=PPTL120 onmouseout="Out(this)">&quot;Lord Rayleigh (John William...&quot;</a></font></div>
+  <div id=PPTC120 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB120 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Lord Rayleigh (John William Strutt, 1842-1919)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>James Hopwood Jeans (1877-1946)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP121 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0185.htm');" onmouseover="Over(this)"
+  id=PPTL121 onmouseout="Out(this)">&quot;Wilhelm Konrad Röntgen (1845...&quot;</a></font></div>
+  <div id=PPTC121 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB121 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Wilhelm Konrad Röntgen (1845-1923)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>az UV-nél rövidebb hullámhosszú sugárzás és
+    tulajdonságai (1895)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>az első Nobel-díj (1901)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP122 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0184.htm');" onmouseover="Over(this)"
+  id=PPTL122 onmouseout="Out(this)">&quot;Peter Zeeman (1865-1943&quot;</a></font></div>
+  <div id=PPTC122 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB122 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Peter Zeeman (1865-1943)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>a színképvonalak mágneses térben felhasadnak
+    (1896)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Nobel-díj (1902)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP123 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0183.htm');" onmouseover="Over(this)"
+  id=PPTL123 onmouseout="Out(this)">&quot;Max Karl Ernst Ludwig Planck...&quot;</a></font></div>
+  <div id=PPTC123 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB123 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=2><font size=2>Max Karl Ernst Ludwig Planck (1858-1947)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>Wien&#9;&#9;Planck&#9;Rayleigh-Jeans</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP124 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0182.htm');" onmouseover="Over(this)"
+  id=PPTL124 onmouseout="Out(this)">&quot;eloszlási törvény:&quot;</a></font></div>
+  <div id=PPTC124 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB124 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>eloszlási törvény: h&#957; (1900)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>atomi oszcillátorok, hatáskvantum</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP125 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0181.htm');" onmouseover="Over(this)"
+  id=PPTL125 onmouseout="Out(this)">&quot;Az anyag diszkrét szerkezete&quot;</a></font></div>
+  <div id=PPTC125 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB125 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=3><font size=2>Az anyag diszkrét szerkezete</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Johann Heinrich Wilhelm Geissler
+    &#9;&#9;&#9;&#9;(1814/5-1879)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Julius Plücker<br>
+    &#9;&#9;(1801-1868)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>higanyos<br>
+    vákuumszivattyú<br>
+    + kételektródos cső<br>
+    színképvizsgálatokhoz<br>
+    &#9;&#9;&#9;(1855)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP126 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0180.htm');" onmouseover="Over(this)"
+  id=PPTL126 onmouseout="Out(this)">&quot;Geissler-csövek:&quot;</a></font></div>
+  <div id=PPTC126 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB126 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Geissler-csövek:</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP127 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0179.htm');" onmouseover="Over(this)"
+  id=PPTL127 onmouseout="Out(this)">Dia 127</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP128 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0178.htm');" onmouseover="Over(this)"
+  id=PPTL128 onmouseout="Out(this)">Dia 128</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP129 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0177.htm');" onmouseover="Over(this)"
+  id=PPTL129 onmouseout="Out(this)">&quot;a H első három vonala...&quot;</a></font></div>
+  <div id=PPTC129 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB129 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=1><font size=2>a H első három vonala + a katódsugarak
+    felfedezése, mágneses térben elhajlanak (1858)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP130 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0176.htm');" onmouseover="Over(this)"
+  id=PPTL130 onmouseout="Out(this)">&quot;Dmitrij Ivanovics Mengyelejev (1834...&quot;</a></font></div>
+  <div id=PPTC130 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB130 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Dmitrij Ivanovics Mengyelejev (1834-1907)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>kémiai elemek periódusos rendszere, atomsúlyok
+    (1869) </font><font face=Symbol size=2>®</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP131 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0175.htm');" onmouseover="Over(this)"
+  id=PPTL131 onmouseout="Out(this)">&quot;ismeretlen elemek jóslása (1871&quot;</a></font></div>
+  <div id=PPTC131 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB131 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>ismeretlen elemek jóslása (1871)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP132 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0174.htm');" onmouseover="Over(this)"
+  id=PPTL132 onmouseout="Out(this)">&quot;George Johnstone Stoney (1826...&quot;</a></font></div>
+  <div id=PPTC132 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB132 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>George Johnstone Stoney (1826-1911)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>felveti, hogy az elektromos töltés diszkrét
+    (1874) mennyiségekből (1881) áll, és az „elektron” nevet adja neki (1991)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Sir Willam Crookes (1832-1919)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a katódsugarak az áramból származó negatívan
+    töltött részecskék (1879)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP133 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0173.htm');" onmouseover="Over(this)"
+  id=PPTL133 onmouseout="Out(this)">Dia 133</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP134 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0172.htm');" onmouseover="Over(this)"
+  id=PPTL134 onmouseout="Out(this)">&quot;Eugen Goldstein (1850-1930&quot;</a></font></div>
+  <div id=PPTC134 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB134 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Eugen Goldstein (1850-1930)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a katódsugarak hullámok?</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>elhajlásuk elektromos térben</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a csősugarak (1886)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Hertz</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a szikraközre eső ultraibolya<br>
+    sugárzás segíti az átütést</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a katódsugarak képesek áthatolni vékony
+    fémfólián (1892), tehát hullámok?</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP135 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0171.htm');" onmouseover="Over(this)"
+  id=PPTL135 onmouseout="Out(this)">&quot;Jean Baptiste Perrin (1870...&quot;</a></font></div>
+  <div id=PPTC135 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB135 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Jean Baptiste Perrin (1870-1942)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a katódsugárzás negatívan töltött részecskék
+    árama (1895)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>planetáris atommodell<br>
+    (1905)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Brown-mozgás<br>
+    kísérletek kolloidok-<br>
+    ban (1908-1913)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1926)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP136 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0170.htm');" onmouseover="Over(this)"
+  id=PPTL136 onmouseout="Out(this)">&quot;Antoine Henri Becquerel (1852&quot;</a></font></div>
+  <div id=PPTC136 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB136 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Antoine Henri Becquerel
+    (1852-&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;1908)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>lumineszcenciakutatások közben felfedezte a
+    rádiumsók természetes radioaktivitását (1896)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a &#946;-ról megállapítja, hogy hasonlít a
+    katódsugárzáshoz (e/m arány, 1900)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a radioaktivitás ionizációs, fiziológiai stb.
+    hatásai (1901)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1903)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP137 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0169.htm');" onmouseover="Over(this)"
+  id=PPTL137 onmouseout="Out(this)">&quot;Maria Sklodowska-Curie (1867...&quot;</a></font></div>
+  <div id=PPTC137 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB137 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Maria Sklodowska-Curie (1867-1934)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>felteszi, hogy a radioaktív sugárzás atomi
+    tulajdonság (1896)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>fizikai-kémiai szeparáció: tórium, polónium,
+    rádium (1897-1898)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a &#946; negatív töltésű, az &#945; is
+    részecskékből áll (1900)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>tiszta rádiumsó (1902)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>fizikai Nobel-díj (1903)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>fémrádium (1910)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>kémiai Nobel-díj (1911)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>leukémia</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP138 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0168.htm');" onmouseover="Over(this)"
+  id=PPTL138 onmouseout="Out(this)">&quot;Joseph John Thomson (1856...&quot;</a></font></div>
+  <div id=PPTC138 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB138 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Joseph John Thomson (1856-1940)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a katódsugarak részecskéinek tömege 1/1837-ed
+    része a H atoménak, töltésük stb. (1897)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP139 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0167.htm');" onmouseover="Over(this)"
+  id=PPTL139 onmouseout="Out(this)">Dia 139</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP140 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0166.htm');" onmouseover="Over(this)"
+  id=PPTL140 onmouseout="Out(this)">&quot;mazsolás puding atommodell (1903&quot;</a></font></div>
+  <div id=PPTC140 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB140 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>mazsolás puding atommodell (1903)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP141 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0165.htm');" onmouseover="Over(this)"
+  id=PPTL141 onmouseout="Out(this)">&quot;Ernst Rutherford (1871-1937&quot;</a></font></div>
+  <div id=PPTC141 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB141 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Ernst Rutherford (1871-1937)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>felfedezi az &#945; és &#946; sugarakat,
+    valamint a radont (1899)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a radioaktív bomlás elmélete - az atomok
+    átalakulása (1902)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>az &#945; sugarak pozitív töltésű részecskék,
+    megjósolja a transzuránokat (1903)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>kémiai Nobel-díj (1908)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP142 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0164.htm');" onmouseover="Over(this)"
+  id=PPTL142 onmouseout="Out(this)">&quot;töltött részecskék észlelése (Geiger...&quot;</a></font></div>
+  <div id=PPTC142 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB142 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>töltött részecskék észlelése (Geiger-cső, 1909)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>az &#945; részecskék kétszeresen ionizált He
+    atomok</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>A 10<sup>-12</sup> cm átmérőjű atommagok
+    felfedezése &#945; bombázással (1906-1911)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>a proton felfedezése (1914-1919)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>mesterséges magátalakítás (1919)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>a neutron feltételezése (1920)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>a tömeg-energia ekvivalencia igazolása
+    magátalakuláskor (1933)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>iskolaalapító: Bohr, Geiger, Haan, Cockroft,
+    Moseley, Oliphant, Chadwick, Kapica, Hariton</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP143 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0163.htm');" onmouseover="Over(this)"
+  id=PPTL143 onmouseout="Out(this)">&quot;Philipp Eduard Anton von Lenard&quot;</a></font></div>
+  <div id=PPTC143 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB143 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Philipp Eduard Anton von Lenard
+    &#9;&#9;&#9;&#9;&#9;&#9;(1862-1947)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Lenard-ablak (1893)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a fényelektromos hatást elektronok okozzák
+    (1899)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a kilépő elektronok száma (az áram) arányos a
+    fény intenzitásával (1900)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a kilépő elektronok maximális kinetikus
+    energiája a fémtől és a fény rezgésszámától (hullámhosszától) függ, egy
+    minimumfrekvencia alatt nincs elektron (1902)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP144 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0162.htm');" onmouseover="Over(this)"
+  id=PPTL144 onmouseout="Out(this)">&quot;Wien&quot;</a></font></div>
+  <div id=PPTC144 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB144 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Wien</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a csősugárzás részecskéi atom-méretűek (1898)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a csősugarak elhajlanak elektromos és mágneses
+    térben (1902)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Albert Einstein (1879-1957)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP145 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0161.htm');" onmouseover="Over(this)"
+  id=PPTL145 onmouseout="Out(this)">&quot;a Brown-mozgás
+  molekuláris-statisztikai...&quot;</a></font></div>
+  <div id=PPTC145 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB145 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>a Brown-mozgás molekuláris-statisztikai elmélete
+    (1905)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>a fényelektromos hatás magyarázata a
+    foton-hipotézissel (1905)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>a szilárd testek fajhője </font><font
+    face=Symbol size=2>®</font><font face="Times New Roman" size=2> az atomi
+    mozgások is kvantáltak (1907)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Nobel-díj (1922)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP146 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0160.htm');" onmouseover="Over(this)"
+  id=PPTL146 onmouseout="Out(this)">&quot;Robert&quot;</a></font></div>
+  <div id=PPTC146 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB146 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Robert<span style="mso-spacerun: yes"> 
+    </span>Andrews Millikan (1868-1953)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>az elektron pontos töltésének megmérése
+    (1909-1911)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP147 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0159.htm');" onmouseover="Over(this)"
+  id=PPTL147 onmouseout="Out(this)">&quot;a fényelektromos hatás Einstein-féle...&quot;</a></font></div>
+  <div id=PPTC147 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB147 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>a fényelektromos hatás Einstein-féle elméletének
+    kísérleti bizonyítása, h mérése (1913)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Nobel-díj (1923)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>a kozmikus sugárzás kozmikus eredetének
+    bizonyítása (1925)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP148 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0158.htm');" onmouseover="Over(this)"
+  id=PPTL148 onmouseout="Out(this)">&quot;Arnold Johannes Wilhelm Sommerfeld (...&quot;</a></font></div>
+  <div id=PPTC148 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB148 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Arnold Johannes Wilhelm Sommerfeld (1868-1951)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>tudatosítja és felhasználja, hogy a h mechanikai
+    hatás dimenziójú (1911)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>atommodell a színképvonalak finomszerkezetének
+    magyarázatára (ellipszispályák, azimutális kvantumszám), a Zeeman-effektus
+    kvantumelmélete (1916)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>mágneses kvantumszám (1920)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>fémek kvantumelmélete (elektrongáz, 1927-28)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>müncheni elméleti fizikai iskola: Heisenberg,
+    Pauli, Raabi, Debay, Bethe</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP149 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0157.htm');" onmouseover="Over(this)"
+  id=PPTL149 onmouseout="Out(this)">&quot;Niels Hendrik David<br>
+  Bohr (...&quot;</a></font></div>
+  <div id=PPTC149 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB149 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Niels Hendrik David<br>
+    Bohr (1885-1962)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>atommodell (1913)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP150 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0156.htm');" onmouseover="Over(this)"
+  id=PPTL150 onmouseout="Out(this)">Dia 150</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP151 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0155.htm');" onmouseover="Over(this)"
+  id=PPTL151 onmouseout="Out(this)">&quot;korrespondencia-elv (1918-1923&quot;</a></font></div>
+  <div id=PPTC151 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB151 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>korrespondencia-elv (1918-1923)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1922)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>komplementaritási elv (1927-1928)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>magfizika (1930-)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>James Franck (1882-1964)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Gustav Ludwig Hertz (1887-1975)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>atomok gerjesztése és ionizációja elektronnal
+    való bombázással (1913-&#9;&#9;&#9;&#9;&#9;&#9;&#9;1914)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP152 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0154.htm');" onmouseover="Over(this)"
+  id=PPTL152 onmouseout="Out(this)">&quot;Nobel-díj (1925)&quot;</a></font></div>
+  <div id=PPTC152 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB152 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Nobel-díj (1925)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP153 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0153.htm');" onmouseover="Over(this)"
+  id=PPTL153 onmouseout="Out(this)">&quot;Henry Moseley (1887-1964&quot;</a></font></div>
+  <div id=PPTC153 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB153 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Henry Moseley (1887-1964)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>röntgenvizsgálatok </font><font face=Symbol
+    size=2>®</font><font face="Times New Roman" size=2> az atommag töltése
+    azonos a<br>
+    rendszámmal (1913)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP154 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0152.htm');" onmouseover="Over(this)"
+  id=PPTL154 onmouseout="Out(this)">&quot;Otto Stern (1888-1969&quot;</a></font></div>
+  <div id=PPTC154 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB154 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Otto Stern (1888-1969)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>közvetlenül megmérte a molekulák sebességét és
+    igazolta Maxwellt (1920)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP155 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0151.htm');" onmouseover="Over(this)"
+  id=PPTL155 onmouseout="Out(this)">&quot;Walter Gerlach (1889-1979&quot;</a></font></div>
+  <div id=PPTC155 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB155 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Walter Gerlach (1889-1979)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>az atom mágneses momentuma - térbeli kvantálás
+    (1922)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1943)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP156 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0150.htm');" onmouseover="Over(this)"
+  id=PPTL156 onmouseout="Out(this)">&quot;Arthur Holly Compton (1892...&quot;</a></font></div>
+  <div id=PPTC156 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB156 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Arthur Holly Compton (1892-1962)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a röntgensugárzás hullámhosszának megváltozása
+    elektronon történő szóráskor - kísérlet és magyarázat (1923)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1927)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Louis de Broglie (1892-1987)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a kettős természetet kiterjeszti az anyagra is
+    (1923)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>vezérhullám-elmélet (1927)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1929)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP157 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0149.htm');" onmouseover="Over(this)"
+  id=PPTL157 onmouseout="Out(this)">&quot;Wolfgang Pauli (1900-1958&quot;</a></font></div>
+  <div id=PPTC157 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB157 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Wolfgang Pauli (1900-1958)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>feltevés a magspinről és a mágneses momentumról,
+    a kizárási elv (1924)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a spin kvantummechanikája (1927)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>kvantumelektrodinamika: térkvantálás
+    &#9;&#9;&#9;&#9;&#9;&#9;(1929)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>neutrinó-hipotézis (1931)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1945)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Hendrik Antony Kramers (1894-1952)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Stark-effektus (1920)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>diszperziós formula (1925) - a
+    korrespondencia-elv alkalmazása</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP158 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0148.htm');" onmouseover="Over(this)"
+  id=PPTL158 onmouseout="Out(this)">&quot;Werner Karl Heisenberg (1901...&quot;</a></font></div>
+  <div id=PPTC158 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB158 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Werner Karl Heisenberg (1901-1976)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>mátrixmechanika (1925)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>határozatlansági reláció (1927)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>kvantumelektrodinamika (1929)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj, izotópspin, magerők (1932)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>S-mátrix módszer (1943)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Erwin Schrödinger (1887-1961)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>a hullámmechanika és ekvivalenciája
+    &#9;&#9;&#9;&#9;&#9;&#9;&#9;(1926)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP159 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0147.htm');" onmouseover="Over(this)"
+  id=PPTL159 onmouseout="Out(this)">Dia 159</a></font></div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP160 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0146.htm');" onmouseover="Over(this)"
+  id=PPTL160 onmouseout="Out(this)">&quot;Nobel-díj (1933)&quot;</a></font></div>
+  <div id=PPTC160 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB160 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1933)</font></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Max Born (1882-1970)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>valószínűségi interpretáció, Born-közelítés,
+    operátor-fogalom (1926)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>kétatomos molekula (Oppenheimer,
+    &#9;&#9;&#9;&#9;&#9;&#9;&#9;1927)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1954)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP161 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0145.htm');" onmouseover="Over(this)"
+  id=PPTL161 onmouseout="Out(this)">&quot;Paul Adrien Maurice Dirac (...&quot;</a></font></div>
+  <div id=PPTC161 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB161 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width=20 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=2></td>
+    <td colspan=2><font size=2>Paul Adrien Maurice Dirac
+    (1902-&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;1984)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>matematikai apparátus (1926)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>másodkvantálás: elektromágneses tér,
+    kvantumtérelmélet, a sugárzás kvantumelmélete, relativisztikus
+    kvantumelmélet, pozitron, antirészecskék, vákuumpolarizáció
+    &#9;&#9;&#9;&#9;&#9;&#9;(1927-1928)</font></td>
+   </tr>
+   <tr>
+    <td colspan=3></td>
+    <td colspan=1><font size=2>Nobel-díj (1933)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP162 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0203.htm');" onmouseover="Over(this)"
+  id=PPTL162 onmouseout="Out(this)">Fizika és gyakorlat<br>
+  (az elektromosság alkalmazása)</a></font></div>
+  <div id=PPTC162 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB162 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>elektromágneses távíró<br>
+    Wilhelm Eduard
+    Weber (1804-1891)-Carl Friedrich Gauss (1777-1855) - 1833<br>
+    William Fothergill Cook (1806-1879)-Charles Wheatston (1802-1875) -
+    1837<br>
+    Samuel F. B. Morse (1791-1872) - 1837</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP163 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0201.htm');" onmouseover="Over(this)"
+  id=PPTL163 onmouseout="Out(this)">&quot;transzatlanti kábel (1866),...&quot;</a></font></div>
+  <div id=PPTC163 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB163 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;transzatlanti kábel (1866), duplex,
+    &#9;&#9;quadruplex (1874), időosztásos &#9;&#9;multiplex, telex<br>
+    telefon (1876), mikrohullámú &#9;&#9;&#9;rádiókapcsolat, műholdas
+    átvitel, &#9;&#9;számítógéphálózat (fax és e-mail)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>elektromos világítás<br>
+    Thomas Alva Edison
+    (1847-1931)<br>
+    &#9;villanykörte és hálózat (1878)<br>
+    az elektromosság szerepe mai &#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;életünkben</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP164 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0200.htm');" onmouseover="Over(this)"
+  id=PPTL164 onmouseout="Out(this)">&quot;az elektromágneses hullám
+  alkalmazásai<br>
+  Heinrich...&quot;</a></font></div>
+  <div id=PPTC164 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB164 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>az elektromágneses hullám alkalmazásai<br>
+    Heinrich
+    Rudolf Hertz (1857-1894)<br>
+    &#9;rádiófrekvenciás hullámok<br>
+    &#9;&#9;&#9;(1885-1889)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP165 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0199.htm');" onmouseover="Over(this)"
+  id=PPTL165 onmouseout="Out(this)">&quot;Guglielmo Marconi (1874-1937&quot;</a></font></div>
+  <div id=PPTC165 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB165 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Guglielmo Marconi (1874-1937)<br>
+    transzatlanti forgalmazás (1901)<br>
+    10.000 km (1910) - kapcsolat a hajókkal</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Alekszandr Sztyepanovics Popov (1859-1906)</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP166 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0198.htm');" onmouseover="Over(this)"
+  id=PPTL166 onmouseout="Out(this)">&quot;Repülőtéri&quot;</a></font></div>
+  <div id=PPTC166 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB166 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;&#9;&#9;&#9;&#9;&#9;&#9;<br>
+    <br>
+    <br>
+    &#9;&#9;&#9;&#9;&#9;&#9;&#9;<br>
+    &#9;&#9;&#9;&#9;&#9;&#9;&#9;Repülőtéri<br>
+    &#9;&#9;&#9;&#9;&#9;&#9;&#9;radarantenna<br>
+    <br>
+    <br>
+    <br>
+    Irányított mikrohullámú<br>
+    rádióantennák</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <div id=PPTP167 class=PTxt><font size=2><a
+  href="javascript:GoToSld('slide0197.htm');" onmouseover="Over(this)"
+  id=PPTL167 onmouseout="Out(this)">&quot;Vákuumdióda,&quot;</a></font></div>
+  <div id=PPTC167 class=CTxt style='display:none'>
+  <table style='color:white' id=PPTB167 class=CBorder>
+   <tr>
+    <td width=5 nowrap></td>
+    <td width="100%"></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>Vákuumdióda, trióda (1904-1906), tranzisztor
+    (1947), nyomtatott (1940-es évek) és integrált (1960-as évek) áramkörök</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;&#9;hangátvitel (1906-15)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;&#9;rádiós műsorszórás (1920)</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;&#9;ikonoszkóp (1923), TV</font></td>
+   </tr>
+   <tr>
+    <td colspan=1></td>
+    <td colspan=1><font size=2>&#9;&#9;radar (1935) stb.</font></td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+</body>
+
+</html>

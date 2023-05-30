@@ -1,0 +1,1176 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1250">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Tablazatok</title>
+</head>
+
+<body link="#0000FF" bgcolor="#F4FEFF" background="../../images/bg1.gif">
+
+  <table border="0" cellpadding="5" cellspacing="0" width="100%" background="../../images/bg2.gif" bgcolor="#003366">
+    <tr>
+      <td align="center"><b><font color="#FFFFFF" face="Arial" size="3">Táblázatok</font></b></td>
+    </tr>
+  </table>
+
+  <table border="0" width="100%" bgcolor="#F4FEFF" cellspacing="0" cellpadding="5">
+    <tr>
+      <td width="100%" colspan="2">
+
+&nbsp;
+<script language="JavaScript">
+function ujablak() {
+ html = window.open("","","resizable=1,scrollbars=1,width=400,height=300,screenx=50,screenY=50");
+}
+function updatewin(input_form) {
+html.document.open("text/html");
+html.document.write(input_form);
+html.document.close()
+}
+</script>
+<script
+language="JavaScript"><!--
+//-
+document.write('<h5><p align="Right"> Utolsó módosítás: ')
+document.write(document.lastModified)
+document.write('</p></h5>')
+// --></script>
+
+<div align="left">
+
+<table border="1" cellpadding="4" cellspacing="0" width="90%">
+    <tr>
+        <td width="100%"><font color="#800040" face="Arial" size="2">A táblázat
+        megadása a <b> &lt;table&gt;</b> tag használatával
+        lehetséges. <br>
+        A <b> &lt;table&gt;</b> és <b> &lt;/table&gt;</b> tageken belül, a <b>
+        &lt;tr&gt;</b> elemekkel adhatjuk meg a táblázat sorait. <br>
+        A <b> &lt;td&gt;</b> elemek a sorokon belüli cellák
+        létrehozására szolgál.</font>
+          <hr>
+          <p><font color="#800040" face="Arial" size="2">A <b>&lt;table&gt; </b>tag
+          paraméterei a következõk lehetnek:</font></p>
+          <blockquote>
+            <p><font color="#800040" face="Arial" size="2"><b>width:</b> szélesség
+            megadása képpontokban vagy a rendelkezésre álló hely százalékában<br>
+            <b>align:</b> a táblázat igazításának típusa (balra - left, középre
+            - center, jobbra - right)<br>
+            </font><font color="#800040" face="Arial" size="2"><b>border:</b> a
+            keret vastagsága képpontokban<br>
+            <b>cellspacing:</b> (cellatávolság): az egyes cellák közti hely képpontokban<br>
+            <b>cellpadding:</b> (cellabélés): a cella tartalma és a cella széle
+            közti távolság képpontokban</font></p>
+          </blockquote>
+          <hr>
+          <p><font color="#800040" face="Arial" size="2">A <b>&lt;tr&gt; </b>tag
+          paraméterei a következõk lehetnek:</font></p>
+          <blockquote>
+            <p><font color="#800040" face="Arial" size="2"><b>align:</b> a
+            sorban lévõ cellák vízszintes igazításának típusa (balra -
+            left, középre - center, jobbra - right)<br>
+            <b>valign</b>:a sorban lévõ cellák függõleges igazításának típusa
+            (felülre - top, középre - middle, alulra - bottom)&nbsp;</font></p>
+          </blockquote>
+          <hr>
+          <p><font color="#800040" face="Arial" size="2">A <b>&lt;td&gt; </b>tag
+          paraméterei a következõk lehetnek:</font></p>
+          <blockquote>
+            <p><font color="#800040" face="Arial" size="2"><b>align:</b> a cella
+            vízszintes igazításának típusa (balra - left, középre -
+            center, jobbra - right)<br>
+            <b>valign</b>:a cella függõleges igazításának típusa (felülre
+            - top, középre - middle, alulra - bottom)&nbsp;<br>
+            <b>(a fenti igazítások felülírják a &lt;tr&gt; tagnél megadott
+            igazításokat)<br>
+            width: </b>cella szélességének megadása képpontokban. (A százalékos
+            megadás nem javasolt...)<br>
+            <b>height: </b>cella magasságának megadása képpontokban. (A százalékos
+            megadás nem javasolt...)<br>
+            <b>rowspan: </b>az adott cella ennyi sor magas lesz. (cellák
+            egybenyitása függõlegesen)<b><br>
+            colspan: </b>az adott cella ennyi oszlop széles lesz (cellák
+            egybenyitása vízszintesen)<b><br>
+            </b></font></p>
+          </blockquote>
+          <p><font color="#800040" face="Arial" size="2">A következõ példákon
+          keresztül megnézhetitek, hogy az egyes paraméterek valójában mire
+          szolgálnak.</font></p>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><font face="Arial" size="2">&nbsp;</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td><font face="Arial" size="2" color="#FF0000">Ha ezt a kódot használod</font>
+          <p>&nbsp;
+        </td>
+        <td width="33"></td>
+        <td><font face="Arial" size="2" color="#FF0000">ez lesz az eredménye</font>
+          <p>&nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&lt;table align=&quot;center&quot;&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;1. sor 1. elem&lt;/td&gt;<br>
+        &lt;td&gt;1. sor 2. elem&lt;/td&gt;<br>
+        &lt;td&gt;1. sor 3. elem&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;2. sor 1. elem&lt;/td&gt;<br>
+        &lt;td&gt;2. sor 2. elem&lt;/td&gt;<br>
+        &lt;td&gt;2. sor 3. elem&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;<br>
+        <br>
+          </font>
+        </td>
+        <td width="33"><font face="Arial" size="2"><img src="arrow.gif" width="18"
+        height="17"></font></td>
+        <td><table border="0" align="center">
+            <tr>
+                <td><font face="Arial" size="2">1. sor 1. elem</font></td>
+                <td><font face="Arial" size="2">1. sor 2. elem</font></td>
+                <td><font face="Arial" size="2">1. sor 3. elem</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">2. sor 1. elem</font></td>
+                <td><font face="Arial" size="2">2. sor 2. elem</font></td>
+                <td><font face="Arial" size="2">2. sor 3. elem</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t1">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="13" cols="50">     
+    &lt;table align=&quot;center&quot;&gt;
+            &lt;tr&gt;
+                &lt;td&gt;1. sor 1. elem&lt;/td&gt;
+                &lt;td&gt;1. sor 2. elem&lt;/td&gt;
+                &lt;td&gt;1. sor 3. elem&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;2. sor 1. elem&lt;/td&gt;
+                &lt;td&gt;2. sor 2. elem&lt;/td&gt;
+                &lt;td&gt;2. sor 3. elem&lt;/td&gt;
+            &lt;/tr&gt;
+     &lt;/table&gt;
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t1.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat kerettel (border),cellabéléssel (cellpading)</font></h3>
+
+<p><font face="Arial" size="2"><strong>Border</strong>: a táblázat köré rajzolandó keret
+vastagsága pixelekben<br>
+<strong>Cellpadding:</strong> a cellán belül a cellatartalom
+és a cella széle közti távolság pixelekben</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td><font face="Arial" size="2">&lt;table border=1 cellpadding=5&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;1. sor 1. elem&lt;/td&gt;<br>
+        &lt;td&gt;1. sor 2. elem&lt;/td&gt;<br>
+        &lt;td&gt;1. sor 3. elem&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;2. sor 1. elem&lt;/td&gt;<br>
+        &lt;td&gt;2. sor 2. elem&lt;/td&gt;<br>
+        &lt;td&gt;2. sor 3. elem&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font></td>
+        <td width="33"><font face="Arial" size="2"><img src="arrow.gif" width="18"
+        height="17"></font></td>
+        <td><table border="1" cellpadding="5">
+            <tr>
+                <td><font face="Arial" size="2">1. sor 1. elem</font></td>
+                <td><font face="Arial" size="2">1. sor 2. elem</font></td>
+                <td><font face="Arial" size="2">1. sor 3. elem</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">2. sor 1. elem</font></td>
+                <td><font face="Arial" size="2">2. sor 2. elem</font></td>
+                <td><font face="Arial" size="2">2. sor 3. elem</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t2">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="13" cols="50">&lt;table border=&quot;1&quot; cellpadding=&quot;5&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1. sor 1. elem&lt;/td&gt;
+        &lt;td&gt;1. sor 2. elem&lt;/td&gt;
+        &lt;td&gt;1. sor 3. elem&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2. sor 1. elem&lt;/td&gt;
+        &lt;td&gt;2. sor 2. elem&lt;/td&gt;
+        &lt;td&gt;2. sor 3. elem&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t2.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<p><font face="Arial" size="2">&nbsp;</font></p>
+
+<hr>
+
+
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#F3DFB4"><img border="0" src="../figyelem.gif" width="53" height="47"></td>
+    <td bgcolor="#FFFFFF">
+          <font color="#FF0000">
+        Ha valamelyik cella üres, akkor a böngészõ nem
+        jeleníti meg a cellát határoló keretet. Ha azt
+        akarjátok, hogy legyen egy üres cellátok, amely
+        körül van keret, akkor a &lt;td&gt; és &lt;/td&gt;
+        tagek közé helyezzetek el egy <a href="tablazat.html#nbsp">&amp;nbsp;</a> kódot.</font></td> 
+  </tr> 
+</table> 
+ 
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat cellabéléssel, és cellatávolsággal
+(cellspacing)</font></h3>
+
+<p><font face="Arial" size="2"><strong>Cellspacing:</strong> az egyes cellák közti
+távolság illetve a szélsõ cellák és a keret közti
+távolság pixelekben</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td><font face="Arial" size="2">&lt;table border=1 cellpadding=5 cellspacing=10&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;1. sor 1. elem&lt;/td&gt;<br>
+        &lt;td&gt;1. sor 2. elem&lt;/td&gt;<br>
+        &lt;td&gt;1. sor 3. elem&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;2. sor 1. elem&lt;/td&gt;<br>
+        &lt;td&gt;2. sor 2. elem&lt;/td&gt;<br>
+        &lt;td&gt;2. sor 3. elem&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font></td>
+        <td width="33"><font face="Arial" size="2"><img src="arrow.gif" width="18"
+        height="17"></font></td>
+        <td><table border="1" cellpadding="5" cellspacing="10">
+            <tr>
+                <td><font face="Arial" size="2">1. sor 1. elem</font></td>
+                <td><font face="Arial" size="2">1. sor 2. elem</font></td>
+                <td><font face="Arial" size="2">1. sor 3. elem</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">2. sor 1. elem</font></td>
+                <td><font face="Arial" size="2">2. sor 2. elem</font></td>
+                <td><font face="Arial" size="2">2. sor 3. elem</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t3">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="13" cols="60">&lt;table border=&quot;1&quot; cellpadding=&quot;5&quot; cellspacing=&quot;10&quot;&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1. sor 1. elem&lt;/td&gt;
+          &lt;td&gt;1. sor 2. elem&lt;/td&gt;
+          &lt;td&gt;1. sor 3. elem&lt;/td&gt;
+       &lt;/tr&gt;
+       &lt;tr&gt;
+          &lt;td&gt;2. sor 1. elem&lt;/td&gt;
+          &lt;td&gt;2. sor 2. elem&lt;/td&gt;
+          &lt;td&gt;2. sor 3. elem&lt;/td&gt;
+      &lt;/tr&gt;
+&lt;/table&gt;</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t3.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat felirattal (caption)</font></h3>
+
+<p><font color="#800040" face="Arial" size="2">A táblázat nevét a &lt;caption&gt;
+&lt;/caption&gt; tagek között adhatjuk meg. <br>
+Az hogy a név a táblázat fölött, vagy alatt jelenik meg, az
+align=top,<br>
+illetve align=bottom paraméterrel adhatjuk meg. </font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td><font face="Arial" size="2">&lt;table border=1&gt;<br>
+        &lt;caption align=bottom&gt;táblázat neve
+        &lt;/caption&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;1. elem&lt;/td&gt;<br>
+        &lt;td&gt;2. elem&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font> </td>
+        <td width="33"><font face="Arial" size="2"><img src="arrow.gif" width="18"
+        height="17"></font></td>
+        <td><table border="1">
+            <tr>
+                <td><font face="Arial" size="2">1. elem</font></td>
+                <td><font face="Arial" size="2">2. elem</font></td>
+            </tr>
+            <caption align="bottom"><font face="Arial" size="2">táblázat neve</font> </caption>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t4">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="8" cols="60">&lt;table border=&quot;1&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1. elem&lt;/td&gt;
+        &lt;td&gt;2. elem&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;caption align=&quot;bottom&quot;&gt;táblázat neve &lt;/caption&gt;
+&lt;/table&gt;</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t4.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat elemeinek vízszintes igazítása <br>
+(align=left|middle|right)</font></h3>
+
+<p><font color="#800040" face="Arial" size="2">Az align=left|middle|right paraméter
+használatával a cella tartalmát balra, középre vagy jobbra
+igazíthatjuk.<br>
+A middle helyett írhatunk center-t is.</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td><font face="Arial" size="2">&lt;table border=1&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;cellaelem&lt;/td&gt;<br>
+        &lt;td&gt;cellaelem&lt;/td&gt;<br>
+        &lt;td&gt;cellaelem&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td align=left&gt;bal&lt;/td&gt;<br>
+        &lt;td align=middle&gt;közép&lt;/td&gt;<br>
+        &lt;td align=right&gt;jobb&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font></td>
+        <td width="33"><font face="Arial" size="2"><img src="arrow.gif" width="18"
+        height="17"></font></td>
+        <td><table border="1">
+            <tr>
+                <td><font face="Arial" size="2">cellaelem</font></td>
+                <td><font face="Arial" size="2">cellaelem</font></td>
+                <td><font face="Arial" size="2">cellaelem</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">bal</font></td>
+                <td align="middle"><font face="Arial" size="2">közép</font></td>
+                <td align="right"><font face="Arial" size="2">jobb</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t5">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="13" cols="50">&lt;table border=&quot;1&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;cellaelem&lt;/td&gt;
+        &lt;td&gt;cellaelem&lt;/td&gt;
+        &lt;td&gt;cellaelem&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td align=&quot;left&quot;&gt;bal&lt;/td&gt;
+        &lt;td align=&quot;middle&quot;&gt;közép&lt;/td&gt;
+        &lt;td align=&quot;right&quot;&gt;jobb&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+	</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t5.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat elemeinek függõleges igazítása<br>
+(valign=top|middle|bottom)</font></h3>
+
+<p><font color="#800040" face="Arial" size="2">A valign=top|middle|bottom paraméter
+használatával a cella tartalmát felülre, középre vagy
+alulra igazíthatjuk.<br>
+Alapértelmezésben a cellatartalom középre igazodik.<br>
+A middle helyett írhatunk center-t is.</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="100%"><font face="Arial" size="2">&lt;table border=1&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;Az INFO ’9? konferencia rendezõi ez évtõl
+        Szombathelyen is elindítják az informatika oktatással
+        és érvényesülési ismeretekkel foglakozó konferencia
+        sorozatot.&lt;/td&gt;<br>
+        &lt;td valign=top&gt;felül&lt;/td&gt;<br>
+        &lt;td valign=bottom&gt;alul&lt;/td&gt;<br>
+        &lt;td valign=middle&gt;középre&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font> </td>
+    </tr>
+    <tr>
+        <td align="center" width="100%"><font face="Arial" size="2"><img src="arrowdn.gif"
+        width="17" height="18"></font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&nbsp;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><table border="1">
+            <tr>
+                <td><font face="Arial" size="2">Az INFO ’9? konferencia rendezõi ez
+                évtõl Szombathelyen is elindítják az
+                informatika oktatással és érvényesülési
+                ismeretekkel foglakozó konferencia sorozatot.</font></td>
+                <td valign="top"><font face="Arial" size="2">felül</font></td>
+                <td valign="bottom"><font face="Arial" size="2">alul</font></td>
+                <td><font face="Arial" size="2">középre</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t6">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="12" cols="70">&lt;table border=&quot;1&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Az INFO ’9? konferencia rendezõi ez évtõl
+        Szombathelyen is elindítják az informatika oktatással
+        és érvényesülési ismeretekkel foglakozó konferencia
+        sorozatot.&lt;/td&gt;
+        &lt;td valign=&quot;top&quot;&gt;felül&lt;/td&gt;
+        &lt;td valign=&quot;bottom&quot;&gt;alul&lt;/td&gt;
+        &lt;td valign=&quot;middle&quot;&gt;középre&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+	</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t6.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat celláinak összevonása vízszintesen (colspan)</font></h3>
+
+<p><font face="Arial" size="2"><strong>Colspan</strong>: az adott cella ennyi oszlopot fog
+elfoglalni</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font face="Arial" size="2">&lt;table border=1&gt;<br>
+        &lt;tr&gt;<br>
+          &nbsp; &lt;td&gt;1.1.&lt;/td&gt;<br>
+          &nbsp; &lt;td&gt;1.2.&lt;/td&gt;<br>
+          &nbsp; &lt;td&gt;1.3.&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+          &nbsp; &lt;td&gt;2.1.&lt;/td&gt;<br>
+          &nbsp; &lt;td colspan=2&gt;2.2-3.<br>
+          &nbsp; &lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+          &nbsp; &lt;td&gt;3.1.&lt;/td&gt;<br>
+          &nbsp; &lt;td&gt;3.2.&lt;/td&gt;<br>
+          &nbsp; &lt;td&gt;3.3.&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font> </td>
+        <td width="33"><font face="Arial" size="2"><img src="arrow.gif" width="18"
+        height="17"></font></td>
+        <td><table border="1">
+            <tr>
+                <td><font face="Arial" size="2">1.1.</font></td>
+                <td><font face="Arial" size="2">1.2.</font></td>
+                <td><font face="Arial" size="2">1.3.</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">2.1.</font></td>
+                <td colspan="2"><font face="Arial" size="2">2.2-3.</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">3.1.</font></td>
+                <td><font face="Arial" size="2">3.2.</font></td>
+                <td><font face="Arial" size="2">3.3.</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t7">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="17" cols="50">&lt;table border=&quot;1&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1.1.&lt;/td&gt;
+        &lt;td&gt;1.2.&lt;/td&gt;
+        &lt;td&gt;1.3.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2.1.&lt;/td&gt;
+        &lt;td colspan=&quot;2&quot;&gt;2.2-3.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;3.1.&lt;/td&gt;
+        &lt;td&gt;3.2.&lt;/td&gt;
+        &lt;td&gt;3.3.&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+	</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t7.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat celláinak összevonása függõlegesen (rowspan)</font></h3>
+
+<p><font face="Arial" size="2"><strong>Rowspan</strong>: az adott cella ennyi sor magasságú
+lesz.</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font face="Arial" size="2">&lt;table border=1&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td rowspan=2&gt;1.-2.1.&lt;/td&gt;<br>
+        &lt;td&gt;1.2.&lt;/td&gt;<br>
+        &lt;td&gt;1.3.&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;2.2.&lt;/td&gt;<br>
+        &lt;td&gt;2.3.&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;3.1.&lt;/td&gt;<br>
+        &lt;td&gt;3.2.&lt;/td&gt;<br>
+        &lt;td&gt;3.3.&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font> </td>
+        <td width="33"><font face="Arial" size="2"><img src="arrow.gif" width="18"
+        height="17"></font></td>
+        <td><table border="1">
+            <tr>
+                <td rowspan="2"><font face="Arial" size="2">1.-2.1.</font></td>
+                <td><font face="Arial" size="2">1.2.</font></td>
+                <td><font face="Arial" size="2">1.3.</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">2.2.</font></td>
+                <td><font face="Arial" size="2">2.3.</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">3.1.</font></td>
+                <td><font face="Arial" size="2">3.2.</font></td>
+                <td><font face="Arial" size="2">3.3.</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t8">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="17" cols="50">&lt;table border=&quot;1&quot;&gt;
+    &lt;tr&gt;
+        &lt;td rowspan=&quot;2&quot;&gt;1.-2.1.&lt;/td&gt;
+        &lt;td&gt;1.2.&lt;/td&gt;
+        &lt;td&gt;1.3.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2.2.&lt;/td&gt;
+        &lt;td&gt;2.3.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;3.1.&lt;/td&gt;
+        &lt;td&gt;3.2.&lt;/td&gt;
+        &lt;td&gt;3.3.&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+	</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t8.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat szélességének megadása százalékban (width=
+%)</font></h3>
+
+<p><font color="#800040" face="Arial" size="2">A százalékos megadás során a
+táblázat szélessége mindig a rendelkezésre álló hely
+megadott százaléka lesz.<br>
+Tehát ha az ablak méretét megváltoztatjuk, akkor a táblázat
+mérete is megváltozik.</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="100%"><font face="Arial" size="2">&lt;table border=1 width=80%&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;1.1.&lt;/td&gt;<br>
+        &lt;td&gt;1.2.&lt;/td&gt;<br>
+        &lt;td&gt;1.3.&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;2.1.&lt;/td&gt;<br>
+        &lt;td&gt;2.2.&lt;/td&gt;<br>
+        &lt;td&gt;2.3.&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="100%"><font face="Arial" size="2"><img src="arrowdn.gif"
+        width="17" height="18"></font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&nbsp;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><table border="1" width="80%">
+            <tr>
+                <td><font face="Arial" size="2">1.1.</font></td>
+                <td><font face="Arial" size="2">1.2.</font></td>
+                <td><font face="Arial" size="2">1.3.</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">2.1.</font></td>
+                <td><font face="Arial" size="2">2.2.</font></td>
+                <td><font face="Arial" size="2">2.3.</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t9">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="12" cols="50">&lt;table border=&quot;1&quot; width=&quot;80%&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1.1.&lt;/td&gt;
+        &lt;td&gt;1.2.&lt;/td&gt;
+        &lt;td&gt;1.3.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2.1.&lt;/td&gt;
+        &lt;td&gt;2.2.&lt;/td&gt;
+        &lt;td&gt;2.3.&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+	</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t9.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat szélességének megadása pixelben (width= )</font></h3>
+
+<p><font color="#800040" face="Arial" size="2">A képpontokban történõ megadásnál
+a táblázat minden ablakméretnél ugyanakkora szélességû
+lesz.</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="100%"><font face="Arial" size="2">&lt;table border=1 width=240&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;1.1.&lt;/td&gt;<br>
+        &lt;td&gt;1.2.&lt;/td&gt;<br>
+        &lt;td&gt;1.3.&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;2.1.&lt;/td&gt;<br>
+        &lt;td&gt;2.2.&lt;/td&gt;<br>
+        &lt;td&gt;2.3.&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><font face="Arial" size="2"><img src="arrowdn.gif" width="17"
+        height="18"></font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&nbsp;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><table border="1" width="240">
+            <tr>
+                <td><font face="Arial" size="2">1.1.</font></td>
+                <td><font face="Arial" size="2">1.2.</font></td>
+                <td><font face="Arial" size="2">1.3.</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">2.1.</font></td>
+                <td><font face="Arial" size="2">2.2.</font></td>
+                <td><font face="Arial" size="2">2.3.</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t10">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="13" cols="50">&lt;table border=&quot;1&quot; width=&quot;240&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1.1.&lt;/td&gt;
+        &lt;td&gt;1.2.&lt;/td&gt;
+        &lt;td&gt;1.3.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2.1.&lt;/td&gt;
+        &lt;td&gt;2.2.&lt;/td&gt;
+        &lt;td&gt;2.3.&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+	</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t10.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázat háttérszínének megadása <br>
+(bgcolor=szín|színkód)</font></h3>
+
+<p><font color="#800040" face="Arial" size="2">A háttérszínt a bgcolor paraméterrel
+definiálhatjuk. pl. bgcolor=&quot;lightgreen&quot;, vagy
+bgcolor=&quot;#00FFFF&quot;.</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="100%"><font color="#000000" size="2" face="Arial">&lt;table
+        border=&quot;1&quot; width=&quot;50%&quot;
+        bgcolor=&quot;#00FFFF&quot;&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;1.1&lt;/td&gt;<br>
+        &lt;td&gt;1.2&lt;/td&gt;<br>
+        &lt;td&gt;1.3&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;2.1&lt;/td&gt;<br>
+        &lt;td&gt;2.2&lt;/td&gt;<br>
+        &lt;td&gt;2.3&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><font face="Arial" size="2"><img src="arrowdn.gif" width="17"
+        height="18"></font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&nbsp;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><table border="1" width="50%"
+        bgcolor="#00FFFF">
+            <tr>
+                <td><font face="Arial" size="2">1.1</font></td>
+                <td><font face="Arial" size="2">1.2</font></td>
+                <td><font face="Arial" size="2">1.3</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">2.1</font></td>
+                <td><font face="Arial" size="2">2.2</font></td>
+                <td><font face="Arial" size="2">2.3</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t11">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="13" cols="50">&lt;table border=&quot;1&quot; width=&quot;50%&quot; bgcolor=&quot;#00FFFF&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1.1&lt;/td&gt;
+        &lt;td&gt;1.2&lt;/td&gt;
+        &lt;td&gt;1.3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2.1&lt;/td&gt;
+        &lt;td&gt;2.2&lt;/td&gt;
+        &lt;td&gt;2.3&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+	</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t11.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<p><font face="Arial" size="2">&nbsp;</font></p>
+
+<hr>
+
+
+
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#F3DFB4"><img border="0" src="../figyelem.gif" width="53" height="47"></td>
+    <td bgcolor="#FFFFFF">
+          <font face="Arial" size="2" color="#FF0000"> 
+        Ha valamelyik cella üres, akkor a böngészõ nem
+        jeleníti meg a cellát határoló keretet, illetve a
+        megadott háttérszín sem érvényesül. Ha azt
+        akarjátok, hogy legyen egy üres cellátok, amely
+        körül van keret, vagy legyen egy adott hátterû üres
+        cellátok, akkor a &lt;td&gt; és &lt;/td&gt; tagek
+        közé helyezzetek el egy <a href="tablazat.html#nbsp">&amp;nbsp;</a> kódot.</font></td>  
+  </tr>  
+</table>  
+  
+ 
+
+<hr>
+
+<h3><font face="Arial" size="2">Táblázathoz háttérkép rendelése<br>
+(background)</font></h3>
+
+<p><font color="#800040" face="Arial" size="2">Ha nem háttérszínt, hanem
+háttérképet szeretnénk definiálni, akkor azt a background
+paraméterrel tehetjük meg.<br>
+A kép formátuma GIF vagy JPG lehet.</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="100%"><font color="#000000" size="2" face="Arial">&lt;table
+        border=&quot;1&quot; width=&quot;50%&quot;
+        background=&quot;backg.gif&quot;&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;1.1&lt;/td&gt;<br>
+        &lt;td&gt;1.2&lt;/td&gt;<br>
+        &lt;td&gt;1.3&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td&gt;2.1&lt;/td&gt;<br>
+        &lt;td&gt;2.2&lt;/td&gt;<br>
+        &lt;td&gt;2.3&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><font face="Arial" size="2"><img src="arrowdn.gif" width="17"
+        height="18"></font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&nbsp;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><table border="1" width="50%"
+        background="backg.gif">
+            <tr>
+                <td><font face="Arial" size="2">1.1</font></td>
+                <td><font face="Arial" size="2">1.2</font></td>
+                <td><font face="Arial" size="2">1.3</font></td>
+            </tr>
+            <tr>
+                <td><font face="Arial" size="2">2.1</font></td>
+                <td><font face="Arial" size="2">2.2</font></td>
+                <td><font face="Arial" size="2">2.3</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t12">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="14" cols="60">&lt;table border=&quot;1&quot; width=&quot;50%&quot; background=&quot;backg.gif&quot;&gt;
+    &lt;tr&gt;
+        &lt;td&gt;1.1&lt;/td&gt;
+        &lt;td&gt;1.2&lt;/td&gt;
+        &lt;td&gt;1.3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;2.1&lt;/td&gt;
+        &lt;td&gt;2.2&lt;/td&gt;
+        &lt;td&gt;2.3&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+	</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t12.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Az egyes cellák hátterének megváltoztatása
+(bgcolor=szín|színkód)</font></h3>
+
+<p><font color="#800040" face="Arial" size="2">Nem csak az egész táblázatra
+vonatkozóan adhatjuk meg a háttérszínt, hanem az egyes
+cellák hátterét, vagy háttérszínét is beállíthatjuk..</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="100%"><font color="#000000" size="2" face="Arial">&lt;table
+        border=&quot;1&quot; width=&quot;50%&quot;
+        bgcolor=&quot;#00FFFF&quot;&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td bgcolor=&quot;#008000&quot;&gt;1.1&lt;/td&gt;<br>
+        &lt;td bgcolor=&quot;#00FF00&quot;&gt;1.2&lt;/td&gt;<br>
+        &lt;td bgcolor=&quot;#FFFF00&quot;&gt;1.3&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td background=&quot;backg.gif&quot;&gt;2.1&lt;/td&gt;<br>
+        &lt;td background=&quot;backg.gif&quot;&gt;2.2&lt;/td&gt;<br>
+        &lt;td background=&quot;backg.gif&quot;&gt;2.3&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><font face="Arial" size="2"><img src="arrowdn.gif" width="17"
+        height="18"></font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&nbsp;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><table border="1" width="50%"
+        bgcolor="#00FFFF">
+            <tr>
+                <td bgcolor="#008000"><font face="Arial" size="2">1.1</font></td>
+                <td bgcolor="#00FF00"><font face="Arial" size="2">1.2</font></td>
+                <td bgcolor="#FFFF00"><font face="Arial" size="2">1.3</font></td>
+            </tr>
+            <tr>
+                <td background="backg.gif"><font face="Arial" size="2">2.1</font></td>
+                <td background="backg.gif"><font face="Arial" size="2">2.2</font></td>
+                <td background="backg.gif"><font face="Arial" size="2">2.3</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t13">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="13" cols="50">&lt;table border=&quot;1&quot; width=&quot;50%&quot; bgcolor=&quot;#00FFFF&quot;&gt;
+    &lt;tr&gt;
+        &lt;td bgcolor=&quot;#008000&quot;&gt;1.1&lt;/td&gt;
+        &lt;td bgcolor=&quot;#00FF00&quot;&gt;1.2&lt;/td&gt;
+        &lt;td bgcolor=&quot;#FFFF00&quot;&gt;1.3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td background=&quot;backg.gif&quot;&gt;2.1&lt;/td&gt;
+        &lt;td background=&quot;backg.gif&quot;&gt;2.2&lt;/td&gt;
+        &lt;td background=&quot;backg.gif&quot;&gt;2.3&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+	</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t13.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><font face="Arial" size="2">Az egyes cellák méretének megadása (szélesség,
+magaság)</font></h3>
+
+<p><font color="#800040" face="Arial" size="2">A cellák szélességét szintén
+beállíthatjuk a width= paraméter használatával. <br>
+Használhatjuk a relatív (%-ban megadott), vagy az abszolút
+(képpontokban megadott) méretmegadási formát is, bár a százalékos megadást
+nem támogatja a HTML specifikáció. A böngészõk többsége azonban helyesen
+jeleníti meg az oldalt.</font></p>
+
+<p><font color="#800040" face="Arial" size="2">A táblázat, illetve a cella
+magasságát definiálhatjuk a height= paraméterrel.&nbsp;<br>
+(A táblázat magasságát megadhatjuk %-os formában is, de a cellamagasság
+%-os megadását kerüljük, mert a különbözõ típusú böngészõk más-más
+eredményt mutatnak)</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="100%"><font color="#000000" size="2" face="Arial">&lt;table
+        border=&quot;1&quot; width=&quot;90%&quot;
+        bgcolor=&quot;#00FFFF&quot;&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td width=&quot;60%&quot;&gt;1.1&lt;/td&gt;<br>
+        &lt;td width=&quot;30%&quot;&gt;1.2&lt;/td&gt;<br>
+        &lt;td width=&quot;10%&quot;&gt;1.3&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;tr&gt;<br>
+        &lt;td height=100&gt;2.1&lt;/td&gt;<br>
+        &lt;td&gt;2.2&lt;/td&gt;<br>
+        &lt;td&gt;2.3&lt;/td&gt;<br>
+        &lt;/tr&gt;<br>
+        &lt;/table&gt;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><font face="Arial" size="2"><img src="arrowdn.gif" width="17"
+        height="18"></font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&nbsp;</font></td>
+    </tr>
+    <tr>
+        <td width="100%"><table border="1" width="90%"
+        bgcolor="#00FFFF">
+            <tr>
+                <td width="60%"><font face="Arial" size="2">1.1</font></td>
+                <td width="30%"><font face="Arial" size="2">1.2</font></td>
+                <td width="10%"><font face="Arial" size="2">1.3</font></td>
+            </tr>
+            <tr>
+                <td height=100><font face="Arial" size="2">2.1</font></td>
+                <td><font face="Arial" size="2">2.2</font></td>
+                <td><font face="Arial" size="2">2.3</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="t14">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="13" cols="50">&lt;table border=&quot;1&quot; width=&quot;90%&quot; bgcolor=&quot;#00FFFF&quot;&gt;
+    &lt;tr&gt;
+        &lt;td width=&quot;60%&quot;&gt;1.1&lt;/td&gt;
+        &lt;td width=&quot;30%&quot;&gt;1.2&lt;/td&gt;
+        &lt;td width=&quot;10%&quot;&gt;1.3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td height=100&gt;2.1&lt;/td&gt;
+        &lt;td&gt;2.2&lt;/td&gt;
+        &lt;td&gt;2.3&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</textarea> </font> </p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(t14.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<h3><strong><font face="Arial">Az &amp;nbsp; karakter</font><font face="Arial" size="2"><br>
+</font>
+</strong></h3>
+
+<table border="1" cellpadding="10" width="80%">
+    <tr>
+        <td colspan="2"><a name="nbsp"><font face="Arial" size="2">&amp;nbsp;</font></a></td>
+        <td><font face="Arial" size="2">Alapesetben ha két szó között üres hely van,
+        akkor a böngészõ a jobb helykihasználás érdekében
+        a két szót különválaszthatja, tehát elképzelhetõ,
+        hogy a két szó nem egy sorban jelenik meg. Ha ezt el
+        szeretnénk kerülni, akkor kell az &amp;nbsp;
+        (non-breaking space) jelet alkalmaznunk. Ekkor a
+        böngészõ a két szót &quot;egymáshoz
+        ragasztja&quot;, vagyis nem fogja szétválasztani a
+        szavakat.</font></td>
+    </tr>
+</table>
+
+<p><strong><font face="Arial" size="2">Példa:</font></strong></p>
+
+<p><font face="Arial" size="2">Vegyünk egy (205 képpont széles) táblázatot és nézzük
+meg, hogy hogyan tördeli a böngészõ a szöveget.</font></p>
+
+<table border="0" width="80%">
+    <tr>
+        <td rowspan="2"><font face="Arial" size="2"><img src="nbsp.gif" width="210"
+        height="157"></font></td>
+        <td><font face="Arial" size="2">ez az alap tördelés</font></td>
+    </tr>
+    <tr>
+        <td valign="bottom"><font face="Arial" size="2">Itt a &quot;bizonyos szavakat&quot;
+        között nem egyszerû üres hely van, hanem <em>&amp;nbsp;</em>
+        kód, ezért a böngészõ nem tördeli külön a
+        szavakat.</font></td>
+    </tr>
+</table>
+<p>&nbsp;<font face="Arial" size="2">Amint a fentiekben látható volt, az &amp;nbsp;
+karaktert a táblázatoknál is nagy hasznát vehetjük.</font></td>
+    </tr>
+    <tr>
+      <td width="50%">&nbsp;</td>
+      <td width="50%" align="right">&nbsp;</td>
+    </tr>
+  </table>
+
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,907 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1250">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Urlapok</title>
+</head>
+
+<body link="#0000FF" bgcolor="#F4FEFF" background="../../images/bg1.gif">
+
+  <table border="0" cellpadding="5" cellspacing="0" width="100%" background="../../images/bg2.gif" bgcolor="#003366">
+    <tr>
+      <td align="center"><b><font color="#FFFFFF" face="Arial" size="3">Ûrlapok</font></b></td>
+    </tr>
+  </table>
+
+  <table border="0" width="100%" bgcolor="#F4FEFF" cellspacing="0" cellpadding="5">
+    <tr>
+      <td width="100%" colspan="2">
+<script
+language="JavaScript"><!--
+//-
+document.write('<h5><p align="Right"> Utolsó módosítás: ')
+document.write(document.lastModified)
+document.write('</p></h5>')
+// --></script>
+<script language="JavaScript">
+
+<!--
+
+function ujablak() {
+ html = window.open("","","resizable=1,scrollbars=1,screenx=50,screenY=50");
+}
+function updatewin(input_form) {
+html.document.open("text/html");
+html.document.write(input_form);
+html.document.close()
+}
+// -->
+
+</script>
+&nbsp;
+
+<p><font face="Arial" size="2">Az ûrlapok az interaktivitás egyik legfontosabb elemei, a
+kommunikációt segít(het)ik elõ.</font></p>
+
+<p><font face="Arial" size="2">Az ûrlapok/kérdõívek összes eleme egy &lt;FORM&gt; elemen
+belül helyezkedik el, ahol az egyes gombokat vagy
+szövegmezõket más más elemekkel definiáljuk.</font></p>
+
+<p><font face="Arial" size="2">A <strong>&lt;FORM&gt; </strong>tag paraméterei:</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td valign="top" width="30%"><font face="Arial" size="2"><strong>ACTION</strong>= URL</font></td>
+        <td width="70%"><font face="Arial" size="2">Az ûrlap elküldésekor végrehajtandó
+        feladat, amelyet egy URL segítségével adhatunk meg. Az
+        egyszerûbb eset az (és mi fõleg ezzel fogunk
+        foglalkozni), amikor az adott ûrlap kitöltése után az
+        eredményt egy e-mail címre továbbítjuk. Ekkor az URL
+        a <em>&quot;mailto:valaki@valalhol&quot;</em> típusú
+        lesz. <br>
+        A második esetben az adott ûrlapot egy szerveren futó
+        CGI program dolgozza fel. Ekkor az URL pl. <em>&quot;http://www.saturnus.hu/cgi-bin/feldolgoz.cgi&quot;</em></font><hr>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" width="30%"><font face="Arial" size="2"><strong>METHOD=</strong>
+        küldéstípus (elhagyható)</font></td>
+        <td width="70%"><font face="Arial" size="2">Ha az ACTION paraméterrel egy CGI
+        programra hivatkozunk, akkor ezzel adhatjuk meg, hogy a
+        megjelenítõ milyen módon küldje át az adatokat a
+        szervernek. (GET vagy POST)</font><hr>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" width="30%"><font face="Arial" size="2"><strong>ENCTYPE=</strong>
+        kódolás típusa</font></td>
+        <td width="70%"><font face="Arial" size="2">Az elküldött adatok kódolási
+        módszerét állíthatjuk be. Ez alapállapotban a <em>application/x-www-form-urlencoded</em>.
+        (ekkor a kérdõív egyes mezõinek nevei és az
+        értékei közé = jelet rak, a szóközöket lecseréli
+        + jelekre, a speciális karaktereket %xx alakú jelekké
+        konvertálja, ahol az xx az adott karakter hexadecimális
+        ASCII kódja. (ez a kódolás a CGI programok által
+        történõ feldolgozást könnyíti meg.)<br>
+        Ha az adott ûrlap tartalmát email-en keresztül
+        küldjük el, akkor célszerû <em>text/plain </em>kódolást
+        beállítani, és így olvasható marad a szöveg.</font></td>
+    </tr>
+</table>
+</div>
+
+<p><font face="Arial" size="2">A következõkben nézzük sorban a vezérlõelemeket, amelyek
+az ûrlapok interaktív részét fogják megjeleníteni, és a
+&lt;FORM&gt; &lt;/FORM&gt; elemeken belül helyezkednek el.</font></p>
+
+<p><font face="Arial" size="2">Az információ beviteli lehetõségeket az <strong>&lt;INPUT&gt;
+</strong>tag használatával érhetjük el. A <strong>TYPE </strong>paraméter
+segítségével határozzuk meg, hogy milyen ûrlapelem-típust
+használunk.</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td valign="top" width="30%"><font face="Arial" size="2">&lt;<strong>INPUT
+        TYPE=TEXT&gt;</strong></font><p><font face="Arial" size="2">Paraméterei:<br>
+        <strong>Name= </strong>név<strong><br>
+        Value= </strong>alapérték<strong><br>
+        Size= </strong>méret<strong><br>
+        Maxlength= </strong>hossz</font></p>
+        </td>
+        <td width="50%"><font face="Arial" size="2">Egy egyszerû szövegbekérõ ablak,
+        amelyek rövid szövegek fogadására alkalmas<br>
+        A <em>Name </em>paraméter a mezõ azonosítására
+        szolgál, a beírt adatok ehhez a névhez kapcsolódnak a
+        kérdõív elküldésekor. A <em>Value </em>tartalmazza
+        azt az alapértéket, amely az elsõ megjelenéskor a
+        szövegbekérõ ablakban lesz. A <em>Size</em> a mezõ
+        karakterekben mért szélessége, a <em>Maxlength </em>pedig
+        a beírható szöveg maximális hosszát adja meg.</font> </td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#000000" face="Arial" size="2">Ahhoz, hogy a fentieket mindjárt ki is
+tudjuk próbálni beszélnünk kell arról, hogy hogyan tudjuk
+elküldeni a kitöltött ûrlapot. </font></p>
+
+<p><font color="#000000" face="Arial" size="2">Ehhez ismernünk kell a következõ
+paramétert:</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td valign="top" width="40%"><font face="Arial" size="2">&lt;<strong>INPUT
+        TYPE=SUBMIT&gt;</strong></font></td>
+        <td width="50%"><font face="Arial" size="2">Ez az elem hozza létre az ûrlap
+        elküldéséhez szükséges nyomógombot. A gomb
+        feliratát a <em>value </em>paraméterrel állíthatjuk
+        be.</font> <hr>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" width="40%"><font face="Arial" size="2">&lt;<strong>INPUT
+        TYPE=RESET&gt;</strong></font></td>
+        <td><font face="Arial" size="2">Ez az elem abban lesz a segítségünkre, hogy
+        létrehoz a fentiekhez hasonló nyomógombot, amelynek az
+        a feladata, hogy az összes mezõ értékét az
+        alapértékre állítsa vissza.</font></td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#0000FF" face="Arial" size="2"><strong>Példa:</strong></font></p>
+
+<p><font face="Arial" size="2"><!--webbot bot="HTMLMarkup" startspan --><form action="mailto:" enctype="text/plain">
+<hr>
+<b>Mi a neved?</b>
+<p> Vezetéknév: 
+<input type=text Name=vezeteknev size=40 maxlength=80></p>
+<p> Keresztnév: 
+<input type=text Name=keresztnev size=25 maxlength=40></p>
+
+<input value="Adatok elküdése" type=submit>
+<input value="Törlés"  type=reset>
+<hr>
+</form>
+<!--webbot
+bot="HTMLMarkup" endspan --></font></p>
+
+<p><font color="#008000" face="Arial" size="2"><strong>A hozzátartozó kód:</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;form action=&quot;mailto:valaki@valahol&quot;
+enctype=&quot;text/plain&quot;&gt;<br>
+&lt;hr&gt;<br>
+&lt;b&gt;Mi a neved?&lt;/b&gt;<br>
+&lt;p&gt; Vezetéknév: <br>
+&lt;input type=text Name=vezeteknev size=40
+maxlength=80&gt;&lt;/p&gt;<br>
+&lt;p&gt; Keresztnév: <br>
+&lt;input type=text Name=keresztnev size=25
+maxlength=40&gt;&lt;/p&gt;<br>
+&lt;input value=&quot;Adatok elküdése&quot; type=submit&gt;<br>
+&lt;input value=&quot;Törlés&quot; type=reset&gt;<br>
+&lt;hr&gt;<br>
+&lt;/form&gt;</font></p>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="u1">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="13" cols="65">&lt;form action=&quot;mailto:valaki@valahol&quot; enctype=&quot;text/plain&quot;&gt;
+&lt;hr&gt;
+&lt;b&gt;Mi a neved?&lt;/b&gt;
+&lt;p&gt; Vezetéknév: 
+&lt;input type=text Name=vezeteknev size=40 maxlength=80&gt;&lt;/p&gt;
+&lt;p&gt; Keresztnév: 
+&lt;input type=text Name=keresztnev size=25 maxlength=40&gt;&lt;/p&gt;
+&lt;input value=&quot;Adatok elküdése&quot; type=submit&gt;
+&lt;input value=&quot;Törlés&quot; type=reset&gt;
+&lt;hr&gt;
+&lt;/form&gt;
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(u1.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><strong><font face="Arial" size="2">Ekkor a fent definiált e-mail címre a következõ
+tartalmú levél fog megérkezni.</font></strong></p>
+
+<p><font face="Arial" size="2">vezeteknev=Kovács<br>
+keresztnev=Csaba</font></p>
+
+<p><font face="Arial" size="2">Most nézzük meg, hogy mi a hatása annak ha a <em>value</em>
+paramétert is alkalmazzuk! Egészítsük ki a fenti példát
+úgy, hogy azt is kérdezzük meg az olvasótól, hogy melyik
+egyetemre jár. (Itt feltehetjük, hogy a válaszok többsége az
+ELTE TTK lesz, ezért ezt vesszük alapértéknek.)</font></p>
+
+<p><font face="Arial" size="2"><!--webbot bot="HTMLMarkup" startspan --><body>
+<form action="mailto:valaki@valahol" enctype="text/plain">
+<hr>
+<b>Mi a neved?</b>
+<p> Vezetéknév: 
+<input type=text Name=vezeteknev size=40 maxlength=80></p>
+<p> Keresztnév: 
+<input type=text Name=keresztnev size=25 maxlength=40></p>
+<p> Melyik egyetemre jársz? 
+<input type=text Name=egyetem Value="ELTE TTK" size=20 maxlength=30></p>
+<input value="Adatok elküdése" type=submit>
+<input value="Törlés" type=reset>
+<hr>
+</form>
+</body>
+</html><!--webbot
+bot="HTMLMarkup" endspan --></font></p>
+
+<p><font color="#008000" face="Arial" size="2"><strong>A hozzátartozó kód:</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;form action=&quot;mailto:valaki@valahol&quot;
+enctype=&quot;text/plain&quot;&gt;<br>
+&lt;hr&gt;<br>
+&lt;b&gt;Mi a neved?&lt;/b&gt;<br>
+&lt;p&gt; Vezetéknév: <br>
+&lt;input type=text Name=vezeteknev size=40
+maxlength=80&gt;&lt;/p&gt;<br>
+&lt;p&gt; Keresztnév: <br>
+&lt;input type=text Name=keresztnev size=25
+maxlength=40&gt;&lt;/p&gt;<br>
+<font color="#FF0080">&lt;p&gt; Melyik egyetemre jársz? <br>
+&lt;input type=text Name=egyetem Value=&quot;ELTE TTK&quot;
+size=20 maxlength=30&gt;&lt;/p&gt;</font><br>
+&lt;input value=&quot;Adatok elküdése&quot; type=submit&gt;<br>
+&lt;input value=&quot;Törlés&quot; type=reset&gt;<br>
+&lt;hr&gt;<br>
+&lt;/form&gt;<br>
+</font>
+</p>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="u2">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="15" cols="75">&lt;form action=&quot;mailto:valaki@valahol&quot; enctype=&quot;text/plain&quot;&gt;
+&lt;hr&gt;
+&lt;b&gt;Mi a neved?&lt;/b&gt;
+&lt;p&gt; Vezetéknév: 
+&lt;input type=text Name=vezeteknev size=40 maxlength=80&gt;&lt;/p&gt;
+&lt;p&gt; Keresztnév: 
+&lt;input type=text Name=keresztnev size=25 maxlength=40&gt;&lt;/p&gt;
+&lt;p&gt; Melyik egyetemre jársz? 
+&lt;input type=text Name=egyetem Value=&quot;ELTE TTK&quot; size=20 maxlength=30&gt;&lt;/p&gt;
+&lt;input value=&quot;Adatok elküdése&quot; type=submit&gt;
+&lt;input value=&quot;Törlés&quot; type=reset&gt;
+&lt;hr&gt;
+&lt;/form&gt;
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(u2.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="40%"><font face="Arial" size="2">&lt;<strong>INPUT TYPE=PASSWORD&gt;</strong></font></td>
+        <td><font face="Arial" size="2">Ha ezt a mezõt alkalmazzuk, akkor a begépelt
+        karakterek helyett a * karakter fog megjelenni. (ezért
+        alkalmazható a jelszó (password) bekéréséhez.) .</font></td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#0000FF" face="Arial" size="2"><strong>Példa:</strong></font></p>
+
+<p><font face="Arial" size="2"><!--webbot bot="HTMLMarkup" startspan --><form action="mailto:valaki@valahol" enctype="text/plain">
+<hr>
+<b>Belépés a rendszerbe!</b>
+<p> Azonosító: 
+<input type=text Name=azonosito size=15 maxlength=15></p>
+<p> Jelszó: 
+<input type=password Name=jelszo size=25 maxlength=40></p>
+<input value="Belépés" type=submit>
+<input value="Törlés" type=reset>
+<hr>
+</form><!--webbot
+bot="HTMLMarkup" endspan --></font></p>
+
+<p><font color="#008000" face="Arial" size="2"><strong>A hozzátartozó kód:</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;form action=&quot;mailto:valaki@valahol&quot;
+enctype=&quot;text/plain&quot;&gt;<br>
+&lt;hr&gt;<br>
+&lt;b&gt;Belépés a rendszerbe!&lt;/b&gt;<br>
+&lt;p&gt; Azonosító: <br>
+&lt;input type=text Name=azonosito size=15
+maxlength=15&gt;&lt;/p&gt;<br>
+&lt;p&gt; Jelszó: <br>
+&lt;input type=password Name=jelszo size=25
+maxlength=40&gt;&lt;/p&gt;<br>
+&lt;input value=&quot;Belépés&quot; type=submit&gt;<br>
+&lt;input value=&quot;Törlés&quot; type=reset&gt;<br>
+&lt;hr&gt;<br>
+&lt;/form&gt;</font></p>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="u3">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="12" cols="75">&lt;form action=&quot;mailto:valaki@valahol&quot; enctype=&quot;text/plain&quot;&gt;
+&lt;hr&gt;
+&lt;b&gt;Belépés a rendszerbe!&lt;/b&gt;
+&lt;p&gt; Azonosító: 
+&lt;input type=text Name=azonosito size=15 maxlength=15&gt;&lt;/p&gt;
+&lt;p&gt; Jelszó: 
+&lt;input type=password Name=jelszo size=25 maxlength=40&gt;&lt;/p&gt;
+&lt;input value=&quot;Belépés&quot; type=submit&gt;
+&lt;input value=&quot;Törlés&quot; type=reset&gt;
+&lt;hr&gt;
+&lt;/form&gt;
+	
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(u3.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="40%"><font face="Arial" size="2">&lt;<strong>INPUT TYPE=CHECKBOX&gt;</strong></font><p><font face="Arial" size="2">Paramétere:
+        <strong>CHECKED</strong></font></p>
+        </td>
+        <td><font face="Arial" size="2">Egyszerû logikai értékek kijelölésére szolgál,
+        ennek megfelelõen két értéket vehet fel: igaz
+        (checked) vagy hamis. <br>
+        Amikor a böngészõ elküldi az adott kérdõívet,
+        akkor ha az adott rubrika ki volt választva, akkor a <em>NAME
+        </em>paraméter felveszi a <em>VALUE </em>értékét,
+        egyébként pedig nem fog szerepelni az elküldött
+        adatban.</font></td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#0000FF" face="Arial" size="2"><strong>Példa:</strong></font></p>
+
+<p><font face="Arial" size="2"><!--webbot bot="HTMLMarkup" startspan --><form action="mailto:valaki@valahol" enctype="text/plain">
+<hr>
+<b>Könyvajánlat. </b></p>
+<p>Kérjük válassza ki azt a könyvet, amelyet mi postafordultával elküldünk Önnek</p>
+
+<p><input type=checkbox Name=autocad Value=megrendelem>Az AutoCAD 2000 újdonságai </p>
+<p><input type=checkbox Name=c_nyelv Value=megrendelem>Programozzunk C nyelven! </p>
+<p><input type=checkbox Name=OOP Value=megrendelem>Objektum-orientált programozás C++ nyelven</p>
+<input value="Adatok elküldése" type=submit>
+<input value="Törlés" type=reset>
+<hr>
+</form><!--webbot
+bot="HTMLMarkup" endspan --></font></p>
+
+<p><font color="#008000" face="Arial" size="2"><strong>A hozzátartozó kód:</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;form action=&quot;mailto:valaki@valahol&quot;
+enctype=&quot;text/plain&quot;&gt;<br>
+&lt;hr&gt;<br>
+&lt;b&gt;Könyvajánlat. &lt;/b&gt;&lt;/p&gt;<br>
+&lt;p&gt;Kérjük válassza ki azt a könyvet, amelyet mi
+postafordultával elküldünk Önnek&lt;/p&gt;<br>
+<br>
+&lt;p&gt;&lt;input type=checkbox Name=autocad
+Value=megrendelem&gt;Az AutoCAD 2000 újdonságai &lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=checkbox Name=c_nyelv
+Value=megrendelem&gt;Programozzunk C nyelven! &lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=checkbox Name=OOP
+Value=megrendelem&gt;Objektum-orientált programozás C++
+nyelven&lt;/p&gt;<br>
+&lt;input value=&quot;Adatok elküldése&quot; type=submit&gt;<br>
+&lt;input value=&quot;Törlés&quot; type=reset&gt;<br>
+&lt;hr&gt;<br>
+&lt;/form&gt;</font></p>
+
+<p><strong><font face="Arial" size="2">Válasszuk ki az elsõ két könyvet. Ekkor az
+elküldött levél törzse a következõ adatokat tartalmazza:</font></strong></p>
+
+<p><font face="Arial" size="2">autocad=megrendelem<br>
+c_nyelv=megrendelem</font></p>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="u4">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="15" cols="80">&lt;form action=&quot;mailto:valaki@valahol&quot; enctype=&quot;text/plain&quot;&gt;
+&lt;hr&gt;
+&lt;b&gt;Könyvajánlat. &lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Kérjük válassza ki azt a könyvet, amelyet mi postafordultával elküldünk Önnek&lt;/p&gt;
+
+&lt;p&gt;&lt;input type=checkbox Name=autocad Value=megrendelem&gt;Az AutoCAD 2000 újdonságai &lt;/p&gt;
+&lt;p&gt;&lt;input type=checkbox Name=c_nyelv Value=megrendelem&gt;Programozzunk C nyelven! &lt;/p&gt;
+&lt;p&gt;&lt;input type=checkbox Name=OOP Value=megrendelem&gt;Objektum-orientált programozás C++ nyelven&lt;/p&gt;
+&lt;input value=&quot;Adatok elküldése&quot; type=submit&gt;
+&lt;input value=&quot;Törlés&quot; type=reset&gt;
+&lt;hr&gt;
+&lt;/form&gt;
+	
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(u4.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="40%"><font face="Arial" size="2">&lt;<strong>INPUT TYPE=RADIO&gt;</strong></font><p><font face="Arial" size="2">Paramétere:
+        <strong>CHECKED</strong></font></p>
+        </td>
+        <td><font face="Arial" size="2">Az elõbbi elemhez képest a RADIO gomb alkalmazása
+        több válaszlehetõséget kínál fel, amelyek közül
+        egyet lehet kiválasztani. (legalábbis az azonos NAME
+        paraméterûek közül)</font></td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#0000FF" face="Arial" size="2"><strong>Példa:</strong></font></p>
+
+<p><font face="Arial" size="2"><!--webbot bot="HTMLMarkup" startspan --><form action="mailto:valaki@valahol" enctype="text/plain">
+<hr>
+<b>Angol teszt </b></p>
+<p>Kérjük válassza ki a helyes megoldást!</p>
+<p>1. "Can I speak to Mr. Doster, please?" "Just a moment, I'll put you ... as soon as he is free."</p>
+<p><input type=radio Name=kerd1 Value=rossz>A.over </p>
+<p><input type=radio Name=kerd1 Value=rossz>B.off </p>
+<p><input type=radio Name=kerd1 Value=rossz>C.across </p>
+<p><input type=radio Name=kerd1 Value=jo>D.through</p>
+<p>2. "When I was in that town, a new bridge was being built ... the river."</p>
+<p><input type=radio Name=kerd2 Value=rossz>A.along </p>
+<p><input type=radio Name=kerd2 Value=rossz>B.about </p>
+<p><input type=radio Name=kerd2 Value=jo>C.across </p>
+<p><input type=radio Name=kerd2 Value=rossz>D.through</p>
+<input value="Adatok elküldése" type=submit>
+<input value="Törlés" type=reset>
+<hr>
+</form>
+</body><!--webbot
+bot="HTMLMarkup" endspan --></font></p>
+
+<p><font color="#008000" face="Arial" size="2"><strong>A hozzátartozó kód:</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;form action=&quot;mailto:valaki@valahol&quot;
+enctype=&quot;text/plain&quot;&gt;<br>
+&lt;hr&gt;<br>
+&lt;b&gt;Angol teszt &lt;/b&gt;&lt;/p&gt;<br>
+&lt;p&gt;Kérjük válassza ki a helyes megoldást!&lt;/p&gt;<br>
+&lt;p&gt;1. &quot;Can I speak to Mr. Doster, please?&quot;
+&quot;Just a moment, I'll put you ... as soon as he is
+free.&quot;&lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=radio Name=kerd1 Value=rossz&gt;A.over
+&lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=radio Name=kerd1 Value=rossz&gt;B.off
+&lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=radio Name=kerd1 Value=rossz&gt;C.across
+&lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=radio Name=kerd1
+Value=jo&gt;D.through&lt;/p&gt;<br>
+&lt;p&gt;2. &quot;When I was in that town, a new bridge was being
+built ... the river.&quot;&lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=radio Name=kerd2 Value=rossz&gt;A.along
+&lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=radio Name=kerd2 Value=rossz&gt;B.about
+&lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=radio Name=kerd2 Value=jo&gt;C.across
+&lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=radio Name=kerd2
+Value=rossz&gt;D.through&lt;/p&gt;<br>
+&lt;input value=&quot;Adatok elküldése&quot; type=submit&gt;<br>
+&lt;input value=&quot;Törlés&quot; type=reset&gt;<br>
+&lt;hr&gt;<br>
+&lt;/form&gt;<br>
+</font>
+</p>
+
+<p><strong><font face="Arial" size="2">Tegyük fel, hogy az elsõ kérdésre jól
+válaszoltunk, a másodikra pedig rosszul. Ekkor a következõ
+tartalmú levelet kapjuk:</font></strong></p>
+
+<p><font face="Arial" size="2">kerd1=jo<br>
+kerd2=rossz</font></p>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="u5">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="22" cols="80">&lt;form action=&quot;mailto:valaki@valahol&quot; enctype=&quot;text/plain&quot;&gt;
+&lt;hr&gt;
+&lt;b&gt;Angol teszt &lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Kérjük válassza ki a helyes megoldást!&lt;/p&gt;
+&lt;p&gt;1. &quot;Can I speak to Mr. Doster, please?&quot; &quot;Just a moment, I'll put you ... as soon as he is free.&quot;&lt;/p&gt;
+&lt;p&gt;&lt;input type=radio Name=kerd1 Value=rossz&gt;A.over &lt;/p&gt;
+&lt;p&gt;&lt;input type=radio Name=kerd1 Value=rossz&gt;B.off &lt;/p&gt;
+&lt;p&gt;&lt;input type=radio Name=kerd1 Value=rossz&gt;C.across &lt;/p&gt;
+&lt;p&gt;&lt;input type=radio Name=kerd1 Value=jo&gt;D.through&lt;/p&gt;
+&lt;p&gt;2. &quot;When I was in that town, a new bridge was being built ... the river.&quot;&lt;/p&gt;
+&lt;p&gt;&lt;input type=radio Name=kerd2 Value=rossz&gt;A.along &lt;/p&gt;
+&lt;p&gt;&lt;input type=radio Name=kerd2 Value=rossz&gt;B.about &lt;/p&gt;
+&lt;p&gt;&lt;input type=radio Name=kerd2 Value=jo&gt;C.across &lt;/p&gt;
+&lt;p&gt;&lt;input type=radio Name=kerd2 Value=rossz&gt;D.through&lt;/p&gt;
+&lt;input value=&quot;Adatok elküldése&quot; type=submit&gt;
+&lt;input value=&quot;Törlés&quot; type=reset&gt;
+&lt;hr&gt;
+&lt;/form&gt;
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(u5.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="40%"><font face="Arial" size="2">&lt;<strong>INPUT TYPE=IMAGE&gt;</strong></font><p><font face="Arial" size="2">Paramétere:
+        <strong><br>
+        SRC= </strong>URL<strong><br>
+        ALIGN= </strong>igazítás típus<strong><br>
+        ALT= </strong>szöveg<br>
+        ....</font></p>
+        </td>
+        <td><font face="Arial" size="2">A SUBMIT gombot egy képpel is helyettesíthetjük,
+        ekkor az IMAGE mezõt kell alkalmaznunk. A képeknél
+        tárgyalt szokásos paraméterek mindegyike
+        alkalmazható. (width, height, border...) A mezõ
+        különlegessége az, hogy azt is elküldi, hogy a
+        kattintás a kép melyik koordinátájú pontján
+        történt. (name.x illetve name.y formában)</font></td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#0000FF" face="Arial" size="2"><strong>Példa:</strong></font></p>
+
+<p><font face="Arial" size="2"><!--webbot bot="HTMLMarkup" startspan --><form action="mailto:valaki@valahol" enctype="text/plain">
+<hr>
+<b>Könyvajánlat. </b></p>
+<p>Kérjük válassza ki azt a könyvet, amelyet mi postafordultával elküldünk Önnek</p>
+
+<p><input type=checkbox Name=autocad Value=megrendelem>Az AutoCAD 2000 újdonságai </p>
+<p><input type=checkbox Name=c_nyelv Value=megrendelem>Programozzunk C nyelven! </p>
+<p><input type=checkbox Name=OOP Value=megrendelem>Objektum-orientált programozás C++ nyelven</p>
+<input value="Adatok elküldése" name=elkuld type=image src="mail.gif" align="middle"> Kattintson az ikonra, ha végzett!
+<hr>
+</form>
+<!--webbot
+bot="HTMLMarkup" endspan --></font></p>
+
+<p><font color="#008000" face="Arial" size="2"><strong>A hozzátartozó kód:</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;form action=&quot;mailto:valaki@valahol&quot;
+enctype=&quot;text/plain&quot;&gt;<br>
+&lt;hr&gt;<br>
+&lt;b&gt;Könyvajánlat. &lt;/b&gt;&lt;/p&gt;<br>
+&lt;p&gt;Kérjük válassza ki azt a könyvet, amelyet mi
+postafordultával elküldünk Önnek&lt;/p&gt;<br>
+<br>
+&lt;p&gt;&lt;input type=checkbox Name=autocad
+Value=megrendelem&gt;Az AutoCAD 2000 újdonságai &lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=checkbox Name=c_nyelv
+Value=megrendelem&gt;Programozzunk C nyelven! &lt;/p&gt;<br>
+&lt;p&gt;&lt;input type=checkbox Name=OOP
+Value=megrendelem&gt;Objektum-orientált programozás C++
+nyelven&lt;/p&gt;<br>
+<font color="#FF0080">&lt;input value=&quot;Adatok
+elküldése&quot; name=elkuld type=image src=&quot;mail.gif&quot;
+align=&quot;middle&quot;&gt; Kattintson az ikonra, ha végzett!<br>
+</font>&lt;hr&gt;<br>
+&lt;/form&gt;<br>
+</font>
+</p>
+
+<p><strong><font face="Arial" size="2">Tegyük fel, hogy az Objektum-orientált programozás
+C++ nyelven könyvet szeretnénk megrendelni. Ekkor a következõ
+tartalmú levelet kapjuk:</font></strong></p>
+
+<p><font face="Arial" size="2">OOP=megrendelem<br>
+elkuld.x=51<br>
+elkuld.y=26</font></p>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="u6">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="16" cols="80">&lt;form action=&quot;mailto:valaki@valahol&quot; enctype=&quot;text/plain&quot;&gt;
+&lt;hr&gt;
+&lt;b&gt;Könyvajánlat. &lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Kérjük válassza ki azt a könyvet, amelyet mi postafordultával elküldünk Önnek&lt;/p&gt;
+
+&lt;p&gt;&lt;input type=checkbox Name=autocad Value=megrendelem&gt;Az AutoCAD 2000 újdonságai &lt;/p&gt;
+&lt;p&gt;&lt;input type=checkbox Name=c_nyelv Value=megrendelem&gt;Programozzunk C nyelven! &lt;/p&gt;
+&lt;p&gt;&lt;input type=checkbox Name=OOP Value=megrendelem&gt;Objektum-orientált programozás C++ nyelven&lt;/p&gt;
+&lt;input value=&quot;Adatok elküldése&quot; name=elkuld type=image src=&quot;mail.gif&quot; align=&quot;middle&quot;&gt; Kattintson az ikonra, ha végzett!
+&lt;hr&gt;
+&lt;/form&gt;
+	
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(u6.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="40%"><font face="Arial" size="2">&lt;<strong>SELECT&gt;</strong></font><p><font face="Arial" size="2">Paramétere:
+        <strong><br>
+        NAME= </strong>név<strong><br>
+        SIZE= </strong>méret<strong><br>
+        MULTIPLE</strong></font></p>
+        </td>
+        <td><font face="Arial" size="2">Ezzel az elemmel listákat (vagy lehulló menüket)
+        készíthetünk. <br>
+        A NAME paraméterrel adjuk meg azt a nevet, ami a VALUE
+        értékhez kapcsolódik. A SIZE paraméter a
+        megjelenítendõ sorok számát tartalmazza. (ha az értéke 1, legördülõ
+          menüt kapunk)</font>
+          <p><font face="Arial" size="2"> Ha a
+        MULTIPLE paramétert is megadjuk, akkor a listából
+        egyszerre több elem is kiválasztható. A SELECT elem
+        tetszõleges számú de legalább egy &lt;OPTION&gt;
+        elemet kell hogy tartalmazzon.<br>
+          </font>
+          </p>
+        <hr>
+        </td>
+    </tr>
+    <tr>
+        <td><font face="Arial" size="2">&lt;<strong>OPTION&gt;</strong></font><p><font face="Arial" size="2">Paramétere: <strong><br>
+        VALUE= </strong>érték<strong><br>
+        SELECTED<br>
+        </strong></font></p>
+        </td>
+        <td><font face="Arial" size="2">Ezzel adhatjuk meg a lista tényleges elemeit. A
+        VALUE tartalmazza a kiválasztás esetén elküldött
+        értéket. Ha a SELECTED paraméter is jelen van, akkor a
+        listában az adott elem már alapállapotban ki lesz
+        jelölve.</font></td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#0000FF" face="Arial" size="2"><strong>Példa:</strong></font></p>
+
+<p><font face="Arial" size="2"><!--webbot bot="HTMLMarkup" startspan --><form action="mailto:valaki@valahol" enctype="text/plain">
+<p><b>Kérlek add meg, hogy mivel foglalkozol legszívesebben a szabadidodben!</b></p>
+<select name=hobbi size=2>
+<option value=html>HTML szerkesztés
+<option value=zene>Zenehallgatás
+<option value=term selected>Természetjárás
+<option value=egyeb>Egyéb
+</select>
+<p><input value="Adatok elküldése" type=submit>
+<input value="Törlés" type=reset></p>
+<hr>
+</form>
+</body>
+<!--webbot
+bot="HTMLMarkup" endspan --></font></p>
+
+<p><font color="#008000" face="Arial" size="2"><strong>A hozzátartozó kód:</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;form action=&quot;mailto:valaki@valahol&quot;
+enctype=&quot;text/plain&quot;&gt;<br>
+&lt;p&gt;&lt;b&gt;Kérlek add meg, hogy mivel foglalkozol
+legszívesebben a szabadidõdben!&lt;/b&gt;&lt;/p&gt;<br>
+&lt;select name=hobbi size=2&gt;<br>
+&lt;option value=html&gt;HTML szerkesztés<br>
+&lt;option value=zene&gt;Zenehallgatás<br>
+&lt;option value=term selected&gt;Természetjárás<br>
+&lt;option value=egyeb&gt;Egyéb<br>
+&lt;/select&gt;<br>
+&lt;p&gt;&lt;input value=&quot;Adatok elküldése&quot;
+type=submit&gt;<br>
+&lt;input value=&quot;Törlés&quot; type=reset&gt;&lt;/p&gt;<br>
+&lt;hr&gt;<br>
+&lt;/form&gt;<br>
+</font>
+</p>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font></strong>&nbsp;</p>
+
+<table border="1" cellpadding="10" cellspacing="0" width="80%">
+  <tr>
+    <td width="60" bgcolor="#FFFFE1"><font face="Arial" size="2"><img border="0" src="../tipp.gif" width="39" height="102"></font>
+    </td>
+    <td bgcolor="#FFFFFF"><strong><font face="Arial" size="2">Jó ha tudod, hogy ha a
+size paraméter értéke 1, akkor legördülõ menüt kapsz. Próbáld ki!</font></strong>
+    </td> 
+  </tr> 
+</table> 
+
+
+<p>&nbsp;</p>
+
+<form name="u7">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="16" cols="50">&lt;form action=&quot;mailto:valaki@valahol&quot; enctype=&quot;text/plain&quot;&gt;
+&lt;p&gt;&lt;b&gt;Kérlek add meg, hogy mivel foglalkozol legszívesebben a szabadidõdben!&lt;/b&gt;&lt;/p&gt;
+&lt;select name=hobbi size=2&gt;
+&lt;option value=html&gt;HTML szerkesztés
+&lt;option value=zene&gt;Zenehallgatás
+&lt;option value=term selected&gt;Természetjárás
+&lt;option value=egyeb&gt;Egyéb
+&lt;/select&gt;
+&lt;p&gt;&lt;input value=&quot;Adatok elküldése&quot; type=submit&gt;
+&lt;input value=&quot;Törlés&quot; type=reset&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;/form&gt;
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(u7.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><font color="#0000FF" face="Arial" size="2"><strong>Példa2: MULTIPLE paraméter
+használata</strong></font></p>
+
+<p><font face="Arial" size="2"><!--webbot bot="HTMLMarkup" startspan --><form action="mailto:valaki@valahol enctype="text/plain">
+<p><b>Kérlek add meg, hogy mivel foglalkozol legszívesebben a szabadidodben!</b></p>
+<select name=hobbi MULTIPLE>
+<option value=html selected>HTML szerkesztés
+<option value=zene >Zenehallgatás
+<option value=term >Természetjárás
+<option value=egyeb >Egyéb
+</select>
+<p><input value="Adatok elküldése" type=submit>
+<input value="Törlés" type=reset></p>
+<hr>
+</form>
+</body>
+
+<!--webbot
+bot="HTMLMarkup" endspan --></font></p>
+
+<p><font color="#008000" face="Arial" size="2"><strong>A hozzátartozó kód:</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;form action=&quot;mailto:valaki@valahol
+enctype=&quot;text/plain&quot;&gt;<br>
+&lt;p&gt;&lt;b&gt;Kérlek add meg, hogy mivel foglalkozol
+legszívesebben a szabadidõdben!&lt;/b&gt;&lt;/p&gt;<br>
+&lt;select name=hobbi MULTIPLE&gt;<br>
+&lt;option value=html selected&gt;HTML szerkesztés<br>
+&lt;option value=zene&gt;Zenehallgatás<br>
+&lt;option value=term&gt;Természetjárás<br>
+&lt;option value=egyeb&gt;Egyéb<br>
+&lt;/select&gt;<br>
+&lt;p&gt;&lt;input value=&quot;Adatok elküldése&quot;
+type=submit&gt;<br>
+&lt;input value=&quot;Törlés&quot; type=reset&gt;&lt;/p&gt;<br>
+&lt;hr&gt;<br>
+&lt;/form&gt;<br>
+</font>
+</p>
+
+<p><strong><font face="Arial" size="2">Tegyük fel, hogy az elsõ három pontot választottuk
+ki. Ekkor a következõ tartalmú levelet kapjuk:</font></strong></p>
+
+<p><font face="Arial" size="2">hobbi=html<br>
+hobbi=zene<br>
+hobbi=term</font></p>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="u8">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="15" cols="80">&lt;form action=&quot;mailto:valaki@valahol enctype=&quot;text/plain&quot;&gt;
+&lt;p&gt;&lt;b&gt;Kérlek add meg, hogy mivel foglalkozol legszívesebben a szabadidõdben!&lt;/b&gt;&lt;/p&gt;
+&lt;select name=hobbi MULTIPLE&gt;
+&lt;option value=html selected&gt;HTML szerkesztés
+&lt;option value=zene&gt;Zenehallgatás
+&lt;option value=term&gt;Természetjárás
+&lt;option value=egyeb&gt;Egyéb
+&lt;/select&gt;
+&lt;p&gt;&lt;input value=&quot;Adatok elküldése&quot; type=submit&gt;
+&lt;input value=&quot;Törlés&quot; type=reset&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;/form&gt;
+	
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(u8.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+
+<p><font face="Arial" size="2">&nbsp;</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="90%">
+    <tr>
+        <td width="40%"><font face="Arial" size="2">&lt;<strong>TEXTAREA&gt;</strong></font><p><font face="Arial" size="2">Paramétere:
+        <strong><br>
+        ROW= </strong>sorok száma<strong><br>
+        COLS= </strong>oszlopok száma<strong><br>
+        </strong></font></p>
+        </td>
+        <td><font face="Arial" size="2">Ha hosszabb szöveget szeretnénk bevinni, akkor a
+        &lt;textarea&gt; &lt;/textarea&gt; parancsot kell
+        használnunk, a sorok (rows) és oszlopok (cols=column)
+        számának megadásával.</font><hr>
+        </td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#0000FF" face="Arial" size="2"><strong>Példa:</strong></font></p>
+
+<p><font face="Arial" size="2"><!--webbot bot="HTMLMarkup" startspan --><form action="mailto:valaki@valahol" enctype="text/plain">
+<p><b>Kérlek írd meg a véleményedet a honlapomról!</b></p>
+<textarea name="velemeny" rows=5 cols="40">
+A honlap nagyon tetszett, mert ... 
+</textarea>
+<p><input value="Adatok elküldése" type=submit>
+<input value="Törlés" type=reset></p>
+<hr>
+</form>
+<!--webbot
+bot="HTMLMarkup" endspan --></font></p>
+
+<p><font color="#008000" face="Arial" size="2"><strong>A hozzátartozó kód:</strong></font></p>
+
+<p><font face="Arial" size="2">&lt;form action=&quot;mailto:valaki@valahol&quot;
+enctype=&quot;text/plain&quot;&gt;<br>
+&lt;p&gt;&lt;b&gt;Kérlek írd meg a véleményedet a
+honlapomról!&lt;/b&gt;&lt;/p&gt;<br>
+&lt;textarea name=&quot;velemeny&quot; rows=5
+cols=&quot;40&quot;&gt;<br>
+A honlap nagyon tetszett, mert ... <br>
+&lt;/textarea&gt;<br>
+&lt;p&gt;&lt;input value=&quot;Adatok elküldése&quot;
+type=submit&gt;<br>
+&lt;input value=&quot;Törlés&quot; type=reset&gt;&lt;/p&gt;<br>
+&lt;hr&gt;<br>
+&lt;/form&gt;<br>
+</font>
+</p>
+
+<p><strong><font face="Arial" size="2">A kódot módosíthatod az alábbi ablakban:</font> </strong></p>
+
+<form name="u9">
+    <p><font face="Arial" size="2"><textarea name="forras" rows="10" cols="80">&lt;form action=&quot;mailto:valaki@valahol&quot; enctype=&quot;text/plain&quot;&gt;
+&lt;p&gt;&lt;b&gt;Kérlek írd meg a véleményedet a honlapomról!&lt;/b&gt;&lt;/p&gt;
+&lt;textarea name=&quot;velemeny&quot; rows=5 cols=&quot;40&quot;&gt;
+A honlap nagyon tetszett, mert ... 
+&lt;/textarea&gt;
+&lt;p&gt;&lt;input value=&quot;Adatok elküldése&quot; type=submit&gt;
+&lt;input value=&quot;Törlés&quot; type=reset&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;/form&gt;
+</textarea></font></p>
+    <p><font face="Arial" size="2"><input type="button" value="Megnézem"
+    onclick="ujablak(); updatewin(u9.forras.value)"> <input
+    type="reset" value="Eredeti visszaállítása"> </font> </p>
+</form>
+
+<hr>
+        <p>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="50%">&nbsp;</td>
+      <td width="50%" align="right">&nbsp;</td>
+    </tr>
+  </table>
+
+<p>&nbsp;</p>
+</body>
+</html>

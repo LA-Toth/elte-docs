@@ -1,0 +1,15 @@
+fakt
+lnko
+swap
+masodfoku
+masodfoku_beagyazas
+rekurzio
+csomag
+
+Házi feladat:
+
+- Írj ciklusos, illetve rekurzív függvényt az n. Fibonacci szám meghatározásához!
+- Írd át úgy, hogy ne legyen olyan nagyon lassú n=46 esetén!
+- Keress a szabványos könyvtárakban négyzetgyökvonást, és használd a
+  másodfokú egyenlet megoldásához!
+
